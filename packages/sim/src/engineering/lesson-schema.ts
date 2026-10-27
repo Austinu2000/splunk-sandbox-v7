@@ -80,6 +80,70 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('cluster-state'),
+      label: text,
+      healthy: z.boolean().optional(),
+      joined: text.optional(),
+      maintenance: z.boolean().optional(),
+      siteCopies: z.array(text).optional(),
+      restoredSite: text.optional(),
+    })
+    .strict(),
+  z.object({ kind: z.literal('cluster-validation'), label: text, valid: z.boolean() }).strict(),
+  z
+    .object({
+      kind: z.literal('cluster-job'),
+      label: text,
+      jobKind: z.enum(['indexer-restart', 'indexer-bundle', 'shc-bundle', 'shc-restart']),
+      index: text.optional(),
+      minimumTargets: z.number().int().positive().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('shc-state'),
+      label: text,
+      elected: text.optional(),
+      term: z.number().int().min(0).optional(),
+      title: text.optional(),
+      consistent: z.boolean().optional(),
+      runtimeReplicated: z.boolean().optional(),
+      majority: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('smartstore-state'),
+      label: text,
+      index: text,
+      upload: z.boolean().optional(),
+      eviction: z.boolean().optional(),
+      fetch: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('kv-state'),
+      label: text,
+      host: text,
+      app: text.optional(),
+      collection: text.optional(),
+      settings: z.record(z.string()).optional(),
+      records: z
+        .array(z.record(z.union([z.string(), z.number(), z.boolean()])))
+        .max(100)
+        .optional(),
+      allMembers: z.boolean().optional(),
+      ready: z.boolean().optional(),
+      backup: text.optional(),
+      restored: text.optional(),
+      verifiedBackup: z.boolean().optional(),
+      action: text.optional(),
+    })
+    .strict(),
+
+  z
+    .object({
       kind: z.literal('dashboard-state'),
       label: text,
       host: text,
@@ -341,7 +405,7 @@ export const engineeringLessonSchema = z
     title: text,
     track: text,
     objectives: z.array(text).min(1),
-    environments: z.array(z.enum(['default', 'lab', 'apl', 'erie'])).min(1),
+    environments: z.array(z.enum(['default', 'lab', 'apl', 'erie', 'enterprise_lab_v1'])).min(1),
     level: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
     prerequisites: z.array(id),
     requiredCapabilities: z.array(capability).min(1),
@@ -367,6 +431,26 @@ export const engineeringLessonSchema = z
     setup: z
       .array(
         z.discriminatedUnion('kind', [
+          z.object({ kind: z.literal('cluster-starters') }).strict(),
+          z
+            .object({
+              kind: z.literal('cluster-fixture'),
+              mode: z.enum([
+                'baseline',
+                'peer-uri',
+                'unhealthy',
+                'multisite',
+                'smartstore',
+                'shc',
+                'shc-drift',
+                'kv',
+                'kv-upgrade',
+                'kv-sync',
+                'kv-restore',
+                'invalid-bundle',
+              ]),
+            })
+            .strict(),
           z
             .object({
               kind: z.literal('repository-source'),

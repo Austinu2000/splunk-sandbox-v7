@@ -48,6 +48,12 @@ const v7Lessons: Lesson[] = readdirSync(v7Dir)
     if (definition.status !== 'verified')
       throw new Error('Unverified V7 lesson cannot be registered: ' + definition.id);
     const supported = new Set([
+      'cluster-state',
+      'cluster-validation',
+      'cluster-job',
+      'shc-state',
+      'smartstore-state',
+      'kv-state',
       'dashboard-state',
       'dashboard-render',
       'alert-state',
@@ -135,6 +141,7 @@ export function registerLearn(app: FastifyInstance, live: LiveWorld, store: Sess
       if (!store) throw new TrainingError('Lessons require persistence');
       const l = lessons.find((l) => l.id === req.body.id);
       if (!l) throw new TrainingError('Unknown lesson');
+      const returnProfile = live.world.lesson?.returnProfile ?? live.world.config.profileId;
       store.checkpoint(live.world);
       const slot = `lesson:${req.body.learner}:${l.id}`;
       const saved = store.slot(slot),
@@ -158,6 +165,7 @@ export function registerLearn(app: FastifyInstance, live: LiveWorld, store: Sess
         hints: 0,
         notes: '',
       };
+      next.lesson.returnProfile = returnProfile;
       live.swap(next);
       store.checkpoint(next);
       return { id: l.id, profile: l.profile };
@@ -202,7 +210,7 @@ export function registerLearn(app: FastifyInstance, live: LiveWorld, store: Sess
   app.post('/api/learn/leave', async () => {
     if (!store || !live.world.lesson) throw new TrainingError('No active lesson');
     store.checkpoint(live.world);
-    const profile = live.world.config.profileId;
+    const profile = live.world.lesson.returnProfile ?? live.world.config.profileId;
     const saved = store.autosave(profile),
       defs = loadScenarioDefinitions();
     const next = saved

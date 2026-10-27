@@ -61,6 +61,9 @@ export interface PracticeAnswer {
 export interface TrainingState {
   buckets?: {
     id: string;
+    index?: string;
+    sourceBucketId?: string;
+    originSite?: string;
     copies: { host: string; searchable: boolean }[];
     stage: 'hot' | 'warm' | 'cold' | 'frozen';
     ageDays: number;

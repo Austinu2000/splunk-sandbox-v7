@@ -1,3 +1,5 @@
+import { advancedClusterHealth } from '../engineering/cluster-health';
+import { shcHealth } from '../engineering/shc-health';
 import { activeIndexNames, indexCatalog } from '../engineering/indexes';
 import { canSearchIndex } from '../engineering/access';
 import { recordedEvents } from '../engineering/ingestion';
@@ -220,8 +222,57 @@ export function rest(ctx: RunContext, endpoint: string, opts: Map<string, string
           version: ENTERPRISE_VERSION,
         }),
       );
+    case 'shcluster/status': {
+      if (!world.clusterManagement) throw new Error('Enable V7 SHC operations to inspect this endpoint');
+      const h = shcHealth(world);
+      return h.members.map((m) =>
+        Row.of({
+          splunk_server: m.host,
+          label: m.host,
+          status: m.available ? 'Up' : 'Down',
+          captain: h.captain ?? '',
+          is_captain: m.host === h.captain ? '1' : '0',
+          majority: h.majority ? '1' : '0',
+          election_term: h.term,
+        }),
+      );
+    }
+    case 'cluster/manager/info': {
+      if (!world.clusterManagement) throw new Error('Enable V7 cluster operations to inspect this endpoint');
+      const h = advancedClusterHealth(world);
+      return [
+        Row.of({
+          splunk_server: h.manager,
+          label: h.manager,
+          replication_factor: h.replicationFactor,
+          search_factor: h.searchFactor,
+          replication_factor_met: h.replicationMet ? '1' : '0',
+          search_factor_met: h.searchFactorMet ? '1' : '0',
+          all_data_searchable: h.allDataSearchable ? '1' : '0',
+          maintenance_mode: h.maintenance ? '1' : '0',
+        }),
+      ];
+    }
     case 'cluster/manager/peers':
     case 'cluster/master/peers':
+      if (world.clusterManagement) {
+        const h = advancedClusterHealth(world);
+        return h.members.map((m) =>
+          Row.of({
+            splunk_server: h.manager,
+            label: m.host,
+            site: m.nativeSite,
+            status: m.joined ? 'Up' : 'Down',
+            is_searchable:
+              m.joined &&
+              h.buckets.some((b) => b.copies.some((c) => c.host === m.host && c.available && c.searchable))
+                ? '1'
+                : '0',
+            bucket_count: h.buckets.filter((b) => b.copies.some((c) => c.host === m.host)).length,
+            reason: m.reason,
+          }),
+        );
+      }
       return indexers.map((p) =>
         Row.of({
           splunk_server: infraName(world, 'cluster_manager'),

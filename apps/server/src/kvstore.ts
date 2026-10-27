@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import {
   kvState,
+  kvRevision,
   kvNode,
   kvStatus,
   kvDefaultHost,
@@ -36,6 +37,8 @@ export function registerKvStore(app: FastifyInstance, live: LiveWorld, checkpoin
       appName = req.query.app || KV_APP;
     kvNode(w, host);
     return {
+      context: live.context,
+      revision: kvRevision(w, host, appName),
       host,
       app: appName,
       nodes: s.nodes.map((n) => kvStatus(w, n.host)),
@@ -51,6 +54,8 @@ export function registerKvStore(app: FastifyInstance, live: LiveWorld, checkpoin
   });
   app.post<{
     Body: {
+      context: string;
+      revision: string;
       action: string;
       host: string;
       app?: string;
@@ -69,9 +74,11 @@ export function registerKvStore(app: FastifyInstance, live: LiveWorld, checkpoin
       schema: {
         body: {
           type: 'object',
-          required: ['action', 'host'],
+          required: ['context', 'revision', 'action', 'host'],
           additionalProperties: false,
           properties: {
+            context: { type: 'string', maxLength: 300 },
+            revision: { type: 'string', maxLength: 300 },
             action: { type: 'string', maxLength: 30 },
             host: { type: 'string', maxLength: 100 },
             app: { type: 'string', maxLength: 64 },
@@ -92,6 +99,10 @@ export function registerKvStore(app: FastifyInstance, live: LiveWorld, checkpoin
         w = live.world,
         a = b.app ?? KV_APP,
         c = b.collection ?? 'assets';
+      if (b.context !== live.context)
+        throw new KvError('The active environment or lesson changed; review this view before writing');
+      if (b.revision !== kvRevision(w, b.host, a))
+        throw new KvError('KV configuration or data changed; review current state before applying');
       kvNode(w, b.host);
       let result: unknown = { ok: true };
       switch (b.action) {

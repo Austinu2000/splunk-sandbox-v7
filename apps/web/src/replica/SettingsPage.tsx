@@ -1,3 +1,5 @@
+import { ShcOperationsPage } from '../pages/ShcOperationsPage';
+import { ClusterOperationsPage } from '../pages/ClusterOperationsPage';
 import { AddDataPage } from '../pages/AddDataPage';
 import { IndexesPage } from '../pages/IndexesPage';
 import { ReportsPage } from '../pages/ReportsPage';
@@ -1154,74 +1156,7 @@ function Instrumentation() {
 }
 
 function Cluster() {
-  const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState('Manager node');
-  return (
-    <>
-      <Header title="Indexer Clustering" />
-      <div className="rs-intro">
-        <div className="rs-cluster-art" aria-hidden="true">
-          ▣<span>╱ │ ╲</span>
-          <span>▤ ▤ ▤</span>
-        </div>
-        <p>
-          Indexer Clusters are groups of Splunk indexers configured to keep multiple copies of data. This
-          increases data availability, data fidelity, data redundancy, and search performance.
-        </p>
-        <p>
-          Indexer clustering is a complex feature, we recommend reading the documentation before enabling
-          indexer clustering.
-        </p>
-        <button className="rs-primary" onClick={() => setOpen(true)}>
-          Enable indexer clustering
-        </button>
-        <p>
-          <a
-            href={searchHash(
-              '| rest /services/cluster/manager/peers | table label site status is_searchable bucket_count',
-            )}
-          >
-            View simulated cluster peers
-          </a>
-        </p>
-      </div>
-      {open && (
-        <Dialog title="Enable indexer clustering" onClose={() => setOpen(false)}>
-          <div className="rs-modal-body">
-            <p>Select the node type to explore its responsibilities.</p>
-            {['Manager node', 'Peer node', 'Search head node'].map((label) => (
-              <label className="rs-check" key={label}>
-                <input
-                  type="radio"
-                  name="cluster-mode"
-                  checked={mode === label}
-                  onChange={() => setMode(label)}
-                />
-                {label}
-              </label>
-            ))}
-            <Notice>
-              {mode === 'Manager node'
-                ? 'The manager coordinates replication, cluster membership, and the configuration bundle.'
-                : mode === 'Peer node'
-                  ? 'Peers index data and maintain searchable and replicated bucket copies.'
-                  : 'Search heads distribute searches across the cluster’s searchable peers.'}
-            </Notice>
-            <p>
-              The sandbox already models its cluster in World state. Configuration changes are made on cm01
-              and indexer hosts through the simulated terminal.
-            </p>
-          </div>
-          <div className="rs-modal-actions">
-            <button onClick={() => setOpen(false)}>Cancel</button>
-            <a href="#/terminal" className="rs-button rs-primary">
-              Open terminal
-            </a>
-          </div>
-        </Dialog>
-      )}
-    </>
-  );
+  return <ClusterOperationsPage />;
 }
 
 function Mobile() {
@@ -1628,6 +1563,7 @@ export function SettingsPage({ id }: { id: string }) {
   else if (base === 'tokens') content = <Tokens />;
   else if (base === 'health-report-manager') content = <HealthReport />;
   else if (base === 'instrumentation') content = <Instrumentation />;
+  else if (base === 'shc-operations') content = <ShcOperationsPage />;
   else if (base === 'indexer-clustering') content = <Cluster />;
   else if (base === 'mobile-settings') content = <Mobile />;
   else if (base === 'server-controls') content = <Controls />;

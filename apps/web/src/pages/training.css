@@ -242,3 +242,24 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Operational panels embedded in Settings retain their readable light surface. */
+.rea-settings .v5 {
+  --rs-text: #253142;
+  --rs-muted: #526570;
+  --rs-link: #00727d;
+}
+.rea-settings .v5 button,
+.rea-settings .v5 input,
+.rea-settings .v5 select,
+.rea-settings .v5 textarea {
+  color: #23424b;
+  background: #fff;
+  border-color: #bac9ce;
+}
+.rea-settings .v5 button:hover:not(:disabled) {
+  background: #dceff0;
+}
+.rea-settings .v5-toolbar {
+  flex-wrap: wrap;
+}

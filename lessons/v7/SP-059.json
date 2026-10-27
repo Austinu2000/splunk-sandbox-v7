@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-059",
+  "version": 1,
+  "title": "Understand Multisite Replication and Searchability",
+  "track": "Cluster administration and KV Store",
+  "objectives": [
+    "Understand Multisite Replication and Searchability",
+    "Verify actual state through a separate inspection or query."
+  ],
+  "environments": [
+    "erie"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "cluster.manage",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-059-v1",
+    "version": 1,
+    "seed": "erie-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Erie retains its actual profile topology. The manager has explicit site1/site2 RF and SF policies. Advance until each bucket has available searchable copies in both sites. Inspect origin and total constraints.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Use the clearly labeled lab site-fault control in Indexer clustering to stop site1 indexers. Query all three source_logs records from the surviving site. Restore site1 with the same control, advance repair, and verify both-site searchable coverage. This control is not a native Splunk command.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running versus disk source and use the correct component.",
+    "Keep the fixture clock paused and advance deliberately to observe transitions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "cluster-state",
+      "label": "Cross-site searchable copies and restored site fault",
+      "healthy": true,
+      "siteCopies": [
+        "site1",
+        "site2"
+      ],
+      "restoredSite": "site1"
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data search",
+      "search": "index=source_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "multisite"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and independent evidence are retained in this isolated attempt.",
+    "incomplete": "Inspect current source, service state, operation receipts and replica data."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-059:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-059:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-059:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-059:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-059:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-059:isolation"
+    }
+  ]
+}

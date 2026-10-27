@@ -250,7 +250,7 @@ export function profileWorldConfig(profile: Profile): Partial<WorldConfig> {
   if (p.id === 'default') return {};
   return {
     profileId: p.id,
-    ...(['apl', 'lab'].includes(p.id) ? { automationVersion: 1 as const } : {}),
+    ...(['apl', 'lab', 'enterprise_lab_v1'].includes(p.id) ? { automationVersion: 1 as const } : {}),
     ...(p.id === 'lab'
       ? { permanentOfflineRows: [0], background: { ...defaultWorldConfig().background, unhealthyRate: 0 } }
       : {}),

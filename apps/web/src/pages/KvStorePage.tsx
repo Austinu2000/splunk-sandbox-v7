@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { KvStatus, KvState } from '@sandbox/shared';
 import { usePoll } from '../usePoll';
 import { request } from './TrainingPage';
 import './training.css';
 interface View {
+  context: string;
+  revision: string;
   host: string;
   app: string;
   nodes: KvStatus[];
@@ -37,11 +39,44 @@ export function KvStorePage() {
     4000,
   );
   const v = poll.data;
+  const [reviewed, setReviewed] = useState<{
+    context: string;
+    revision: string;
+    host: string;
+    app: string;
+  } | null>(null);
+  useEffect(() => {
+    if (v && !reviewed && (!host || v.host === host) && v.app === app)
+      setReviewed({ context: v.context, revision: v.revision, host: v.host, app: v.app });
+  }, [v, reviewed, host, app]);
+  const blocked = busy || !reviewed || reviewed.context !== v?.context;
+  async function reviewCurrent() {
+    try {
+      const next = await request<View>('kvstore?app=' + encodeURIComponent(app));
+      setHost(next.host);
+      setReviewed({ context: next.context, revision: next.revision, host: next.host, app: next.app });
+      setDraft(null);
+      setOutput(null);
+      setRows('[]');
+      setQuery('{}');
+      setSchema('{}');
+      setNotes('');
+      setArchive('assets-backup');
+      setCollection('assets');
+      setError('');
+      await poll.refresh();
+    } catch (e) {
+      setError(String(e));
+    }
+  }
   async function action(action: string, extra: Record<string, unknown> = {}) {
     setBusy(true);
     setError('');
     try {
+      if (!reviewed) throw new Error('Review the current KV environment before applying a change');
       const result = await request('kvstore/action', {
+        context: reviewed.context,
+        revision: reviewed.revision,
         action,
         host: host || v?.host,
         app,
@@ -49,6 +84,10 @@ export function KvStorePage() {
         ...extra,
       });
       setOutput(result);
+      const next = await request<View>(
+        `kvstore?host=${encodeURIComponent(host || v?.host || '')}&app=${encodeURIComponent(app)}`,
+      );
+      setReviewed({ context: next.context, revision: next.revision, host: next.host, app: next.app });
       await poll.refresh();
       return true;
     } catch (e) {
@@ -88,6 +127,15 @@ export function KvStorePage() {
           {error || poll.error}
         </div>
       )}
+      {reviewed && v && (reviewed.context !== v.context || reviewed.revision !== v.revision) && (
+        <p className="v5-banner">
+          KV source or data changed after your review. Reload the current state before applying retained
+          drafts.
+        </p>
+      )}
+      <button disabled={busy} onClick={() => void reviewCurrent()}>
+        Review current environment and clear record drafts
+      </button>
       <div className="v5-toolbar">
         <label>
           Search head{' '}
@@ -95,6 +143,7 @@ export function KvStorePage() {
             value={host || v?.host || ''}
             onChange={(e) => {
               setHost(e.target.value);
+              setReviewed(null);
               setOutput(null);
               setDraft(null);
             }}
@@ -110,11 +159,12 @@ export function KvStorePage() {
             value={app}
             onChange={(e) => {
               setApp(e.target.value);
+              setReviewed(null);
               setDraft(null);
             }}
           />
         </label>
-        <button disabled={busy} onClick={() => action('inspect')}>
+        <button disabled={blocked} onClick={() => action('inspect')}>
           Capture status
         </button>
       </div>
@@ -185,7 +235,7 @@ export function KvStorePage() {
               <textarea value={schema} onChange={(e) => setSchema(e.target.value)} />
             </label>
             <button
-              disabled={busy}
+              disabled={blocked}
               onClick={() => {
                 try {
                   void action('collection', { settings: JSON.parse(schema) });
@@ -197,7 +247,7 @@ export function KvStorePage() {
               Apply collection settings
             </button>
             <button
-              disabled={busy}
+              disabled={blocked}
               onClick={() => {
                 if (
                   window.confirm(
@@ -214,7 +264,7 @@ export function KvStorePage() {
             Records (JSON array)
             <textarea value={rows} onChange={(e) => setRows(e.target.value)} />
           </label>
-          <button disabled={busy} onClick={() => jsonAction('write')}>
+          <button disabled={blocked} onClick={() => jsonAction('write')}>
             Save records by key
           </button>
           <label className="v5-note">
@@ -222,11 +272,11 @@ export function KvStorePage() {
             <textarea value={query} onChange={(e) => setQuery(e.target.value)} />
           </label>
           <div className="v5-actions">
-            <button disabled={busy} onClick={() => jsonAction('read')}>
+            <button disabled={blocked} onClick={() => jsonAction('read')}>
               Read records
             </button>
             <button
-              disabled={busy}
+              disabled={blocked}
               onClick={() => {
                 if (
                   window.confirm(
@@ -279,7 +329,7 @@ export function KvStorePage() {
           </label>
           <div className="v5-actions">
             <button
-              disabled={busy}
+              disabled={blocked}
               onClick={async () => {
                 if (await action('stage', { name: conf, text: draft ?? v?.files[conf] ?? '' }))
                   setDraft(null);
@@ -287,7 +337,7 @@ export function KvStorePage() {
             >
               Save to disk
             </button>
-            <button disabled={busy} onClick={() => action(conf === 'server' ? 'restart' : 'reload')}>
+            <button disabled={blocked} onClick={() => action(conf === 'server' ? 'restart' : 'reload')}>
               {conf === 'server' ? 'Restart Splunk' : 'Reload app configuration'}
             </button>
           </div>
@@ -327,20 +377,20 @@ export function KvStorePage() {
             </table>
           </div>
           <div className="v5-actions">
-            <button disabled={busy} onClick={() => action('resync')}>
+            <button disabled={blocked} onClick={() => action('resync')}>
               Resynchronize selected member
             </button>
-            <button disabled={busy} onClick={() => action('advance')}>
+            <button disabled={blocked} onClick={() => action('advance')}>
               Advance one simulation tick
             </button>
           </div>
           <details>
             <summary>Lab fault controls</summary>
             <p>These controls simulate a transport outage; they are not Splunk configuration settings.</p>
-            <button disabled={busy} onClick={() => action('transport', { enabled: false })}>
+            <button disabled={blocked} onClick={() => action('transport', { enabled: false })}>
               Interrupt selected member transport
             </button>
-            <button disabled={busy} onClick={() => action('transport', { enabled: true })}>
+            <button disabled={blocked} onClick={() => action('transport', { enabled: true })}>
               Restore selected member transport
             </button>
           </details>
@@ -360,7 +410,7 @@ export function KvStorePage() {
           <label>
             Archive name <input value={archive} onChange={(e) => setArchive(e.target.value)} />
           </label>
-          <button disabled={busy} onClick={() => action('backup', { name: archive })}>
+          <button disabled={blocked} onClick={() => action('backup', { name: archive })}>
             Create backup
           </button>
           {v?.backups.map((b) => (
@@ -370,7 +420,7 @@ export function KvStorePage() {
                 Tick {b.tick} · {b.records} records
               </p>
               <button
-                disabled={busy}
+                disabled={blocked}
                 onClick={() => {
                   if (
                     window.confirm(
@@ -415,7 +465,7 @@ export function KvStorePage() {
                     Root cause, change and verification
                     <textarea value={notes} onChange={(e) => setNotes(e.target.value)} />
                   </label>
-                  <button disabled={busy} onClick={() => action('close', { name: i.id, text: notes })}>
+                  <button disabled={blocked} onClick={() => action('close', { name: i.id, text: notes })}>
                     Verify recovery and close
                   </button>
                 </>

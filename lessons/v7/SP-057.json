@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-057",
+  "version": 1,
+  "title": "Validate and Apply a Cluster Configuration Bundle",
+  "track": "Cluster administration and KV Store",
+  "objectives": [
+    "Validate and Apply a Cluster Configuration Bundle",
+    "Verify actual state through a separate inspection or query."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "cluster.manage",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-057-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Stage cluster_orders with repFactor=auto in the manager-apps/_cluster/local/indexes.conf bundle. Preserve source_logs and existing indexes.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Validate the current bundle and publish it as admin. CLI alternative: splunk validate cluster-bundle, then splunk apply cluster-bundle on cm01. Advance until all three peer transitions complete; verify the index on idx02 independently.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running versus disk source and use the correct component.",
+    "Keep the fixture clock paused and advance deliberately to observe transitions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "cluster-validation",
+      "label": "Current manager artifact validated",
+      "valid": true
+    },
+    {
+      "kind": "cluster-job",
+      "label": "Completed coordinated operation with actual service transitions",
+      "jobKind": "indexer-bundle",
+      "index": "cluster_orders",
+      "minimumTargets": 3
+    },
+    {
+      "kind": "index-state",
+      "label": "Index active on a peer",
+      "host": "idx02",
+      "name": "cluster_orders",
+      "settings": {
+        "repFactor": "auto"
+      }
+    },
+    {
+      "kind": "cluster-state",
+      "label": "Actual joined peers and searchable bucket coverage",
+      "healthy": true,
+      "maintenance": false
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "baseline"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and independent evidence are retained in this isolated attempt.",
+    "incomplete": "Inspect current source, service state, operation receipts and replica data."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-057:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-057:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-057:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-057:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-057:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-057:isolation"
+    }
+  ]
+}

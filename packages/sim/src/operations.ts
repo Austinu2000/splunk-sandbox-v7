@@ -1,3 +1,5 @@
+import { shcBundleState } from './engineering/shc-admin';
+import { queueShcBundle } from './engineering/shc-bundles';
 import { clusterHealth } from './training/cluster';
 import { parseCron } from './scheduler';
 import { extractTime, parseConfig } from './ingest/parsing';
@@ -101,6 +103,7 @@ export function shcBundle(world: World, p: HostProfile, running = false): Record
   );
 }
 export function applyShcBundle(world: World, deployer: HostProfile): string {
+  if (world.clusterManagement) return queueShcBundle(world, deployer).checksum!;
   if (deployer.role !== 'deployer') throw new Error('Run apply shcluster-bundle on the deployer');
   const files = filesUnder(hostFs(world, deployer), '/opt/splunk/etc/shcluster/apps');
   for (const text of Object.values(files))
@@ -171,8 +174,9 @@ export function operationMetrics(world: World, p: HostProfile): Record<string, n
     metrics.replicationMet = copies.replicationMet;
     metrics.searchFactorMet = copies.searchFactorMet;
     metrics.maintenance = opSetting(world, p, 'server', 'clustering', 'maintenance_mode', 'false') === 'true';
-    metrics.fixupComplete =
-      !metrics.maintenance && healthy === world.config.profile.infra.indexerCluster.indexers;
+    metrics.fixupComplete = world.clusterManagement
+      ? !metrics.maintenance && copies.replicationMet && copies.searchFactorMet
+      : !metrics.maintenance && healthy === world.config.profile.infra.indexerCluster.indexers;
   }
   if (p.role === 'search_head') {
     metrics.malwareMapped =
@@ -188,6 +192,16 @@ export function operationMetrics(world: World, p: HostProfile): Record<string, n
   }
   if (p.role === 'deployer') {
     const sum = checksum(shcBundle(world, p));
+    if (world.clusterManagement) {
+      try {
+        metrics.membersInSync = shcBundleState(world, p.hostname).members.every(
+          (m) => m.available && m.inSync,
+        );
+      } catch {
+        metrics.membersInSync = false;
+      }
+      return metrics;
+    }
     metrics.membersInSync = infraByRole(world, 'search_head')
       .filter((n) => n.hostname !== 'es01')
       .every((n) => checksum(shcBundle(world, resolveHost(world, n.hostname)!, true)) === sum);

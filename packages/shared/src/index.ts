@@ -493,3 +493,5 @@ export * from './forwarders';
 export * from './dashboards';
 
 export { classicSource, studioSource } from './dashboard-source';
+
+export * from './clusters';

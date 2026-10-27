@@ -1,3 +1,10 @@
+import { V7_CLUSTER_STARTER_FILES } from '../ansible/cluster-starters';
+import {
+  setupClusterFixture,
+  clusterFoundationCheck,
+  type ClusterFoundationCheck,
+  type ClusterFixtureMode,
+} from './cluster-foundations';
 import { V7_FORWARDER_STARTER_FILES, V7_FORWARDER_CONNECTION_FILES } from '../ansible/forwarder-starters';
 import { enableForwarderOperations, setForwarderFixture, forwarderDetail } from './forwarders';
 import { forwarderConnection } from './forwarder-tls';
@@ -25,6 +32,7 @@ import { journal } from '../journal';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | ClusterFoundationCheck
   | {
       kind: 'dashboard-state';
       label: string;
@@ -221,6 +229,8 @@ export type FoundationCheck =
     };
 
 export type FoundationSetup =
+  | { kind: 'cluster-starters' }
+  | { kind: 'cluster-fixture'; mode: ClusterFixtureMode }
   | {
       kind: 'repository-source';
       repo: string;
@@ -249,6 +259,20 @@ export type FoundationSetup =
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
   for (const step of steps) {
+    if (step.kind === 'cluster-starters') {
+      seedRepositoryFiles(
+        world,
+        'splunk-automation',
+        'fixture/v7-clusters',
+        V7_CLUSTER_STARTER_FILES,
+        'V7 cluster automation fixture',
+      );
+      continue;
+    }
+    if (step.kind === 'cluster-fixture') {
+      setupClusterFixture(world, step.mode);
+      continue;
+    }
     if (step.kind === 'repository-source') {
       const { kind: _, ...source } = step;
       void _;
@@ -361,6 +385,13 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'cluster-state':
+    case 'cluster-validation':
+    case 'cluster-job':
+    case 'shc-state':
+    case 'smartstore-state':
+    case 'kv-state':
+      return clusterFoundationCheck(world, check);
     case 'forwarder': {
       try {
         const detail = forwarderDetail(world, check.host),

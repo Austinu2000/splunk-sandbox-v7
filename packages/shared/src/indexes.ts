@@ -7,6 +7,7 @@ export interface IndexSettings {
   frozenTimePeriodInSecs: number;
   maxTotalDataSizeMB: number;
   disabled: boolean;
+  remotePath?: string;
   repFactor: 'auto' | '0';
   maxHotIdleSecs?: number;
   maxWarmDBCount?: number;

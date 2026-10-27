@@ -1,3 +1,5 @@
+import { requireShcWritable } from './shc-health';
+import { queueKnowledgeReplication, type ReplicatedKnowledgeFile } from './shc-knowledge';
 import type { SavedDashboard, DashboardRender, DashboardRuntime, PracticePrincipal } from '@sandbox/shared';
 import type { World } from '../world';
 import { hostFs } from '../vfs/build';
@@ -145,6 +147,7 @@ export function saveDashboard(
   input: DashboardWrite,
   options: { principal?: PracticePrincipal; revision?: string; id?: string; create?: boolean } = {},
 ) {
+  requireShcWritable(world, input.host);
   const principal = options.principal ?? 'admin',
     p = target(world, input.host);
   if (
@@ -183,7 +186,13 @@ export function saveDashboard(
         : '/etc/apps/' + input.app),
     path = dir + '/local/data/ui/views/' + input.name + '.xml';
   if (existing && existing.sourcePath !== path) {
-    if (existing.sourcePath.includes('/default/'))
+    if (
+      existing.sourcePath.includes('/default/') &&
+      (existing.app !== input.app ||
+        existing.owner !== input.owner ||
+        existing.sharing !== input.sharing ||
+        existing.name !== input.name)
+    )
       throw new OperationsError('Adopt the inherited dashboard in its existing scope before moving it');
     if (
       all.some(
@@ -214,8 +223,16 @@ export function saveDashboard(
     }),
     ROOT,
   );
-  if (existing && existing.sourcePath !== path) fs.remove(existing.sourcePath, ROOT);
+  if (existing && existing.sourcePath !== path && !existing.sourcePath.includes('/default/'))
+    fs.remove(existing.sourcePath, ROOT);
   activateDashboardConf(world, p);
+  const replicated: ReplicatedKnowledgeFile[] = [
+    { path, text: fs.readFile(path, ROOT) },
+    { path: metadata, text: fs.readFile(metadata, ROOT), stanza: 'views/' + input.name },
+  ];
+  if (existing && existing.sourcePath !== path && !existing.sourcePath.includes('/default/'))
+    replicated.push({ path: existing.sourcePath, text: '', deleted: true });
+  queueKnowledgeReplication(world, input.host, replicated);
   return listDashboards(world, input.host, principal).find(
     (d) => d.id === id(input.host, input.app, input.owner, input.sharing, input.name),
   )!;

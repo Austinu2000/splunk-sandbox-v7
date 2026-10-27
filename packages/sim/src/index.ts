@@ -128,3 +128,25 @@ export * from './engineering/dashboards';
 export * from './engineering/dashboard-source';
 
 export { activateDashboardConf } from './hosts/running';
+
+export * from './engineering/cluster-state';
+export * from './engineering/cluster-health';
+export * from './engineering/cluster-jobs';
+
+export {
+  stageClusterSettings,
+  setClusterMaintenance,
+  clusterConfigView,
+  stageClusterBundleFile,
+} from './engineering/cluster-cli';
+
+export * from './engineering/shc-health';
+export * from './engineering/shc-bundles';
+
+export { kvRevision } from './kvstore/engine';
+
+export * from './engineering/smartstore';
+
+export * from './engineering/shc-admin';
+
+export { setClusterSiteOutage } from './engineering/cluster-faults';

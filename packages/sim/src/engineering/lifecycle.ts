@@ -1,3 +1,5 @@
+import { smartStoreServingPeer } from './smartstore';
+import { recordedClusterCopies, healthyCopyHosts } from './cluster-buckets';
 import type { RecordedEvent, PracticePrincipal } from '@sandbox/shared';
 import type { World } from '../world';
 import { runningConf } from '../hosts/running';
@@ -101,10 +103,26 @@ export function tickIndexLifecycle(world: World) {
     if (b.state === 'frozen')
       (world.ingestion.frozen ??= {})[b.id] ??= { archived: b.archived, tick: world.clock.tick };
 }
-export function searchableRecordedEvents(world: World) {
+export function searchableRecordedEvents(
+  world: World,
+  fetchRemote = false,
+  select?: (index: string, earliest: number, latest: number) => boolean,
+) {
   return indexBuckets(world)
     .filter((b) => {
+      if (select && !select(b.index, b.earliest, b.latest)) return false;
       if (b.state === 'frozen') return false;
+      const remote = smartStoreServingPeer(world, b, fetchRemote);
+      if (remote !== undefined) return !!remote;
+      const copies = recordedClusterCopies(world, b.id);
+      if (copies)
+        return healthyCopyHosts(world, copies).some((name) => {
+          const p = resolveHost(world, name)!;
+          return (
+            runningConf(world, p, 'indexes').stanzas.has(b.index) &&
+            !confBool(setting(runningConf(world, p, 'indexes'), b.index, 'disabled'))
+          );
+        });
       const host = resolveHost(world, b.host);
       return (
         !!host?.splunk &&
@@ -113,7 +131,13 @@ export function searchableRecordedEvents(world: World) {
         !confBool(setting(runningConf(world, host, 'indexes'), b.index, 'disabled'))
       );
     })
-    .flatMap((b) => b.events)
+    .flatMap((b) => {
+      const copies = recordedClusterCopies(world, b.id);
+      const peer =
+        smartStoreServingPeer(world, b, fetchRemote) ??
+        (copies ? healthyCopyHosts(world, copies)[0] : undefined);
+      return peer ? b.events.map((e) => ({ ...e, searchPeer: peer })) : b.events;
+    })
     .reverse();
 }
 export function thawPracticeBucket(world: World, id: string, principal: PracticePrincipal = 'admin') {

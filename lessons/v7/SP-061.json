@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-061",
+  "version": 1,
+  "title": "Recover an Unhealthy Indexer Cluster",
+  "track": "Cluster administration and KV Store",
+  "objectives": [
+    "Recover an Unhealthy Indexer Cluster",
+    "Verify actual state through a separate inspection or query."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "cluster.manage",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-061-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The cluster starts with maintenance enabled and a wrong manager_uri on idx03. Diagnose running configuration and bucket coverage rather than restarting every node.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Repair idx03, restart that peer and disable manager maintenance. Advance fixup until all peers are joined and RF/SF are met. Inspect splunk show cluster-status on cm01 and independently search all three records.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running versus disk source and use the correct component.",
+    "Keep the fixture clock paused and advance deliberately to observe transitions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    },
+    {
+      "url": "https://dev.splunk.com/enterprise/docs/developapps/kvstore/usetherestapitomanagekv/",
+      "vendorVersion": "Splunk Enterprise KV Store API",
+      "purpose": "Collection schema and data endpoint families; virtual execution boundary documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "cluster-state",
+      "label": "Actual joined peers and searchable bucket coverage",
+      "healthy": true,
+      "maintenance": false
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data search",
+      "search": "index=source_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "inspection",
+      "label": "Inspect the actual component",
+      "command": "splunk show cluster-status",
+      "host": "cm01"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "unhealthy"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and independent evidence are retained in this isolated attempt.",
+    "incomplete": "Inspect current source, service state, operation receipts and replica data."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-061:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-061:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-061:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-061:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-061:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-061:isolation"
+    }
+  ]
+}

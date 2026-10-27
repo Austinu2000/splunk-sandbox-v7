@@ -9,6 +9,9 @@ import {
   loadWorld,
   resolveHost,
   runningConf,
+  kvCollections,
+  kvRead,
+  kvState,
 } from '../src/index';
 import { hostFs } from '../src/vfs/build';
 import { ROOT } from '../src/vfs/vfs';
@@ -126,5 +129,71 @@ describe('bounded Ansible operational semantics', () => {
       runningConf(w, resolveHost(w, 'idx01')!, 'server').stanzas.get('clustering')?.settings.get('mode')
         ?.value,
     ).toBe('peer');
+  });
+  it('renders native KV JSON bodies, preserves numeric types and repeats configuration without changes', () => {
+    const w = lab();
+    const configure = `- hosts: search_heads
+  vars: {collection_name: automated_services}
+  tasks:
+    - uri:
+        url: https://{{ inventory_hostname }}:8089/servicesNS/nobody/sandbox_training/storage/collections/config
+        method: POST
+        body_format: json
+        url_username: admin
+        url_password: training-only
+        body: {name: "{{ collection_name }}", field.name: string, field.priority: number, enforceTypes: "true"}
+`;
+    const t = tree(w, configure);
+    expect(execute(w, t, { limit: 'sh01' }).failed).toBe(0);
+    expect(execute(w, t, { limit: 'sh01' }).changed).toBe(0);
+    expect(
+      kvCollections(w, 'sh01', 'sandbox_training').find((c) => c.collection === 'automated_services')
+        ?.settings,
+    ).toMatchObject({ 'field.name': 'string', 'field.priority': 'number' });
+    t['playbooks/operations.yml']!.text = `- hosts: search_heads
+  vars: {service_name: checkout}
+  tasks:
+    - uri:
+        url: https://{{ inventory_hostname }}:8089/servicesNS/nobody/sandbox_training/storage/collections/data/automated_services
+        method: POST
+        body_format: json
+        url_username: admin
+        url_password: training-only
+        body: {_key: checkout, name: "{{ service_name }}", priority: 2}
+`;
+    expect(execute(w, t, { limit: 'sh01' }).failed).toBe(0);
+    expect(kvRead(w, 'sh01', 'sandbox_training', 'automated_services')).toMatchObject([
+      { name: 'checkout', priority: 2 },
+    ]);
+  });
+  it('skips native URI writes in check mode and refuses a write override', () => {
+    const w = lab();
+    kvState(w);
+    const source = `- hosts: search_heads
+  tasks:
+    - uri:
+        url: https://{{ inventory_hostname }}:8089/servicesNS/nobody/sandbox_training/storage/collections/config
+        method: POST
+        body_format: json
+        url_username: admin
+        url_password: training-only
+        body: {name: predicted, field.name: string}
+`,
+      t = tree(w, source),
+      before = structuredClone({
+        hosts: w.hosts,
+        kvstore: w.kvstore,
+        clock: w.clock,
+        ingestion: w.ingestion,
+      });
+    const result = execute(w, t, { limit: 'sh01', check: true });
+    expect(result.failed).toBe(0);
+    expect(result.changed).toBe(0);
+    expect(result.hosts[0]!.messages.join(' ')).toContain('skipped');
+    expect({ hosts: w.hosts, kvstore: w.kvstore, clock: w.clock, ingestion: w.ingestion }).toEqual(before);
+    t['playbooks/operations.yml']!.text = source + '      check_mode: false\n';
+    const override = execute(w, t, { limit: 'sh01', check: true });
+    expect(override.failed).toBe(1);
+    expect({ hosts: w.hosts, kvstore: w.kvstore, clock: w.clock, ingestion: w.ingestion }).toEqual(before);
   });
 });

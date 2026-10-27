@@ -1,3 +1,4 @@
+import { advancedClusterHealth } from '../engineering/cluster-health';
 import type { World } from '../world';
 import { resolveHost, splunkdRunning } from '../hosts/profile';
 import { runningConf } from '../hosts/running';
@@ -8,6 +9,9 @@ export interface BucketCopy {
   searchable: boolean;
 }
 export interface PracticeBucket {
+  index?: string;
+  sourceBucketId?: string;
+  originSite?: string;
   id: string;
   copies: BucketCopy[];
   stage: 'hot' | 'warm' | 'cold' | 'frozen';
@@ -31,6 +35,7 @@ export function buckets(world: World): PracticeBucket[] {
   return s.buckets;
 }
 export function clusterHealth(world: World) {
+  if (world.clusterManagement) return advancedClusterHealth(world);
   const peers = world.infra.filter((n) => n.role === 'indexer' && !n.retired);
   const rf = world.config.profile?.infra.indexerCluster.replicationFactor ?? 3,
     sf = world.config.profile?.infra.indexerCluster.searchFactor ?? 2;

@@ -52,7 +52,7 @@ export function EnvironmentsPage() {
           <article className={`environment-card ${p.id === list.data?.activeId ? 'active' : ''}`} key={p.id}>
             <div className="environment-card-top">
               <span className={`environment-monogram ${p.id}`}>
-                {p.id === 'default' ? 'DEV' : p.id.toUpperCase()}
+                {p.id === 'default' ? 'DEV' : p.id === 'enterprise_lab_v1' ? 'AUTO' : p.id.toUpperCase()}
               </span>
               {p.id === list.data?.activeId && <span className="environment-current">Current</span>}
             </div>

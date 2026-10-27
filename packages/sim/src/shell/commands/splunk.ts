@@ -1,3 +1,5 @@
+import { shcCli } from '../../engineering/shc-cli';
+import { clusterCli } from '../../engineering/cluster-cli';
 import { forwarderConnection } from '../../engineering/forwarder-tls';
 import { acceptForwarderLicense, setForwarderBoot } from '../../engineering/forwarders';
 import { indexCli } from '../../engineering/index-commands';
@@ -216,9 +218,10 @@ function notManager(): CmdResult {
 }
 
 function doApply(sh: Shell): string {
-  const { checksum: sum, restarted } = applyClusterBundle(sh.world, sh.host);
+  const { checksum: sum, restarted, jobId } = applyClusterBundle(sh.world, sh.host);
   return (
     `Created new bundle with checksum=${sum}\n` +
+    (jobId ? `Coordinated job queued: ${jobId}\n` : '') +
     'Applying new bundle. The peers may restart depending on the configurations in applied bundle.\n' +
     "Use 'splunk show cluster-bundle-status' for checking the status of the applied bundle.\n" +
     (restarted.length ? `Rolling restart of peers: ${restarted.join(', ')}\n` : '') +
@@ -297,6 +300,19 @@ export const splunk: CommandFn = (ctx) => {
   // $SPLUNK_HOME/bin/btool is a shortcut for `splunk btool`.
   if (/(^|\/)btool$/.test(argv[0]!)) return btool(sh, argv.slice(1));
   const [cmd, ...rest] = argv.slice(1);
+  if (
+    sh.world.clusterManagement &&
+    ['shcluster-status', 'shcluster-bundle', 'shcluster-members'].includes(rest[0] ?? '')
+  )
+    return shcCli(ctx);
+  if (
+    sh.world.clusterManagement &&
+    (['cluster-config', 'cluster-peers', 'cluster-status', 'cluster-bundle-status'].includes(rest[0] ?? '') ||
+      (cmd === 'validate' && rest[0] === 'cluster-bundle') ||
+      (['enable', 'disable'].includes(cmd ?? '') && rest[0] === 'maintenance-mode') ||
+      (cmd === 'abort' && rest[0] === 'rolling-restart'))
+  )
+    return clusterCli(ctx);
   if (
     (['add', 'edit', 'list'].includes(cmd ?? '') && rest[0] === 'index') ||
     (cmd === 'validate' && rest[0] === 'cluster-bundle')

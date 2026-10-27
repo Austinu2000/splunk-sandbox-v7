@@ -1,3 +1,4 @@
+import { tickClusterManagement } from './engineering/cluster-tick';
 import { tickKv } from './kvstore/engine';
 import { tickSchedules } from './training/schedule';
 import { tickTraining } from './training/engine';
@@ -36,6 +37,7 @@ export interface WorldClock {
 export interface World {
   forwarders?: import('@sandbox/shared').ForwarderRuntime;
   searchEvidence?: import('@sandbox/shared').SearchEvidence[];
+  clusterManagement?: import('@sandbox/shared').ClusterManagementState;
   dashboards?: import('@sandbox/shared').DashboardRuntime;
   reports?: import('@sandbox/shared').ReportRuntime;
   ingestion?: import('@sandbox/shared').IngestionState;
@@ -47,6 +49,7 @@ export interface World {
     hints: number;
     notes: string;
     answers?: Record<string, string>;
+    returnProfile?: string;
   };
   training?: import('@sandbox/shared').TrainingState;
   actionSequence?: number;
@@ -161,6 +164,7 @@ function tickOnce(world: World): void {
   tickForwarders(world);
   tickInputs(world);
   tickIndexLifecycle(world);
+  tickClusterManagement(world);
   tickReports(world);
   updateScenarios(world);
   world.history.prune(now - world.config.historyRetentionMs);

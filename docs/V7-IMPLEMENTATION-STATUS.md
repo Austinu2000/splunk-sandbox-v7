@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 7 and subsequent gates
+## Current work: Milestone 8 and subsequent gates
 
 Implemented:
 
@@ -55,8 +55,8 @@ implemented work is listed below. The full expansion remains incomplete.
 | 4 | Implemented within documented scope | Playbooks/Git; AU-15–27 |
 | 5 | Implemented within documented scope | Forwarders/DS; AU-28–35 and SP-026–034 |
 | 6 | Implemented within documented scope | Dashboards/alerts; SP-047–054 |
-| 7 | In progress | Clustering/KV; AU-36–43 and SP-055–068 |
-| 8 | Planned | Monitoring/security/integrations; SP-069–088 |
+| 7 | Implemented within documented scope | Clustering/KV; AU-36–43 and SP-055–068 |
+| 8 | In progress | Monitoring/security/integrations; SP-069–088 |
 | 9 | Planned | Upgrades/recovery; AU-44–50 and SP-089–092 |
 | 10 | Planned | APL/Erie capstones; SP-093–100 |
 | 11 | Planned | Curriculum/question audit and complete regression |
@@ -186,3 +186,41 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
   advisory remains. [Scope and limits](V7-DASHBOARDS-AND-ALERTS.md).
 - Continuing directly into clustering/KV Store and automation; the full expansion
   remains unfinished.
+
+## Cluster, SHC and KV implementation
+
+- AU-36–43 and SP-055–068 passed **132 acceptance cases** before promotion into
+  Learn: **111 new / 138 total lessons**, retaining all 27 inherited IDs.
+- Running cluster membership, RF/SF, per-bucket site placement, controlled restart
+  jobs, current-artifact bundle validation and actual recorded-data search failover
+  now share the existing world and virtual files.
+- SHC captain elections, phased Deployer default distribution and canonical runtime
+  object replication are separate from KV Store primary and replica behavior.
+- SmartStore remote metadata, local cache eviction/fetch and outage behavior act on
+  actual recorded buckets. No cloud credentials or external services are used.
+- A separate optional Enterprise Automation Lab v1 provides six indexers across
+  two sites, three SHC members, a Deployer and Ansible workspace. Existing profile
+  topology and saved worlds are preserved.
+- Focused API tests cover stale revision/context rejection, privileges, phased save
+  recovery and independent profile persistence. Full regression and browser gate
+  are underway; no full-expansion completion claim is made.
+- Supported behavior and explicit limits: [cluster and KV operations](V7-CLUSTER-AND-KV-OPERATIONS.md).
+
+- The full regression passed **1,031 tests across 57 files**, with TypeScript,
+  ESLint and the web production build passing. The existing bundle-size advisory
+  remains. An additional passive-grading test and recorded-data inspector counter
+  correction are being checked before the checkpoint.
+- Browser proof: [SHC recovery with separate captain/primary](v7-shc-election.png)
+  and [actual SmartStore eviction/fetch](v7-smartstore-fetch.png). SP-060 met its
+  workflow checks from the actual Search/Inspector path; free practice is restored
+  after verification.
+
+- Final M7 regression including the recorded-source inspector correction: **1,032
+  tests / 57 files passed**. The subsequently added launch-environment return
+  check also passes, alongside the existing Learn/session isolation tests (7
+  focused API checks). TypeScript and ESLint pass.
+- Returning from a lesson now restores the saved environment that launched it,
+  including resumed attempts and optional Enterprise Lab sessions. Older attempts
+  without that field retain their prior profile-based return behavior.
+- Continuing into M8 monitoring/security/integration work without a review stop.
+  The 39 remaining AU/SP lessons and final coverage audit are still outstanding.

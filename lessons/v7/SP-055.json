@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-055",
+  "version": 1,
+  "title": "Understand Cluster Manager, Peers, RF, and SF",
+  "track": "Cluster administration and KV Store",
+  "objectives": [
+    "Understand Cluster Manager, Peers, RF, and SF",
+    "Verify actual state through a separate inspection or query."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-025"
+  ],
+  "requiredCapabilities": [
+    "cluster.manage",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-055-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Settings \u2192 Indexer clustering and inspect the manager, peers, bucket copies, RF and SF. This lesson retains the profile topology and supplies three explicit source_logs records.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "In Terminal, ssh splunk@cm01, then run splunk show cluster-status --verbose and splunk list cluster-peers. Compare the actual peer count and coverage with Web. Explain why RF counts copies and SF counts searchable copies.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running versus disk source and use the correct component.",
+    "Keep the fixture clock paused and advance deliberately to observe transitions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Inspect the actual component",
+      "command": "splunk show cluster-status",
+      "host": "cm01"
+    },
+    {
+      "kind": "inspection",
+      "label": "Inspect the actual component",
+      "command": "splunk list cluster-peers",
+      "host": "cm01"
+    },
+    {
+      "kind": "cluster-state",
+      "label": "Actual joined peers and searchable bucket coverage",
+      "healthy": true,
+      "maintenance": false
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "baseline"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and independent evidence are retained in this isolated attempt.",
+    "incomplete": "Inspect current source, service state, operation receipts and replica data."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-055:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-055:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-055:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-055:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-055:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-055:isolation"
+    }
+  ]
+}

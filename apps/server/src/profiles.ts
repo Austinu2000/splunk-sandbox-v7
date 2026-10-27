@@ -19,7 +19,7 @@ import type { SessionStore } from './store';
 export function loadProfiles() {
   return [
     defaultProfile(),
-    ...['lab', 'apl', 'erie'].map((id) =>
+    ...['lab', 'apl', 'erie', 'enterprise_lab_v1'].map((id) =>
       parseProfile(readFileSync(new URL(`../../../profiles/${id}.yaml`, import.meta.url), 'utf8')),
     ),
   ];

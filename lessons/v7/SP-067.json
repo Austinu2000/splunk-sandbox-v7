@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-067",
+  "version": 1,
+  "title": "Troubleshoot KV Store Replication",
+  "track": "Cluster administration and KV Store",
+  "objectives": [
+    "Troubleshoot KV Store Replication",
+    "Verify actual state through a separate inspection or query."
+  ],
+  "environments": [
+    "apl"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "cluster.manage",
+    "kv.manage"
+  ],
+  "fixture": {
+    "id": "sp-067-v1",
+    "version": 1,
+    "seed": "apl-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "APL sh03 uses KV port 8192 and misses a marker record. Inspect status and applied/latest revisions on every member. SHC captain and KV primary remain separate.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Repair [kvstore] port=8191 on sh03, restart it and advance replication. Use the explicitly labeled KV resync teaching control for sh01 after comparing current replicas. Verify all three service_owners records, including worker\u2192Operations, on every member.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running versus disk source and use the correct component.",
+    "Keep the fixture clock paused and advance deliberately to observe transitions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    },
+    {
+      "url": "https://dev.splunk.com/enterprise/docs/developapps/kvstore/usetherestapitomanagekv/",
+      "vendorVersion": "Splunk Enterprise KV Store API",
+      "purpose": "Collection schema and data endpoint families; virtual execution boundary documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "kv-state",
+      "label": "Actual KV schema, replica data and recovery evidence",
+      "host": "sh01",
+      "collection": "service_owners",
+      "ready": true,
+      "allMembers": true,
+      "records": [
+        {
+          "_key": "checkout",
+          "service": "checkout",
+          "owner": "Platform"
+        },
+        {
+          "_key": "auth",
+          "service": "auth",
+          "owner": "Identity"
+        },
+        {
+          "_key": "marker",
+          "service": "worker",
+          "owner": "Operations"
+        }
+      ],
+      "action": "resync"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "kv-sync"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and independent evidence are retained in this isolated attempt.",
+    "incomplete": "Inspect current source, service state, operation receipts and replica data."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-067:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-067:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-067:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-067:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-067:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-067:isolation"
+    }
+  ]
+}

@@ -9,6 +9,8 @@ export interface RecordedEvent {
   sourcetype: string;
   index: string;
   receiver: string;
+  /** Ephemeral search-serving replica; never replaces the original indexing provenance. */
+  searchPeer?: string;
   fields: Record<string, ResultValue>;
   provenance: 'input' | 'hec' | 'summary';
   operationId: string;

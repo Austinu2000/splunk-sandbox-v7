@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-37",
+  "version": 1,
+  "title": "Deploy cluster indexes with ordered handlers",
+  "track": "Cluster automation (refined objectives)",
+  "objectives": [
+    "Deploy cluster indexes with ordered handlers",
+    "Refinement of the accepted AU-36\u201343 track; the original individual source was unavailable."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "AU-27"
+  ],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "cluster.manage",
+    "kv.manage"
+  ],
+  "fixture": {
+    "id": "au-37-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Use Automation Operations or the ansible01 virtual CLI. New starter files are explicit repository fixture additions; old seed commits remain.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Review the role and ordered validate/publish handlers. Run v7_cluster_indexes.yml against cm01; preserve all other index definitions.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Advance the manager job until every peer activates automation_orders. Run the unchanged source again for changed=0 and verify the actual index on idx03.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect playbook source, correct target and actual run output.",
+    "Review the operation page after Ansible queues asynchronous work."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Actual scoped automation run",
+      "path": "playbooks/v7_cluster_indexes.yml",
+      "targets": [
+        "cm01"
+      ],
+      "check": false,
+      "afterApply": true,
+      "maximumChanges": 0,
+      "currentSource": true
+    },
+    {
+      "kind": "cluster-job",
+      "label": "Completed coordinated operation with actual service transitions",
+      "jobKind": "indexer-bundle",
+      "index": "automation_orders",
+      "minimumTargets": 3
+    },
+    {
+      "kind": "index-state",
+      "label": "Automated index active on peer",
+      "host": "idx03",
+      "name": "automation_orders",
+      "settings": {
+        "repFactor": "auto"
+      }
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "baseline"
+    },
+    {
+      "kind": "cluster-starters"
+    }
+  ],
+  "feedback": {
+    "success": "The scoped automation and verified operational outcome are retained.",
+    "incomplete": "A successful exit alone is insufficient; verify source, phase, data and idempotency."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "AU-37:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "AU-37:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "AU-37:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "AU-37:reset"
+    },
+    {
+      "case": "resume",
+      "test": "AU-37:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "AU-37:isolation"
+    }
+  ]
+}

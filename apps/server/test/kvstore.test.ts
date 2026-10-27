@@ -14,8 +14,14 @@ describe('V6 KV API and durable lessons', () => {
     try {
       await app.inject({ method: 'POST', url: '/api/profiles/lab/load' });
       expect((await app.inject('/api/kvstore?host=missing')).statusCode).toBe(400);
-      const action = (payload: Record<string, unknown>) =>
-        app.inject({ method: 'POST', url: '/api/kvstore/action', payload: { host: 'sh01', ...payload } });
+      const action = async (payload: Record<string, unknown>) => {
+        const v = (await app.inject('/api/kvstore?host=sh01')).json();
+        return app.inject({
+          method: 'POST',
+          url: '/api/kvstore/action',
+          payload: { host: 'sh01', context: v.context, revision: v.revision, ...payload },
+        });
+      };
       expect(
         (
           await action({
@@ -24,7 +30,9 @@ describe('V6 KV API and durable lessons', () => {
           })
         ).statusCode,
       ).toBe(200);
-      expect((await action({ action: 'backup', name: 'api-backup' })).json()).toEqual({ archive: 'api-backup' });
+      expect((await action({ action: 'backup', name: 'api-backup' })).json()).toEqual({
+        archive: 'api-backup',
+      });
       expect((await action({ action: 'restore', name: 'api-backup' })).json()).toEqual({ ok: true });
       expect((await action({ action: 'write', records: [{ criticality: 'wrong' }] })).statusCode).toBe(400);
       expect(
@@ -51,8 +59,14 @@ describe('V6 KV API and durable lessons', () => {
     try {
       const start = (id: string) =>
         app.inject({ method: 'POST', url: '/api/learn/start', payload: { id, learner: 'KV test' } });
-      const action = (payload: Record<string, unknown>) =>
-        app.inject({ method: 'POST', url: '/api/kvstore/action', payload: { host: 'sh01', ...payload } });
+      const action = async (payload: Record<string, unknown>) => {
+        const v = (await app.inject('/api/kvstore?host=sh01')).json();
+        return app.inject({
+          method: 'POST',
+          url: '/api/kvstore/action',
+          payload: { host: 'sh01', context: v.context, revision: v.revision, ...payload },
+        });
+      };
       const progress = async () => (await app.inject('/api/learn')).json().progress;
       expect((await start('K1')).statusCode).toBe(200);
       expect((await progress()).completed).toBe(false);
@@ -74,6 +88,50 @@ describe('V6 KV API and durable lessons', () => {
       }
       await start('K1');
       expect((await progress()).completed).toBe(true);
+    } finally {
+      await app.close();
+      store.close();
+    }
+  });
+});
+
+describe('V7 KV editor revision guards', () => {
+  it('rejects stale data revisions and a form retained across an environment swap', async () => {
+    const store = new SessionStore(':memory:'),
+      { app, live } = buildApp(createWorld({ fleetSize: 50 }), { store, aiGrader: null });
+    try {
+      const old = (await app.inject('/api/kvstore')).json(),
+        payload = {
+          host: old.host,
+          context: old.context,
+          revision: old.revision,
+          action: 'write',
+          records: [{ _key: 'guarded', hostname: 'guarded01', criticality: 2 }],
+        };
+      expect((await app.inject({ method: 'POST', url: '/api/kvstore/action', payload })).statusCode).toBe(
+        200,
+      );
+      const retained = store.autosave('default')!;
+      expect(
+        (
+          await app.inject({
+            method: 'POST',
+            url: '/api/kvstore/action',
+            payload: { ...payload, records: [{ _key: 'stale', hostname: 'stale01' }] },
+          })
+        ).statusCode,
+      ).toBe(400);
+      live.swap(loadWorld(retained, []));
+      expect(
+        (
+          await app.inject({
+            method: 'POST',
+            url: '/api/kvstore/action',
+            payload: { ...payload, action: 'restore', name: 'old' },
+          })
+        ).statusCode,
+      ).toBe(400);
+      expect(kvRead(live.world, old.host, KV_APP, 'assets', { _key: 'stale' })).toHaveLength(0);
     } finally {
       await app.close();
       store.close();

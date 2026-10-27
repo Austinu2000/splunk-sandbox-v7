@@ -632,10 +632,10 @@
       "track": "Indexer Clustering",
       "trackNumber": 7,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-056",
@@ -643,10 +643,10 @@
       "track": "Indexer Clustering",
       "trackNumber": 7,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-057",
@@ -654,10 +654,10 @@
       "track": "Indexer Clustering",
       "trackNumber": 7,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-058",
@@ -665,10 +665,10 @@
       "track": "Indexer Clustering",
       "trackNumber": 7,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-059",
@@ -676,10 +676,10 @@
       "track": "Indexer Clustering",
       "trackNumber": 7,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-060",
@@ -687,10 +687,10 @@
       "track": "Indexer Clustering",
       "trackNumber": 7,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-061",
@@ -698,10 +698,10 @@
       "track": "Indexer Clustering",
       "trackNumber": 7,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-062",
@@ -709,10 +709,10 @@
       "track": "Search Head Clustering and KV Store",
       "trackNumber": 8,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-063",
@@ -720,10 +720,10 @@
       "track": "Search Head Clustering and KV Store",
       "trackNumber": 8,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-064",
@@ -731,10 +731,10 @@
       "track": "Search Head Clustering and KV Store",
       "trackNumber": 8,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-065",
@@ -742,10 +742,10 @@
       "track": "Search Head Clustering and KV Store",
       "trackNumber": 8,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-066",
@@ -753,10 +753,10 @@
       "track": "Search Head Clustering and KV Store",
       "trackNumber": 8,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-067",
@@ -764,10 +764,10 @@
       "track": "Search Head Clustering and KV Store",
       "trackNumber": 8,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-068",
@@ -775,10 +775,10 @@
       "track": "Search Head Clustering and KV Store",
       "trackNumber": 8,
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-069",
@@ -1507,81 +1507,81 @@
       "id": "AU-36",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-37",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-38",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-39",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-40",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-41",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-42",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-43",
       "track": "Cluster automation",
       "milestone": 7,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-44",

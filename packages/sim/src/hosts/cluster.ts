@@ -1,3 +1,4 @@
+import { queueIndexerBundle } from '../engineering/cluster-jobs';
 import { hashString } from '../rng';
 import { hostFs } from '../vfs/build';
 import { ROOT, type Vfs } from '../vfs/vfs';
@@ -49,7 +50,14 @@ export function peerBundle(world: World, peer: HostProfile): Record<string, stri
   return filesUnder(runningVfs(world, peer), `${peer.splunk!.home}/etc/peer-apps`);
 }
 
-export function applyClusterBundle(world: World, cm: HostProfile): { checksum: string; restarted: string[] } {
+export function applyClusterBundle(
+  world: World,
+  cm: HostProfile,
+): { checksum: string; restarted: string[]; jobId?: string } {
+  if (world.clusterManagement) {
+    const job = queueIndexerBundle(world, cm);
+    return { checksum: job.checksum!, restarted: [], jobId: job.id };
+  }
   const files = managerBundle(world, cm);
   validateClusterIndexes(files);
   const restarted: string[] = [];

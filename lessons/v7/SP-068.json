@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-068",
+  "version": 1,
+  "title": "Back Up and Restore KV Store Data",
+  "track": "Cluster administration and KV Store",
+  "objectives": [
+    "Back Up and Restore KV Store Data",
+    "Verify actual state through a separate inspection or query."
+  ],
+  "environments": [
+    "apl"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "cluster.manage",
+    "kv.manage"
+  ],
+  "fixture": {
+    "id": "sp-068-v1",
+    "version": 1,
+    "seed": "apl-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture supplies a verified v7_verified data snapshot, followed by a deliberate replacement with CORRUPTED data. Inspect both before restoring.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Restore v7_verified on sh01 using KV Store or splunk restore kvstore -archiveName v7_verified. Advance replica ticks and verify the original checkout/auth owners on all members. Inspect the separate before-restore safety snapshot; it must retain the changed data.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running versus disk source and use the correct component.",
+    "Keep the fixture clock paused and advance deliberately to observe transitions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    },
+    {
+      "url": "https://dev.splunk.com/enterprise/docs/developapps/kvstore/usetherestapitomanagekv/",
+      "vendorVersion": "Splunk Enterprise KV Store API",
+      "purpose": "Collection schema and data endpoint families; virtual execution boundary documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "kv-state",
+      "label": "Actual KV schema, replica data and recovery evidence",
+      "host": "sh01",
+      "collection": "service_owners",
+      "records": [
+        {
+          "_key": "checkout",
+          "service": "checkout",
+          "owner": "Platform"
+        },
+        {
+          "_key": "auth",
+          "service": "auth",
+          "owner": "Identity"
+        }
+      ],
+      "allMembers": true,
+      "ready": true,
+      "restored": "v7_verified"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "kv-restore"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and independent evidence are retained in this isolated attempt.",
+    "incomplete": "Inspect current source, service state, operation receipts and replica data."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-068:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-068:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-068:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-068:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-068:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-068:isolation"
+    }
+  ]
+}

@@ -206,6 +206,8 @@ export function scanEvents(
   const baselineEarliest = Math.max(earliest, world.clock.now - world.config.historyRetentionMs);
   const stats: ScanStats = { scanned: 0, hosts: 0, sources: 0, truncated: false };
   const started = clock();
+  const recordedHosts = new Set<string>(),
+    recordedSources = new Set<string>();
   const searchHost = infraName(world, 'search_head');
   const defaultsOnly = !pd.fields.has('index') && !pd.fields.has('index|or');
   const searchable = new Set(
@@ -261,7 +263,11 @@ export function scanEvents(
     return from;
   };
 
-  for (const event of recordedEvents(world)) {
+  for (const event of recordedEvents(
+    world,
+    true,
+    (index, lo, hi) => indexAllowed(pd, index) && hi > earliest && lo <= latest && searchable.has(index),
+  )) {
     if (
       event.time <= earliest ||
       event.time > latest ||
@@ -280,7 +286,7 @@ export function scanEvents(
       source: event.source,
       sourcetype: event.sourcetype,
       index: event.index,
-      splunk_server: event.receiver,
+      splunk_server: event.searchPeer ?? event.receiver,
     });
     for (const [key, value] of Object.entries(event.fields)) row.set(key, value);
     const props = runningConf(world, resolveHost(world, searchHost)!, 'props').stanzas.get(event.sourcetype);
@@ -295,6 +301,15 @@ export function scanEvents(
           ctx.messages.push({ type: 'warn', text: 'Invalid search-time field extraction: ' + key });
         }
       }
+    const sourceKey = event.host + '\0' + event.source;
+    if (!recordedHosts.has(event.host)) {
+      recordedHosts.add(event.host);
+      stats.hosts++;
+    }
+    if (!recordedSources.has(sourceKey)) {
+      recordedSources.add(sourceKey);
+      stats.sources++;
+    }
     stats.scanned++;
     if (filter(row) && onRow(row) === false) return stats;
   }
@@ -324,7 +339,7 @@ export function scanEvents(
       )
         continue;
       touched = true;
-      stats.sources++;
+      if (!recordedSources.has((s.host ?? p.hostname) + '\0' + s.source)) stats.sources++;
       // Forwarder file data is parsed on the receiving indexer; everything else arrives as written.
       const parse =
         (p.fleetRow !== undefined || (world.config.profile && p.role === 'heavy_forwarder')) &&
@@ -379,7 +394,7 @@ export function scanEvents(
         return stats;
       }
     }
-    if (touched) stats.hosts++;
+    if (touched && !recordedHosts.has(p.hostname)) stats.hosts++;
   }
   return stats;
 }

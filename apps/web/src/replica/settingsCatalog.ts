@@ -1,4 +1,4 @@
-/** Routes observed in the local Splunk 9.2.2 Settings menu. */
+/** Observed Settings routes plus explicitly labeled V7 operational extensions. */
 export interface SettingsLink {
   id: string;
   label: string;
@@ -183,6 +183,12 @@ export const settingsGroups: SettingsGroup[] = [
   {
     title: 'Distributed Environment',
     items: [
+      {
+        id: 'shc-operations',
+        label: 'SHC operations (V7)',
+        href: '#/settings/shc-operations',
+        sourcePath: '/services/shcluster/status',
+      },
       {
         id: 'indexer-clustering',
         label: 'Indexer clustering',

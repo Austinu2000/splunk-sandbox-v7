@@ -1,3 +1,5 @@
+import { patchConf } from '../scenario/engine';
+import { checksum, filesUnder } from '../hosts/cluster';
 import type { KvState, KvNode, KvRecord, KvStatus } from '@sandbox/shared';
 import type { World } from '../world';
 import { resolveHost, splunkdRunning, splunkVersion } from '../hosts/profile';
@@ -424,22 +426,20 @@ export function kvConfigureCollection(
       throw new KvError('Use a boolean value');
   }
   // The bounded model requires all members for configuration distribution.
-  for (const node of configMembers(w, host)) {
+  const members = configMembers(w, host);
+  if (
+    members.every((node) => {
+      const existing = kvCollections(w, node.host, app).find((c) => c.collection === collection);
+      return existing && Object.entries(settings).every(([k, v]) => existing.settings[k] === v);
+    })
+  )
+    return;
+  for (const node of members) {
     const p = resolveHost(w, node.host)!,
       fs = hostFs(w, p),
       path = `/opt/splunk/etc/apps/${app}/local/collections.conf`;
     const old = fs.exists(path) ? fs.readFile(path, ROOT) : '';
-    writeAppConfig(
-      w,
-      node.host,
-      app,
-      'collections',
-      old +
-        `\n[${collection}]\n` +
-        Object.entries(settings)
-          .map(([k, v]) => `${k} = ${v}\n`)
-          .join(''),
-    );
+    writeAppConfig(w, node.host, app, 'collections', patchConf(old, collection, settings));
     reloadAppConf(w, p, app);
   }
   evidence(w, 'collection', host, `${app}/${collection}`, 'Collection configuration applied');
@@ -636,4 +636,18 @@ export function kvCloseIncident(w: World, id: string, notes: string) {
   a.closed = w.clock.tick;
   a.notes = notes;
   kvPersist(w);
+}
+/** Optimistic editor revision: namespace source, replica/data revision and local service state. */
+export function kvRevision(w: World, host: string, app = KV_APP) {
+  const node = kvNode(w, host),
+    domain = kvState(w).domains[node.domain]!,
+    p = resolveHost(w, host)!;
+  return checksum({
+    source: checksum(filesUnder(hostFs(w, p), p.splunk!.home + '/etc')),
+    app,
+    domain: String(domain.revision),
+    applied: String(node.appliedRevision),
+    network: String(node.networkOpen),
+    running: String(splunkdRunning(w, p)),
+  });
 }

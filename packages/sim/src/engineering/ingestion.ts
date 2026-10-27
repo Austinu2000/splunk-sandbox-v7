@@ -323,6 +323,10 @@ export function tickInputs(world: World) {
     }
   }
 }
-export function recordedEvents(world: World) {
-  return searchableRecordedEvents(world);
+export function recordedEvents(
+  world: World,
+  fetchRemote = false,
+  select?: (index: string, earliest: number, latest: number) => boolean,
+) {
+  return searchableRecordedEvents(world, fetchRemote, select);
 }

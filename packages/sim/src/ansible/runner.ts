@@ -1,8 +1,13 @@
+import { validateManagedClusterBundle, queueIndexerRestart } from '../engineering/cluster-jobs';
+import { advancedClusterHealth } from '../engineering/cluster-health';
+import { setClusterMaintenance } from '../engineering/cluster-cli';
+import { shcHealth } from '../engineering/shc-health';
+import { kvBackup, kvRestore } from '../kvstore/engine';
 import { installForwarderPackage, acceptForwarderLicense, setForwarderBoot } from '../engineering/forwarders';
 import { buckets } from '../training/cluster';
 import { decodeVault, VAULT_HEADER } from './vault';
 import { yaml } from './yaml';
-import { inspectManagement } from './management';
+import { executeManagement } from './management';
 import { ansibleConfig, parseInventory, inventoryHosts } from './inventory';
 export { yaml } from './yaml';
 import type { World } from '../world';
@@ -51,6 +56,21 @@ function render(v: unknown, vars: Obj): string {
     text = next;
   }
   throw new TrainingError('Template expansion depth exceeded');
+}
+/** Render bounded JSON values without changing numeric/boolean record types. */
+function renderBody(value: unknown, vars: Obj, depth = 0): unknown {
+  if (depth > 12) throw new TrainingError('URI JSON nesting exceeds the practice limit');
+  if (typeof value === 'string') return render(value, vars);
+  if (Array.isArray(value)) {
+    if (value.length > 500) throw new TrainingError('URI JSON array exceeds the practice limit');
+    return value.map((item) => renderBody(item, vars, depth + 1));
+  }
+  if (value && typeof value === 'object') {
+    const entries = Object.entries(value);
+    if (entries.length > 100) throw new TrainingError('URI JSON object exceeds the practice limit');
+    return Object.fromEntries(entries.map(([key, item]) => [key, renderBody(item, vars, depth + 1)]));
+  }
+  return value;
 }
 function condition(v: unknown, vars: Obj): boolean {
   if (v === undefined) return true;
@@ -598,18 +618,26 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                 ) {
                   if (hp.role !== 'cluster_manager' || cred.user !== 'root')
                     throw new TrainingError('Delegate maintenance to the manager');
-                  const confPath = '/opt/splunk/etc/system/local/server.conf';
-                  const before = fs.readFile(confPath, cred);
-                  const enabled = cmd.includes('enable');
-                  write(
-                    confPath,
-                    /maintenance_mode\s*=/.test(before)
-                      ? before.replace(/maintenance_mode\s*=.*$/m, `maintenance_mode = ${enabled}`)
-                      : before + `\n[clustering]\nmaintenance_mode = ${enabled}\n`,
-                  );
-                  restartSplunk(target, hp);
+                  if (target.clusterManagement) {
+                    const enabled = cmd.includes('enable');
+                    changed = target.clusterManagement.manualMaintenance !== enabled;
+                    setClusterMaintenance(target, enabled);
+                  } else {
+                    const confPath = '/opt/splunk/etc/system/local/server.conf';
+                    const before = fs.readFile(confPath, cred);
+                    const enabled = cmd.includes('enable');
+                    write(
+                      confPath,
+                      /maintenance_mode\s*=/.test(before)
+                        ? before.replace(/maintenance_mode\s*=.*$/m, `maintenance_mode = ${enabled}`)
+                        : before + `\n[clustering]\nmaintenance_mode = ${enabled}\n`,
+                    );
+                    restartSplunk(target, hp);
+                  }
                 } else if (cmd === 'splunk show cluster-status') {
-                  response.stdout = JSON.stringify(buckets(target));
+                  response.stdout = JSON.stringify(
+                    target.clusterManagement ? advancedClusterHealth(target) : buckets(target),
+                  );
                   note(String(response.stdout));
                 } else if (cmd === 'splunk status') {
                   response.stdout = splunkdRunning(target, hp) ? 'running' : 'stopped';
@@ -633,6 +661,26 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                     throw new TrainingError('Delegate privileged deployment reload to the Deployment Server');
                   reloadDeployServer(target, hp);
                   changed = true;
+                } else if (cmd === 'splunk validate cluster-bundle') {
+                  if (cred.user !== 'root' || hp.role !== 'cluster_manager')
+                    throw new TrainingError('Validate on the privileged Cluster Manager');
+                  response.json = validateManagedClusterBundle(target, hp);
+                  response.stdout = JSON.stringify(response.json);
+                  note(String(response.stdout));
+                } else if (cmd === 'splunk rolling-restart cluster-peers -searchable true') {
+                  if (cred.user !== 'root' || hp.role !== 'cluster_manager')
+                    throw new TrainingError('Initiate the restart on the privileged Cluster Manager');
+                  response.json = queueIndexerRestart(target, hp);
+                  changed = true;
+                } else if (
+                  /^splunk (backup|restore) kvstore -archiveName [A-Za-z][A-Za-z0-9_-]{0,63}$/.test(cmd)
+                ) {
+                  if (cred.user !== 'root' || hp.role !== 'search_head')
+                    throw new TrainingError('Delegate KV maintenance to a privileged search head');
+                  const parts = cmd.split(' ');
+                  if (parts[1] === 'backup') kvBackup(target, hp.hostname, parts[4]!);
+                  else kvRestore(target, hp.hostname, parts[4]!);
+                  changed = true;
                 } else if (cmd === 'splunk apply cluster-bundle') {
                   if (hp.role !== 'cluster_manager' || cred.user !== 'root')
                     throw new TrainingError(
@@ -640,9 +688,24 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                     );
                   applyClusterBundle(target, hp);
                   changed = true;
-                } else if (cmd === 'splunk apply shcluster-bundle') {
+                } else if (
+                  /^splunk apply shcluster-bundle(?: -target https:\/\/[A-Za-z0-9.-]+:8089)?(?: --answer-yes)?$/.test(
+                    cmd,
+                  )
+                ) {
                   if (hp.role !== 'deployer' || cred.user !== 'root')
                     throw new TrainingError('Delegate privileged SHC bundle application to the Deployer');
+                  const targetUri = / -target (\S+)/.exec(cmd)?.[1];
+                  if (target.clusterManagement) {
+                    if (!targetUri)
+                      throw new TrainingError('Use -target https://MEMBER:8089 for an SHC bundle');
+                    const member = resolveHost(target, new URL(targetUri).hostname);
+                    if (
+                      !member ||
+                      !shcHealth(target).members.some((m) => m.host === member.hostname && m.available)
+                    )
+                      throw new TrainingError('Target an available SHC member');
+                  }
                   applyShcBundle(target, hp);
                   changed = true;
                 } else throw new TrainingError('Command is outside the simulated allowlist');
@@ -669,13 +732,24 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                 } else throw new TrainingError('wait_for requires a supported path or port check');
               } else if (module === 'uri') {
                 const url = render(a.url, vars);
-                if (String(a.method ?? 'GET').toUpperCase() !== 'GET')
-                  throw new TrainingError('URI supports read-only GET validation in this milestone');
+                const method = String(a.method ?? 'GET').toUpperCase();
+                if (a.body_format !== undefined && a.body_format !== 'json')
+                  throw new TrainingError('URI request bodies support JSON only');
+                if (opts.check && task.check_mode === false && method !== 'GET')
+                  throw new TrainingError('Check-mode override cannot write KV data in this practice model');
                 const auth =
                   a.url_username === undefined
                     ? undefined
                     : render(a.url_username, vars) + ':' + render(a.url_password, vars);
-                response = inspectManagement(opts.check ? world : target, hp.hostname, url, auth);
+                response = executeManagement(
+                  opts.check && method === 'GET' ? world : target,
+                  hp.hostname,
+                  url,
+                  method,
+                  renderBody(a.body ?? {}, vars),
+                  auth,
+                );
+                changed = Boolean(response.changed);
                 const expected = Array.isArray(a.status_code)
                   ? a.status_code.map(Number)
                   : [Number(a.status_code ?? 200)];

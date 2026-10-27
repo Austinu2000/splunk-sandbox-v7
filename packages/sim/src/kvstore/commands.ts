@@ -1,3 +1,4 @@
+import { inspectManagement } from '../ansible/management';
 import { dashboardRest } from '../engineering/dashboard-rest';
 import { fixturePrincipal, indexRest } from '../engineering/index-commands';
 import { receiveHec } from '../engineering/hec';
@@ -71,6 +72,11 @@ export const kvCurl: CommandFn = ({ world, sh, argv }) => {
     }
     if (target.protocol !== 'https:' || target.port !== '8089')
       throw new KvError('Use a simulated https://HOST:8089 management endpoint or configured HEC endpoint');
+    if (
+      method === 'GET' &&
+      ['/services/shcluster/status', '/services/cluster/manager/info'].includes(target.pathname)
+    )
+      return ok(JSON.stringify(inspectManagement(world, sh.host.hostname, url, auth).json, null, 2) + '\n');
     if (target.pathname.startsWith('/services/data/indexes'))
       return ok(
         JSON.stringify(

@@ -96,6 +96,8 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerInputs(app, live, () => store?.checkpoint(live.world));
   registerReports(app, live, store);
   registerDashboards(app, live, store);
+  registerClusters(app, live, store);
+  registerShc(app, live, store);
 
   app.setErrorHandler((err: Error & { validation?: unknown }, _req, reply) => {
     if (
@@ -176,3 +178,7 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
 import { registerReports } from './reports';
 
 import { registerDashboards } from './dashboards';
+
+import { registerClusters } from './clusters';
+
+import { registerShc } from './shc';

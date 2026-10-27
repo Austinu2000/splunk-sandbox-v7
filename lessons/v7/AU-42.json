@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-42",
+  "version": 1,
+  "title": "Automate a readiness check and verified KV snapshot",
+  "track": "Cluster automation (refined objectives)",
+  "objectives": [
+    "Automate a readiness check and verified KV snapshot",
+    "Refinement of the accepted AU-36\u201343 track; the original individual source was unavailable."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "AU-27"
+  ],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "cluster.manage",
+    "kv.manage"
+  ],
+  "fixture": {
+    "id": "au-42-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Use Automation Operations or the ansible01 virtual CLI. New starter files are explicit repository fixture additions; old seed commits remain.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Inspect the current data before running v7_kv_backup.yml with --limit sh01. The playbook reads actual readiness and takes a named virtual backup.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Compare v7_automated rows with current rows and retain the completed automation run. This is a same-deployment teaching snapshot, not a native filesystem archive.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect playbook source, correct target and actual run output.",
+    "Review the operation page after Ansible queues asynchronous work."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    },
+    {
+      "url": "https://dev.splunk.com/enterprise/docs/developapps/kvstore/usetherestapitomanagekv/",
+      "vendorVersion": "Splunk Enterprise KV Store API",
+      "purpose": "Collection schema and data endpoint families; virtual execution boundary documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Actual scoped automation run",
+      "path": "playbooks/v7_kv_backup.yml",
+      "targets": [
+        "sh01"
+      ],
+      "check": false
+    },
+    {
+      "kind": "kv-state",
+      "label": "Current data preserved in the named automated snapshot",
+      "host": "sh01",
+      "backup": "v7_automated",
+      "verifiedBackup": true
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "kv-restore"
+    },
+    {
+      "kind": "cluster-starters"
+    }
+  ],
+  "feedback": {
+    "success": "The scoped automation and verified operational outcome are retained.",
+    "incomplete": "A successful exit alone is insufficient; verify source, phase, data and idempotency."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "AU-42:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "AU-42:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "AU-42:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "AU-42:reset"
+    },
+    {
+      "case": "resume",
+      "test": "AU-42:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "AU-42:isolation"
+    }
+  ]
+}

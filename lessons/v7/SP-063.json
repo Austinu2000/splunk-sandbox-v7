@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-063",
+  "version": 1,
+  "title": "Deploy SHC Applications Through the Deployer",
+  "track": "Cluster administration and KV Store",
+  "objectives": [
+    "Deploy SHC Applications Through the Deployer",
+    "Verify actual state through a separate inspection or query."
+  ],
+  "environments": [
+    "apl"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "cluster.manage",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-063-v1",
+    "version": 1,
+    "seed": "apl-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "On the Deployer, stage v7_status/local/savedsearches.conf with [V7 cluster status] and search=index=source_logs | stats count. Add an appropriate app metadata definition if sharing beyond the owner.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Publish through SHC operations or splunk apply shcluster-bundle -target https://sh01:8089 on deployer01. Advance the phased job to completion. Inspect the report and default source on all three members. Member local overrides and existing lookup data are preserved.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running versus disk source and use the correct component.",
+    "Keep the fixture clock paused and advance deliberately to observe transitions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    },
+    {
+      "url": "https://dev.splunk.com/enterprise/docs/developapps/kvstore/usetherestapitomanagekv/",
+      "vendorVersion": "Splunk Enterprise KV Store API",
+      "purpose": "Collection schema and data endpoint families; virtual execution boundary documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "cluster-job",
+      "label": "Completed coordinated operation with actual service transitions",
+      "jobKind": "shc-bundle",
+      "minimumTargets": 3
+    },
+    {
+      "kind": "shc-state",
+      "label": "Same deployed report visible on all members",
+      "title": "V7 cluster status",
+      "consistent": true,
+      "majority": true
+    },
+    {
+      "kind": "report-state",
+      "label": "Active report on sh03",
+      "host": "sh03",
+      "app": "v7_status",
+      "title": "V7 cluster status",
+      "search": "index=source_logs | stats count"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "shc"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and independent evidence are retained in this isolated attempt.",
+    "incomplete": "Inspect current source, service state, operation receipts and replica data."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-063:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-063:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-063:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-063:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-063:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-063:isolation"
+    }
+  ]
+}

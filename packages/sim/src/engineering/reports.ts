@@ -1,3 +1,5 @@
+import { requireShcWritable } from './shc-health';
+import { queueKnowledgeReplication, type ReplicatedKnowledgeFile } from './shc-knowledge';
 import { alertConfiguration, validateAlert, evaluateAlert } from './alerts';
 import type { SavedReport, ReportRun, ReportRuntime, PracticePrincipal } from '@sandbox/shared';
 import type { World } from '../world';
@@ -256,6 +258,7 @@ export function saveReport(
 ) {
   const principal = options.principal ?? 'admin';
   validate(world, input, principal);
+  requireShcWritable(world, input.host);
   const all = listReports(world, input.host, 'admin', true),
     existing = options.id
       ? all.find((r) => r.id === options.id)
@@ -284,7 +287,10 @@ export function saveReport(
         : '/etc/apps/' + input.app);
   const path = dir + '/local/savedsearches.conf';
   if (existing && existing.sourcePath !== path) {
-    if (existing.sourcePath.includes('/default/'))
+    if (
+      existing.sourcePath.includes('/default/') &&
+      (existing.app !== input.app || existing.owner !== input.owner || existing.sharing !== input.sharing)
+    )
       throw new OperationsError('Adopt the inherited report in its existing scope before moving it');
     if (
       all.some(
@@ -344,7 +350,7 @@ export function saveReport(
     }),
     ROOT,
   );
-  if (existing && existing.sourcePath !== path) {
+  if (existing && existing.sourcePath !== path && !existing.sourcePath.includes('/default/')) {
     fs.writeFile(
       existing.sourcePath,
       removeReportStanza(fs.readFile(existing.sourcePath, ROOT), existing.title),
@@ -352,6 +358,17 @@ export function saveReport(
     );
   }
   activateReportConf(world, host);
+  const replicated: ReplicatedKnowledgeFile[] = [
+    { path, text: fs.readFile(path, ROOT), stanza: input.title },
+    { path: metadata, text: fs.readFile(metadata, ROOT), stanza: 'savedsearches/' + input.title },
+  ];
+  if (existing && existing.sourcePath !== path && !existing.sourcePath.includes('/default/'))
+    replicated.push({
+      path: existing.sourcePath,
+      text: fs.readFile(existing.sourcePath, ROOT),
+      stanza: existing.title,
+    });
+  queueKnowledgeReplication(world, input.host, replicated);
   return listReports(world, input.host, principal).find(
     (r) =>
       r.title === input.title &&

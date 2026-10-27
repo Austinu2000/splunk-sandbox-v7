@@ -1,9 +1,10 @@
 # Splunk Engineer Sandbox v7
 
 V7 is an independent continuation of V6 at commit `a9d4237`. The operations and
-learning expansion has started with **Milestone 0: architecture and persistence**.
-The 150 proposed AU/SP lessons are planned work, not delivered exercises yet.
-The existing 27 G/A/X/K lessons remain in Learn.
+learning expansion is in progress. Learn contains **111 new AU/SP exercises plus
+all 27 inherited G/A/X/K lessons (138 total)**. Cluster, SHC, SmartStore and KV work
+now has executable exercises; monitoring/integrations, upgrades and capstones are
+still under development. The complete 150-lesson expansion is not finished.
 
 ```sh
 nvm use 22
@@ -28,6 +29,9 @@ personal learner labels and notes; the database remains ignored by Git.
 - [Planned Splunk lessons](docs/V7-SPLUNK-ENGINEERING-LESSONS.md)
 - [Ansible operations plan](docs/V7-ANSIBLE-OPERATIONS.md)
 - [Reports and summary indexing](docs/V7-REPORTS-AND-SUMMARY-INDEXING.md)
+- [Forwarder operations](docs/V7-FORWARDER-OPERATIONS.md)
+- [Dashboards and alerts](docs/V7-DASHBOARDS-AND-ALERTS.md)
+- [Cluster, SHC, SmartStore and KV operations](docs/V7-CLUSTER-AND-KV-OPERATIONS.md)
 - [APL and Erie capstones](docs/V7-APL-ERIE-CAPSTONES.md)
 - [Interview coverage audit](docs/V7-INTERVIEW-QUESTION-COVERAGE.md)
 

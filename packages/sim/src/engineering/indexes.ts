@@ -1,3 +1,5 @@
+import { indexBuckets } from './lifecycle';
+import { recordedClusterCopies } from './cluster-buckets';
 import type { IndexCatalogEntry, IndexSettings, PracticePrincipal } from '@sandbox/shared';
 import type { World } from '../world';
 import { hostFs } from '../vfs/build';
@@ -21,6 +23,7 @@ const keys = new Set([
   'maxTotalDataSizeMB',
   'disabled',
   'repFactor',
+  'remotePath',
   'maxHotIdleSecs',
   'maxWarmDBCount',
   'coldToFrozenDir',
@@ -31,6 +34,7 @@ const requiresRestart = new Set([
   'thawedPath',
   'datatype',
   'repFactor',
+  'remotePath',
   'disabled',
   'coldToFrozenDir',
 ]);
@@ -64,6 +68,7 @@ function readSettings(conf: MergedConf, name: string): IndexSettings {
     frozenTimePeriodInSecs: Number(get('frozenTimePeriodInSecs', '188697600')),
     maxTotalDataSizeMB: Number(get('maxTotalDataSizeMB', '500000')),
     disabled: confBool(get('disabled', 'false')),
+    remotePath: get('remotePath', ''),
     repFactor: get('repFactor', '0') as '0' | 'auto',
     maxHotIdleSecs: Number(get('maxHotIdleSecs', '0')),
     maxWarmDBCount: Number(get('maxWarmDBCount', '300')),
@@ -115,6 +120,16 @@ export function validateIndexSettings(
       if (!['event', 'metric'].includes(String(raw)))
         throw new OperationsError('datatype must be event or metric');
       out[key] = raw;
+    } else if (key === 'remotePath') {
+      const value = String(raw);
+      if (
+        value !== '' &&
+        (!/^volume:[A-Za-z][A-Za-z0-9_-]{0,63}\/[A-Za-z0-9_.$/-]+$/.test(value) ||
+          value.split('/').includes('..') ||
+          /\$(?!_index_name)/.test(value))
+      )
+        throw new OperationsError('Use volume:NAME/path with the optional $_index_name token');
+      out[key] = value;
     } else if (key === 'repFactor') {
       if (!['auto', '0'].includes(String(raw))) throw new OperationsError('repFactor must be auto or 0');
       out[key] = String(raw);
@@ -158,9 +173,19 @@ export function indexCatalog(
         ...(world.config.profile?.indexes.map((i) => i.name) ?? ['os', 'app', 'network']),
       ].includes(name);
       const recorded =
-        recordedEvents(world)
-          .filter((event) => event.receiver === hostName && event.index === name)
-          .reduce((total, event) => total + event.bytes, 0) /
+        (world.clusterManagement
+          ? indexBuckets(world)
+              .filter(
+                (b) =>
+                  b.index === name &&
+                  b.state !== 'frozen' &&
+                  (recordedClusterCopies(world, b.id)?.copies.some((c) => c.host === hostName) ??
+                    b.host === hostName),
+              )
+              .reduce((total, b) => total + b.bytes, 0)
+          : recordedEvents(world)
+              .filter((event) => event.receiver === hostName && event.index === name)
+              .reduce((total, event) => total + event.bytes, 0)) /
         1024 ** 2;
       return {
         name,
@@ -248,6 +273,10 @@ export function changeIndex(
     ...validateIndexSettings(values),
   };
   validateIndexSettings(settings, true);
+  if (settings.remotePath)
+    throw new OperationsError(
+      'SmartStore execution is supported through an opted-in indexer cluster, not standalone index administration',
+    );
   const all = indexCatalog(world, hostName, 'admin', true);
   const active = indexCatalog(world, hostName, 'admin');
   for (const other of all.filter((i) => i.name !== name))

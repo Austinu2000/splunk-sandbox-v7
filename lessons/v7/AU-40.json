@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-40",
+  "version": 1,
+  "title": "Publish SHC defaults through an on-change handler",
+  "track": "Cluster automation (refined objectives)",
+  "objectives": [
+    "Publish SHC defaults through an on-change handler",
+    "Refinement of the accepted AU-36\u201343 track; the original individual source was unavailable."
+  ],
+  "environments": [
+    "apl"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "AU-27"
+  ],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "cluster.manage",
+    "kv.manage"
+  ],
+  "fixture": {
+    "id": "au-40-v1",
+    "version": 1,
+    "seed": "apl-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Use Automation Operations or the ansible01 virtual CLI. New starter files are explicit repository fixture additions; old seed commits remain.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Review the role and native apply shcluster-bundle -target command, then run v7_shc_deploy.yml against deployer01.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Advance the SHC operation to completion and compare all member report definitions. Run the same playbook again for changed=0; the handler must not publish an unchanged file.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect playbook source, correct target and actual run output.",
+    "Review the operation page after Ansible queues asynchronous work."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-the-indexer-cluster/perform-a-rolling-restart-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Searchable restart and available copy preflight"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/distributed-search/9.4/update-search-head-cluster-members/use-the-deployer-to-distribute-apps-and-configuration-updates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Deployer source, target and merge_to_default behavior"
+    },
+    {
+      "url": "https://dev.splunk.com/enterprise/docs/developapps/kvstore/usetherestapitomanagekv/",
+      "vendorVersion": "Splunk Enterprise KV Store API",
+      "purpose": "Collection schema and data endpoint families; virtual execution boundary documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Actual scoped automation run",
+      "path": "playbooks/v7_shc_deploy.yml",
+      "targets": [
+        "deployer01"
+      ],
+      "check": false,
+      "afterApply": true,
+      "maximumChanges": 0,
+      "currentSource": true
+    },
+    {
+      "kind": "cluster-job",
+      "label": "Completed coordinated operation with actual service transitions",
+      "jobKind": "shc-bundle",
+      "minimumTargets": 3
+    },
+    {
+      "kind": "shc-state",
+      "label": "Automated default report consistent across members",
+      "title": "V7 cluster status",
+      "consistent": true,
+      "majority": true
+    }
+  ],
+  "setup": [
+    {
+      "kind": "cluster-fixture",
+      "mode": "shc"
+    },
+    {
+      "kind": "cluster-starters"
+    }
+  ],
+  "feedback": {
+    "success": "The scoped automation and verified operational outcome are retained.",
+    "incomplete": "A successful exit alone is insufficient; verify source, phase, data and idempotency."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "AU-40:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "AU-40:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "AU-40:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "AU-40:reset"
+    },
+    {
+      "case": "resume",
+      "test": "AU-40:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "AU-40:isolation"
+    }
+  ]
+}
