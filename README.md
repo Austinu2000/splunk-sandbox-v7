@@ -1,4 +1,41 @@
-# Splunk Engineer Sandbox v6
+# Splunk Engineer Sandbox v7
+
+V7 is an independent continuation of V6 at commit `a9d4237`. The operations and
+learning expansion has started with **Milestone 0: architecture and persistence**.
+The 150 proposed AU/SP lessons are planned work, not delivered exercises yet.
+The existing 27 G/A/X/K lessons remain in Learn.
+
+```sh
+nvm use 22
+npm ci   # first setup only; already installed in the local V7 copy
+npm run dev
+```
+
+Open <http://127.0.0.1:5873>. The API uses port 5874. Ctrl+C stops V7 and saves its
+current session. Both services bind to loopback. V6 continues on ports 5773/5774.
+V7 has its own source, installed dependencies, browser origin and `data/sandbox.db`.
+
+The local copy includes a consistent SQLite snapshot of V6's four saved sessions,
+including learner attempts and profile-scoped UI data. V6's database was opened
+read-only for the copy. Backups are outside this repository in `../backups/`.
+Legacy data confined solely to another browser origin must be exported separately;
+V7 does not automatically read V6 browser storage. Copied sessions can contain
+personal learner labels and notes; the database remains ignored by Git.
+
+- [Accepted build specification](docs/V7-CONSOLIDATED-BUILD-SPEC.md)
+- [Implementation status and milestone gates](docs/V7-IMPLEMENTATION-STATUS.md)
+- [Shared architecture and migration design](docs/V7-ARCHITECTURE.md)
+- [Planned Splunk lessons](docs/V7-SPLUNK-ENGINEERING-LESSONS.md)
+- [Ansible operations plan](docs/V7-ANSIBLE-OPERATIONS.md)
+- [Reports and summary indexing](docs/V7-REPORTS-AND-SUMMARY-INDEXING.md)
+- [APL and Erie capstones](docs/V7-APL-ERIE-CAPSTONES.md)
+- [Interview coverage audit](docs/V7-INTERVIEW-QUESTION-COVERAGE.md)
+
+No V7 GitHub destination is configured. V6's GitHub repository is not a V7 push target.
+
+## Inherited V6 documentation
+
+# V6 baseline
 
 V6 adds persistent KV Store administration, collection schemas and records, configuration apply/restart behavior, replica health, backups/restores, four guided lessons and three recovery incidents. Open **KV Store** in the practice navigation.
 

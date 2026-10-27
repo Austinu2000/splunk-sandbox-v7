@@ -21,6 +21,7 @@ import {
   sshRoster,
   summarizeFleet,
   worldInfo,
+  engineeringMigrationPreview,
   type World,
 } from '@sandbox/sim';
 import { aiGradingEnabled, createAiGrader, type AiGrader } from './aiGrader';
@@ -103,6 +104,9 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   });
 
   app.get('/api/health', async () => ({ ok: true }));
+
+  // Read-only Milestone 0 preflight; no settings or knowledge objects are activated.
+  app.get('/api/engineering/migration', async () => engineeringMigrationPreview(live.world));
 
   app.get('/api/world', async () => worldInfo(live.world));
 

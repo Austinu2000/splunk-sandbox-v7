@@ -55,7 +55,7 @@ export function TrainingPage() {
     <main className="v5">
       <header className="v5-heading">
         <div>
-          <span className="v5-eyebrow">V6 · ENGINEER SANDBOX</span>
+          <span className="v5-eyebrow">V7 · ENGINEER SANDBOX</span>
           <h1>Interview workbench</h1>
           <p>Investigate incidents. Demonstrate recovery. Explain your decisions.</p>
         </div>
@@ -267,7 +267,7 @@ function Resource({
     return (
       <section>
         <h2>KV Store administration</h2>
-        <p>V6 uses persistent collections, per-member records and configuration-backed service health.</p>
+        <p>V7 inherits persistent collections, per-member records and configuration-backed service health.</p>
         <pre>{JSON.stringify(r.metrics, null, 2)}</pre>
         <a href="#/kvstore">Open KV Store administration →</a>
         <button disabled={busy} onClick={() => act('inspect', r.id)}>

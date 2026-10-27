@@ -29,7 +29,10 @@ import { initializeLocation } from './replica/navigation';
 
 initializeLocation();
 const routes: Route[] = [
-  'training', 'code', 'learn', 'kvstore',
+  'training',
+  'code',
+  'learn',
+  'kvstore',
   'operations',
   'environments',
   'home',
@@ -109,7 +112,7 @@ export function App() {
   useEffect(() => {
     if (route === 'terminal') setTerminalOpened(true);
     if (route === 'search') setSearchOpened(true);
-    document.title = `${route === 'home' ? 'Home' : route.replaceAll('-', ' ').replace(/^./, c => c.toUpperCase())} | Splunk v6`;
+    document.title = `${route === 'home' ? 'Home' : route.replaceAll('-', ' ').replace(/^./, (c) => c.toUpperCase())} | Splunk v7`;
   }, [route]);
   useEffect(() => {
     if (world.data?.profileId && currentProfile()?.id !== world.data.profileId) window.location.reload();
@@ -146,7 +149,7 @@ export function App() {
       )}
       {world.error && !world.data && route !== 'login' && (
         <div className="error page-error">
-          Cannot reach the sandbox server ({world.error}). Start v6 to load the simulated data.
+          Cannot reach the sandbox server ({world.error}). Start v7 to load the simulated data.
         </div>
       )}
       {saveError && (

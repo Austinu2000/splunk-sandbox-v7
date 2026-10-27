@@ -84,3 +84,6 @@ export * from './training/lesson-setup';
 
 export * from './kvstore/engine';
 export { reloadAppConf } from './hosts/running';
+
+export * from './engineering/migration';
+export * from './engineering/lesson-schema';

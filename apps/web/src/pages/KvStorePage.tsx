@@ -73,7 +73,7 @@ export function KvStorePage() {
     <main className="v5">
       <header className="v5-heading">
         <div>
-          <span className="v5-eyebrow">V6 · SPLUNK ENTERPRISE 9.4.1 PRACTICE</span>
+          <span className="v5-eyebrow">V7 · SPLUNK ENTERPRISE 9.4.1 PRACTICE</span>
           <h1>KV Store administration</h1>
           <p>Manage collections, inspect replicas and recover data.</p>
         </div>

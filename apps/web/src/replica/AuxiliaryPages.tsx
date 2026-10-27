@@ -417,7 +417,7 @@ export function HelpPage() {
     <main className="replica-page" tabIndex={-1}>
       <h1>About Splunk Enterprise</h1>
       <p>UI reference: Splunk Enterprise 9.2.2, build d76edf6f0a15.</p>
-      <h2>Splunk Engineer Sandbox v6</h2>
+      <h2>Splunk Engineer Sandbox v7</h2>
       <p>
         Operational practice target: Splunk Enterprise 9.4.1 with a simulated KV Store 7.0.0 fixture. Captured
         UI and app catalog metadata retain their original reference versions.

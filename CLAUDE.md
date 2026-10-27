@@ -1,5 +1,17 @@
 # Splunk Engineer Sandbox
 
+## V7 continuation
+
+This checkout is the independent V7 copy of V6 baseline `a9d4237`. Follow
+`docs/V7-CONSOLIDATED-BUILD-SPEC.md`, `docs/V7-ARCHITECTURE.md` and
+`docs/V7-IMPLEMENTATION-STATUS.md` for the current milestone sequence. Milestone 0
+is implemented; stop for review before Milestone 1. The original SPEC/PLAN below
+remain architectural context, not the current expansion checklist.
+
+V7 uses ports 5873/5874 and its own `data/sandbox.db`. Do not point it at V6's
+database or push V7 changes to V6's GitHub repository. Preserve all 27 existing
+lesson IDs and saved attempts. AU/SP planning manifests are not executable lessons.
+
 A browser-based, fully simulated Splunk environment for practising engineer work and interview scenarios. The full spec is in `SPEC.md`, and the agreed design is in `PLAN.md`. Read both before making changes.
 
 ## Hard rules

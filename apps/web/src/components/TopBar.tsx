@@ -52,7 +52,10 @@ const searchRoutes: Route[] = [
   'analytics',
 ];
 const practiceRoutes: Route[] = [
-  'training', 'code', 'learn', 'kvstore',
+  'training',
+  'code',
+  'learn',
+  'kvstore',
   'fleet',
   'terminal',
   'tickets',
@@ -483,7 +486,7 @@ export function TopBar({
           ))}
           <span>seed: {world.seed}</span>
           <span>
-            Local simulation · v6 · <a href="#/environments">{world?.profileName ?? 'Default environment'}</a>
+            Local simulation · v7 · <a href="#/environments">{world?.profileName ?? 'Default environment'}</a>
           </span>
         </div>
       )}

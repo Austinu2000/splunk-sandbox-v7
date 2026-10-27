@@ -49,7 +49,7 @@ export function CodePage() {
     <main className="v5">
       <header className="v5-heading">
         <div>
-          <span className="v5-eyebrow">V6 · LOCAL CODE SERVICE</span>
+          <span className="v5-eyebrow">V7 · LOCAL CODE SERVICE</span>
           <h1>Code & Ansible</h1>
           <p>Review source, validate changes and deploy into virtual hosts.</p>
         </div>

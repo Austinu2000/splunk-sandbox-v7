@@ -2,38 +2,14 @@ import { profileStorage } from '../environment';
 import { useEffect, useState } from 'react';
 import type { SearchJobDto } from '@sandbox/shared';
 
-export type KnowledgeKind = 'report' | 'alert' | 'dashboard' | 'dataset';
-export type PanelType = 'column' | 'bar' | 'line' | 'area' | 'pie' | 'single' | 'table';
-export interface DashboardPanel {
-  id: string;
-  title: string;
-  search: string;
-  type: PanelType;
-}
-export interface KnowledgeObject {
-  id: string;
-  kind: KnowledgeKind;
-  title: string;
-  description: string;
-  owner: string;
-  app: string;
-  sharing: 'Private' | 'App' | 'Global';
-  search: string;
-  earliest: string;
-  latest: string;
-  enabled: boolean;
-  type: 'Classic' | 'Dashboard Studio';
-  panels: DashboardPanel[];
-  updated: string;
-  schedule?: string;
-  condition?: string;
-}
-export interface KnowledgeState {
-  objects: KnowledgeObject[];
-  jobs: SearchJobDto[];
-  recent: string[];
-  homeDashboard?: string;
-}
+export type {
+  KnowledgeKind,
+  PanelType,
+  DashboardPanel,
+  KnowledgeObject,
+  KnowledgeState,
+} from '@sandbox/shared';
+import type { KnowledgeObject, KnowledgeState } from '@sandbox/shared';
 const STORAGE_KEY = 'splunk-sandbox-v3-knowledge-v1';
 const EVENT = 'splunk-knowledge-changed';
 

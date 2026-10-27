@@ -1,0 +1,80 @@
+# V7 implementation status
+
+Started October 27, 2026 from V6 `main` at `a9d4237`.
+
+## Current gate: Milestone 0
+
+Implemented:
+
+- Independent V7 checkout on branch `v7`, no GitHub push remote; V6 source untouched.
+- Separate installed dependencies, ports 5873/5874, database and browser origin.
+- Consistent SQLite online backup from a read-only V6 connection: four saved rows,
+  including both existing learner attempts, copied without resetting IDs or notes.
+- A separate pre-change session backup and bare Git baseline in `../backups/`.
+- V7 labels in the application; inherited functionality remains available.
+- Audit of UI practice settings, operational state, knowledge objects and schedules.
+- Shared knowledge types and proposed operational contracts.
+- Pure lossless migration preview with invalid-record and conflict reporting; no
+  operational cutover or accidental activation of old drafts/schedules.
+- Read-only current-world migration preflight endpoint.
+- Strict versioned lesson authoring contract and capability/test readiness gate.
+- Planning manifests for 100 SP and 50 AU IDs and all 235 interview question IDs.
+  No candidate mapping is counted as verified functional coverage.
+- Architecture, staged migration design, capability boundaries and milestone docs.
+
+No new AU/SP exercises are executable at this gate. Existing 27 G/A/X/K entries
+remain available with inherited grading limits. The full expansion is incomplete.
+
+## Review sequence
+
+| Gate | Status | Deliverable |
+| --- | --- | --- |
+| 0 | Implemented; validation below | Architecture/persistence audit and safe preflight |
+| 1 | Pending review | Foundations/inventory; AU-01–14 and SP-001–006 |
+| 2 | Planned | Indexes/data onboarding; SP-007–025 |
+| 3 | Planned | Reports/searches/summary indexing; SP-035–046 |
+| 4 | Planned | Playbooks/Git; AU-15–27 |
+| 5 | Planned | Forwarders/DS; AU-28–35 and SP-026–034 |
+| 6 | Planned | Dashboards/alerts; SP-047–054 |
+| 7 | Planned | Clustering/KV; AU-36–43 and SP-055–068 |
+| 8 | Planned | Monitoring/security/integrations; SP-069–088 |
+| 9 | Planned | Upgrades/recovery; AU-44–50 and SP-089–092 |
+| 10 | Planned | APL/Erie capstones; SP-093–100 |
+| 11 | Planned | Curriculum/question audit and complete regression |
+
+The brief reserves 150 new lessons but supplies AU titles/objectives only by track.
+Reconcile the earlier individual 50-lesson source before authoring AU definitions.
+
+## Local start
+
+From the V7 project folder, run `nvm use 22` and `npm run dev`. Open
+<http://127.0.0.1:5873>. Stop with Ctrl+C. V6 remains at
+<http://127.0.0.1:5773>. The local folders are siblings under `projectsv6` and
+`projectsv7`; never point V7's `SANDBOX_DB` at a V6 database.
+
+The copy includes the last persisted V6 data at snapshot time. Changes made later
+in V6 are independent. The V7 pre-change backup is not automatically overwritten.
+Browser-only data on another origin is outside the database snapshot and is not
+silently imported. No API keys or `.env` files were copied into V7.
+
+## Validation
+
+- **284 tests passed across 32 files**: the full 282-test regression plus two
+  subsequently added curriculum/coverage audit tests. No test failures.
+- Workspace TypeScript checks, ESLint and the production web build passed. The
+  existing large-bundle advisory remains; no new build failure was introduced.
+- Browser verification: V7 environment labels, copied A1 attempt and workflow
+  status, return to the isolated free-practice session, virtual SSH/Git/inventory
+  commands and inherited KV Store status/records. Inventory output retains its
+  documented V6 YAML-only limitation until Milestone 1.
+- The migration endpoint returned 14 preserved knowledge candidates in the copied
+  Lab free-practice world, with no operational cutover. It did not modify records.
+- SQLite backup integrity checks returned `ok` for both copies. V6 source remains
+  clean at the baseline commit, and both versions' health endpoints returned 200.
+- UI proof: [V7 inherited KV Store](v7-milestone0.png).
+
+## Review boundary
+
+The supplied [build specification](V7-CONSOLIDATED-BUILD-SPEC.md), section 13,
+explicitly says: “Stop after each milestone for review.” This gate stops after
+Milestone 0. No additional approval is needed to inspect the local result.

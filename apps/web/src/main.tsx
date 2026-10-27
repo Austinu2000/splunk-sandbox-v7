@@ -7,7 +7,7 @@ import './replica/replica.css';
 
 async function start() {
   await initializeEnvironment();
-  if (!localStorage.getItem('splunk-v6-environment-selected')) window.location.hash = '#/environments';
+  if (!localStorage.getItem('splunk-v7-environment-selected')) window.location.hash = '#/environments';
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <App />
@@ -15,5 +15,5 @@ async function start() {
   );
 }
 void start().catch(() => {
-  document.getElementById('root')!.textContent = 'Unable to reach v6. Start the server and reload this page.';
+  document.getElementById('root')!.textContent = 'Unable to reach v7. Start the server and reload this page.';
 });

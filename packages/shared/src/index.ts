@@ -474,3 +474,6 @@ export * from './training';
 
 export * from './kvstore';
 export * from './splSyntax';
+
+export * from './knowledge';
+export * from './engineering';

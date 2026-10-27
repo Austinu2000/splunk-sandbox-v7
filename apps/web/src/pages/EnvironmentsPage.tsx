@@ -20,7 +20,7 @@ export function EnvironmentsPage() {
     try {
       await flushEnvironment();
       await api.loadProfile(id, reset);
-      localStorage.setItem('splunk-v6-environment-selected', 'yes');
+      localStorage.setItem('splunk-v7-environment-selected', 'yes');
       window.location.hash = '#/home';
       window.location.reload();
     } catch (e) {
@@ -32,7 +32,7 @@ export function EnvironmentsPage() {
     <main className="environments-page">
       <div className="environment-heading">
         <div>
-          <span className="environment-eyebrow">ENGINEER SANDBOX · V6</span>
+          <span className="environment-eyebrow">ENGINEER SANDBOX · V7</span>
           <h1>Choose your environment</h1>
           <p>
             Continue where you left off. Each environment keeps its own configuration, tickets, dashboards and
