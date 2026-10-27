@@ -1,3 +1,5 @@
+import { ansibleContext, discoverAnsibleConfig, parseAnsibleArguments } from './context';
+import { inventoryGraph, inventoryHosts, inventoryList } from './inventory';
 import type { CommandFn } from '../shell/types';
 import { ok, fail } from '../shell/types';
 import { runAnsible, type AnsibleOptions } from './runner';
@@ -12,7 +14,10 @@ export const ansiblePlaybook: CommandFn = ({ world, sh, argv }) => {
     );
     if (!checkout) return fail('Run from a simulated automation repository');
     const tree: Tree = Object.fromEntries(
-      Object.entries(filesUnder(sh.fs, checkout.root)).map(([p, text]) => [p, { text, mode: 0o644 }]),
+      Object.entries(filesUnder(sh.fs, checkout.root, sh.cred)).map(([p, text]) => [
+        p,
+        { text, mode: 0o644 },
+      ]),
     );
     const opts: AnsibleOptions = {};
     let path = '';
@@ -43,6 +48,8 @@ export const ansiblePlaybook: CommandFn = ({ world, sh, argv }) => {
     }
     if (!path) return fail('Usage: ansible-playbook playbooks/name.yml [--check --diff --limit group]');
     const relative = sh.resolve(path).slice(checkout.root.length + 1);
+    const context = ansibleContext(sh, opts.inventory, false);
+    opts.inventory = context.inventory.source;
     const r = runAnsible(world, tree, relative, opts);
     codeState(world).runs.push(r);
     journal(world, { k: 'code.state', state: structuredClone(codeState(world)) });
@@ -58,40 +65,97 @@ export const ansiblePlaybook: CommandFn = ({ world, sh, argv }) => {
   }
 };
 
-export const ansibleInventory: CommandFn = ({ world, sh, argv }) => {
+export const ansibleInventory: CommandFn = ({ sh, argv }) => {
   try {
-    const checkout = world.git?.checkouts.find(
-      (c) => c.host === sh.host.hostname && (sh.cwd === c.root || sh.cwd.startsWith(c.root + '/')),
+    const { flags, positional } = parseAnsibleArguments(argv);
+    const allowed = new Set(['-i', '--inventory', '--graph', '--list', '--host', '--vars']);
+    for (const flag of flags.keys()) if (!allowed.has(flag)) return fail(`Unsupported flag: ${flag}`);
+    const actions = ['--graph', '--list', '--host'].filter((flag) => flags.has(flag));
+    if (actions.length !== 1) return fail('Choose one of --graph, --list or --host HOST');
+    const { inventory } = ansibleContext(
+      sh,
+      String(flags.get('-i') ?? flags.get('--inventory') ?? '') || undefined,
     );
-    if (!checkout) return fail('Run from an automation repository');
-    const path = argv.includes('-i')
-      ? argv[argv.indexOf('-i') + 1]
-      : /inventory\s*=\s*(.+)/.exec(sh.fs.readFile(checkout.root + '/ansible.cfg', sh.cred))?.[1]?.trim();
-    if (!path) return fail('Inventory missing');
-    const raw = sh.fs.readFile(checkout.root + '/' + path, sh.cred);
-    return ok(raw + '\n');
+    if (flags.has('--graph')) {
+      if (flags.has('--vars'))
+        return fail('--graph --vars is not supported; use --host to inspect effective variables');
+      return ok(inventoryGraph(inventory, positional[0] ?? 'all'));
+    }
+    if (positional.length) return fail('Unexpected inventory argument');
+    if (flags.has('--host'))
+      return ok(JSON.stringify(inventory.hostvars[String(flags.get('--host'))] ?? {}, null, 2) + '\n');
+    return ok(JSON.stringify(inventoryList(inventory), null, 2) + '\n');
   } catch (e) {
     return fail((e as Error).message);
   }
 };
-export const ansibleAdHoc: CommandFn = (ctx) => {
-  const { world, sh, argv } = ctx;
+export const ansibleConfiguration: CommandFn = ({ sh, argv }) => {
   try {
-    const checkout = world.git?.checkouts.find(
-      (c) => c.host === sh.host.hostname && (sh.cwd === c.root || sh.cwd.startsWith(c.root + '/')),
-    );
-    if (!checkout) return fail('Run from an automation repository');
-    const module = argv[argv.indexOf('-m') + 1];
-    if (!argv.includes('-m') || module !== 'ping')
-      return fail('Supported ad-hoc command: ansible group -m ping');
-    const tree: Tree = Object.fromEntries(
-      Object.entries(filesUnder(sh.fs, checkout.root)).map(([p, text]) => [p, { text, mode: 0o644 }]),
-    );
-    tree['.adhoc.yml'] = {
-      text: `- hosts: ${JSON.stringify(argv[1] ?? 'all')}\n  tasks:\n    - ping: {}\n`,
-      mode: 420,
+    const { configPath, settings } = discoverAnsibleConfig(sh);
+    if (argv[1] !== 'dump' || argv.slice(2).some((a) => a !== '--only-changed'))
+      return fail('Supported: ansible-config dump [--only-changed]');
+    const defaults = {
+      'defaults.inventory': '/etc/ansible/hosts',
+      'defaults.remote_user': '',
+      'defaults.roles_path': 'roles',
+      'defaults.retry_files_enabled': 'False',
     };
-    const r = runAnsible(world, tree, '.adhoc.yml');
+    const names: Record<string, string> = {
+      'defaults.inventory': 'DEFAULT_HOST_LIST',
+      'defaults.remote_user': 'DEFAULT_REMOTE_USER',
+      'defaults.roles_path': 'DEFAULT_ROLES_PATH',
+      'defaults.retry_files_enabled': 'RETRY_FILES_ENABLED',
+    };
+    const values: Record<string, string> = { ...defaults, ...settings };
+    if (sh.env.has('ANSIBLE_INVENTORY')) values['defaults.inventory'] = sh.env.get('ANSIBLE_INVENTORY')!;
+    return ok(
+      Object.entries(values)
+        .filter(
+          ([k]) =>
+            !argv.includes('--only-changed') ||
+            Object.hasOwn(settings, k) ||
+            (k === 'defaults.inventory' && sh.env.has('ANSIBLE_INVENTORY')),
+        )
+        .map(
+          ([k, v]) =>
+            `${names[k] ?? k.toUpperCase().replace('.', '_')}(${k === 'defaults.inventory' && sh.env.has('ANSIBLE_INVENTORY') ? 'env: ANSIBLE_INVENTORY' : Object.hasOwn(settings, k) ? configPath : 'default'}) = ${v}`,
+        )
+        .join('\n') + '\n',
+    );
+  } catch (e) {
+    return fail((e as Error).message);
+  }
+};
+export const ansibleAdHoc: CommandFn = ({ world, sh, argv }) => {
+  try {
+    if (argv.length === 2 && argv[1] === '--version') {
+      const { configPath } = discoverAnsibleConfig(sh);
+      return ok(
+        `ansible [core 2.17 compatibility simulation]\n  config file = ${configPath ?? 'None'}\n  executable location = /usr/bin/ansible (virtual)\n  Offline bounded interpreter; no native Ansible or Python process.\n`,
+      );
+    }
+    const { flags, positional } = parseAnsibleArguments(argv);
+    const allowed = new Set(['-i', '--inventory', '-l', '--limit', '-m', '--module-name', '--list-hosts']);
+    for (const flag of flags.keys()) if (!allowed.has(flag)) return fail(`Unsupported flag: ${flag}`);
+    if (positional.length !== 1)
+      return fail('Usage: ansible PATTERN [-i INVENTORY] [--list-hosts | -m ping]');
+    const { tree, inventory } = ansibleContext(
+      sh,
+      String(flags.get('-i') ?? flags.get('--inventory') ?? '') || undefined,
+    );
+    const pattern = positional[0]!;
+    const limit = String(flags.get('-l') ?? flags.get('--limit') ?? 'all');
+    const allowedHosts = new Set(inventoryHosts(inventory, limit));
+    const hosts = inventoryHosts(inventory, pattern).filter((h) => allowedHosts.has(h));
+    if (flags.has('--list-hosts'))
+      return ok(`  hosts (${hosts.length}):\n${hosts.map((h) => '    ' + h).join('\n')}\n`);
+    const module = flags.get('-m') ?? flags.get('--module-name');
+    if (module !== 'ping' && module !== 'ansible.builtin.ping') return fail('Supported ad-hoc module: ping');
+    tree['.adhoc.yml'] = {
+      text: `- hosts: ${JSON.stringify(pattern)}\n  tasks:\n    - ping: {}\n`,
+      mode: 0o644,
+    };
+    const r = runAnsible(world, tree, '.adhoc.yml', { inventory: inventory.source, limit });
     const output =
       r.hosts
         .map(

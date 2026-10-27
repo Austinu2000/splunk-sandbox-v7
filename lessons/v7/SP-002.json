@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-002",
+  "version": 1,
+  "title": "Navigating Splunk Web as an Engineer",
+  "track": "Architecture",
+  "objectives": [
+    "Navigating Splunk Web as an Engineer",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "component.inspect"
+  ],
+  "fixture": {
+    "id": "sp-002-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Fleet Overview from the practice navigation. Inspect the host count, health and filters. Open Operations and locate the infrastructure list.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Return to this lesson and record the active profile ID shown by the Lab environment.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/admin-manual/9.4/configuration-file-reference/about-configuration-files",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Configuration ownership and precedence"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Inspect Fleet Overview",
+      "command": "^fleet$",
+      "interface": "web"
+    },
+    {
+      "kind": "inspection",
+      "label": "Inspect Operations",
+      "command": "^operations$",
+      "interface": "web"
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: profile",
+      "id": "profile",
+      "expected": "lab"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "profile",
+      "prompt": "What is the active environment profile ID?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:SP-002:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:SP-002:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:SP-002:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:SP-002:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:SP-002:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:SP-002:isolation"
+    }
+  ]
+}

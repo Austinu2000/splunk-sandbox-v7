@@ -77,6 +77,63 @@ const validationCase = z.enum([
   'resume',
   'isolation',
 ]);
+const foundationOutcome = z.discriminatedUnion('kind', [
+  z
+    .object({
+      kind: z.literal('inspection'),
+      label: text,
+      command: text,
+      host: text.optional(),
+      user: text.optional(),
+      interface: z.enum(['cli', 'web']).optional(),
+      afterChange: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('answer'),
+      label: text,
+      id: text,
+      expected: text.optional(),
+      derive: z.enum(['role', 'inventory-count', 'group-count', 'mgmt-port']).optional(),
+      host: text.optional(),
+      group: text.optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('configuration'),
+      label: text,
+      host: text,
+      conf: text,
+      stanza: text,
+      key: text,
+      equals: text,
+      source: text.optional(),
+      effective: z.boolean(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('permissions'),
+      label: text,
+      host: text,
+      path: text,
+      mode: z.number().int().min(0).max(4095),
+      owner: text,
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('inventory'),
+      label: text,
+      pattern: text,
+      expected: z.array(text).optional(),
+      noMissing: z.boolean().optional(),
+      variable: z.object({ host: text, name: text, value: text }).strict().optional(),
+    })
+    .strict(),
+]);
 
 /** Future exercise authoring contract. It is intentionally not registered as an executable lesson. */
 export const engineeringLessonSchema = z
@@ -107,7 +164,29 @@ export const engineeringLessonSchema = z
     references: z
       .array(z.object({ url: z.string().url(), vendorVersion: text, purpose: text }).strict())
       .min(1),
-    checks: z.array(outcome).min(1),
+    checks: z.array(z.union([outcome, foundationOutcome])).min(1),
+    minutes: z.number().int().positive().optional(),
+    questions: z.array(z.object({ id: text, prompt: text }).strict()).optional(),
+    setup: z
+      .array(
+        z.discriminatedUnion('kind', [
+          z
+            .object({
+              kind: z.literal('file'),
+              host: text,
+              path: text,
+              text: z.string().max(2000000),
+              mode: z.number().int().min(0).max(4095).optional(),
+              owner: text.optional(),
+              apply: z.boolean().optional(),
+            })
+            .strict(),
+          z
+            .object({ kind: z.literal('remove-inventory-host'), host: text, path: text, target: text })
+            .strict(),
+        ]),
+      )
+      .optional(),
     feedback: z.object({ success: text, incomplete: text }).strict(),
     reset: z.literal('restore-attempt-baseline'),
     persistence: z.literal('learner-profile-attempt'),

@@ -8,6 +8,7 @@ import { Modal } from '../replica/Modal';
 import { useApps } from '../replica/appRegistry';
 
 export type Route =
+  | 'automation'
   | 'kvstore'
   | 'learn'
   | 'training'
@@ -52,6 +53,7 @@ const searchRoutes: Route[] = [
   'analytics',
 ];
 const practiceRoutes: Route[] = [
+  'automation',
   'training',
   'code',
   'learn',
@@ -379,7 +381,10 @@ export function TopBar({
           </div>
         </div>
         {(showSearch || showPractice || studio || monitoring) && (
-          <nav className="splunk-appbar" aria-label="Application navigation">
+          <nav
+            className={'splunk-appbar' + (showPractice ? ' practice-appbar' : '')}
+            aria-label="Application navigation"
+          >
             {showSearch &&
               searchNavigation.map(([label, id]) => (
                 <a

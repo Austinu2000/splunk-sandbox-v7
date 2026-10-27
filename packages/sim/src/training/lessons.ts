@@ -2,7 +2,9 @@ import { kvState, kvRead, kvCollections, kvStatus, kvDefaultHost, KV_APP } from 
 import type { World } from '../world';
 import { codeState } from '../git/code';
 import { training } from './engine';
+import { foundationCheck, type FoundationCheck } from '../engineering/foundations';
 export type LessonCheck =
+  | { kind: 'foundation'; check: FoundationCheck }
   | {
       kind: 'kv';
       label: string;
@@ -24,6 +26,8 @@ export function lessonChecks(world: World, checks: LessonCheck[]): { label: stri
   const state = codeState(world);
   return checks.map((c) => {
     switch (c.kind) {
+      case 'foundation':
+        return { label: c.check.label, passed: foundationCheck(world, c.check) };
       case 'kv': {
         const kv = kvState(world);
         let passed = true;

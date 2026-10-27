@@ -1,6 +1,11 @@
 import { kvCurl } from '../../kvstore/commands';
 import { vaultCommand } from '../../ansible/vault';
-import { ansiblePlaybook, ansibleInventory, ansibleAdHoc } from '../../ansible/commands';
+import {
+  ansiblePlaybook,
+  ansibleInventory,
+  ansibleAdHoc,
+  ansibleConfiguration,
+} from '../../ansible/commands';
 import { gitCommand } from '../../git/commands';
 import type { CommandFn } from '../types';
 import { registerBinaries } from '../../vfs/build';
@@ -33,9 +38,16 @@ export const COMMANDS: Record<string, CommandFn> = {
   git: gitCommand,
   'ansible-playbook': ansiblePlaybook,
   'ansible-inventory': ansibleInventory,
+  'ansible-config': ansibleConfiguration,
   ansible: ansibleAdHoc,
   'ansible-vault': vaultCommand,
-  explain: ({argv}) => ({stdout: 'Offline command guide: '+argv.slice(1).join(' ')+'\nGit records source history. add stages files; commit records the staged snapshot; push publishes to the simulated remote; revert makes a new inverse commit. Ansible --check predicts changes, --diff shows file differences, --limit scopes hosts; handlers run after changed tasks. Unsupported flags and modules report errors.\n',code:0}),
+  explain: ({ argv }) => ({
+    stdout:
+      'Offline command guide: ' +
+      argv.slice(1).join(' ') +
+      '\nGit records source history. add stages files; commit records the staged snapshot; push publishes to the simulated remote; revert makes a new inverse commit. Ansible --check predicts changes, --diff shows file differences, --limit scopes hosts; handlers run after changed tasks. Unsupported flags and modules report errors.\n',
+    code: 0,
+  }),
   awk,
   gawk: awk,
   vi,

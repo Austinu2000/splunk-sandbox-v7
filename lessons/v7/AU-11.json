@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-11",
+  "version": 1,
+  "title": "Inspect Host Variable Overrides",
+  "track": "Inventory",
+  "objectives": [
+    "Inspect Host Variable Overrides",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "inventory.inspect"
+  ],
+  "fixture": {
+    "id": "au-11-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Terminal. Run ssh svc_ansible@ansible01, then cd ~/splunk-automation. Commands run inside the virtual environment.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Read group_vars/indexers/v7.yml and host_vars/idx01/v7.yml. Run ansible-inventory --host idx01 and compare idx02. Identify which value wins for idx01.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html",
+      "vendorVersion": "Ansible inventory reference; bounded core 2.17 compatibility subset",
+      "purpose": "Inventory groups, variables and targeting"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
+      "vendorVersion": "Ansible CLI",
+      "purpose": "Graph/list/host output"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: ansible-inventory --host idx01",
+      "command": "ansible-inventory --host idx01",
+      "host": "ansible01"
+    },
+    {
+      "kind": "inventory",
+      "label": "Host variable overrides group variable",
+      "pattern": "idx01",
+      "variable": {
+        "host": "idx01",
+        "name": "training_owner",
+        "value": "canary_team"
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: owner",
+      "id": "owner",
+      "expected": "canary_team"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "owner",
+      "prompt": "What effective training_owner value does idx01 have?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:AU-11:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:AU-11:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:AU-11:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:AU-11:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:AU-11:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:AU-11:isolation"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "ansible01",
+      "path": "/home/svc_ansible/splunk-automation/group_vars/indexers/v7.yml",
+      "text": "training_owner: operations\n",
+      "owner": "svc_ansible"
+    },
+    {
+      "kind": "file",
+      "host": "ansible01",
+      "path": "/home/svc_ansible/splunk-automation/host_vars/idx01/v7.yml",
+      "text": "training_owner: canary_team\n",
+      "owner": "svc_ansible"
+    }
+  ]
+}

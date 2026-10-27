@@ -15,6 +15,8 @@ import {
   executePlaybook,
   tickWorld,
   persistTraining,
+  automationView,
+  inventoryHosts,
   type AnsibleOptions,
 } from '@sandbox/sim';
 import type { TrainingQuestion } from '@sandbox/shared';
@@ -24,6 +26,31 @@ const questions = (
   ) as { questions: TrainingQuestion[] }
 ).questions;
 export function registerTraining(app: FastifyInstance, live: LiveWorld, checkpoint: () => void) {
+  app.get('/api/automation', async () => automationView(live.world));
+  app.get<{ Querystring: { pattern?: string; limit?: string } }>(
+    '/api/automation/targets',
+    {
+      schema: {
+        querystring: {
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            pattern: { type: 'string', maxLength: 256 },
+            limit: { type: 'string', maxLength: 256 },
+          },
+        },
+      },
+    },
+    async (req) => {
+      const view = automationView(live.world);
+      if (!view.enabled || !view.inventory)
+        throw new TrainingError('No usable automation inventory in this environment');
+      const allowed = new Set(inventoryHosts(view.inventory, req.query.limit ?? 'all'));
+      return {
+        hosts: inventoryHosts(view.inventory, req.query.pattern ?? 'all').filter((h) => allowed.has(h)),
+      };
+    },
+  );
   app.get('/api/training', async () => ({
     state: training(live.world),
     questions,

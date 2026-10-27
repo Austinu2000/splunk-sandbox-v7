@@ -13,8 +13,18 @@ interface LearnView {
     completionScope: string;
     setup?: unknown[];
     kvIncident?: string;
+    seeded?: boolean;
+    questions?: { id: string; prompt: string }[];
+    references?: { url: string; vendorVersion: string; purpose: string }[];
   }[];
-  active: { id: string; learner: string; hints: number; notes: string } | null;
+  active: {
+    id: string;
+    learner: string;
+    hints: number;
+    notes: string;
+    answers?: Record<string, string>;
+  } | null;
+  hint?: string[];
   progress: {
     checks: { label: string; passed: boolean }[];
     completed: boolean;
@@ -26,7 +36,8 @@ export function LearnPage() {
   const [learner, setLearner] = useState('Austin'),
     [error, setError] = useState(''),
     [busy, setBusy] = useState(false),
-    [notes, setNotes] = useState<string | null>(null);
+    [notes, setNotes] = useState<string | null>(null),
+    [answers, setAnswers] = useState<Record<string, string>>({});
   const act = async (path: string, body?: unknown, reload = false) => {
     setBusy(true);
     setError('');
@@ -50,7 +61,7 @@ export function LearnPage() {
         <div>
           <span className="v5-eyebrow">GUIDED PRACTICE · SAVED PER LEARNER / LESSON</span>
           <h1>Learn Splunk engineering</h1>
-          <p>Practice Git, Ansible and KV Store in isolated saved environments.</p>
+          <p>Practice Splunk foundations, Git, Ansible and KV Store in isolated saved environments.</p>
         </div>
         <div className="v5-actions">
           <a href="#/kvstore">KV Store administration →</a>
@@ -111,7 +122,7 @@ export function LearnPage() {
               ? lesson.kvIncident
                 ? 'This lesson starts with a seeded KV Store incident. Open KV Store administration to investigate.'
                 : 'Use KV Store administration or the terminal to complete the collection exercise.'
-              : lesson?.setup?.length
+              : lesson?.seeded
                 ? 'This session includes seeded repository faults for the lesson.'
                 : 'This workspace starts with the profile’s standard repository baseline; follow the manual for additional challenge setup.'}
           </div>
@@ -130,7 +141,7 @@ export function LearnPage() {
                   intentionally excluded.
                 </p>
               )}
-              <h3>Workflow checks</h3>
+              <h3>{lesson?.questions ? 'Outcome checks' : 'Workflow checks'}</h3>
               {data.data?.progress?.checks.map((c) => (
                 <p key={c.label}>
                   {c.passed ? '✓' : '○'} {c.label}
@@ -138,7 +149,9 @@ export function LearnPage() {
               ))}
               <p>
                 {data.data?.progress?.completed
-                  ? 'Workflow milestones met — review all manual success criteria below.'
+                  ? lesson?.questions
+                    ? 'Lesson complete — verified outcomes and answers passed.'
+                    : 'Workflow milestones met — review all manual success criteria below.'
                   : 'Keep practicing; checks update as you work.'}
               </p>
               {lesson && lesson.level < 4 && (
@@ -146,13 +159,43 @@ export function LearnPage() {
                   Hint ({current.hints} used)
                 </button>
               )}
-              {current.hints > 0 && (
+              {data.data?.hint?.map((hint, n) => (
+                <p key={n}>{hint}</p>
+              ))}
+              {current.hints > 0 && !lesson?.questions && (
                 <p>
                   {current.id.startsWith('K')
                     ? 'Compare running status, btool configuration and collection data. Apply the smallest repair, then verify the same record or revision from the affected member.'
                     : 'Read the failed output first, inspect the source and target, run a scoped dry run, then verify the same revision after deployment.'}
                 </p>
               )}
+              {lesson?.questions && (
+                <fieldset>
+                  <legend>Evidence questions</legend>
+                  {lesson.questions.map((q) => (
+                    <label className="v5-note" key={q.id}>
+                      {q.prompt}
+                      <input
+                        value={answers[q.id] ?? current.answers?.[q.id] ?? ''}
+                        onChange={(e) => setAnswers({ ...answers, [q.id]: e.target.value })}
+                      />
+                    </label>
+                  ))}
+                  <button
+                    disabled={busy}
+                    onClick={() => act('progress', { answers: { ...current.answers, ...answers } })}
+                  >
+                    Save evidence answers
+                  </button>
+                </fieldset>
+              )}
+              {lesson?.references?.map((reference) => (
+                <p key={reference.url}>
+                  <a href={reference.url} target="_blank" rel="noreferrer">
+                    {reference.purpose} · {reference.vendorVersion}
+                  </a>
+                </p>
+              ))}
               <label className="v5-note">
                 Your explanation and evidence
                 <textarea value={notes ?? current.notes} onChange={(e) => setNotes(e.target.value)} />

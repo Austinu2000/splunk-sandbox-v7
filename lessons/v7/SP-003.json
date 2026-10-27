@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-003",
+  "version": 1,
+  "title": "Understanding Splunk Services, Ports, and the Splunk CLI",
+  "track": "Architecture",
+  "objectives": [
+    "Understanding Splunk Services, Ports, and the Splunk CLI",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "component.inspect"
+  ],
+  "fixture": {
+    "id": "sp-003-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "In Terminal run ssh splunk@sh01, then splunk status, splunk version and ss -lnt. Identify the management listener separately from Splunk Web.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Record the management port from the running listener and host information.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/admin-manual/9.4/configuration-file-reference/about-configuration-files",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Configuration ownership and precedence"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: splunk status",
+      "command": "splunk status",
+      "host": "sh01"
+    },
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: ss -lnt",
+      "command": "ss -lnt",
+      "host": "sh01"
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: port",
+      "id": "port",
+      "derive": "mgmt-port",
+      "host": "sh01"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "port",
+      "prompt": "Which port is used for the Splunk management service on sh01?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:SP-003:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:SP-003:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:SP-003:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:SP-003:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:SP-003:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:SP-003:isolation"
+    }
+  ]
+}

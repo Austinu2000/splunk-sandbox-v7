@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-13",
+  "version": 1,
+  "title": "Select an Explicit Environment Inventory",
+  "track": "Inventory",
+  "objectives": [
+    "Select an Explicit Environment Inventory",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "inventory.inspect"
+  ],
+  "fixture": {
+    "id": "au-13-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Terminal. Run ssh svc_ansible@ansible01, then cd ~/splunk-automation. Commands run inside the virtual environment.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Read inventories/test/hosts.yml. Run ansible all -i inventories/test/hosts.yml --list-hosts. Compare with the default inventory without editing it.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html",
+      "vendorVersion": "Ansible inventory reference; bounded core 2.17 compatibility subset",
+      "purpose": "Inventory groups, variables and targeting"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
+      "vendorVersion": "Ansible CLI",
+      "purpose": "Graph/list/host output"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: ansible all -i inventories/test/hosts.yml --list-hosts",
+      "command": "ansible all -i inventories/test/hosts.yml --list-hosts",
+      "host": "ansible01"
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: source",
+      "id": "source",
+      "expected": "inventories/test/hosts.yml"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "source",
+      "prompt": "Which repository-relative inventory path did -i select?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:AU-13:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:AU-13:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:AU-13:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:AU-13:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:AU-13:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:AU-13:isolation"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "ansible01",
+      "path": "/home/svc_ansible/splunk-automation/inventories/test/hosts.yml",
+      "text": "all:\n  hosts:\n    idx01: {}\n",
+      "owner": "svc_ansible"
+    }
+  ]
+}

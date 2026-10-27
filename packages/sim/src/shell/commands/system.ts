@@ -565,9 +565,14 @@ const id: CommandFn = ({ sh, argv }) => {
     return ok(
       'uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n',
     );
-  if (user !== 'splunk' && user !== 'engineer') return fail(`id: '${user}': no such user`);
+  const account = sh.fs
+    .readFile('/etc/passwd', sh.cred)
+    .split('\n')
+    .map((line) => line.split(':'))
+    .find((fields) => fields[0] === user);
+  if (!account) return fail(`id: '${user}': no such user`);
   return ok(
-    `uid=1001(${user}) gid=1001(${user}) groups=1001(${user}) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n`,
+    `uid=${account[2]}(${user}) gid=${account[3]}(${user}) groups=${account[3]}(${user}) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n`,
   );
 };
 

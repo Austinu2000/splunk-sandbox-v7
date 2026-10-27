@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-14",
+  "version": 1,
+  "title": "Find and Repair Inventory Drift",
+  "track": "Inventory",
+  "objectives": [
+    "Find and Repair Inventory Drift",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "inventory.inspect"
+  ],
+  "fixture": {
+    "id": "au-14-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Terminal. Run ssh svc_ansible@ansible01, then cd ~/splunk-automation. Commands run inside the virtual environment.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "The indexers inventory is missing idx03. Compare Automation Operations \u2192 Troubleshooting, ansible-inventory --graph and the Lab infrastructure. Edit inventories/lab/hosts.yml with nano to restore idx03 under indexers.hosts. Do not add an unrelated host or modify the running fleet. Re-run ansible indexers --list-hosts and record the count.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html",
+      "vendorVersion": "Ansible inventory reference; bounded core 2.17 compatibility subset",
+      "purpose": "Inventory groups, variables and targeting"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
+      "vendorVersion": "Ansible CLI",
+      "purpose": "Graph/list/host output"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: ansible indexers --list-hosts",
+      "command": "ansible indexers --list-hosts",
+      "host": "ansible01",
+      "afterChange": true
+    },
+    {
+      "kind": "inventory",
+      "label": "Restored exact indexer membership",
+      "pattern": "indexers",
+      "expected": [
+        "idx01",
+        "idx02",
+        "idx03"
+      ]
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: count",
+      "id": "count",
+      "expected": "3"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "count",
+      "prompt": "How many indexers are now present after the repair?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:AU-14:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:AU-14:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:AU-14:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:AU-14:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:AU-14:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:AU-14:isolation"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "remove-inventory-host",
+      "host": "ansible01",
+      "path": "/home/svc_ansible/splunk-automation/inventories/lab/hosts.yml",
+      "target": "idx03"
+    }
+  ]
+}

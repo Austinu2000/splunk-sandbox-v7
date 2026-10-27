@@ -252,7 +252,8 @@ export class Vfs {
     if (cred.user !== 'root' && (changingOwner || node.owner !== cred.user)) throw new FsError('EPERM', p);
     Object.assign(node, patch);
     const existing = this.overlay.get(p);
-    if (existing && (existing.kind === 'file' || existing.kind === 'dir')) Object.assign(existing, patch);
+    if (existing && (existing.kind === 'file' || existing.kind === 'dir'))
+      this.record(p, { ...existing, ...patch });
     else this.record(p, { kind: 'meta', owner: node.owner, group: node.group, mode: node.mode });
   }
 

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-07",
+  "version": 1,
+  "title": "Discover Hosts in Inventory",
+  "track": "Inventory",
+  "objectives": [
+    "Discover Hosts in Inventory",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "inventory.inspect"
+  ],
+  "fixture": {
+    "id": "au-07-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Terminal. Run ssh svc_ansible@ansible01, then cd ~/splunk-automation. Commands run inside the virtual environment.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Run ansible-inventory --list and ansible all --list-hosts. Record the managed host count from the latter command.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html",
+      "vendorVersion": "Ansible inventory reference; bounded core 2.17 compatibility subset",
+      "purpose": "Inventory groups, variables and targeting"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
+      "vendorVersion": "Ansible CLI",
+      "purpose": "Graph/list/host output"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: ansible-inventory --list",
+      "command": "ansible-inventory --list",
+      "host": "ansible01"
+    },
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: ansible all --list-hosts",
+      "command": "ansible all --list-hosts",
+      "host": "ansible01"
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: count",
+      "id": "count",
+      "derive": "inventory-count"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "count",
+      "prompt": "How many unique managed hosts does the inventory contain?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:AU-07:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:AU-07:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:AU-07:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:AU-07:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:AU-07:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:AU-07:isolation"
+    }
+  ]
+}

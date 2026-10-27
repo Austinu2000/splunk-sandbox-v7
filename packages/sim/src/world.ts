@@ -31,7 +31,14 @@ export interface WorldClock {
 
 export interface World {
   kvstore?: import('@sandbox/shared').KvState;
-  lesson?: { id: string; learner: string; startedTick: number; hints: number; notes: string };
+  lesson?: {
+    id: string;
+    learner: string;
+    startedTick: number;
+    hints: number;
+    notes: string;
+    answers?: Record<string, string>;
+  };
   training?: import('@sandbox/shared').TrainingState;
   actionSequence?: number;
   code?: import('@sandbox/shared').CodeState;

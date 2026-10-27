@@ -10,6 +10,7 @@ export const searchNavigation = [
   ['Dashboards', 'dashboards'],
 ] as const;
 export const practiceNavigation = [
+  ['Automation Operations', 'automation'],
   ['Interview workbench', 'training'],
   ['Code & Ansible', 'code'],
   ['Learn', 'learn'],

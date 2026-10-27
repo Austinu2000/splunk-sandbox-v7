@@ -1,16 +1,16 @@
 # V7 Splunk engineering lessons
 
-Status: **0 of 100 new SP lessons implemented**. This is the approved catalog, not a list of executable exercises. All existing 27 G/A/X/K entries remain in Learn with their inherited limitations. No new lesson is registered until its required operations and solution/failure/reset/resume/isolation tests pass.
+Status: **5 of 100 new SP lessons implemented**. SP-001–SP-005 are executable in Learn; the remaining rows are planned. All existing 27 G/A/X/K entries remain in Learn with their inherited limitations. No new lesson is registered until its required operations and solution/failure/reset/resume/isolation tests pass.
 
 `packages/sim/src/engineering/lesson-schema.ts` defines the versioned authoring contract. `docs/V7-CURRICULUM-PLAN.json` preserves stable IDs, milestones and planning status. Actual fixtures and per-lesson official references are authored alongside functionality, not fabricated in bulk.
 
 | ID | Objective | Milestone | Status |
 | --- | --- | --- | --- |
-| SP-001 | Splunk Architecture: Forwarders, Indexers, Search Heads, and Management Components | 1 | Planned |
-| SP-002 | Navigating Splunk Web as an Engineer | 1 | Planned |
-| SP-003 | Understanding Splunk Services, Ports, and the Splunk CLI | 1 | Planned |
-| SP-004 | Understanding Splunk App Directories and Configuration Precedence | 1 | Planned |
-| SP-005 | Using `btool` to Inspect Effective Configuration | 1 | Planned |
+| SP-001 | Splunk Architecture: Forwarders, Indexers, Search Heads, and Management Components | 1 | Verified |
+| SP-002 | Navigating Splunk Web as an Engineer | 1 | Verified |
+| SP-003 | Understanding Splunk Services, Ports, and the Splunk CLI | 1 | Verified |
+| SP-004 | Understanding Splunk App Directories and Configuration Precedence | 1 | Verified |
+| SP-005 | Using `btool` to Inspect Effective Configuration | 1 | Verified |
 | SP-006 | Permissions, Roles, App Context, and Administrative Scope | 1 | Planned |
 | SP-007 | Create Your First Events Index Through Splunk Web | 2 | Planned |
 | SP-008 | Create and Inspect an Index Through the CLI | 2 | Planned |

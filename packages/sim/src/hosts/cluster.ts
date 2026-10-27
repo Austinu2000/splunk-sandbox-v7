@@ -11,11 +11,11 @@ import { restartSplunk, runningVfs } from './running';
  * that are running (a rolling restart), so the new config takes effect.
  */
 
-export function filesUnder(vfs: Vfs, dir: string): Record<string, string> {
+export function filesUnder(vfs: Vfs, dir: string, cred = ROOT): Record<string, string> {
   const out: Record<string, string> = {};
   if (vfs.findNode(dir)?.type !== 'dir') return out;
-  vfs.walk(dir, ROOT, (path, node) => {
-    if (node.type === 'file') out[path.slice(dir.length + 1)] = vfs.readFile(path, ROOT);
+  vfs.walk(dir, cred, (path, node) => {
+    if (node.type === 'file') out[path.slice(dir.length + 1)] = vfs.readFile(path, cred);
   });
   return out;
 }

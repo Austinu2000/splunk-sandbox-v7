@@ -361,6 +361,14 @@ hr {
   background: none;
   border: none;
 }
+.practice-appbar {
+  height: auto;
+  flex-wrap: wrap;
+}
+.practice-appbar > a,
+.practice-appbar .appbar-title {
+  min-height: 44px;
+}
 .splunk-appbar > a:first-child {
   padding-left: 0;
   margin-right: 15px;

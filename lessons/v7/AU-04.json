@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-04",
+  "version": 1,
+  "title": "Repair Linux File Ownership and Permissions",
+  "track": "Ansible/Linux fundamentals",
+  "objectives": [
+    "Repair Linux File Ownership and Permissions",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "inventory.inspect"
+  ],
+  "fixture": {
+    "id": "au-04-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Terminal. Run ssh svc_ansible@ansible01, then cd ~/splunk-automation. Commands run inside the virtual environment.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "inventory_notes.txt is owned by root and cannot be read by svc_ansible. Inspect ls -l inventory_notes.txt. Use sudo chown svc_ansible inventory_notes.txt and chmod 640 inventory_notes.txt. Read it as svc_ansible and verify the mode with stat.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html",
+      "vendorVersion": "Ansible inventory reference; bounded core 2.17 compatibility subset",
+      "purpose": "Inventory groups, variables and targeting"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
+      "vendorVersion": "Ansible CLI",
+      "purpose": "Graph/list/host output"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "permissions",
+      "label": "Correct owner and restrictive readable mode",
+      "host": "ansible01",
+      "path": "/home/svc_ansible/splunk-automation/inventory_notes.txt",
+      "mode": 416,
+      "owner": "svc_ansible"
+    },
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: cat inventory_notes.txt",
+      "command": "cat inventory_notes.txt",
+      "host": "ansible01",
+      "user": "svc_ansible",
+      "afterChange": true
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: mode",
+      "id": "mode",
+      "expected": "640"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "mode",
+      "prompt": "What octal permission mode did you verify?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:AU-04:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:AU-04:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:AU-04:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:AU-04:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:AU-04:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:AU-04:isolation"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "ansible01",
+      "path": "/home/svc_ansible/splunk-automation/inventory_notes.txt",
+      "text": "Owner-approved inventory practice notes.\n",
+      "owner": "root",
+      "mode": 384
+    }
+  ]
+}

@@ -5,7 +5,8 @@
 This checkout is the independent V7 copy of V6 baseline `a9d4237`. Follow
 `docs/V7-CONSOLIDATED-BUILD-SPEC.md`, `docs/V7-ARCHITECTURE.md` and
 `docs/V7-IMPLEMENTATION-STATUS.md` for the current milestone sequence. Milestone 0
-is implemented; stop for review before Milestone 1. The original SPEC/PLAN below
+is implemented. On October 27, 2026 the user authorized continuing through all
+remaining milestones without stopping for reviews. The original SPEC/PLAN below
 remain architectural context, not the current expansion checklist.
 
 V7 uses ports 5873/5874 and its own `data/sandbox.db`. Do not point it at V6's
@@ -31,4 +32,4 @@ A browser-based, fully simulated Splunk environment for practising engineer work
 - Fleet data is columnar (typed arrays), not 35,000 objects. Materialise records only for the rows a view or search needs.
 - Unsupported shell commands produce a realistic `command not found` / permission error; unsupported SPL produces a Splunk-style error. Never throw raw stack traces to the user.
 - Tests: Vitest. Every scenario has a scripted "solution run" test that must resolve it. Determinism tests compare snapshots for a fixed seed.
-- Build milestone by milestone (see `SPEC.md`) and stop after each one for review.
+- Build milestone by milestone, run each acceptance gate, and continue without review pauses as authorized by the user on October 27, 2026.

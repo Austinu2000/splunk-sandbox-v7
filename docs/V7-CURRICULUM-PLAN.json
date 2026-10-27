@@ -38,10 +38,10 @@
       "track": "Splunk Architecture and Administration Basics",
       "trackNumber": 1,
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-002",
@@ -49,10 +49,10 @@
       "track": "Splunk Architecture and Administration Basics",
       "trackNumber": 1,
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-003",
@@ -60,10 +60,10 @@
       "track": "Splunk Architecture and Administration Basics",
       "trackNumber": 1,
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-004",
@@ -71,10 +71,10 @@
       "track": "Splunk Architecture and Administration Basics",
       "trackNumber": 1,
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-005",
@@ -82,10 +82,10 @@
       "track": "Splunk Architecture and Administration Basics",
       "trackNumber": 1,
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-006",
@@ -1136,141 +1136,141 @@
       "id": "AU-01",
       "track": "Ansible/Linux fundamentals",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-02",
       "track": "Ansible/Linux fundamentals",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-03",
       "track": "Ansible/Linux fundamentals",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-04",
       "track": "Ansible/Linux fundamentals",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-05",
       "track": "Ansible/Linux fundamentals",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-06",
       "track": "Ansible/Linux fundamentals",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-07",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-08",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-09",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-10",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-11",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-12",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-13",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-14",
       "track": "Inventory",
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-15",

@@ -1,12 +1,12 @@
 # V7 Ansible operations
 
-Status: architecture and source audit only. Existing Code & Ansible, virtual
+Status: inventory operations and AU-01–AU-14 implemented; broader automation expansion continues. Existing Code & Ansible, virtual
 repositories, playbook execution and G/A/X lessons remain available with the
 limitations recorded in [V5 implementation](V5-IMPLEMENTATION.md).
 
-The proposed `#/automation` section is not implemented yet. Its Inventory,
-Playbooks & Roles, Deployment Center, Run History and Troubleshooting tabs will
-read shared simulated state. It will not replace Learn or add a progress dashboard.
+The `#/automation` section now provides Inventory, Playbooks & Roles, Deployment
+Center, Run History and Troubleshooting. It reads the control node working tree
+for inventory and the existing committed-branch engine for deployments. It will not replace Learn or add a progress dashboard.
 
 | Milestone | AU IDs | Required work |
 | --- | --- | --- |
@@ -22,11 +22,26 @@ the V6 repository and the supplied older Git/Ansible prompt. The planning manife
 reserves the IDs without inventing replacement objectives. Reconcile the source
 before accepting AU lesson definitions; foundational engine work can continue.
 
-Current inventory command code returns inventory YAML for both graph/list forms;
-it is not sufficient fidelity for the new AU exercises. `ansible --version`,
-`ansible-config dump`, list-hosts and detailed inventory inspection require explicit
-implementation/tests. Existing runner support is bounded, and fleet runs remain
-per-host; do not claim cohort scalability until tested against a reference run.
+Inventory CLI now implements `ansible --version`, `ansible-config dump`, graph,
+list, host inspection, list-hosts, patterns/limits and ping. The terminal, playbook
+runner and Automation view share the same resolver. Config discovery honors
+`ANSIBLE_CONFIG`, cwd config (excluding world-writable cwd), home and system
+config. `-i` overrides `ANSIBLE_INVENTORY`, then config inventory. Inventory files
+must be inside the current virtual repository. YAML inventory supports parent/
+child groups, same-level priority/alphabetical order, group/host variables and
+inventory-relative then repository-relative variable files. Inline inventory,
+INI plugins, dynamic scripts, regex/range patterns and arbitrary config plugins
+remain unsupported and are not advertised by lessons. Graph vars are explicitly
+rejected; host inspection is the supported variable view.
+
+The 35,000-host inventory test completes without creating managed-host filesystems.
+YAML duplicate detection uses a linear key check and retains duplicate/tag/alias
+rejection. This is inventory scalability, not proof that large playbook runs use
+cohorts. Existing runner execution is still per-host.
+
+The AU lessons are refined from the supplied track objectives because the prior
+individual 50-lesson source was absent. Their stable numbering is retained, and
+this provenance is explicit rather than claiming an exact transcription.
 
 Native component-specific deployment remains mandatory: DS reload, cluster
 manager bundle, SHC deployer bundle, or the documented host operation. A source

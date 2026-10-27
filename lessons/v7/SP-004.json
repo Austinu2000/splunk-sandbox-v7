@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-004",
+  "version": 1,
+  "title": "Understanding Splunk App Directories and Configuration Precedence",
+  "track": "Architecture",
+  "objectives": [
+    "Understanding Splunk App Directories and Configuration Precedence",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "conf.inspect"
+  ],
+  "fixture": {
+    "id": "sp-004-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Log in to ds01 as splunk. Run splunk btool server list general --debug. Compare etc/system/local/server.conf and etc/apps/v7_scope/{default,local}/server.conf.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Correct serverName to training_node in the winning system/local file. Restart Splunk on ds01, then repeat btool --debug and inspect splunk status. Do not restart cluster peers for this host-specific change.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Record the winning file path and the component role that owns this change.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/admin-manual/9.4/configuration-file-reference/about-configuration-files",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Configuration ownership and precedence"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: splunk btool server list general --debug",
+      "command": "splunk btool server list general --debug",
+      "host": "ds01",
+      "afterChange": true
+    },
+    {
+      "kind": "configuration",
+      "label": "Correct running configuration and winning source",
+      "host": "ds01",
+      "conf": "server",
+      "stanza": "general",
+      "key": "serverName",
+      "equals": "training_node",
+      "source": "/opt/splunk/etc/system/local/server.conf",
+      "effective": true
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: source",
+      "id": "source",
+      "expected": "/opt/splunk/etc/system/local/server.conf"
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: owner",
+      "id": "owner",
+      "derive": "role",
+      "host": "ds01"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "source",
+      "prompt": "What is the absolute winning server.conf path?"
+    },
+    {
+      "id": "owner",
+      "prompt": "Which component role owns this setting?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:SP-004:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:SP-004:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:SP-004:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:SP-004:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:SP-004:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:SP-004:isolation"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "ds01",
+      "path": "/opt/splunk/etc/apps/v7_scope/default/server.conf",
+      "text": "[general]\nserverName = lower_default\n",
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "ds01",
+      "path": "/opt/splunk/etc/apps/v7_scope/local/server.conf",
+      "text": "[general]\nserverName = training_node\n",
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "ds01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = shadowed_node\n",
+      "owner": "splunk",
+      "apply": true
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current gate: Milestone 0
+## Current work: Milestone 1 and subsequent gates
 
 Implemented:
 
@@ -25,12 +25,31 @@ Implemented:
 No new AU/SP exercises are executable at this gate. Existing 27 G/A/X/K entries
 remain available with inherited grading limits. The full expansion is incomplete.
 
+## Ongoing foundation implementation
+
+- Automation Operations now exposes all five required tabs, backed by the actual
+  virtual working tree, inventory resolver and committed playbook engine.
+- Shared inventory supports graph/list/host, variable precedence, host targeting,
+  configuration discovery and drift. Ansible playbooks use the same target resolver.
+- AU-01–AU-14 and SP-001–SP-005 are executable in Learn (19 new lessons, 46 total).
+  Each has solution, incorrect-action, no-false-completion, reset, resume and
+  isolation tests. Answer keys and fixture details are kept out of Learn responses.
+- Permissions changes on newly created virtual files now journal correctly; the
+  lesson resume tests exposed and fixed a pre-existing chmod/chown replay bug.
+- Foundation regression: **407 tests across 35 files passed**, along with TypeScript,
+  ESLint and the web build. Browser target preview returned idx01/idx02 for
+  `indexers:!idx03`; the Learn catalog shows the new exercises.
+- SP-006 remains in development until Splunk role/index authorization is connected
+  to the upcoming shared index administration engine. No full Milestone 1 claim yet.
+- The original AU source was unavailable; the 14 individual objectives are explicit
+  refinements of the accepted ranges, not claimed as verbatim original lessons.
+
 ## Review sequence
 
 | Gate | Status | Deliverable |
 | --- | --- | --- |
 | 0 | Implemented; validation below | Architecture/persistence audit and safe preflight |
-| 1 | Pending review | Foundations/inventory; AU-01–14 and SP-001–006 |
+| 1 | In progress | Foundations/inventory; AU-01–14 and SP-001–006 |
 | 2 | Planned | Indexes/data onboarding; SP-007–025 |
 | 3 | Planned | Reports/searches/summary indexing; SP-035–046 |
 | 4 | Planned | Playbooks/Git; AU-15–27 |
@@ -73,8 +92,8 @@ silently imported. No API keys or `.env` files were copied into V7.
   clean at the baseline commit, and both versions' health endpoints returned 200.
 - UI proof: [V7 inherited KV Store](v7-milestone0.png).
 
-## Review boundary
+## Continuous implementation authorization
 
-The supplied [build specification](V7-CONSOLIDATED-BUILD-SPEC.md), section 13,
-explicitly says: “Stop after each milestone for review.” This gate stops after
-Milestone 0. No additional approval is needed to inspect the local result.
+On October 27, 2026 the user explicitly revoked per-milestone review stops and
+authorized continuing through the remaining build list. Keep validation gates and
+honest delivered/planned status; no review pause is required between milestones.

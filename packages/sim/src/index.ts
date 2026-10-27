@@ -87,3 +87,6 @@ export { reloadAppConf } from './hosts/running';
 
 export * from './engineering/migration';
 export * from './engineering/lesson-schema';
+export * from './ansible/inventory';
+export { automationView } from './ansible/view';
+export * from './engineering/foundations';

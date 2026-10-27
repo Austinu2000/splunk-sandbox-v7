@@ -1,3 +1,4 @@
+import { AutomationPage } from './pages/AutomationPage';
 import { KvStorePage } from './pages/KvStorePage';
 import { LearnPage } from './pages/LearnPage';
 import { TrainingPage } from './pages/TrainingPage';
@@ -29,6 +30,7 @@ import { initializeLocation } from './replica/navigation';
 
 initializeLocation();
 const routes: Route[] = [
+  'automation',
   'training',
   'code',
   'learn',
@@ -166,6 +168,7 @@ export function App() {
           </button>
         </div>
       )}
+      {route === 'automation' && <AutomationPage />}
       {route === 'operations' && <OperationsPage />}
       {route === 'environments' && <EnvironmentsPage />}
       {route === 'kvstore' && <KvStorePage />}

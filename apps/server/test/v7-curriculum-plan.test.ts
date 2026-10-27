@@ -19,9 +19,15 @@ it('keeps planned AU/SP lessons out of executable Learn and preserves all existi
   ];
   expect(plan.lessons.map((l: { id: string }) => l.id)).toEqual(expected);
   for (const lesson of plan.lessons) {
-    expect(lesson.status).toBe('planned');
-    expect(lesson.executable).toBe(false);
-    expect(lesson.functionalCoverageVerified).toBe(false);
+    const file = new URL('../../../lessons/v7/' + lesson.id + '.json', import.meta.url);
+    if (lesson.executable) {
+      const definition = JSON.parse(readFileSync(file, 'utf8'));
+      expect(definition.status).toBe('verified');
+      expect(lesson.fixtureVersion).toBe(definition.fixture.version);
+    } else {
+      expect(lesson.status).toBe('planned');
+      expect(lesson.functionalCoverageVerified).toBe(false);
+    }
   }
 });
 

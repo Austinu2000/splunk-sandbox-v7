@@ -1,6 +1,8 @@
 import { buckets } from '../training/cluster';
 import { decodeVault, VAULT_HEADER } from './vault';
-import { parseDocument } from 'yaml';
+import { yaml } from './yaml';
+import { ansibleConfig, parseInventory, inventoryHosts } from './inventory';
+export { yaml } from './yaml';
 import type { World } from '../world';
 import { saveWorld, loadWorld } from '../save';
 import { resolveHost, splunkdRunning } from '../hosts/profile';
@@ -17,12 +19,6 @@ const object = (v: unknown): Obj => {
   if (!v || typeof v !== 'object' || Array.isArray(v)) throw new TrainingError('Expected a YAML mapping');
   return v as Obj;
 };
-export function yaml(text: string): unknown {
-  if (text.length > 2_000_000) throw new TrainingError('YAML size limit');
-  const d = parseDocument(text, { uniqueKeys: true });
-  if (d.errors.length) throw new TrainingError(d.errors[0]!.message);
-  return d.toJS({ maxAliasCount: 30 });
-}
 function list(v: unknown): Obj[] {
   if (!Array.isArray(v)) throw new TrainingError('Expected YAML list');
   return v.map(object);
@@ -96,35 +92,10 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
   };
   const target = opts.check ? loadWorld(saveWorld(world), world.scenarios.definitions) : world;
   const inventoryPath =
-    opts.inventory ?? /inventory\s*=\s*(.+)/.exec(tree['ansible.cfg']?.text ?? '')?.[1]?.trim();
-  if (!inventoryPath || !tree[inventoryPath]) throw new TrainingError('Inventory file is missing');
-  const inventory = object(yaml(tree[inventoryPath]!.text));
-  const groups = new Map<string, Map<string, Obj>>(),
-    groupVars = new Map<string, Obj>();
-  function group(name: string, raw: unknown, inherited: Obj = {}, depth = 0): Map<string, Obj> {
-    if (depth > 12) throw new TrainingError('Inventory nesting limit');
-    const node = object(raw),
-      vars = { ...inherited, ...(node.vars ? object(node.vars) : {}) },
-      hosts = new Map<string, Obj>();
-    for (const [h, v] of Object.entries(node.hosts ? object(node.hosts) : {}))
-      hosts.set(h, { ...vars, ...(v ? object(v) : {}) });
-    for (const [n, v] of Object.entries(node.children ? object(node.children) : {}))
-      for (const [h, hv] of group(n, v, vars, depth + 1)) hosts.set(h, hv);
-    groups.set(name, hosts);
-    groupVars.set(name, vars);
-    return hosts;
-  }
-  for (const [name, value] of Object.entries(inventory)) group(name, value);
-  const all = new Map<string, Obj>();
-  for (const hosts of groups.values()) for (const [h, v] of hosts) all.set(h, v);
-  const selected = (pattern: string) => {
-    const names = pattern
-      .split(/[,:]/)
-      .flatMap((p) =>
-        p === 'all' ? [...all.keys()] : groups.has(p) ? [...groups.get(p)!.keys()] : all.has(p) ? [p] : [],
-      );
-    return [...new Set(names)];
-  };
+    opts.inventory ?? ansibleConfig(tree['ansible.cfg']?.text ?? '')['defaults.inventory'];
+  if (!inventoryPath) throw new TrainingError('Inventory file is missing');
+  const inventory = parseInventory(tree, inventoryPath, opts.vaultPassword, true);
+  const selected = (pattern: string) => inventoryHosts(inventory, pattern);
   let budget = 0;
   function readYaml(p: string): unknown {
     const text = tree[p]?.text;
@@ -231,17 +202,12 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
           continue;
         }
         let vars: Obj = {
-          ...((readYaml('group_vars/all/vault.yml') as Obj) ?? {}),
-          ...groupVars.get('all'),
-          ...((readYaml('group_vars/all/main.yml') as Obj) ?? {}),
-          ...all.get(name),
+          ...inventory.hostvars[name],
           ...(play.vars ? object(play.vars) : {}),
           inventory_hostname: name,
           ansible_check_mode: !!opts.check,
+          ...opts.extraVars,
         };
-        for (const [g, hosts] of groups)
-          if (hosts.has(name)) vars = { ...vars, ...((readYaml(`group_vars/${g}.yml`) as Obj) ?? {}) };
-        vars = { ...vars, ...((readYaml(`host_vars/${name}.yml`) as Obj) ?? {}), ...opts.extraVars };
         const handlers = new Map<string, Obj>(list(play.handlers ?? []).map((t) => [String(t.name), t]));
         const pending = new Set<string>();
         let redactFailure = false;

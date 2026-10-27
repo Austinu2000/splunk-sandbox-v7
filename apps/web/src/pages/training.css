@@ -67,7 +67,8 @@
   gap: 9px;
   margin: 24px 0;
 }
-.v5-tabs button[aria-pressed='true'] {
+.v5-tabs button[aria-pressed='true'],
+.v5-tabs button[aria-selected='true'] {
   background: #007f89;
   color: white;
 }

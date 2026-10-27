@@ -269,7 +269,13 @@ const chown: CommandFn = (ctx) => {
   const [spec, ...paths] = o.operands;
   if (!spec) return fail("chown: missing operand\nTry 'chown --help' for more information.");
   const [owner, group] = spec.split(/[:.]/);
-  const known = KNOWN_USERS;
+  const known = [
+    ...KNOWN_USERS,
+    ...ctx.sh.fs
+      .readFile('/etc/passwd', ctx.sh.cred)
+      .split('\n')
+      .map((line) => line.split(':')[0]!),
+  ];
   if (owner && !known.includes(owner)) return fail(`chown: invalid user: '${spec}'`);
   if (group && !known.includes(group)) return fail(`chown: invalid group: '${spec}'`);
   const recursive = o.flags.has('R');
@@ -292,7 +298,14 @@ const chgrp: CommandFn = (ctx) => {
   const o = getopt(ctx.argv.slice(1));
   const [group, ...paths] = o.operands;
   if (!group) return fail("chgrp: missing operand\nTry 'chgrp --help' for more information.");
-  if (!KNOWN_USERS.includes(group)) return fail(`chgrp: invalid group: '${group}'`);
+  if (
+    !KNOWN_USERS.includes(group) &&
+    !ctx.sh.fs
+      .readFile('/etc/group', ctx.sh.cred)
+      .split('\n')
+      .some((line) => line.split(':')[0] === group)
+  )
+    return fail(`chgrp: invalid group: '${group}'`);
   const recursive = o.flags.has('R');
   return eachPath(ctx, 'chgrp', paths, (path) => {
     const apply = (p: string) => {

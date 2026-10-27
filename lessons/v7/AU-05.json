@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-05",
+  "version": 1,
+  "title": "Discover Ansible Configuration",
+  "track": "Ansible/Linux fundamentals",
+  "objectives": [
+    "Discover Ansible Configuration",
+    "Verify the result through independent inspection and explain the observed state."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "inventory.inspect"
+  ],
+  "fixture": {
+    "id": "au-05-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Terminal. Run ssh svc_ansible@ansible01, then cd ~/splunk-automation. Commands run inside the virtual environment.",
+      "paths": [
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Run cat ansible.cfg, ansible --version and ansible-config dump. Identify the active configuration file and its inventory setting. Environment overrides take precedence; this lesson starts without them.",
+      "paths": [
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the affected component or inventory file first.",
+    "Use the documented command output to answer the evidence questions."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html",
+      "vendorVersion": "Ansible inventory reference; bounded core 2.17 compatibility subset",
+      "purpose": "Inventory groups, variables and targeting"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
+      "vendorVersion": "Ansible CLI",
+      "purpose": "Graph/list/host output"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inspection",
+      "label": "Verify successful inspection: ansible-config dump",
+      "command": "ansible-config dump",
+      "host": "ansible01"
+    },
+    {
+      "kind": "answer",
+      "label": "Correct evidence-based answer: config",
+      "id": "config",
+      "expected": "/home/svc_ansible/splunk-automation/ansible.cfg"
+    }
+  ],
+  "minutes": 15,
+  "questions": [
+    {
+      "id": "config",
+      "prompt": "What absolute ansible.cfg path is active?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified observations, answers and required operational state are correct.",
+    "incomplete": "Inspect the failed checks; edits on disk may need activation."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-foundations:AU-05:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-foundations:AU-05:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-foundations:AU-05:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-foundations:AU-05:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-foundations:AU-05:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-foundations:AU-05:isolation"
+    }
+  ]
+}
