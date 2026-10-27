@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-18",
+  "version": 1,
+  "title": "Compose and Repair a Local Role",
+  "track": "Playbooks and roles",
+  "objectives": [
+    "Compose and Repair a Local Role",
+    "Verify state independently and preserve the source/deployment boundary."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "ansible.execute"
+  ],
+  "fixture": {
+    "id": "au-18-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "workspace",
+      "instruction": "Use the isolated Lab attempt. Open Terminal: ssh svc_ansible@ansible01 then cd ~/splunk-automation. V7 source additions are precommitted for this lesson; free practice can add them in Automation Operations. Commands and services are simulated.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "playbooks/v7_inputs.yml points at a missing role. Correct the role name to v7_inputs, validate syntax, and run on ds01. Verify the role created the managed input and the explicit log file.",
+      "paths": [
+        "cli",
+        "config",
+        "web"
+      ]
+    },
+    {
+      "id": "evidence",
+      "instruction": "Use the run output and independent configuration inspection to answer the evidence question. The source and operational checks must also pass.",
+      "paths": [
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect source, target scope and the latest run before retrying.",
+    "Use --limit ds01 and inspect btool after an actual apply."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html",
+      "vendorVersion": "Ansible core 2.17 bounded compatibility subset",
+      "purpose": "Playbook structure and execution"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible reference",
+      "purpose": "Handlers run on change in definition order"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Successful scoped run of playbooks/v7_inputs.yml",
+      "path": "playbooks/v7_inputs.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "ds01"
+      ],
+      "minimumChanges": 1
+    },
+    {
+      "kind": "configuration",
+      "label": "Running input matches the requested sourcetype",
+      "host": "ds01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/automation.log",
+      "key": "sourcetype",
+      "equals": "v7_automation",
+      "effective": true,
+      "source": "/opt/splunk/etc/apps/v7_practice/local/inputs.conf"
+    },
+    {
+      "kind": "file-state",
+      "label": "Verify deployed file state",
+      "host": "ds01",
+      "path": "/var/log/practice/automation.log",
+      "exists": true
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified result",
+      "id": "evidence",
+      "expected": "v7_inputs"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which local role did you restore?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "automation-source",
+      "path": "playbooks/v7_inputs.yml",
+      "text": "- name: Apply reviewed training input on the Deployment Server\n  hosts: deployment_server\n  gather_facts: false\n  become: true\n  serial: 1\n  roles:\n    - missing_role\n"
+    }
+  ],
+  "feedback": {
+    "success": "Verified actual source, scoped execution and target state.",
+    "incomplete": "Check the latest scoped run, source revision, ownership and activation. An answer or command text alone is insufficient."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-automation:AU-18:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-automation:AU-18:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-automation:AU-18:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-automation:AU-18:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-automation:AU-18:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-automation:AU-18:isolation"
+    }
+  ]
+}

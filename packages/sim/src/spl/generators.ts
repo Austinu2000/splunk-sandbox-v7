@@ -2,6 +2,8 @@ import { activeIndexNames, indexCatalog } from '../engineering/indexes';
 import { canSearchIndex } from '../engineering/access';
 import { recordedEvents } from '../engineering/ingestion';
 import { listReports } from '../engineering/reports';
+import { setting } from '../conf/merge';
+import { runningConf } from '../hosts/running';
 import { kvLookup, kvRead, kvState, kvStatus, kvCollections } from '../kvstore/engine';
 import { training, refreshTraining } from '../training/engine';
 import { infraName } from '../infra';
@@ -143,7 +145,7 @@ const ROLES: Record<string, string[]> = {
 function serverInfo(world: RunContext['world'], p: HostProfile): Row {
   return Row.of({
     splunk_server: p.hostname,
-    serverName: p.hostname,
+    serverName: setting(runningConf(world, p, 'server'), 'general', 'serverName') ?? p.hostname,
     host_fqdn: p.fqdn,
     version: ENTERPRISE_VERSION,
     os_name: 'Linux',

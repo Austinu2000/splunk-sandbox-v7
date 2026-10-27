@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-19",
+  "version": 1,
+  "title": "Repair a Handler and Activate Configuration",
+  "track": "Playbooks and roles",
+  "objectives": [
+    "Repair a Handler and Activate Configuration",
+    "Verify state independently and preserve the source/deployment boundary."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "ansible.execute"
+  ],
+  "fixture": {
+    "id": "au-19-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "workspace",
+      "instruction": "Use the isolated Lab attempt. Open Terminal: ssh svc_ansible@ansible01 then cd ~/splunk-automation. V7 source additions are precommitted for this lesson; free practice can add them in Automation Operations. Commands and services are simulated.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "The input task notifies an undefined handler. Correct the notification in roles/v7_inputs/tasks/main.yml to v7 restart splunk. Run the input playbook on ds01. Verify a single matching handler run and the effective input after activation.",
+      "paths": [
+        "cli",
+        "config",
+        "web"
+      ]
+    },
+    {
+      "id": "evidence",
+      "instruction": "Use the run output and independent configuration inspection to answer the evidence question. The source and operational checks must also pass.",
+      "paths": [
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect source, target scope and the latest run before retrying.",
+    "Use --limit ds01 and inspect btool after an actual apply."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html",
+      "vendorVersion": "Ansible core 2.17 bounded compatibility subset",
+      "purpose": "Playbook structure and execution"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible reference",
+      "purpose": "Handlers run on change in definition order"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Successful scoped run of playbooks/v7_inputs.yml",
+      "path": "playbooks/v7_inputs.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "ds01"
+      ],
+      "minimumChanges": 1,
+      "handler": "v7 restart splunk"
+    },
+    {
+      "kind": "configuration",
+      "label": "Running input matches the requested sourcetype",
+      "host": "ds01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/automation.log",
+      "key": "sourcetype",
+      "equals": "v7_automation",
+      "effective": true,
+      "source": "/opt/splunk/etc/apps/v7_practice/local/inputs.conf"
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified result",
+      "id": "evidence",
+      "expected": "v7 restart splunk"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which handler activated the changed input?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "automation-source",
+      "path": "roles/v7_inputs/tasks/main.yml",
+      "text": "- name: Create the managed input app\n  ansible.builtin.file:\n    path: \"{{ splunk_home }}/etc/apps/v7_practice/local\"\n    state: directory\n    owner: splunk\n    group: splunk\n    mode: \"0750\"\n- name: Supply the explicit teaching log\n  ansible.builtin.copy:\n    src: automation.log\n    dest: \"{{ practice_source }}\"\n    owner: splunk\n    group: splunk\n    mode: \"0640\"\n- name: Render the monitored input\n  ansible.builtin.template:\n    src: inputs.conf.j2\n    dest: \"{{ splunk_home }}/etc/apps/v7_practice/local/inputs.conf\"\n    owner: splunk\n    group: splunk\n    mode: \"0640\"\n  notify: missing restart\n"
+    }
+  ],
+  "feedback": {
+    "success": "Verified actual source, scoped execution and target state.",
+    "incomplete": "Check the latest scoped run, source revision, ownership and activation. An answer or command text alone is insufficient."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-automation:AU-19:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-automation:AU-19:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-automation:AU-19:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-automation:AU-19:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-automation:AU-19:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-automation:AU-19:isolation"
+    }
+  ]
+}

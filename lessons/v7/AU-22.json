@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-22",
+  "version": 1,
+  "title": "Diagnose a Failed Template and Verify Recovery",
+  "track": "Playbooks and roles",
+  "objectives": [
+    "Diagnose a Failed Template and Verify Recovery",
+    "Verify state independently and preserve the source/deployment boundary."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "ansible.execute"
+  ],
+  "fixture": {
+    "id": "au-22-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "workspace",
+      "instruction": "Use the isolated Lab attempt. Open Terminal: ssh svc_ansible@ansible01 then cd ~/splunk-automation. V7 source additions are precommitted for this lesson; free practice can add them in Automation Operations. Commands and services are simulated.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "First run the input playbook and inspect its undefined-variable failure. Repair practice_missing_sourcetype to practice_sourcetype in roles/v7_inputs/templates/inputs.conf.j2. Run again, then run playbooks/v7_validate.yml --limit ds01. Verify that btool and the management URI read the deployed state.",
+      "paths": [
+        "cli",
+        "config",
+        "web"
+      ]
+    },
+    {
+      "id": "evidence",
+      "instruction": "Use the run output and independent configuration inspection to answer the evidence question. The source and operational checks must also pass.",
+      "paths": [
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect source, target scope and the latest run before retrying.",
+    "Use --limit ds01 and inspect btool after an actual apply."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html",
+      "vendorVersion": "Ansible core 2.17 bounded compatibility subset",
+      "purpose": "Playbook structure and execution"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible reference",
+      "purpose": "Handlers run on change in definition order"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Successful scoped run of playbooks/v7_inputs.yml",
+      "path": "playbooks/v7_inputs.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "ds01"
+      ],
+      "priorFailure": true,
+      "currentSource": true
+    },
+    {
+      "kind": "automation-run",
+      "label": "Successful scoped run of playbooks/v7_validate.yml",
+      "path": "playbooks/v7_validate.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "ds01"
+      ],
+      "maximumChanges": 0
+    },
+    {
+      "kind": "configuration",
+      "label": "Running input matches the requested sourcetype",
+      "host": "ds01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/automation.log",
+      "key": "sourcetype",
+      "equals": "v7_automation",
+      "effective": true,
+      "source": "/opt/splunk/etc/apps/v7_practice/local/inputs.conf"
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified result",
+      "id": "evidence",
+      "expected": "200"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which HTTP status did the successful management validation return?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "automation-source",
+      "path": "roles/v7_inputs/templates/inputs.conf.j2",
+      "text": "[monitor://{{ practice_source }}]\nindex = {{ practice_index }}\nsourcetype = {{ practice_missing_sourcetype }}\ndisabled = false\n"
+    }
+  ],
+  "feedback": {
+    "success": "Verified actual source, scoped execution and target state.",
+    "incomplete": "Check the latest scoped run, source revision, ownership and activation. An answer or command text alone is insufficient."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-automation:AU-22:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-automation:AU-22:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-automation:AU-22:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-automation:AU-22:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-automation:AU-22:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-automation:AU-22:isolation"
+    }
+  ]
+}

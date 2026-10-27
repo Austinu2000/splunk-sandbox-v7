@@ -4,10 +4,13 @@ import { usePoll } from '../usePoll';
 import { request } from './TrainingPage';
 
 interface AutomationView {
+  context?: string;
+  starters?: { revision: string; files: { path: string; status: 'missing' | 'present' | 'conflict' }[] };
   enabled: boolean;
   host?: string;
   root?: string;
   branch?: string;
+  committedBranches?: Record<string, string>;
   source?: string;
   settings?: Record<string, string>;
   inventory?: {
@@ -153,6 +156,39 @@ export function AutomationPage() {
           {tab === 'Playbooks & Roles' && (
             <section className="v5-card">
               <h2>Playbooks & Roles</h2>
+              {view.starters && (
+                <details open={view.starters.files.some((f) => f.status === 'missing')}>
+                  <summary>V7 operational starter files</summary>
+                  <p>
+                    Add the input role, connectivity and validation playbooks to the working tree. Review and
+                    commit them before running a committed deployment. Adding files does not deploy them.
+                  </p>
+                  <ul>
+                    {view.starters.files.map((f) => (
+                      <li key={f.path}>
+                        <code>{f.path}</code> · {f.status}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    disabled={
+                      busy ||
+                      !view.starters.files.some((f) => f.status === 'missing') ||
+                      view.starters.files.some((f) => f.status === 'conflict')
+                    }
+                    onClick={() =>
+                      void act(() =>
+                        request('automation/starters', {
+                          context: view.context,
+                          revision: view.starters!.revision,
+                        }),
+                      )
+                    }
+                  >
+                    Add missing starter files
+                  </button>
+                </details>
+              )}
               <p>Roles: {view.roles?.join(', ') || 'None'}</p>
               {view.playbooks?.map((file) => (
                 <details key={file.path}>
@@ -194,6 +230,8 @@ export function AutomationPage() {
                     void act(async () => {
                       await request('code/run', {
                         repo: 'splunk-automation',
+                        context: view.context,
+                        expectedCommit: view.committedBranches?.[branch],
                         branch,
                         path: playbook,
                         options: { check: preview, diff: true, limit },
@@ -224,10 +262,13 @@ export function AutomationPage() {
                 view.runs.map((run, n) => (
                   <details key={run.id + ':' + n}>
                     <summary>
-                      {run.id} · {run.check ? 'Check' : 'Apply'} · changed {run.changed}, failed {run.failed},
-                      unreachable {run.unreachable}
+                      {run.id} · {run.syntax ? 'Syntax' : run.check ? 'Check' : 'Apply'} · changed{' '}
+                      {run.changed}, failed {run.failed}, unreachable {run.unreachable}
                     </summary>
-                    <p>Revision {run.revision}</p>
+                    <p>
+                      <code>{run.playbook ?? 'Legacy playbook run'}</code> · Source {run.revision}
+                      {run.commit && <> · Commit {run.commit.slice(0, 12)}</>}
+                    </p>
                     <pre>
                       {[...run.logs, ...run.hosts.flatMap((h) => [h.host, ...h.messages])].join('\n')}
                     </pre>

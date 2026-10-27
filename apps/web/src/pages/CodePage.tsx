@@ -3,6 +3,7 @@ import type { CodeState } from '@sandbox/shared';
 import { usePoll } from '../usePoll';
 import { request } from './TrainingPage';
 interface CodeView {
+  context?: string;
   state: CodeState;
   repos: {
     id: string;
@@ -186,6 +187,8 @@ export function CodePage() {
                   disabled={busy || repoId !== 'splunk-automation'}
                   onClick={() =>
                     act('code/run', {
+                      context: data.data?.context,
+                      expectedCommit: repo?.branches[branch],
                       repo: repoId,
                       branch,
                       path: playbook,
@@ -199,6 +202,8 @@ export function CodePage() {
                   disabled={busy || repoId !== 'splunk-automation'}
                   onClick={() =>
                     act('code/run', {
+                      context: data.data?.context,
+                      expectedCommit: repo?.branches[branch],
                       repo: repoId,
                       branch,
                       path: playbook,

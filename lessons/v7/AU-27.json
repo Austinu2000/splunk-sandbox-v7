@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-27",
+  "version": 1,
+  "title": "Revert a Bad Release through a New Reviewed Deployment",
+  "track": "Git and change management",
+  "objectives": [
+    "Revert a Bad Release through a New Reviewed Deployment",
+    "Verify state independently and preserve the source/deployment boundary."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "git.review"
+  ],
+  "fixture": {
+    "id": "au-27-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "workspace",
+      "instruction": "Use the isolated Lab attempt. Open Terminal: ssh svc_ansible@ansible01 then cd ~/splunk-automation. V7 source additions are precommitted for this lesson; free practice can add them in Automation Operations. Commands and services are simulated.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "The fixture deployed a template change with sourcetype v7_broken. Inspect git log and identify that source commit. Set a training Git identity if needed (git config user.name Learner and git config user.email learner@example.test). Create a recovery branch, git revert that non-merge commit, and push. Review/check/approve/merge the recovery PR, then run committed main playbooks/v7_inputs.yml on ds01. The effective sourcetype must return to v7_automation; rewriting branch history or changing target files alone is insufficient.",
+      "paths": [
+        "cli",
+        "config",
+        "web"
+      ]
+    },
+    {
+      "id": "evidence",
+      "instruction": "Use the run output and independent configuration inspection to answer the evidence question. The source and operational checks must also pass.",
+      "paths": [
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect source, target scope and the latest run before retrying.",
+    "Use --limit ds01 and inspect btool after an actual apply."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html",
+      "vendorVersion": "Ansible core 2.17 bounded compatibility subset",
+      "purpose": "Playbook structure and execution"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible reference",
+      "purpose": "Handlers run on change in definition order"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "repository",
+      "label": "Revert is preserved in reviewed main history and deployed",
+      "repo": "splunk-automation",
+      "branch": "main",
+      "path": "roles/v7_inputs/templates/inputs.conf.j2",
+      "contains": "{{ practice_sourcetype }}",
+      "review": "merged",
+      "deployed": true,
+      "reverted": true
+    },
+    {
+      "kind": "automation-run",
+      "label": "Successful scoped run of playbooks/v7_inputs.yml",
+      "path": "playbooks/v7_inputs.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "ds01"
+      ],
+      "currentSource": true
+    },
+    {
+      "kind": "configuration",
+      "label": "Running input matches the requested sourcetype",
+      "host": "ds01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/automation.log",
+      "key": "sourcetype",
+      "equals": "v7_automation",
+      "effective": true,
+      "source": "/opt/splunk/etc/apps/v7_practice/local/inputs.conf"
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified result",
+      "id": "evidence",
+      "expected": "v7_automation"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which sourcetype was restored by the reviewed revert deployment?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "automation-source",
+      "path": "roles/v7_inputs/templates/inputs.conf.j2",
+      "text": "[monitor://{{ practice_source }}]\nindex = {{ practice_index }}\nsourcetype = v7_broken\ndisabled = false\n",
+      "deploy": {
+        "playbook": "playbooks/v7_inputs.yml",
+        "limit": "ds01"
+      }
+    }
+  ],
+  "feedback": {
+    "success": "Verified actual source, scoped execution and target state.",
+    "incomplete": "Check the latest scoped run, source revision, ownership and activation. An answer or command text alone is insufficient."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-automation:AU-27:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-automation:AU-27:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-automation:AU-27:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-automation:AU-27:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-automation:AU-27:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-automation:AU-27:isolation"
+    }
+  ]
+}

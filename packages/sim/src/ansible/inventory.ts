@@ -204,7 +204,11 @@ export function inventoryDrift(world: World, inventory: Inventory) {
     unknown: Object.keys(inventory.hostvars).filter((h) => !known.has(h)),
     unreachable: Object.keys(inventory.hostvars).filter((name) => {
       const host = resolveHost(world, name);
-      return !host || (host.fleetRow !== undefined && world.fleet.health[host.fleetRow] === 3);
+      return (
+        !host ||
+        host.os === 'windows' ||
+        (host.fleetRow !== undefined && world.fleet.health[host.fleetRow] === 3)
+      );
     }),
   };
 }

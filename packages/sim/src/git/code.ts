@@ -183,13 +183,15 @@ export function reviewAction(
           inventory: 'inventories/lab/hosts.yml',
           limit: config.limit ?? 'idx01',
         });
-        const paths = preview.hosts
-          .flatMap((h) =>
-            h.messages
-              .filter((m) => m.startsWith('DIFF '))
-              .map((m) => h.host + ':' + m.split('\n')[0]!.slice(5)),
-          )
-          .sort();
+        const paths = [
+          ...new Set(
+            preview.hosts.flatMap((h) =>
+              h.messages
+                .filter((m) => m.startsWith('DIFF '))
+                .map((m) => h.host + ':' + m.split('\n')[0]!.slice(5)),
+            ),
+          ),
+        ].sort();
         if (
           preview.failed ||
           preview.unreachable ||
@@ -290,6 +292,7 @@ export function executePlaybook(
   const c = repo?.commits[repo.branches[branch]!];
   if (!c) throw new TrainingError('Repository branch not found');
   const result = runAnsible(world, c.tree, path, options);
+  result.commit = c.id;
   codeState(world).runs.push(result);
   persist(world);
   return result;

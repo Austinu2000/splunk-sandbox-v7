@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 4 and subsequent gates
+## Current work: Milestone 5 and subsequent gates
 
 Implemented:
 
@@ -52,8 +52,8 @@ implemented work is listed below. The full expansion remains incomplete.
 | 1 | Implemented | Foundations/inventory; AU-01–14 and SP-001–006 |
 | 2 | Implemented | Indexes/data onboarding; SP-007–025 |
 | 3 | Implemented within documented scope | Reports/searches/summary indexing; SP-035–046 |
-| 4 | In progress | Playbooks/Git; AU-15–27 |
-| 5 | Planned | Forwarders/DS; AU-28–35 and SP-026–034 |
+| 4 | Implemented within documented scope | Playbooks/Git; AU-15–27 |
+| 5 | In progress | Forwarders/DS; AU-28–35 and SP-026–034 |
 | 6 | Planned | Dashboards/alerts; SP-047–054 |
 | 7 | Planned | Clustering/KV; AU-36–43 and SP-055–068 |
 | 8 | Planned | Monitoring/security/integrations; SP-069–088 |
@@ -138,3 +138,16 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
 - Browser validation completed SP-045: two summary rows representing three events,
   followed by an empty window with no duplicates; independent sum(count)=3.
 - See [supported report behavior and remaining limits](V7-REPORTS-AND-SUMMARY-INDEXING.md).
+
+## Ansible and change management implementation
+
+- AU-15–AU-27 are executable: **64 new / 91 total lessons**. Original lesson IDs
+  and seed Git commits are retained. Starter additions are explicit source changes.
+- Handlers, roles, variables, permissions, check mode, URI/wait_for and component
+  privileges now produce actual shared-world outcomes. Reviews, CI and rollback
+  are bound to source revisions and separate deployment.
+- Full regression: **712 tests / 46 files pass**, including 78 lesson acceptance
+  cases. TypeScript passes. Browser AU-20 verified changed=4 followed by changed=0
+  and completed. [Scope and limits](V7-ANSIBLE-AND-CHANGE-MANAGEMENT.md).
+- Continuing into forwarder lifecycle and Deployment Server work without an
+  approval pause, as authorized. The full expansion remains incomplete.

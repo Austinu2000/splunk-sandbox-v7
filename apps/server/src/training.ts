@@ -17,6 +17,8 @@ import {
   persistTraining,
   automationView,
   inventoryHosts,
+  previewStarterPack,
+  installStarterPack,
   type AnsibleOptions,
 } from '@sandbox/sim';
 import type { TrainingQuestion } from '@sandbox/shared';
@@ -26,7 +28,37 @@ const questions = (
   ) as { questions: TrainingQuestion[] }
 ).questions;
 export function registerTraining(app: FastifyInstance, live: LiveWorld, checkpoint: () => void) {
-  app.get('/api/automation', async () => automationView(live.world));
+  app.get('/api/automation', async () => {
+    const view = automationView(live.world);
+    return {
+      ...view,
+      context: live.context,
+      starters: view.enabled ? previewStarterPack(live.world) : undefined,
+    };
+  });
+  app.post<{ Body: { context: string; revision: string } }>(
+    '/api/automation/starters',
+    {
+      schema: {
+        body: {
+          type: 'object',
+          additionalProperties: false,
+          required: ['context', 'revision'],
+          properties: {
+            context: { type: 'string', maxLength: 300 },
+            revision: { type: 'string', maxLength: 100 },
+          },
+        },
+      },
+    },
+    async (req) => {
+      if (req.body.context !== live.context)
+        throw new TrainingError('Active environment or lesson changed; reload before adding starter files');
+      const result = installStarterPack(live.world, req.body.revision);
+      checkpoint();
+      return result;
+    },
+  );
   app.get<{ Querystring: { pattern?: string; limit?: string } }>(
     '/api/automation/targets',
     {
@@ -175,7 +207,7 @@ export function registerTraining(app: FastifyInstance, live: LiveWorld, checkpoi
       return r;
     },
   );
-  app.get('/api/code', async () => codeView(live.world));
+  app.get('/api/code', async () => ({ ...codeView(live.world), context: live.context }));
   app.post<{ Body: { repo: string; branch: string; path: string; text: string; message: string } }>(
     '/api/code/commit',
     {
@@ -223,7 +255,16 @@ export function registerTraining(app: FastifyInstance, live: LiveWorld, checkpoi
       return r;
     },
   );
-  app.post<{ Body: { repo: string; branch: string; path: string; options?: AnsibleOptions } }>(
+  app.post<{
+    Body: {
+      repo: string;
+      branch: string;
+      path: string;
+      context?: string;
+      expectedCommit?: string;
+      options?: AnsibleOptions;
+    };
+  }>(
     '/api/code/run',
     {
       schema: {
@@ -232,6 +273,8 @@ export function registerTraining(app: FastifyInstance, live: LiveWorld, checkpoi
           required: ['repo', 'branch', 'path'],
           additionalProperties: false,
           properties: {
+            context: { type: 'string', maxLength: 300 },
+            expectedCommit: { type: 'string', maxLength: 100 },
             repo: { type: 'string', maxLength: 100 },
             branch: { type: 'string', maxLength: 100 },
             path: { type: 'string', maxLength: 250 },
@@ -258,6 +301,13 @@ export function registerTraining(app: FastifyInstance, live: LiveWorld, checkpoi
     },
     async (req) => {
       try {
+        if (req.body.context !== undefined && req.body.context !== live.context)
+          throw new TrainingError('Active environment or lesson changed; reload before running');
+        if (
+          req.body.expectedCommit !== undefined &&
+          live.world.git?.repos[req.body.repo]?.branches[req.body.branch] !== req.body.expectedCommit
+        )
+          throw new TrainingError('Committed branch changed; inspect its new revision before running');
         const r = executePlaybook(
           live.world,
           req.body.repo,

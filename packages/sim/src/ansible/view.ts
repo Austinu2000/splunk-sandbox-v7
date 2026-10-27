@@ -48,6 +48,7 @@ export function automationView(world: World) {
     host: host.hostname,
     root: checkout.root,
     branch: checkout.branch,
+    committedBranches: world.git?.repos['splunk-automation']?.branches,
     source: 'working-tree' as const,
     settings,
     inventory,

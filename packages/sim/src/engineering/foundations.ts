@@ -12,9 +12,41 @@ import { runSearch } from '../spl/run';
 import { indexBuckets } from './lifecycle';
 import { listReports } from './reports';
 import { tickWorld, setClock } from '../world';
+import { V7_STARTER_FILES } from '../ansible/starters';
+import { setupLesson } from '../training/lesson-setup';
+import { executePlaybook } from '../git/code';
+import { ancestor } from '../git/state';
+import { filesUnder, checksum } from '../hosts/cluster';
+import { journal } from '../journal';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | { kind: 'file-state'; label: string; host: string; path: string; exists: boolean; contains?: string }
+  | {
+      kind: 'automation-run';
+      label: string;
+      path: string;
+      check?: boolean;
+      syntax?: boolean;
+      targets?: string[];
+      minimumChanges?: number;
+      maximumChanges?: number;
+      handler?: string;
+      afterApply?: boolean;
+      priorFailure?: boolean;
+      currentSource?: boolean;
+    }
+  | {
+      kind: 'repository';
+      label: string;
+      repo: string;
+      branch: string;
+      path: string;
+      contains: string;
+      review?: 'open' | 'checked' | 'merged';
+      deployed?: boolean;
+      reverted?: boolean;
+    }
   | {
       kind: 'report-state';
       label: string;
@@ -122,12 +154,50 @@ export type FoundationCheck =
     };
 
 export type FoundationSetup =
+  | { kind: 'automation-starters' }
+  | { kind: 'automation-source'; path: string; text: string; deploy?: { playbook: string; limit: string } }
   | { kind: 'advance'; ticks: number; paused?: boolean }
   | { kind: 'file'; host: string; path: string; text: string; mode?: number; owner?: string; apply?: boolean }
   | { kind: 'remove-inventory-host'; host: string; path: string; target: string };
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
   for (const step of steps) {
+    if (step.kind === 'automation-starters') {
+      setupLesson(
+        world,
+        Object.entries(V7_STARTER_FILES).map(([path, text]) => ({
+          repo: 'splunk-automation',
+          branch: 'fixture/v7-baseline',
+          path,
+          text,
+          title: 'V7 operational fixture addition',
+          baseline: true,
+        })),
+      );
+      continue;
+    }
+    if (step.kind === 'automation-source') {
+      setupLesson(world, [
+        {
+          repo: 'splunk-automation',
+          branch: 'fixture/v7-lesson',
+          path: step.path,
+          text: step.text,
+          title: 'V7 isolated lesson fixture',
+          baseline: true,
+        },
+      ]);
+      if (step.deploy) {
+        const run = executePlaybook(world, 'splunk-automation', 'main', step.deploy.playbook, {
+          limit: step.deploy.limit,
+        });
+        if (run.failed || run.unreachable) throw new Error('Invalid automation lesson fixture deployment');
+        run.fixture = true;
+        journal(world, { k: 'code.state', state: structuredClone(world.code!) });
+      }
+      continue;
+    }
+
     if (step.kind === 'advance') {
       tickWorld(world, step.ticks);
       if (step.paused !== undefined) setClock(world, { paused: step.paused });
@@ -175,6 +245,107 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'file-state': {
+      const h = resolveHost(world, check.host),
+        fs = h && hostFs(world, h);
+      if (!fs) return false;
+      const n = fs.findNode(check.path);
+      return (
+        Boolean(n) === check.exists &&
+        (check.contains === undefined ||
+          (n?.type === 'file' && fs.readFile(check.path, ROOT).includes(check.contains)))
+      );
+    }
+    case 'automation-run': {
+      const runs = (world.code?.runs ?? []).filter((r) => !r.fixture && r.playbook === check.path);
+      const candidates = runs.filter(
+        (r) =>
+          (check.check === undefined || r.check === check.check) &&
+          (check.syntax === undefined || r.syntax === check.syntax),
+      );
+      const run = candidates.at(-1);
+      if (!run || run.failed || run.unreachable || (!run.syntax && !run.hosts.length)) return false;
+      if (
+        check.targets &&
+        JSON.stringify([...new Set(run.hosts.map((h) => h.host))].sort()) !==
+          JSON.stringify([...check.targets].sort())
+      )
+        return false;
+      if (run.changed < (check.minimumChanges ?? 0) || run.changed > (check.maximumChanges ?? Infinity))
+        return false;
+      if (
+        check.handler &&
+        !run.hosts.some((h) => h.messages.some((m) => m === 'RUNNING HANDLER: ' + check.handler))
+      )
+        return false;
+      const earlier = runs.slice(0, runs.indexOf(run));
+      if (
+        check.afterApply &&
+        !earlier.some(
+          (r) =>
+            !r.check &&
+            !r.syntax &&
+            !r.failed &&
+            !r.unreachable &&
+            r.changed > 0 &&
+            r.revision === run.revision,
+        )
+      )
+        return false;
+      if (check.priorFailure && !earlier.some((r) => r.failed || r.unreachable)) return false;
+      if (check.currentSource) {
+        const repo = world.git?.repos['splunk-automation'];
+        if (!repo) return false;
+        if (run.commit) {
+          if (repo.branches.main !== run.commit) return false;
+        } else {
+          const c = world.git?.checkouts.find((c) => c.repo === 'splunk-automation'),
+            h = c && resolveHost(world, c.host);
+          if (!c || !h || checksum(filesUnder(hostFs(world, h), c.root)) !== run.revision) return false;
+        }
+      }
+      return true;
+    }
+    case 'repository': {
+      const repo = world.git?.repos[check.repo],
+        head = repo?.branches[check.branch],
+        commit = head && repo?.commits[head];
+      if (!repo || !head || !commit || !commit.tree[check.path]?.text.includes(check.contains)) return false;
+      if (
+        check.reverted &&
+        !Object.values(repo.commits).some((c) => /^Revert /m.test(c.message) && ancestor(repo, c.id, head))
+      )
+        return false;
+      if (check.review || check.deployed) {
+        const reviews = (world.code?.reviews ?? []).filter((r) => !r.fixture && r.repo === check.repo);
+        if (
+          !reviews.some((r) =>
+            check.review === 'merged' || check.deployed
+              ? r.status === 'merged' &&
+                r.head === head &&
+                (!check.deployed ||
+                  (world.code?.runs ?? []).some(
+                    (run) =>
+                      !run.fixture &&
+                      !run.failed &&
+                      !run.unreachable &&
+                      !run.check &&
+                      !run.syntax &&
+                      run.commit === head &&
+                      run.hosts.length > 0,
+                  ))
+              : r.status === 'open' &&
+                r.head === head &&
+                repo.branches[r.branch] === r.head &&
+                (check.review !== 'checked' ||
+                  (r.check?.passed && r.check.head === r.head && r.check.base === repo.branches.main)),
+          )
+        )
+          return false;
+      }
+      return true;
+    }
+
     case 'report-state':
       return listReports(world, check.host).some(
         (r) =>

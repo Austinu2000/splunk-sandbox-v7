@@ -62,9 +62,14 @@ export function setupLesson(world: World, setup: LessonSetup[]) {
     const fs = hostFs(world, resolveHost(world, checkout.host)!);
     for (const [path, file] of Object.entries(checkout.index)) {
       const destination = checkout.root + '/' + path;
-      fs.mkdir(destination.slice(0, destination.lastIndexOf('/')), ROOT, { parents: true });
+      const owner = checkout.root.split('/')[2]!;
+      fs.mkdir(
+        destination.slice(0, destination.lastIndexOf('/')),
+        { user: owner, groups: [owner] },
+        { parents: true },
+      );
       fs.writeFile(destination, file.text, ROOT);
-      fs.setMeta(destination, { owner: checkout.root.split('/')[2]!, mode: file.mode }, ROOT);
+      fs.setMeta(destination, { owner, group: owner, mode: file.mode }, ROOT);
     }
   }
   journal(world, { k: 'git.state', state: structuredClone(world.git!) });

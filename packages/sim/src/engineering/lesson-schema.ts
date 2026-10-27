@@ -80,6 +80,46 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('file-state'),
+      label: text,
+      host: text,
+      path: text,
+      exists: z.boolean(),
+      contains: z.string().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('automation-run'),
+      label: text,
+      path: text,
+      check: z.boolean().optional(),
+      syntax: z.boolean().optional(),
+      targets: z.array(text).optional(),
+      minimumChanges: z.number().int().min(0).optional(),
+      maximumChanges: z.number().int().min(0).optional(),
+      handler: text.optional(),
+      afterApply: z.boolean().optional(),
+      priorFailure: z.boolean().optional(),
+      currentSource: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('repository'),
+      label: text,
+      repo: text,
+      branch: text,
+      path: text,
+      contains: z.string().min(1),
+      review: z.enum(['open', 'checked', 'merged']).optional(),
+      deployed: z.boolean().optional(),
+      reverted: z.boolean().optional(),
+    })
+    .strict(),
+
+  z
+    .object({
       kind: z.literal('report-state'),
       label: text,
       host: text,
@@ -251,6 +291,15 @@ export const engineeringLessonSchema = z
     setup: z
       .array(
         z.discriminatedUnion('kind', [
+          z.object({ kind: z.literal('automation-starters') }).strict(),
+          z
+            .object({
+              kind: z.literal('automation-source'),
+              path: text,
+              text: z.string().max(2000000),
+              deploy: z.object({ playbook: text, limit: text }).strict().optional(),
+            })
+            .strict(),
           z
             .object({
               kind: z.literal('advance'),

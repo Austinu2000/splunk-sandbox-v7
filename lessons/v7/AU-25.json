@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-25",
+  "version": 1,
+  "title": "Validate a Pull Request on a Disposable Lab",
+  "track": "Git and change management",
+  "objectives": [
+    "Validate a Pull Request on a Disposable Lab",
+    "Verify state independently and preserve the source/deployment boundary."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "git.review"
+  ],
+  "fixture": {
+    "id": "au-25-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "workspace",
+      "instruction": "Use the isolated Lab attempt. Open Terminal: ssh svc_ansible@ansible01 then cd ~/splunk-automation. V7 source additions are precommitted for this lesson; free practice can add them in Automation Operations. Commands and services are simulated.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "Create and push feature/v7-change with template sourcetype v7_reviewed. Open a PR and Run checks. Inspect the .sandbox-ci.yml expected changed paths and the disposable Lab output. Checks must pass for the current branch head/base, while ds01 in your active attempt remains unchanged.",
+      "paths": [
+        "cli",
+        "config",
+        "web"
+      ]
+    },
+    {
+      "id": "evidence",
+      "instruction": "Use the run output and independent configuration inspection to answer the evidence question. The source and operational checks must also pass.",
+      "paths": [
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect source, target scope and the latest run before retrying.",
+    "Use --limit ds01 and inspect btool after an actual apply."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html",
+      "vendorVersion": "Ansible core 2.17 bounded compatibility subset",
+      "purpose": "Playbook structure and execution"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible reference",
+      "purpose": "Handlers run on change in definition order"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "repository",
+      "label": "Verify source revision and review state",
+      "repo": "splunk-automation",
+      "branch": "feature/v7-change",
+      "path": "roles/v7_inputs/templates/inputs.conf.j2",
+      "contains": "sourcetype = v7_reviewed",
+      "review": "checked"
+    },
+    {
+      "kind": "file-state",
+      "label": "Verify deployed file state",
+      "host": "ds01",
+      "path": "/opt/splunk/etc/apps/v7_practice/local/inputs.conf",
+      "exists": false
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified result",
+      "id": "evidence",
+      "expected": "no"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Did the disposable CI run modify ds01 in this attempt?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "automation-source",
+      "path": ".sandbox-ci.yml",
+      "text": "playbook: playbooks/v7_inputs.yml\nlimit: ds01\nexpectedChangedPaths:\n  - ds01:/opt/splunk/etc/apps/v7_practice/local\n  - ds01:/var/log/practice/automation.log\n  - ds01:/opt/splunk/etc/apps/v7_practice/local/inputs.conf\n"
+    }
+  ],
+  "feedback": {
+    "success": "Verified actual source, scoped execution and target state.",
+    "incomplete": "Check the latest scoped run, source revision, ownership and activation. An answer or command text alone is insufficient."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-automation:AU-25:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-automation:AU-25:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-automation:AU-25:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-automation:AU-25:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-automation:AU-25:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-automation:AU-25:isolation"
+    }
+  ]
+}

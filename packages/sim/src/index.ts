@@ -107,3 +107,4 @@ export {
 export { activateReportConf } from './hosts/running';
 export { recordSearchEvidence } from './engineering/search-evidence';
 export { legacyReceiptKey } from './engineering/reports';
+export { V7_STARTER_FILES, previewStarterPack, installStarterPack } from './ansible/starters';

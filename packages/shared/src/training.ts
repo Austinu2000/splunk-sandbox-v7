@@ -112,6 +112,10 @@ export interface CodeReview {
   deployed?: string;
 }
 export interface AutomationRun {
+  fixture?: boolean;
+  playbook?: string;
+  inventory?: string;
+  commit?: string;
   id: string;
   revision: string;
   check: boolean;

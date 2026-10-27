@@ -1276,131 +1276,144 @@
       "id": "AU-15",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Repair YAML and Validate a Playbook"
     },
     {
       "id": "AU-16",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Apply Modules with Correct File Ownership"
     },
     {
       "id": "AU-17",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Render a Template with Scoped Variables"
     },
     {
       "id": "AU-18",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Compose and Repair a Local Role"
     },
     {
       "id": "AU-19",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Repair a Handler and Activate Configuration"
     },
     {
       "id": "AU-20",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Prove Idempotency with a Second Run"
     },
     {
       "id": "AU-21",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Preview Changes without Applying Them"
     },
     {
       "id": "AU-22",
       "track": "Playbooks and roles",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Diagnose a Failed Template and Verify Recovery"
     },
     {
       "id": "AU-23",
       "track": "Git and change management",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Commit an Automation Change on a Feature Branch"
     },
     {
       "id": "AU-24",
       "track": "Git and change management",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Open a Pull Request for an Automation Change"
     },
     {
       "id": "AU-25",
       "track": "Git and change management",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Validate a Pull Request on a Disposable Lab"
     },
     {
       "id": "AU-26",
       "track": "Git and change management",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Merge Reviewed Source and Explicitly Deploy It"
     },
     {
       "id": "AU-27",
       "track": "Git and change management",
       "milestone": 4,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Revert a Bad Release through a New Reviewed Deployment"
     },
     {
       "id": "AU-28",

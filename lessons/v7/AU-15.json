@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-15",
+  "version": 1,
+  "title": "Repair YAML and Validate a Playbook",
+  "track": "Playbooks and roles",
+  "objectives": [
+    "Repair YAML and Validate a Playbook",
+    "Verify state independently and preserve the source/deployment boundary."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "ansible.execute"
+  ],
+  "fixture": {
+    "id": "au-15-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "workspace",
+      "instruction": "Use the isolated Lab attempt. Open Terminal: ssh svc_ansible@ansible01 then cd ~/splunk-automation. V7 source additions are precommitted for this lesson; free practice can add them in Automation Operations. Commands and services are simulated.",
+      "paths": [
+        "cli",
+        "web"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "Repair the indentation in playbooks/v7_connectivity.yml using nano or the source editor. Run ansible-playbook playbooks/v7_connectivity.yml --syntax-check. A syntax check validates source; it does not install or restart anything.",
+      "paths": [
+        "cli",
+        "config",
+        "web"
+      ]
+    },
+    {
+      "id": "evidence",
+      "instruction": "Use the run output and independent configuration inspection to answer the evidence question. The source and operational checks must also pass.",
+      "paths": [
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect source, target scope and the latest run before retrying.",
+    "Use --limit ds01 and inspect btool after an actual apply."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html",
+      "vendorVersion": "Ansible core 2.17 bounded compatibility subset",
+      "purpose": "Playbook structure and execution"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible reference",
+      "purpose": "Handlers run on change in definition order"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Repaired syntax check",
+      "path": "playbooks/v7_connectivity.yml",
+      "syntax": true,
+      "currentSource": true
+    },
+    {
+      "kind": "file-state",
+      "label": "Verify deployed file state",
+      "host": "ds01",
+      "path": "/opt/splunk/etc/apps/v7_practice/local/inputs.conf",
+      "exists": false
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified result",
+      "id": "evidence",
+      "expected": "no"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Does a syntax check deploy configuration?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "automation-source",
+      "path": "playbooks/v7_connectivity.yml",
+      "text": "- hosts: deployment_server\n  tasks:\n    - name: Validate transport\n      ping: {}\n   broken: true\n"
+    }
+  ],
+  "feedback": {
+    "success": "Verified actual source, scoped execution and target state.",
+    "incomplete": "Check the latest scoped run, source revision, ownership and activation. An answer or command text alone is insufficient."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-automation:AU-15:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-automation:AU-15:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-automation:AU-15:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-automation:AU-15:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-automation:AU-15:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-automation:AU-15:isolation"
+    }
+  ]
+}
