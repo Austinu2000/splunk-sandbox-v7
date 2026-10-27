@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-30",
+  "version": 1,
+  "title": "Automate Scoped Forwarding Outputs",
+  "track": "Forwarder automation",
+  "objectives": [
+    "Automate Scoped Forwarding Outputs",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy",
+    "ansible.execute"
+  ],
+  "fixture": {
+    "id": "au-30-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "Inspect playbooks/v7_uf_outputs.yml and the output template. Preview and apply with --limit lab-lnx-0001 and -e forward_receiver=hf01.corp.example:9997. Verify the handler restarted only the canary, inspect list forward-server, advance time and independently search the two explicit records in os.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Verified scoped execution of playbooks/v7_uf_outputs.yml",
+      "path": "playbooks/v7_uf_outputs.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "lab-lnx-0001"
+      ],
+      "minimumChanges": 1,
+      "handler": "restart canary forwarder"
+    },
+    {
+      "kind": "configuration",
+      "label": "Effective outputs: server = hf01.corp.example:9997",
+      "host": "lab-lnx-0001",
+      "conf": "outputs",
+      "stanza": "tcpout:v7_receiver",
+      "key": "server",
+      "equals": "hf01.corp.example:9997",
+      "effective": true
+    },
+    {
+      "kind": "connection",
+      "label": "Actual virtual transport is reachable",
+      "host": "lab-lnx-0001",
+      "server": "hf01.corp.example:9997",
+      "reachable": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent search finds only the explicit teaching records",
+      "search": "index=os host=lab-lnx-0001 sourcetype=v7_forwarder \"v7-canary-\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "hf01"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/var/log/practice/forwarder.log",
+      "text": "practice_id=v7-canary-001 status=200 service=ops\npractice_id=v7-canary-002 status=500 service=ops\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "forwarder-starters"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/forwarder.log]\nindex = os\nsourcetype = v7_forwarder\ndisabled = false\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/outputs.conf",
+      "text": "[tcpout]\ndefaultGroup = v7_receiver\n[tcpout:v7_receiver]\nserver = missing-host:9997\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which host is the first forwarding hop after this change?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:AU-30:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:AU-30:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:AU-30:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:AU-30:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:AU-30:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:AU-30:isolation"
+    }
+  ]
+}

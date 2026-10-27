@@ -1,3 +1,4 @@
+import { V7_FORWARDER_STARTER_FILES, V7_FORWARDER_CONNECTION_FILES } from './forwarder-starters';
 import type { World } from '../world';
 import { resolveHost } from '../hosts/profile';
 import { hostFs } from '../vfs/build';
@@ -26,6 +27,11 @@ export const V7_STARTER_FILES: Readonly<Record<string, string>> = {
   'playbooks/v7_validate.yml':
     '- name: Verify the deployed configuration and running management service\n  hosts: deployment_server\n  gather_facts: false\n  tasks:\n    - name: Inspect configuration provenance\n      ansible.builtin.command: splunk btool inputs list --debug\n      become: true\n      changed_when: false\n    - name: Read actual virtual management data\n      ansible.builtin.uri:\n        url: "https://{{ inventory_hostname }}:8089/services/server/info"\n        method: GET\n        return_content: true\n      register: management\n      when: not ansible_check_mode\n    - name: Verify management response\n      ansible.builtin.assert:\n        that: management.status == 200\n      when: not ansible_check_mode\n',
 };
+export const V7_OPERATIONAL_STARTER_FILES = {
+  ...V7_STARTER_FILES,
+  ...V7_FORWARDER_STARTER_FILES,
+  ...V7_FORWARDER_CONNECTION_FILES,
+};
 function workspace(world: World) {
   const checkout = world.git?.checkouts.find((c) => c.repo === 'splunk-automation'),
     host = checkout && resolveHost(world, checkout.host);
@@ -35,7 +41,7 @@ function workspace(world: World) {
 export function previewStarterPack(world: World) {
   const { checkout, fs } = workspace(world),
     tree = filesUnder(fs, checkout.root);
-  const files = Object.entries(V7_STARTER_FILES).map(([path, text]) => {
+  const files = Object.entries(V7_OPERATIONAL_STARTER_FILES).map(([path, text]) => {
     const full = checkout.root + '/' + path,
       node = fs.findNode(full);
     let blocked = false;
@@ -57,7 +63,7 @@ export function previewStarterPack(world: World) {
             : ('missing' as const),
     };
   });
-  return { version: 1, host: checkout.host, root: checkout.root, revision: checksum(tree), files };
+  return { version: 2, host: checkout.host, root: checkout.root, revision: checksum(tree), files };
 }
 export function installStarterPack(world: World, revision: string) {
   const preview = previewStarterPack(world);
@@ -72,7 +78,7 @@ export function installStarterPack(world: World, revision: string) {
   for (const file of preview.files.filter((file) => file.status === 'missing')) {
     const path = checkout.root + '/' + file.path;
     fs.mkdir(path.slice(0, path.lastIndexOf('/')), { user: owner, groups: [owner] }, { parents: true });
-    fs.writeFile(path, V7_STARTER_FILES[file.path]!, ROOT);
+    fs.writeFile(path, V7_OPERATIONAL_STARTER_FILES[file.path]!, ROOT);
     fs.setMeta(path, { owner, group: owner, mode: 0o644 }, ROOT);
   }
   return previewStarterPack(world);

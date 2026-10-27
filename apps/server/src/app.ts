@@ -1,3 +1,4 @@
+import { registerForwarders } from './forwarders';
 import { registerKvStore } from './kvstore';
 import { registerIndexes } from './indexes';
 import { registerInputs } from './inputs';
@@ -90,6 +91,7 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerKvStore(app, live, () => {
     store?.checkpoint(live.world);
   });
+  registerForwarders(app, live, () => store?.checkpoint(live.world));
   registerIndexes(app, live, () => store?.checkpoint(live.world));
   registerInputs(app, live, () => store?.checkpoint(live.world));
   registerReports(app, live, store);

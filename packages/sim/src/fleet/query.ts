@@ -55,12 +55,16 @@ export function forwarderRecord(world: World, row: number): ForwarderRecord {
     serverClass: cls.id,
     assignedServerClass:
       f.assignedClass[row] === NO_CLASS ? '(none)' : cfg.serverClasses[f.assignedClass[row]!]!.id,
-    version: world.versions[f.version[row]!]!,
+    version:
+      world.forwarders?.clients[hostname(world, row)]?.installed === false
+        ? 'not installed'
+        : (world.forwarders?.clients[hostname(world, row)]?.version ?? world.versions[f.version[row]!]!),
     outputGroup: outputGroup(world, row),
     health: HEALTH_STATES[f.health[row]!]!,
     healthSince: f.healthSince[row]!,
     deploymentClientStatus: deploymentClientStatus(f.health[row]!),
-    lastPhoneHome: lastPhoneHome(world, row, now),
+    lastPhoneHome:
+      world.forwarders?.clients[hostname(world, row)]?.lastPhoneHome ?? lastPhoneHome(world, row, now),
     queueFillPct: queueFillPct(world, row, now),
     throughputKBps: throughputKBps(world, row, now),
   };

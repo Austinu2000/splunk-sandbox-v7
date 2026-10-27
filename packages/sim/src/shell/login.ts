@@ -16,7 +16,7 @@ export function openShell(
   cwd?: string,
 ): Shell {
   const fs = hostFs(world, p, COMMAND_NAMES);
-  return new Shell(world, p, fs, credFor(user), kind, parent, { cwd });
+  return new Shell(world, p, fs, credFor(user), kind, parent, { cwd, liveFs: true });
 }
 
 export function bastionShell(world: World): Shell {

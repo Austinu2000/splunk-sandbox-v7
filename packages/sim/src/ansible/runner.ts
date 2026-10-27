@@ -1,3 +1,4 @@
+import { installForwarderPackage, acceptForwarderLicense, setForwarderBoot } from '../engineering/forwarders';
 import { buckets } from '../training/cluster';
 import { decodeVault, VAULT_HEADER } from './vault';
 import { yaml } from './yaml';
@@ -184,6 +185,8 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
     'include_tasks',
     'import_tasks',
     'ping',
+    'dnf',
+    'package',
     'debug',
     'assert',
     'set_fact',
@@ -268,7 +271,10 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
         if (
           !host ||
           host.os === 'windows' ||
-          (host.fleetRow !== undefined && target.fleet.health[host.fleetRow] === 3)
+          (host.fleetRow !== undefined &&
+            target.fleet.health[host.fleetRow] === 3 &&
+            target.hosts.services.get(host.hostname)?.running !== false &&
+            target.forwarders?.clients[host.hostname]?.installed !== false)
         ) {
           entry.unreachable = true;
           result.unreachable++;
@@ -464,7 +470,15 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                 note('skipped: module does not support check mode');
                 continue;
               }
-              if (module === 'ping') note('pong');
+              if (module === 'dnf' || module === 'package') {
+                if (cred.user !== 'root')
+                  throw new TrainingError('Package installation requires become: true');
+                if (a.state && a.state !== 'present')
+                  throw new TrainingError('Only explicit local package state: present is supported');
+                const path = render(a.name, vars);
+                changed = installForwarderPackage(target, hp.hostname, path, fs.readFile(path, cred), true);
+                note('Verified local training package; no native installer');
+              } else if (module === 'ping') note('pong');
               else if (module === 'debug') note(render(a.msg ?? get(vars, String(a.var)), vars));
               else if (module === 'assert') {
                 if (!condition(a.that, vars))
@@ -552,6 +566,11 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                 if (!['splunk', 'splunkd', 'splunkforwarder'].includes(render(a.name, vars).toLowerCase()))
                   throw new TrainingError('Only simulated Splunk services supported');
                 if (!hp.splunk) throw new TrainingError('Host has no Splunk service');
+                if (a.enabled !== undefined) {
+                  if (hp.role !== 'universal_forwarder')
+                    throw new TrainingError('Boot-start modeling currently supports Universal Forwarders');
+                  changed = setForwarderBoot(target, hp.hostname, Boolean(a.enabled)) || changed;
+                }
                 const running = splunkdRunning(target, hp);
                 const state = String(a.state);
                 if (state === 'restarted') {
@@ -559,15 +578,24 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                   restartSplunk(target, hp);
                   changed = true;
                 } else if (state === 'started') {
-                  changed = !running;
+                  changed = !running || changed;
                   if (changed) startSplunk(target, hp);
                 } else if (state === 'stopped') {
-                  changed = running;
+                  changed = running || changed;
                   if (changed) stopSplunk(target, hp);
                 } else throw new TrainingError('Unsupported service state');
               } else if (module === 'command' || module === 'shell') {
                 const cmd = render(a._raw ?? a.cmd, vars).replace(/^\/opt\/splunk(?:forwarder)?\/bin\//, '');
-                if (cmd === 'splunk enable maintenance-mode' || cmd === 'splunk disable maintenance-mode') {
+                if (cmd === 'splunk start --accept-license --answer-yes --no-prompt') {
+                  if (cred.user !== 'root' || hp.role !== 'universal_forwarder')
+                    throw new TrainingError('Use become on a Universal Forwarder');
+                  acceptForwarderLicense(target, hp.hostname);
+                  changed = !splunkdRunning(target, hp);
+                  if (changed) startSplunk(target, hp);
+                } else if (
+                  cmd === 'splunk enable maintenance-mode' ||
+                  cmd === 'splunk disable maintenance-mode'
+                ) {
                   if (hp.role !== 'cluster_manager' || cred.user !== 'root')
                     throw new TrainingError('Delegate maintenance to the manager');
                   const confPath = '/opt/splunk/etc/system/local/server.conf';

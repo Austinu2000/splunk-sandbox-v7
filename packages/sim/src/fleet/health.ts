@@ -1,3 +1,4 @@
+import { hostname } from './query';
 import { profileInputRate } from '../ingest/profileRates';
 import type { Rng } from '../rng';
 import { unit, mix32 } from '../rng';
@@ -99,6 +100,11 @@ export function enterState(
     f.phoneHomeFrozenAt[row] = liveLastPhoneHome(world, row, at);
   }
 
+  const managed = world.forwarders?.clients[hostname(world, row)];
+  if (managed) {
+    const version = world.versions.indexOf(managed.version);
+    if (version >= 0) f.version[row] = version;
+  }
   f.health[row] = state;
   f.healthSince[row] = at;
 }

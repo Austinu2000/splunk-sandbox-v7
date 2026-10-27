@@ -10,6 +10,7 @@ const defaults: Record<string, Record<string, string>> = {
     run_collect: 'enabled',
     importRoles: 'power',
     indexes_edit: 'enabled',
+    edit_deployment_server:'enabled',
     edit_monitor: 'enabled',
     edit_indexer_cluster: 'enabled',
     edit_roles: 'enabled',

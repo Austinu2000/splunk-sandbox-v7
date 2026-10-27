@@ -83,7 +83,14 @@ export * from './training/lessons';
 export * from './training/lesson-setup';
 
 export * from './kvstore/engine';
-export { reloadAppConf, restartSplunk, runningConf } from './hosts/running';
+export {
+  reloadAppConf,
+  restartSplunk,
+  runningConf,
+  reloadDeployServer,
+  startSplunk,
+  stopSplunk,
+} from './hosts/running';
 
 export * from './engineering/migration';
 export * from './engineering/lesson-schema';
@@ -108,3 +115,11 @@ export { activateReportConf } from './hosts/running';
 export { recordSearchEvidence } from './engineering/search-evidence';
 export { legacyReceiptKey } from './engineering/reports';
 export { V7_STARTER_FILES, previewStarterPack, installStarterPack } from './ansible/starters';
+
+export * from './engineering/forwarders';
+
+export * from './engineering/deployment-admin';
+
+export * from './ansible/forwarder-starters';
+
+export * from './engineering/forwarder-tls';

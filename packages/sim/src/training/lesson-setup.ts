@@ -1,5 +1,5 @@
 import type { World } from '../world';
-import { codeCommit, reviewAction } from '../git/code';
+import { codeCommit, codeCommitFiles, reviewAction } from '../git/code';
 import { hostFs } from '../vfs/build';
 import { resolveHost } from '../hosts/profile';
 import { ROOT } from '../vfs/vfs';
@@ -53,6 +53,21 @@ export function setupLesson(world: World, setup: LessonSetup[]) {
         step.schedule.limit,
       );
   }
+  syncLessonWorkspaces(world);
+}
+/** An isolated source addition is one normal multi-file commit, without rewriting seed history. */
+export function seedRepositoryFiles(
+  world: World,
+  repo: string,
+  branch: string,
+  files: Record<string, string>,
+  title: string,
+) {
+  const commit = codeCommitFiles(world, repo, branch, files, title);
+  world.git!.repos[repo]!.branches.main = commit.id;
+  syncLessonWorkspaces(world);
+}
+function syncLessonWorkspaces(world: World) {
   // Local clones begin at the fixture's main revision, with feature branches available via fetch.
   for (const checkout of world.git!.checkouts) {
     const repo = world.git!.repos[checkout.repo]!;

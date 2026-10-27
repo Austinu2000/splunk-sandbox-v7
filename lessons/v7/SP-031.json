@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-031",
+  "version": 1,
+  "title": "Onboard and Troubleshoot Windows Event Logs",
+  "track": "Forwarders, Deployment Server, and Heavy Forwarders",
+  "objectives": [
+    "Onboard and Troubleshoot Windows Event Logs",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy"
+  ],
+  "fixture": {
+    "id": "sp-031-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "The AAA_v7_windows deployment app disables WinEventLog://Security. Use Forwarder Management Apps to load its local/inputs.conf and enable the channel while retaining index wineventlog, sourcetype v7_windows, renderXml=true and EventID blacklist 4662,5156. Publish and advance time. The fixture contains an explicit teaching queue of three XML events, including one denied event; this is not native Windows remote execution. Search for v7-win- and verify exactly two persisted records and their EventIDs.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration",
+      "label": "Security channel is active on the actual Windows client",
+      "host": "lab-win-0002",
+      "conf": "inputs",
+      "stanza": "WinEventLog://Security",
+      "key": "disabled",
+      "equals": "false",
+      "effective": true
+    },
+    {
+      "kind": "forwarder",
+      "label": "Verify actual forwarder lifecycle and delivery",
+      "host": "lab-win-0002",
+      "app": "AAA_v7_windows",
+      "active": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent search finds only the explicit teaching records",
+      "search": "index=wineventlog host=lab-win-0002 sourcetype=v7_windows \"v7-win-\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "2"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-win-0002"
+    },
+    {
+      "kind": "file",
+      "host": "ds01",
+      "path": "/opt/splunk/etc/deployment-apps/AAA_v7_windows/local/inputs.conf",
+      "text": "[WinEventLog://Security]\nindex=wineventlog\nsourcetype=v7_windows\nrenderXml=true\ndisabled=true\nblacklist=4662,5156\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "ds01",
+      "path": "/opt/splunk/etc/system/local/serverclass.conf",
+      "text": "[global]\nrestartSplunkd = false\n\n[serverClass:all_deploymentclient]\nwhitelist.0 = *\n\n[serverClass:all_deploymentclient:app:org_all_deploymentclient]\n\n[serverClass:lab_outputs]\nwhitelist.0 = lab-lnx-*\nwhitelist.1 = lab-win-*\n\n[serverClass:lab_outputs:app:org_lab_outputs]\nrestartSplunkd = true\n\n[serverClass:lab_hf_outputs]\n\n[serverClass:lab_hf_outputs:app:org_lab_hf_outputs]\nrestartSplunkd = true\n\n[serverClass:linux_servers]\nwhitelist.0 = lab-lnx-*\n\n[serverClass:linux_servers:app:org_linux_servers_inputs]\nrestartSplunkd = true\n\n[serverClass:win_servers]\nwhitelist.0 = lab-win-*\n\n[serverClass:win_servers:app:org_win_inputs]\nrestartSplunkd = true\n\n[serverClass:linux_all]\nwhitelist.0 = *-lnx-*\n\n[serverClass:linux_all:app:Splunk_TA_nix]\nrestartSplunkd = true\n\n[serverClass:v7_canary]\nwhitelist.0 = lab-win-0002\n\n[serverClass:v7_canary:app:AAA_v7_windows]\nrestartSplunkd = true\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "advance",
+      "ticks": 7,
+      "paused": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-win-0002",
+      "path": "/__teaching__/WinEventLog/Security.xml",
+      "text": "<Event><EventID>4624</EventID><Data>v7-win-4624</Data></Event>\n<Event><EventID>4625</EventID><Data>v7-win-4625</Data></Event>\n<Event><EventID>4662</EventID><Data>v7-win-4662</Data></Event>\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "How many teaching events remain after the EventID blacklist?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:SP-031:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:SP-031:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:SP-031:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:SP-031:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:SP-031:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:SP-031:isolation"
+    }
+  ]
+}

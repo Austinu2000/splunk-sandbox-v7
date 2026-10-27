@@ -1,3 +1,4 @@
+import { forwarderConnection } from './forwarder-tls';
 import type {
   InputCheckpoint,
   IngestionState,
@@ -13,7 +14,7 @@ import { hostFs } from '../vfs/build';
 import { activateInputConf, runningConf } from '../hosts/running';
 import { setting } from '../conf/merge';
 import { confBool } from '../conf/parse';
-import { hostOutputs, rowOutputs, targetStatus } from '../derive/state';
+import { hostOutputs, rowOutputs } from '../derive/state';
 import { ROOT } from '../vfs/vfs';
 import { globToRegExp } from '../vfs/path';
 import { patchConf } from '../scenario/engine';
@@ -36,7 +37,9 @@ export function deliveryPath(world: World, source: HostProfile) {
     if (host.role === 'indexer') return { receiver: host, parser: parser ?? host };
     if (host.role === 'heavy_forwarder') parser ??= host;
     const outputs = host.fleetRow === undefined ? hostOutputs(world, host) : rowOutputs(world, host.fleetRow);
-    const target = outputs.servers.map((s) => targetStatus(world, s)).find((s) => s.reachable && s.host);
+    const target = outputs.servers
+      .map((s) => forwarderConnection(world, host, s))
+      .find((s) => s.reachable && s.host);
     if (!target?.host) throw new OperationsError('No reachable receiver from outputs.conf');
     host = target.host;
   }
@@ -235,12 +238,15 @@ export function tickInputs(world: World) {
     const monitors = [...runningConf(world, host, 'inputs').stanzas]
       .filter(
         ([name, stanza]) =>
-          name.startsWith('monitor://') && !confBool(stanza.settings.get('disabled')?.value),
+          (name.startsWith('monitor://') || (host.os === 'windows' && name.startsWith('WinEventLog://'))) &&
+          !confBool(stanza.settings.get('disabled')?.value),
       )
       .sort(([a], [b]) => b.length - a.length);
     for (const [path, entry] of files.slice(0, 100)) {
       if (entry.kind !== 'file') continue;
       const selected = monitors.find(([name]) => {
+        if (name.startsWith('WinEventLog://'))
+          return path === '/__teaching__/WinEventLog/' + name.slice(14) + '.xml';
         const spec = name.slice(10).replaceAll('$SPLUNK_HOME', host.splunk!.home);
         return (
           path === spec || path.startsWith(spec.replace(/\/$/, '') + '/') || globToRegExp(spec).test(path)
@@ -251,7 +257,9 @@ export function tickInputs(world: World) {
         key = `${hostName}|${name}|${path}`;
       const state = ingestionState(world),
         index = stanza.settings.get('index')?.value ?? 'main',
-        sourcetype = stanza.settings.get('sourcetype')?.value ?? 'log';
+        sourcetype =
+          stanza.settings.get('sourcetype')?.value ??
+          (name.startsWith('WinEventLog://') ? 'XmlWinEventLog' : 'log');
       try {
         const text = hostFs(world, host).readFile(path, { user: 'splunk', groups: ['splunk'] });
         const previous = state.checkpoints[key];
@@ -266,11 +274,32 @@ export function tickInputs(world: World) {
         const whitelist = stanza.settings.get('whitelist')?.value,
           blacklist = stanza.settings.get('blacklist')?.value;
         if (
-          (whitelist && !new RegExp(whitelist).test(path)) ||
-          (blacklist && new RegExp(blacklist).test(path))
+          !name.startsWith('WinEventLog://') &&
+          ((whitelist && !new RegExp(whitelist).test(path)) ||
+            (blacklist && new RegExp(blacklist).test(path)))
         )
           continue;
-        const written = ingestText(world, hostName, path, sourcetype, index, text.slice(offset, end)).length;
+        let payload = text.slice(offset, end),
+          source = path;
+        if (name.startsWith('WinEventLog://')) {
+          if ([whitelist, blacklist].some((v) => v && !/^\d+(?:,\s*\d+)*$/.test(v)))
+            throw new OperationsError(
+              'Teaching Windows queue supports comma-separated EventID allow/deny lists',
+            );
+          const allow = whitelist?.split(',').map((s) => s.trim()),
+            deny = blacklist?.split(',').map((s) => s.trim());
+          payload = payload
+            .split('\n')
+            .filter((line) => {
+              if (!line.trim()) return false;
+              const id = /<EventID>(\d+)<\/EventID>/.exec(line)?.[1];
+              return id && (!allow || allow.includes(id)) && !deny?.includes(id);
+            })
+            .join('\n');
+          if (payload) payload += '\n';
+          source = 'WinEventLog:' + name.slice(14);
+        }
+        const written = payload ? ingestText(world, hostName, source, sourcetype, index, payload).length : 0;
         state.checkpoints[key] = { offset: end, prefixHash: hashString(text.slice(0, end)) };
         state.status[key] = {
           host: hostName,

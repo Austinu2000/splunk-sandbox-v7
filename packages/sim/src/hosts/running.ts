@@ -1,3 +1,4 @@
+import { deliverySignature, enableForwarderOperations, validateForwarderStart } from '../engineering/forwarders';
 import { infraName } from '../infra';
 import { op } from '../journal';
 import { loadConf, type ConfReader, type MergedConf } from '../conf/merge';
@@ -61,11 +62,11 @@ export function runningVfs(world: World, p: HostProfile): Vfs {
     p.fleetRow === undefined
       ? ''
       : `${world.fleet.assignedClass[p.fleetRow]}:${world.fleet.version[p.fleetRow]}`;
-  const key = `${world.hosts.confVersion}:${signature}`;
+  const key = `${world.hosts.confVersion}:${signature}:${deliverySignature(world, p, true)}`;
   const hit = perWorld.get(p.hostname);
   if (hit?.key === key) return hit.vfs;
   const snapshot = new Map(world.hosts.restartSnapshot.get(p.hostname) ?? []);
-  const vfs = new Vfs(buildHostTree(world, p, []), snapshot, () => world.clock.now);
+  const vfs = new Vfs(buildHostTree(world, p, [], true), snapshot, () => world.clock.now);
   perWorld.set(p.hostname, { key, vfs });
   return vfs;
 }
@@ -122,17 +123,18 @@ function snapshotOverlay(world: World, host: string, filter?: (path: string) => 
 /** Hooks run after a host's running state changes (the derivation layer registers here). */
 export const runtimeHooks: {
   changed: ((world: World, p: HostProfile) => void)[];
-  beforeChange: ((world: World, p: HostProfile) => void)[];
+  beforeChange: ((world: World, p: HostProfile, action: 'stop' | 'start' | 'reload') => void)[];
 } = { changed: [], beforeChange: [] };
 const notify = (world: World, p: HostProfile) => runtimeHooks.changed.forEach((h) => h(world, p));
-const announce = (world: World, p: HostProfile) => runtimeHooks.beforeChange.forEach((h) => h(world, p));
+const announce = (world: World, p: HostProfile, action: 'stop' | 'start' | 'reload') =>
+  runtimeHooks.beforeChange.forEach((h) => h(world, p, action));
 
 export function stopSplunk(world: World, p: HostProfile): void {
   op(world, { k: 'svc', host: p.hostname, op: 'stop' }, () => stop(world, p));
 }
 
 function stop(world: World, p: HostProfile): void {
-  announce(world, p);
+  announce(world, p, 'stop');
   const s = state(world, p.hostname);
   if (!s.running) return;
   s.running = false;
@@ -142,11 +144,16 @@ function stop(world: World, p: HostProfile): void {
 }
 
 export function startSplunk(world: World, p: HostProfile): void {
+  if (p.role === 'deployment_server' && !world.forwarders && world.journal.depth === 0)
+    enableForwarderOperations(world);
   op(world, { k: 'svc', host: p.hostname, op: 'start' }, () => start(world, p));
 }
 
 function start(world: World, p: HostProfile): void {
-  announce(world, p);
+  const client = world.forwarders?.clients[p.hostname];
+  if (client && (!client.installed || !client.licenseAccepted))
+    throw new Error('Install the forwarder and accept the training license flag before starting');
+  announce(world, p, 'start');
   const s = state(world, p.hostname);
   if (s.running) return;
   // Every start re-reads all config from disk.
@@ -159,6 +166,9 @@ function start(world: World, p: HostProfile): void {
 }
 
 export function restartSplunk(world: World, p: HostProfile): void {
+  if (p.role === 'deployment_server' && !world.forwarders && world.journal.depth === 0)
+    enableForwarderOperations(world);
+  validateForwarderStart(world, p);
   op(world, { k: 'svc', host: p.hostname, op: 'restart' }, () => {
     stop(world, p);
     start(world, p);
@@ -172,13 +182,15 @@ export function isDeploymentPath(p: HostProfile, path: string): boolean {
 }
 
 export function reloadDeployServer(world: World, p: HostProfile, cls?: string): void {
+  if (p.role === 'deployment_server' && !world.forwarders && world.journal.depth === 0)
+    enableForwarderOperations(world);
   op(world, { k: 'svc', host: p.hostname, op: 'reload', ...(cls !== undefined && { cls }) }, () =>
     reload(world, p, cls),
   );
 }
 
 function reload(world: World, p: HostProfile, cls?: string): void {
-  announce(world, p);
+  announce(world, p, 'reload');
   ensureFs(world, p);
   snapshotOverlay(world, p.hostname, (path) => isDeploymentPath(p, path));
   const event: ServiceEvent = { time: world.clock.now, kind: 'reload', detail: cls };
@@ -211,7 +223,7 @@ export function runningConfAt(world: World, p: HostProfile, conf: string, at: nu
   if (!merged) {
     merged = revision
       ? loadConf(
-          vfsReader(new Vfs(buildHostTree(world, p, []), revision.overlay, () => at)),
+          vfsReader(new Vfs(buildHostTree(world, p, [], true), revision.overlay, () => at)),
           p.splunk!.home,
           conf,
         )

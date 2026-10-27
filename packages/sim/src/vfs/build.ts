@@ -1,3 +1,4 @@
+import { deliveryApps, deliverySignature, UF_PACKAGES, packageFixture } from '../engineering/forwarders';
 import { shcDefault } from '../operations';
 import { infraName } from '../infra';
 import { journal } from '../journal';
@@ -96,7 +97,12 @@ export function registerBinaries(names: Binaries): void {
 }
 
 /** Builds the generated (pre-overlay) filesystem for a host. Pure: same world state and host give the same tree. */
-export function buildHostTree(world: World, p: HostProfile, binaries: Binaries = registeredBinaries): FsDir {
+export function buildHostTree(
+  world: World,
+  p: HostProfile,
+  binaries: Binaries = registeredBinaries,
+  running = false,
+): FsDir {
   const installTime = p.bootTime - (20 + (p.hash % 200)) * DAY;
   const b = new TreeBuilder(installTime);
   const at = (daysAgo: number, salt = 0) =>
@@ -189,12 +195,16 @@ export function buildHostTree(world: World, p: HostProfile, binaries: Binaries =
   const home = '/home/splunk';
   const own = { owner: 'splunk', group: 'splunk' };
   b.dir(home, { ...own, mode: 0o700 });
-  if (!p.splunk) {
+  if (p.role === 'universal_forwarder' && p.os === 'linux')
+    for (const [path, version] of Object.entries(UF_PACKAGES)) b.file(path, packageFixture(version));
+  if (!p.splunk || world.forwarders?.clients[p.hostname]?.installed === false) {
     // A decommissioned Splunk host: the OS and service account remain, the installation does not.
     b.file(`${home}/.bashrc`, '# .bashrc\n', own);
     b.file(
       `${home}/DECOMMISSIONED.txt`,
-      `${p.hostname} was removed from the indexer cluster on 2026-09-14 (CHG-48213).\nSplunk Enterprise was uninstalled; buckets were migrated to ${infraName(world, 'indexer', 1)}/${infraName(world, 'indexer', 2)}.\nThis machine is scheduled for reimage.\n`,
+      world.forwarders?.clients[p.hostname]?.installed === false
+        ? 'Universal Forwarder is not installed. Verified local teaching package fixtures are in /opt/staging.\n'
+        : `${p.hostname} was removed from the indexer cluster on 2026-09-14 (CHG-48213).\nSplunk Enterprise was uninstalled; buckets were migrated to ${infraName(world, 'indexer', 1)}/${infraName(world, 'indexer', 2)}.\nThis machine is scheduled for reimage.\n`,
       { ...own, mtime: at(39) },
     );
     return b.root;
@@ -272,11 +282,16 @@ export function buildHostTree(world: World, p: HostProfile, binaries: Binaries =
       own,
     );
   }
-  for (const app of deployedApps(world, p)) {
-    // Forwarders get each app as the deployment server currently serves it.
-    const files = deployedAppFiles(world, app);
-    if (files) addFiles(b, `${S}/etc/apps/${app}`, files, { ...own, mtime: at(12, app.length) });
-  }
+  const delivered = deliveryApps(world, p, running);
+  if (delivered)
+    for (const [app, files] of Object.entries(delivered))
+      addFiles(b, `${S}/etc/apps/${app}`, files, { ...own, mtime: world.clock.now });
+  else
+    for (const app of deployedApps(world, p)) {
+      // Forwarders get each app as the deployment server currently serves it.
+      const files = deployedAppFiles(world, app);
+      if (files) addFiles(b, `${S}/etc/apps/${app}`, files, { ...own, mtime: at(12, app.length) });
+    }
 
   if (world.config.profile && (p.role === 'deployer' || p.role === 'search_head'))
     b.file(
@@ -524,7 +539,7 @@ export function hostFs(world: World, p: HostProfile, binaries: Binaries = regist
   const signature =
     p.fleetRow === undefined
       ? `static:${world.git?.version ?? 0}`
-      : `${world.fleet.assignedClass[p.fleetRow]}:${world.fleet.version[p.fleetRow]}:${world.hosts.confVersion}`;
+      : `${world.fleet.assignedClass[p.fleetRow]}:${world.fleet.version[p.fleetRow]}:${world.hosts.confVersion}:${deliverySignature(world, p)}`;
   const hit = perWorld.get(p.hostname);
   if (hit && hit.signature === signature) return hit.vfs;
   let overlay = world.hosts.fsOverlay.get(p.hostname);

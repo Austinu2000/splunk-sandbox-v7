@@ -1,3 +1,5 @@
+import { forwarderConnection } from '../../engineering/forwarder-tls';
+import { acceptForwarderLicense, setForwarderBoot } from '../../engineering/forwarders';
 import { indexCli } from '../../engineering/index-commands';
 import { validateClusterIndexes } from '../../engineering/indexes';
 import { kvCli } from '../../kvstore/commands';
@@ -7,7 +9,7 @@ import { operationMetrics, applyShcBundle, runPlaybook } from '../../operations'
 import { checkConfs, formatIssue } from '../../conf/check';
 import { formatBtool, loadConf, setting } from '../../conf/merge';
 import { confBool } from '../../conf/parse';
-import { hostOutputs, rowOutputs, targetStatus } from '../../derive/state';
+import { hostOutputs, rowOutputs } from '../../derive/state';
 import { buildFor, splunkdRunning, splunkVersion, type HostProfile } from '../../hosts/profile';
 import {
   reloadDeployServer,
@@ -136,7 +138,7 @@ function listForwardServer(sh: Shell): CmdResult {
   const out = p.fleetRow !== undefined ? rowOutputs(sh.world, p.fleetRow) : hostOutputs(sh.world, p);
   const active: string[] = [];
   const inactive: string[] = [];
-  for (const s of out.servers) (targetStatus(sh.world, s).reachable ? active : inactive).push(s);
+  for (const s of out.servers) (forwarderConnection(sh.world, p, s).reachable ? active : inactive).push(s);
   const block = (items: string[]) => (items.length ? items.map((i) => `\t${i}`).join('\n') : '\tNone');
   return ok(`Active forwards:\n${block(active)}\nConfigured but inactive forwards:\n${block(inactive)}\n`);
 }
@@ -232,7 +234,11 @@ const BUNDLE_WARNING =
 function applyBundle(sh: Shell, args: string[]): CmdReturn {
   if (sh.host.role !== 'cluster_manager') return notManager();
   if (!splunkdRunning(sh.world, sh.host)) return notRunning();
-  try { validateClusterIndexes(managerBundle(sh.world,sh.host)); } catch(e) { return fail((e as Error).message); }
+  try {
+    validateClusterIndexes(managerBundle(sh.world, sh.host));
+  } catch (e) {
+    return fail((e as Error).message);
+  }
   if (args.includes('--answer-yes')) return ok(BUNDLE_WARNING + doApply(sh));
   // Interactive confirmation, like the real CLI.
   let host: ProgramHost;
@@ -286,11 +292,16 @@ function bundleStatus(sh: Shell): CmdResult {
 export const splunk: CommandFn = (ctx) => {
   const { sh, argv } = ctx;
   const p = sh.host;
-  if (!p.splunk) return fail(`bash: ${argv[0]}: command not found`, 127);
+  if (!p.splunk || sh.world.forwarders?.clients[p.hostname]?.installed === false)
+    return fail(`bash: ${argv[0]}: command not found`, 127);
   // $SPLUNK_HOME/bin/btool is a shortcut for `splunk btool`.
   if (/(^|\/)btool$/.test(argv[0]!)) return btool(sh, argv.slice(1));
   const [cmd, ...rest] = argv.slice(1);
-  if ((['add','edit','list'].includes(cmd ?? '') && rest[0] === 'index') || (cmd === 'validate' && rest[0] === 'cluster-bundle')) return indexCli(ctx);
+  if (
+    (['add', 'edit', 'list'].includes(cmd ?? '') && rest[0] === 'index') ||
+    (cmd === 'validate' && rest[0] === 'cluster-bundle')
+  )
+    return indexCli(ctx);
   if (
     (['show', 'resync', 'backup', 'restore'].includes(cmd ?? '') &&
       (rest[0] === 'kvstore' || rest[0] === 'kvstore-status')) ||
@@ -316,6 +327,16 @@ export const splunk: CommandFn = (ctx) => {
       );
     case 'enable':
     case 'disable': {
+      if (rest[0] === 'boot-start' && p.role === 'universal_forwarder') {
+        if (sh.user !== 'root') return fail('boot-start requires root');
+        try {
+          const user = rest.includes('-user') ? rest[rest.indexOf('-user') + 1] : 'splunk';
+          setForwarderBoot(sh.world, p.hostname, cmd === 'enable', user);
+          return ok('Virtual boot-start ' + (cmd === 'enable' ? 'enabled' : 'disabled') + ' for splunk\n');
+        } catch (e) {
+          return fail((e as Error).message);
+        }
+      }
       if (rest[0] !== 'maintenance-mode' || p.role !== 'cluster_manager')
         return fail('Maintenance mode is managed on the cluster manager');
       const path = `${p.splunk.home}/etc/system/local/server.conf`;
@@ -346,6 +367,8 @@ export const splunk: CommandFn = (ctx) => {
     case 'start':
     case 'stop':
     case 'restart':
+      if (cmd === 'start' && p.role === 'universal_forwarder' && rest.includes('--accept-license'))
+        acceptForwarderLicense(sh.world, p.hostname);
       return serviceAction(sh, cmd);
     case 'btool':
       return btool(sh, rest);

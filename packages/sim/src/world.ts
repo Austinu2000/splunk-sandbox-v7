@@ -21,6 +21,7 @@ import { hashString, Rng } from './rng';
 import { installLicenseHooks, recordLicense } from './ingest/license';
 import { tickInputs } from './engineering/ingestion';
 import { tickIndexLifecycle } from './engineering/lifecycle';
+import { installForwarderHooks, tickForwarders } from './engineering/forwarders';
 import { tickReports } from './engineering/reports';
 
 export interface WorldClock {
@@ -33,6 +34,7 @@ export interface WorldClock {
 }
 
 export interface World {
+  forwarders?: import('@sandbox/shared').ForwarderRuntime;
   searchEvidence?: import('@sandbox/shared').SearchEvidence[];
   reports?: import('@sandbox/shared').ReportRuntime;
   ingestion?: import('@sandbox/shared').IngestionState;
@@ -88,6 +90,7 @@ export interface HostRuntime {
 
 export function createWorld(overrides: Partial<WorldConfig> = {}): World {
   installLicenseHooks();
+  installForwarderHooks();
   const config = defaultWorldConfig(overrides);
   if (config.automationVersion === undefined && ['apl', 'lab'].includes(config.profileId))
     config.automationVersion = 1;
@@ -154,6 +157,7 @@ function tickOnce(world: World): void {
   tickSchedules(world);
   tickKv(world);
   tickTraining(world);
+  tickForwarders(world);
   tickInputs(world);
   tickIndexLifecycle(world);
   tickReports(world);

@@ -1,3 +1,4 @@
+import { SessionStore } from '../src/store';
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { createWorld, parseProfile, profileWorldConfig, saveWorld } from '@sandbox/sim';
@@ -7,7 +8,8 @@ describe('V7 automation writes', () => {
     const profile = parseProfile(
       readFileSync(new URL('../../../profiles/lab.yaml', import.meta.url), 'utf8'),
     );
-    const { app, live } = buildApp(createWorld(profileWorldConfig(profile)), { aiGrader: null });
+    const store = new SessionStore(':memory:');
+    const { app, live } = buildApp(createWorld(profileWorldConfig(profile)), { aiGrader: null, store });
     try {
       const view = (await app.inject('/api/automation')).json();
       const before = structuredClone(live.world.git!.repos);
@@ -67,6 +69,7 @@ describe('V7 automation writes', () => {
       expect(list.lessons.find((l: { id: string }) => l.id === 'AU-27').setup).toBeUndefined();
     } finally {
       await app.close();
+      store.close();
     }
   });
 });

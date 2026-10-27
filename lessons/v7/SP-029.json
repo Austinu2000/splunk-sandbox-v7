@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-029",
+  "version": 1,
+  "title": "Configure outputs.conf and Receiving Ports",
+  "track": "Forwarders, Deployment Server, and Heavy Forwarders",
+  "objectives": [
+    "Configure outputs.conf and Receiving Ports",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy"
+  ],
+  "fixture": {
+    "id": "sp-029-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "The canary points at hf01.corp.example:9998, which is not listening. Configure [splunktcp://9998] disabled = false on hf01 in /opt/splunk/etc/system/local/inputs.conf, preserve unrelated inputs and restart hf01. Verify the receiver port and the canary list forward-server. Advance the simulation, then search the explicit v7_forwarder records in os.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration",
+      "label": "Effective inputs: disabled = false",
+      "host": "hf01",
+      "conf": "inputs",
+      "stanza": "splunktcp://9998",
+      "key": "disabled",
+      "equals": "false",
+      "effective": true
+    },
+    {
+      "kind": "connection",
+      "label": "Actual virtual transport is reachable",
+      "host": "lab-lnx-0001",
+      "server": "hf01.corp.example:9998",
+      "reachable": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent search finds only the explicit teaching records",
+      "search": "index=os host=lab-lnx-0001 sourcetype=v7_forwarder \"v7-canary-\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "9998"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/var/log/practice/forwarder.log",
+      "text": "practice_id=v7-canary-001 status=200 service=ops\npractice_id=v7-canary-002 status=500 service=ops\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/forwarder.log]\nindex = os\nsourcetype = v7_forwarder\ndisabled = false\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/outputs.conf",
+      "text": "[tcpout]\ndefaultGroup = v7_receiver\n[tcpout:v7_receiver]\nserver = hf01.corp.example:9998\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which receiver port did you enable?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:SP-029:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:SP-029:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:SP-029:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:SP-029:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:SP-029:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:SP-029:isolation"
+    }
+  ]
+}

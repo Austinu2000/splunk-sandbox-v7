@@ -49,6 +49,15 @@ export function codeCommit(
   text: string,
   message: string,
 ) {
+  return codeCommitFiles(world, repoId, branch, { [path]: text }, message);
+}
+export function codeCommitFiles(
+  world: World,
+  repoId: string,
+  branch: string,
+  files: Record<string, string>,
+  message: string,
+) {
   const repo = world.git?.repos[repoId];
   if (!repo) throw new TrainingError('Choose Lab or APL for Code and Ansible');
   if (
@@ -58,17 +67,24 @@ export function codeCommit(
     branch.split('/').some((p) => ['constructor', 'prototype', '__proto__'].includes(p))
   )
     throw new TrainingError('Use a feature branch');
+  const entries = Object.entries(files);
   if (
-    !/^[\w./-]{1,250}$/.test(path) ||
-    path.split('/').some((p) => ['..', '.git', 'constructor', 'prototype', '__proto__'].includes(p)) ||
-    path.startsWith('/')
+    !entries.length ||
+    entries.length > 200 ||
+    entries.reduce((sum, [, text]) => sum + text.length, 0) > 2000000 ||
+    message.trim().length < 3
   )
-    throw new TrainingError('Invalid repository path');
-  if (text.length > 2000000 || message.trim().length < 3)
-    throw new TrainingError('Enter a commit message and bounded file content');
-  const parent = repo.branches[branch] ?? repo.branches.main!;
-  const tree: Tree = structuredClone(repo.commits[parent]!.tree);
-  tree[path] = { text, mode: 0o644 };
+    throw new TrainingError('Enter a commit message and 1–200 bounded source files');
+  for (const [path] of entries)
+    if (
+      !/^[\w./-]{1,250}$/.test(path) ||
+      path.split('/').some((p) => ['..', '.git', 'constructor', 'prototype', '__proto__'].includes(p)) ||
+      path.startsWith('/')
+    )
+      throw new TrainingError('Invalid repository path');
+  const parent = repo.branches[branch] ?? repo.branches.main!,
+    tree: Tree = structuredClone(repo.commits[parent]!.tree);
+  for (const [path, text] of entries) tree[path] = { text, mode: 0o644 };
   const commit = commitObject(
     repo,
     tree,

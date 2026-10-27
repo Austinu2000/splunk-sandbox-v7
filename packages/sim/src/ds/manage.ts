@@ -1,3 +1,5 @@
+import {deliveryApps} from '../engineering/forwarders';
+import {resolveHost} from '../hosts/profile';
 import type { DsAppDto, DsClientDto, DsOverviewDto, DsServerClassDto, PageDto } from '@sandbox/shared';
 import { appsFor, matchRules, type ServerclassRule } from '../derive/state';
 import { forwarderRecord, hostname, ipAddress } from '../fleet/query';
@@ -31,7 +33,7 @@ export function dsClient(world: World, row: number, rules = world.derived.rules)
     lastPhoneHome: rec.lastPhoneHome,
     health: rec.health,
     serverClasses: matchRules(rules, names).map((r) => r.name),
-    apps: appsFor(rules, names),
+    apps: world.forwarders?Object.keys(deliveryApps(world,resolveHost(world,rec.hostname)!)??{}):appsFor(rules, names),
   };
 }
 

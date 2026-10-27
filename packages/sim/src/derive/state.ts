@@ -1,3 +1,5 @@
+import {forwarderConnection} from '../engineering/forwarder-tls';
+import {deliveryConfForRow, clientAtRow} from '../engineering/forwarders';
 import { deploymentInterval, opSetting, operationMetrics } from '../operations';
 import { loadConf, mergeConf, setting, type ConfSource, type MergedConf } from '../conf/merge';
 import { confBool } from '../conf/parse';
@@ -308,7 +310,9 @@ export function refreshReachability(world: World): void {
   });
 }
 
+const catalogOutputCache=new WeakMap<MergedConf,OutputsConfig>();
 export function rowOutputsIndex(world: World, row: number): number {
+  if(world.forwarders){const conf=world.derived.rowLocal.has(row)?runningConf(world,resolveHost(world,fleetHostname(world,row))!,'outputs'):deliveryConfForRow(world,row,'outputs');if(conf){let value=catalogOutputCache.get(conf);if(!value){value=outputsFromMerged(conf);catalogOutputCache.set(conf,value);}const count=world.derived.outputs.length,id=internOutputs(world.derived,value);if(world.derived.outputs.length!==count)refreshReachability(world);return id;}}
   return world.derived.rowLocal.get(row) ?? world.derived.rowOutputs[row]!;
 }
 
@@ -321,12 +325,13 @@ interface Constraint {
   assigned?: number;
 }
 
-const pressureCache = new WeakMap<World, { version: number; storm: boolean; tls: boolean }>();
+const pressureCache = new WeakMap<World, { version: number; storm: boolean; tls: boolean; deploymentStopped: boolean }>();
 function profilePressure(world: World) {
   let cached = pressureCache.get(world);
   if (!cached || cached.version !== world.hosts.confVersion) {
     cached = {
       version: world.hosts.confVersion,
+      deploymentStopped: world.hosts.services.get(deploymentServer(world).hostname)?.running === false,
       storm: deploymentInterval(world) < 60,
       tls: world.infra.some(
         (n) =>
@@ -350,16 +355,22 @@ function constraintFor(world: World, row: number): Constraint | null {
   const d = world.derived;
   if (world.config.permanentOfflineRows?.includes(row)) return { state: OFFLINE };
   if (d.stopped.has(row)) return { state: OFFLINE };
+  const managed=world.forwarders ? clientAtRow(world,row) : undefined;
+  if(managed?.installed===false)return {state:OFFLINE};
+  if(managed?.error)return {state:STALE};
+  if(world.forwarders&&profilePressure(world).deploymentStopped)return {state:STALE};
   if (world.config.profile) {
     const pressure = profilePressure(world);
     if (pressure.storm || (pressure.tls && world.fleet.version[row]! >= 2)) return { state: STALE };
   }
-  if (!d.outputsOk[rowOutputsIndex(world, row)]) return { state: BLOCKED };
+  if(managed){const p=resolveHost(world,fleetHostname(world,row))!;if(!rowOutputs(world,row).servers.some((server)=>forwarderConnection(world,p,server).reachable))return {state:BLOCKED};}
+  const outputIndex = rowOutputsIndex(world, row);
+  if (!d.outputsOk[outputIndex]) return { state: BLOCKED };
   // Backpressure from a saturated receiver can fill its upstream output group.
-  if (d.outputsBlocked[rowOutputsIndex(world, row)]) return { state: BLOCKED };
+  if (d.outputsBlocked[outputIndex]) return { state: BLOCKED };
   if (d.rowClass[row] !== world.fleet.serverClass[row])
     return { state: WRONG_CLASS, assigned: d.rowClass[row] };
-  return null;
+  return managed?{state:HEALTHY}:null;
 }
 
 export function applyRow(world: World, row: number, rng: Rng, at: number): void {

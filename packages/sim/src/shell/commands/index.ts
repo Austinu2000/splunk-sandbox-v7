@@ -1,3 +1,4 @@
+import { rpm } from './packages';
 import { kvCurl } from '../../kvstore/commands';
 import { vaultCommand } from '../../ansible/vault';
 import {
@@ -35,6 +36,7 @@ export const COMMANDS: Record<string, CommandFn> = {
   ...TEXT_COMMANDS,
   ...SYSTEM_COMMANDS,
   curl: kvCurl,
+  rpm,
   git: gitCommand,
   'ansible-playbook': ansiblePlaybook,
   'ansible-inventory': ansibleInventory,

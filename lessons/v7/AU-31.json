@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-31",
+  "version": 1,
+  "title": "Automate Deployment-App Publication on the DS",
+  "track": "Forwarder automation",
+  "objectives": [
+    "Automate Deployment-App Publication on the DS",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy",
+    "ansible.execute"
+  ],
+  "fixture": {
+    "id": "au-31-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "Inspect the canary role and apply playbooks/v7_deployment_app.yml limited to ds01. It stages a monitored-input app and adds a narrow class without replacing unrelated classes, then reloads only the Deployment Server. Advance time and verify lab-lnx-0001 downloaded/activated the app and ingested both explicit records. Run the same source again to demonstrate idempotency.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Verified scoped execution of playbooks/v7_deployment_app.yml",
+      "path": "playbooks/v7_deployment_app.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "ds01"
+      ],
+      "maximumChanges": 0,
+      "afterApply": true,
+      "currentSource": true
+    },
+    {
+      "kind": "forwarder",
+      "label": "Verify actual forwarder lifecycle and delivery",
+      "host": "lab-lnx-0001",
+      "app": "v7_forwarder",
+      "minimumCatalog": 1,
+      "active": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent search finds only the explicit teaching records",
+      "search": "index=os host=lab-lnx-0001 sourcetype=v7_forwarder \"v7-canary-\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "ds01"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/var/log/practice/forwarder.log",
+      "text": "practice_id=v7-canary-001 status=200 service=ops\npractice_id=v7-canary-002 status=500 service=ops\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "forwarder-starters"
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which host publishes the deployment app?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:AU-31:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:AU-31:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:AU-31:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:AU-31:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:AU-31:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:AU-31:isolation"
+    }
+  ]
+}

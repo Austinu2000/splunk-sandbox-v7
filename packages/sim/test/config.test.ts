@@ -237,7 +237,16 @@ describe('config drives the fleet', () => {
     settle(world);
     const ash = summarizeFleet(world, { site: 'ash' });
     const relays = summarizeFleet(world, { site: 'ash', serverClass: 'syslog_relay' }).total;
-    expect(ash.byHealth.blocked_queue).toBe(ash.total - relays);
+    // A published package reaches clients only after a successful phone-home.
+    // Offline/stale clients retain their prior outputs instead of magically updating.
+    const eligible = Array.from({ length: world.fleet.size }, (_, row) => row).filter(
+      (row) =>
+        world.config.sites[world.fleet.site[row]!]!.id === 'ash' &&
+        world.config.serverClasses[world.fleet.serverClass[row]!]!.id !== 'syslog_relay' &&
+        ![1, 3].includes(world.fleet.health[row]!),
+    ).length;
+    expect(ash.byHealth.blocked_queue).toBe(eligible);
+    expect(eligible).toBeLessThanOrEqual(ash.total - relays);
 
     const fwd = testTerm(world);
     fwd.run('ssh splunk@ash-app-0001');

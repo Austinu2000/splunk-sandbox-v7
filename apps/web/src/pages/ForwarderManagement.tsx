@@ -1,3 +1,4 @@
+import { DeploymentEditor, ForwarderOperations } from './ForwarderOperations';
 import { useState } from 'react';
 import { HEALTH_LABELS } from '@sandbox/shared';
 import { api } from '../api';
@@ -24,6 +25,7 @@ function Clients({
   setServerClass: (s: string) => void;
   classes: string[];
 }) {
+  const [selected, setSelected] = useState('');
   const [q, setQ] = useState('');
   const [offset, setOffset] = useState(0);
   const filter = serverClass === '(none)' ? { unmatched: true } : { serverClass: serverClass || undefined };
@@ -67,6 +69,7 @@ function Clients({
           }}
         />
       </div>
+      {selected && <ForwarderOperations key={selected} host={selected} />}
       {page.error && <div className="error">Could not load clients: {page.error}</div>}
       {p && (
         <>
@@ -109,7 +112,9 @@ function Clients({
                   <tr key={c.hostname}>
                     <td title={HEALTH_LABELS[c.health]}>
                       <span className="dot" style={{ background: HEALTH_COLORS[c.health] }} />
-                      {c.hostname}
+                      <button className="link-btn" onClick={() => setSelected(c.hostname)}>
+                        {c.hostname}
+                      </button>
                     </td>
                     <td className="mono">{c.ip}</td>
                     <td>{c.os}</td>
@@ -193,6 +198,7 @@ export function ForwarderManagement({ tab, now }: { tab: DsTab; now: number }) {
           classes={o.serverClasses.map((c) => c.name)}
         />
       )}
+      {(tab === 'apps' || tab === 'serverclasses') && <DeploymentEditor key={tab} mode={tab} />}
       {tab === 'serverclasses' && o && (
         <section className="panel">
           <div className="table-scroll">
@@ -254,7 +260,7 @@ export function ForwarderManagement({ tab, now }: { tab: DsTab; now: number }) {
                           Changed on disk; reload pending
                         </span>
                       ) : (
-                        'Deployed'
+                        'Published by DS; client delivery may be pending'
                       )}
                     </td>
                   </tr>

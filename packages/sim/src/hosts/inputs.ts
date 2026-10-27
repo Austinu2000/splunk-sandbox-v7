@@ -1,3 +1,4 @@
+import { deliveryConfForRow } from '../engineering/forwarders';
 import { streamState } from '../operations';
 import { mergeConf, type ConfSource, type MergedConf } from '../conf/merge';
 import { confBool } from '../conf/parse';
@@ -106,6 +107,10 @@ const cache = new WeakMap<World, Map<string, MergedConf>>();
 function effectiveInputs(world: World, p: HostProfile): MergedConf {
   // Hosts the user restarted have their own running config (local overrides included).
   if (world.hosts.restartSnapshot.has(p.hostname)) return runningConf(world, p, 'inputs');
+  if (world.forwarders && p.fleetRow !== undefined) {
+    const delivered = deliveryConfForRow(world, p.fleetRow, 'inputs');
+    if (delivered) return delivered;
+  }
   const apps = deployedApps(world, p);
   const key = `${apps.join(',')}|${world.hosts.confVersion}`;
   let perWorld = cache.get(world);

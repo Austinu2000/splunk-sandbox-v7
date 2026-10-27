@@ -234,7 +234,7 @@ function buildProfile(world: World, name: string): HostProfile | null {
 
 /** Whether splunkd is running on the host right now (from fleet health or infra status). */
 export function splunkdRunning(world: World, p: HostProfile): boolean {
-  if (!p.splunk) return false;
+  if (!p.splunk || world.forwarders?.clients[p.hostname]?.installed === false) return false;
   if (world.hosts.services.get(p.hostname)?.running === false) return false;
   if (p.fleetRow !== undefined) return world.fleet.health[p.fleetRow] !== OFFLINE;
   return p.infra?.status === 'up';
@@ -242,7 +242,8 @@ export function splunkdRunning(world: World, p: HostProfile): boolean {
 
 /** The version actually installed now. Fleet versions change with version drift, so this is not cached. */
 export function splunkVersion(world: World, p: HostProfile): string | null {
-  if (!p.splunk) return null;
+  if (!p.splunk || world.forwarders?.clients[p.hostname]?.installed === false) return null;
+  if (world.forwarders?.clients[p.hostname]) return world.forwarders.clients[p.hostname]!.version;
   if (p.fleetRow !== undefined) return world.versions[world.fleet.version[p.fleetRow]!]!;
   return ENTERPRISE_VERSION;
 }

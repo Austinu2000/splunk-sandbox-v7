@@ -80,6 +80,26 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('forwarder'),
+      label: text,
+      host: text,
+      installed: z.boolean().optional(),
+      version: text.optional(),
+      running: z.boolean().optional(),
+      bootStart: z.boolean().optional(),
+      app: text.optional(),
+      active: z.boolean().optional(),
+      minimumCatalog: z.number().int().min(0).optional(),
+      phoneHome: z.boolean().optional(),
+      change: text.optional(),
+    })
+    .strict(),
+  z
+    .object({ kind: z.literal('connection'), label: text, host: text, server: text, reachable: z.boolean() })
+    .strict(),
+
+  z
+    .object({
       kind: z.literal('file-state'),
       label: text,
       host: text,
@@ -291,6 +311,30 @@ export const engineeringLessonSchema = z
     setup: z
       .array(
         z.discriminatedUnion('kind', [
+          z
+            .object({
+              kind: z.literal('repository-source'),
+              repo: text,
+              path: text,
+              text: z.string().max(2000000),
+              branch: text,
+              title: text,
+              baseline: z.boolean().optional(),
+              review: z.enum(['open', 'merged', 'deployed']).optional(),
+            })
+            .strict(),
+          z.object({ kind: z.literal('forwarder-starters') }).strict(),
+          z.object({ kind: z.literal('deployment-model') }).strict(),
+          z
+            .object({
+              kind: z.literal('forwarder'),
+              host: text,
+              installed: z.boolean().optional(),
+              version: text.optional(),
+              licenseAccepted: z.boolean().optional(),
+              bootStart: z.boolean().optional(),
+            })
+            .strict(),
           z.object({ kind: z.literal('automation-starters') }).strict(),
           z
             .object({

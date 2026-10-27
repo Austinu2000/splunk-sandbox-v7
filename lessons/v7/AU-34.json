@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-34",
+  "version": 1,
+  "title": "Preview and Execute an Idempotent Canary Upgrade",
+  "track": "Forwarder automation",
+  "objectives": [
+    "Preview and Execute an Idempotent Canary Upgrade",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy",
+    "ansible.execute"
+  ],
+  "fixture": {
+    "id": "au-34-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "Inspect playbooks/v7_uf_upgrade.yml. Its read-only URI preflight validates the actual running version even in check mode. Preview with --check --diff --limit lab-lnx-0001, then apply. Verify stop/package/start ordering and unchanged configuration. Repeat the same committed or working source and require changed=0. Do not broaden the target beyond this canary.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Verified scoped execution of playbooks/v7_uf_upgrade.yml",
+      "path": "playbooks/v7_uf_upgrade.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "lab-lnx-0001"
+      ],
+      "maximumChanges": 0,
+      "afterApply": true,
+      "currentSource": true
+    },
+    {
+      "kind": "forwarder",
+      "label": "Verify actual forwarder lifecycle and delivery",
+      "host": "lab-lnx-0001",
+      "version": "9.4.1",
+      "running": true,
+      "change": "package-upgrade"
+    },
+    {
+      "kind": "file-state",
+      "label": "Canary configuration retained",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/inputs.conf",
+      "exists": true,
+      "contains": "preserve-v7-upgrade"
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "0"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "forwarder-starters"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001",
+      "version": "9.3.2"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/inputs.conf",
+      "text": "[default]\n# preserve-v7-upgrade\nhost=lab-lnx-0001\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "How many changes did the final replay make?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:AU-34:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:AU-34:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:AU-34:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:AU-34:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:AU-34:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:AU-34:isolation"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-027",
+  "version": 1,
+  "title": "Configure deploymentclient.conf",
+  "track": "Forwarders, Deployment Server, and Heavy Forwarders",
+  "objectives": [
+    "Configure deploymentclient.conf",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy"
+  ],
+  "fixture": {
+    "id": "sp-027-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "The canary targets an unknown server. On lab-lnx-0001 repair /opt/splunkforwarder/etc/system/local/deploymentclient.conf to [target-broker:deploymentServer] targetUri = ds01.corp.example:8089 and [deployment-client] phoneHomeIntervalInSecs = 60. Restart, inspect btool deploymentclient and show deploy-poll, then advance the simulation and inspect the actual phone-home time.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration",
+      "label": "Effective deploymentclient: targetUri = ds01.corp.example:8089",
+      "host": "lab-lnx-0001",
+      "conf": "deploymentclient",
+      "stanza": "target-broker:deploymentServer",
+      "key": "targetUri",
+      "equals": "ds01.corp.example:8089",
+      "effective": true
+    },
+    {
+      "kind": "forwarder",
+      "label": "Verify actual forwarder lifecycle and delivery",
+      "host": "lab-lnx-0001",
+      "phoneHome": true
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "8089"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/deploymentclient.conf",
+      "text": "[deployment-client]\nphoneHomeIntervalInSecs=60\n[target-broker:deploymentServer]\ntargetUri=missing-host:8089\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which port is used for Deployment Server management?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:SP-027:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:SP-027:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:SP-027:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:SP-027:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:SP-027:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:SP-027:isolation"
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-034",
+  "version": 1,
+  "title": "Troubleshoot Forwarder TLS and Certificate Failures",
+  "track": "Forwarders, Deployment Server, and Heavy Forwarders",
+  "objectives": [
+    "Troubleshoot Forwarder TLS and Certificate Failures",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy"
+  ],
+  "fixture": {
+    "id": "sp-034-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "The encrypted receiving port is available, but the canary trusts the wrong CA. Inspect the explicit teaching certificate/CA metadata and outputs.conf. Replace its CA file using /opt/staging/v7-correct-ca.pem, keep sslVerifyServerCert=true and sslCommonNameToCheck=idx01.corp.example, restart the canary and verify list forward-server. Advance time and query the two canary records. Certificate relationships are simulated metadata checks; no real PEM cryptography is performed. Disabling verification must not pass.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "connection",
+      "label": "Actual virtual transport is reachable",
+      "host": "lab-lnx-0001",
+      "server": "idx01.corp.example:9998",
+      "reachable": true
+    },
+    {
+      "kind": "configuration",
+      "label": "Effective outputs: sslVerifyServerCert = true",
+      "host": "lab-lnx-0001",
+      "conf": "outputs",
+      "stanza": "tcpout:v7_receiver",
+      "key": "sslVerifyServerCert",
+      "equals": "true",
+      "effective": true
+    },
+    {
+      "kind": "configuration",
+      "label": "Effective outputs: sslCommonNameToCheck = idx01.corp.example",
+      "host": "lab-lnx-0001",
+      "conf": "outputs",
+      "stanza": "tcpout:v7_receiver",
+      "key": "sslCommonNameToCheck",
+      "equals": "idx01.corp.example",
+      "effective": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent search finds only the explicit teaching records",
+      "search": "index=os host=lab-lnx-0001 sourcetype=v7_forwarder \"v7-canary-\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "sslVerifyServerCert"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/var/log/practice/forwarder.log",
+      "text": "practice_id=v7-canary-001 status=200 service=ops\npractice_id=v7-canary-002 status=500 service=ops\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/forwarder.log]\nindex = os\nsourcetype = v7_forwarder\ndisabled = false\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/auth/v7/ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"wrong-ca\"}\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/staging/v7-correct-ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"training-ca\"}\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/auth/v7/server.pem",
+      "text": "{\"format\":\"sandbox-certificate-v1\",\"commonName\":\"idx01.corp.example\",\"issuer\":\"training-ca\",\"notAfter\":1824249600000}\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[splunktcp-ssl://9998]\ndisabled=false\n[SSL]\nserverCert=/opt/splunk/etc/auth/v7/server.pem\nsslVersions=tls1.2\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/outputs.conf",
+      "text": "[tcpout]\ndefaultGroup = v7_receiver\n[tcpout:v7_receiver]\nserver = idx01.corp.example:9998\nuseSSL=true\nsslVerifyServerCert=true\nsslRootCAPath=/opt/splunkforwarder/etc/auth/v7/ca.pem\nsslCommonNameToCheck=idx01.corp.example\nsslVersions=tls1.2\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which verification flag must remain enabled?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:SP-034:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:SP-034:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:SP-034:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:SP-034:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:SP-034:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:SP-034:isolation"
+    }
+  ]
+}

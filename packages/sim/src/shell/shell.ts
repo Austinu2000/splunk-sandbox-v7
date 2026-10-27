@@ -1,3 +1,4 @@
+import { hostFs } from '../vfs/build';
 import type { HostProfile } from '../hosts/profile';
 import { mix32 } from '../rng';
 import { resolvePath } from '../vfs/path';
@@ -19,6 +20,10 @@ export type ShellKind = 'bastion' | 'ssh' | 'sudo' | 'su' | 'oneshot';
  * (bastion → ssh → sudo -i ...). Everything here is in-memory state; nothing touches the real machine.
  */
 export class Shell {
+  private readonly liveFs: boolean;
+  get fs(): Vfs {
+    return this.liveFs ? hostFs(this.world, this.host) : this.baseFs;
+  }
   cwd: string;
   prevCwd: string | null = null;
   readonly env = new Map<string, string>();
@@ -32,12 +37,13 @@ export class Shell {
   constructor(
     readonly world: World,
     readonly host: HostProfile,
-    readonly fs: Vfs,
+    private readonly baseFs: Vfs,
     readonly cred: Cred,
     readonly kind: ShellKind,
     readonly parent: Shell | null,
-    opts: { cwd?: string; inheritEnv?: Shell } = {},
+    opts: { cwd?: string; inheritEnv?: Shell; liveFs?: boolean } = {},
   ) {
+    this.liveFs = opts.liveFs ?? false;
     this.cwd = opts.cwd ?? (this.fs.exists(this.home) ? this.home : '/');
     this.pid = 3000 + (mix32(host.hash, depth(parent), 0x5e11) % 60000);
     const user = cred.user;
@@ -82,6 +88,7 @@ export class Shell {
     const sh = new Shell(this.world, this.host, this.fs, cred, 'oneshot', this, {
       cwd: this.cwd,
       inheritEnv: this,
+      liveFs: this.liveFs,
     });
     sh.env.set('PATH', cred.user === 'root' ? '/sbin:/bin:/usr/sbin:/usr/bin' : this.env.get('PATH')!);
     return sh;

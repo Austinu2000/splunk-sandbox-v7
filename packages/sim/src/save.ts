@@ -1,3 +1,4 @@
+import { applyForwarderState } from './engineering/forwarders';
 import { thawPracticeBucket } from './engineering/lifecycle';
 import { applyGitPatches } from './git/journal';
 import { initGit } from './git/state';
@@ -42,10 +43,10 @@ import { createWorld, setClock, tickWorld, type World } from './world';
  * of user changes; loading creates a fresh world from the seed and replays the journal tick by
  * tick, so the result is the same world, not an approximation of it.
  */
-export const SAVE_VERSION = 6;
+export const SAVE_VERSION = 7;
 
 export interface SavedWorld {
-  version: 1 | 2 | 3 | 4 | 5 | typeof SAVE_VERSION;
+  version: 1 | 2 | 3 | 4 | 5 | 6 | typeof SAVE_VERSION;
   lesson?: World['lesson'];
   profileId?: string;
   config?: WorldConfig;
@@ -84,6 +85,9 @@ function host(world: World, name: string) {
 
 function apply(world: World, m: Mutation): void {
   switch (m.k) {
+    case 'forwarders.state':
+      applyForwarderState(world, m.state);
+      return;
     case 'search.evidence':
       world.searchEvidence = structuredClone(m.records);
       return;
@@ -184,6 +188,7 @@ export function loadWorld(
     saved.version !== 3 &&
     saved.version !== 4 &&
     saved.version !== 5 &&
+    saved.version !== 6 &&
     saved.version !== SAVE_VERSION
   )
     throw new SaveError(`Unsupported save version ${saved.version}`);

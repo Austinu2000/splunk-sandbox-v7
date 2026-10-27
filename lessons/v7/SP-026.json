@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-026",
+  "version": 1,
+  "title": "Install and Verify a Universal Forwarder",
+  "track": "Forwarders, Deployment Server, and Heavy Forwarders",
+  "objectives": [
+    "Install and Verify a Universal Forwarder",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy"
+  ],
+  "fixture": {
+    "id": "sp-026-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "On lab-lnx-0001 inspect rpm -q splunkforwarder and rpm -K /opt/staging/splunkforwarder-9.4.1-simulated.x86_64.rpm. Install with sudo rpm -ivh PACKAGE, start /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --no-prompt, and enable boot-start as splunk. Forwarder Management client controls offer the same teaching workflow. Verify version, owner and running service independently. These are virtual teaching artifacts, not vendor-signed RPM binaries.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "forwarder",
+      "label": "Verify actual forwarder lifecycle and delivery",
+      "host": "lab-lnx-0001",
+      "installed": true,
+      "version": "9.4.1",
+      "running": true,
+      "bootStart": true,
+      "change": "package-install"
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "9.4.1"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001",
+      "installed": false,
+      "version": "9.3.2",
+      "licenseAccepted": false,
+      "bootStart": false
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which package version is installed and running?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:SP-026:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:SP-026:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:SP-026:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:SP-026:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:SP-026:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:SP-026:isolation"
+    }
+  ]
+}

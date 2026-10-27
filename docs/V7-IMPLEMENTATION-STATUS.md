@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 5 and subsequent gates
+## Current work: Milestone 6 and subsequent gates
 
 Implemented:
 
@@ -53,8 +53,8 @@ implemented work is listed below. The full expansion remains incomplete.
 | 2 | Implemented | Indexes/data onboarding; SP-007–025 |
 | 3 | Implemented within documented scope | Reports/searches/summary indexing; SP-035–046 |
 | 4 | Implemented within documented scope | Playbooks/Git; AU-15–27 |
-| 5 | In progress | Forwarders/DS; AU-28–35 and SP-026–034 |
-| 6 | Planned | Dashboards/alerts; SP-047–054 |
+| 5 | Implemented within documented scope | Forwarders/DS; AU-28–35 and SP-026–034 |
+| 6 | In progress | Dashboards/alerts; SP-047–054 |
 | 7 | Planned | Clustering/KV; AU-36–43 and SP-055–068 |
 | 8 | Planned | Monitoring/security/integrations; SP-069–088 |
 | 9 | Planned | Upgrades/recovery; AU-44–50 and SP-089–092 |
@@ -151,3 +151,22 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
   and completed. [Scope and limits](V7-ANSIBLE-AND-CHANGE-MANAGEMENT.md).
 - Continuing into forwarder lifecycle and Deployment Server work without an
   approval pause, as authorized. The full expansion remains incomplete.
+
+## Forwarder and Deployment Server implementation
+
+- AU-28–AU-35 and SP-026–SP-034 are executable: **81 new / 108 total lessons**.
+- Package/version/service state, staged DS apps, publication, phone-home, download
+  and activation now share actual configuration across Web, CLI and automation.
+  Windows teaching records and certificate relationships have bounded functional
+  behavior documented in [scope and limits](V7-FORWARDER-OPERATIONS.md).
+- Full regression: **822 tests / 49 files pass**. Fleet comparisons are cached,
+  and test concurrency is bounded to three workers to keep CPU time budgets
+  meaningful on a local workstation. Assertions and search budgets remain intact.
+- Browser SP-028 verified publication, delayed client delivery, selected-client
+  activation, an unchanged nonselected client and two actual searchable canary
+  records. Proof: [delivery](v7-forwarder-delivery.png), [search](v7-forwarder-search.png).
+- TypeScript, ESLint and the production web build pass; the existing bundle-size
+  advisory remains.
+- A failed oversized catalog is rejected before a restart stops the healthy DS.
+- Continuing directly into canonical dashboard views and result-driven alerts.
+  The complete V7 expansion remains unfinished.

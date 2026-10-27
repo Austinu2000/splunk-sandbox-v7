@@ -97,8 +97,8 @@ describe('V7 lossless migration preflight', () => {
     };
     world.lesson = { id: 'A1', learner: 'Learner', startedTick: 0, hints: 1, notes: 'attempt note' };
     const before = saveWorld(world);
-    expect(before.version).toBe(6);
-    const loaded = loadWorld({...before, version:5}, []);
+    expect(before.version).toBe(7);
+    const loaded = loadWorld({ ...before, version: 5 }, []);
     planLegacyImport(loaded.config.profileId, loaded.uiState);
     expect(saveWorld(loaded)).toEqual(before);
     loaded.uiState.notes = 'attempt changed';

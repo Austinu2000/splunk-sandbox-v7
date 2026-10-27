@@ -313,21 +313,21 @@
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-027",
-      "title": "Configure `deploymentclient.conf`",
+      "title": "Configure deploymentclient.conf",
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-028",
@@ -335,32 +335,32 @@
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-029",
-      "title": "Configure `outputs.conf` and Receiving Ports",
+      "title": "Configure outputs.conf and Receiving Ports",
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-030",
-      "title": "Understand Heavy Forwarder Deployment and Routing",
+      "title": "Heavy Forwarder Routing on the Parsing Tier",
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-031",
@@ -368,10 +368,10 @@
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-032",
@@ -379,10 +379,10 @@
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-033",
@@ -390,21 +390,21 @@
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-034",
-      "title": "Troubleshoot Forwarder TLS, Certificates, and Connection Failures",
+      "title": "Troubleshoot Forwarder TLS and Certificate Failures",
       "track": "Forwarders, Deployment Server, and Heavy Forwarders",
       "trackNumber": 4,
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-035",
@@ -1419,81 +1419,89 @@
       "id": "AU-28",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Automate a Verified Canary Forwarder Installation"
     },
     {
       "id": "AU-29",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Automate Deployment-Client Bootstrap"
     },
     {
       "id": "AU-30",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Automate Scoped Forwarding Outputs"
     },
     {
       "id": "AU-31",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Automate Deployment-App Publication on the DS"
     },
     {
       "id": "AU-32",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Automate Heavy Forwarder Parsing-Tier Routing"
     },
     {
       "id": "AU-33",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Automate Windows Event-Log Configuration through the DS"
     },
     {
       "id": "AU-34",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Preview and Execute an Idempotent Canary Upgrade"
     },
     {
       "id": "AU-35",
       "track": "Forwarder automation",
       "milestone": 5,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true,
+      "title": "Roll Back a Forwarder App through Reviewed Git History"
     },
     {
       "id": "AU-36",

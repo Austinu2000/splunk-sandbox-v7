@@ -1,0 +1,52 @@
+.forwarder-operations {
+  color: var(--text);
+  background: var(--panel);
+  padding: 18px;
+  margin: 12px 0;
+  border: 1px solid var(--border);
+}
+.forwarder-operations p {
+  line-height: 1.5;
+}
+.forwarder-operations .v5-toolbar {
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+.forwarder-operations label {
+  display: block;
+  line-height: 1.6;
+}
+.forwarder-operations input,
+.forwarder-operations textarea,
+.forwarder-operations select {
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 7px;
+}
+.forwarder-operations textarea {
+  display: block;
+  width: 100%;
+  font-family: Menlo, monospace;
+}
+.forwarder-operations button {
+  color: var(--text);
+  background: var(--row-alt);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.forwarder-operations button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.forwarder-operations .v5-actions {
+  margin: 12px 0;
+}
+.forwarder-operations pre {
+  overflow: auto;
+  max-height: 360px;
+}

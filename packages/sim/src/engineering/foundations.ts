@@ -1,3 +1,6 @@
+import { V7_FORWARDER_STARTER_FILES, V7_FORWARDER_CONNECTION_FILES } from '../ansible/forwarder-starters';
+import { enableForwarderOperations, setForwarderFixture, forwarderDetail } from './forwarders';
+import { forwarderConnection } from './forwarder-tls';
 import type { World } from '../world';
 import { resolveHost } from '../hosts/profile';
 import { hostFs } from '../vfs/build';
@@ -13,7 +16,7 @@ import { indexBuckets } from './lifecycle';
 import { listReports } from './reports';
 import { tickWorld, setClock } from '../world';
 import { V7_STARTER_FILES } from '../ansible/starters';
-import { setupLesson } from '../training/lesson-setup';
+import { setupLesson, seedRepositoryFiles } from '../training/lesson-setup';
 import { executePlaybook } from '../git/code';
 import { ancestor } from '../git/state';
 import { filesUnder, checksum } from '../hosts/cluster';
@@ -21,6 +24,21 @@ import { journal } from '../journal';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | {
+      kind: 'forwarder';
+      label: string;
+      host: string;
+      installed?: boolean;
+      version?: string;
+      running?: boolean;
+      bootStart?: boolean;
+      app?: string;
+      active?: boolean;
+      minimumCatalog?: number;
+      phoneHome?: boolean;
+      change?: string;
+    }
+  | { kind: 'connection'; label: string; host: string; server: string; reachable: boolean }
   | { kind: 'file-state'; label: string; host: string; path: string; exists: boolean; contains?: string }
   | {
       kind: 'automation-run';
@@ -154,6 +172,26 @@ export type FoundationCheck =
     };
 
 export type FoundationSetup =
+  | {
+      kind: 'repository-source';
+      repo: string;
+      path: string;
+      text: string;
+      branch: string;
+      title: string;
+      baseline?: boolean;
+      review?: 'open' | 'merged' | 'deployed';
+    }
+  | { kind: 'forwarder-starters' }
+  | { kind: 'deployment-model' }
+  | {
+      kind: 'forwarder';
+      host: string;
+      installed?: boolean;
+      version?: string;
+      licenseAccepted?: boolean;
+      bootStart?: boolean;
+    }
   | { kind: 'automation-starters' }
   | { kind: 'automation-source'; path: string; text: string; deploy?: { playbook: string; limit: string } }
   | { kind: 'advance'; ticks: number; paused?: boolean }
@@ -162,6 +200,35 @@ export type FoundationSetup =
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
   for (const step of steps) {
+    if (step.kind === 'repository-source') {
+      const { kind: _, ...source } = step;
+      void _;
+      setupLesson(world, [source]);
+      continue;
+    }
+    if (step.kind === 'forwarder-starters') {
+      seedRepositoryFiles(
+        world,
+        'splunk-automation',
+        'fixture/v7-forwarders',
+        { ...V7_STARTER_FILES, ...V7_FORWARDER_STARTER_FILES, ...V7_FORWARDER_CONNECTION_FILES },
+        'V7 forwarder operations fixture',
+      );
+      continue;
+    }
+    if (step.kind === 'deployment-model') {
+      enableForwarderOperations(world);
+      continue;
+    }
+    if (step.kind === 'forwarder') {
+      setForwarderFixture(
+        world,
+        step.host,
+        Object.fromEntries(Object.entries(step).filter(([k]) => !['kind', 'host'].includes(k))),
+      );
+      continue;
+    }
+
     if (step.kind === 'automation-starters') {
       setupLesson(
         world,
@@ -245,6 +312,31 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'forwarder': {
+      try {
+        const detail = forwarderDetail(world, check.host),
+          p = resolveHost(world, check.host)!;
+        return (
+          (['installed', 'version', 'running', 'bootStart'] as const).every(
+            (key) => check[key] === undefined || detail[key] === check[key],
+          ) &&
+          (!check.app || detail.apps.includes(check.app)) &&
+          (!check.active || detail.downloadedCatalog === detail.runningCatalog) &&
+          (typeof detail.downloadedCatalog === 'number' ? detail.downloadedCatalog : 0) >=
+            (check.minimumCatalog ?? 0) &&
+          (!check.phoneHome || (!detail.error && detail.lastPhoneHome >= world.config.startTime)) &&
+          (!check.change ||
+            (world.forwarders?.clients[p.hostname]?.changes ?? []).some((e) => e.kind === check.change))
+        );
+      } catch {
+        return false;
+      }
+    }
+    case 'connection': {
+      const p = resolveHost(world, check.host);
+      return !!p && forwarderConnection(world, p, check.server).reachable === check.reachable;
+    }
+
     case 'file-state': {
       const h = resolveHost(world, check.host),
         fs = h && hostFs(world, h);
@@ -324,6 +416,7 @@ export function foundationCheck(world: World, check: FoundationCheck): boolean {
               ? r.status === 'merged' &&
                 r.head === head &&
                 (!check.deployed ||
+                  r.deployed === head ||
                   (world.code?.runs ?? []).some(
                     (run) =>
                       !run.fixture &&

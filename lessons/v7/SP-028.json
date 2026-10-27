@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-028",
+  "version": 1,
+  "title": "Create and Manage Deployment Server Classes",
+  "track": "Forwarders, Deployment Server, and Heavy Forwarders",
+  "objectives": [
+    "Create and Manage Deployment Server Classes",
+    "Verify actual configuration, delivery and resulting operational behavior."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [],
+  "requiredCapabilities": [
+    "forwarder.deploy"
+  ],
+  "fixture": {
+    "id": "sp-028-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "scope",
+      "instruction": "This isolated attempt starts paused. Use Forwarder Management to inspect clients/apps/classes, or Terminal SSH from the bastion. Linux UF: ssh splunk@lab-lnx-0001. Automation: ssh svc_ansible@ansible01 then cd ~/splunk-automation. Administrative changes and packages are entirely simulated.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    },
+    {
+      "id": "assignment",
+      "instruction": "Create deployment app v7_forwarder with local/inputs.conf monitoring /var/log/practice/forwarder.log, index os, sourcetype v7_forwarder and disabled false. In Forwarder Management stage server class v7_canary allowing only lab-lnx-0001, assign that app and enable restart on app changes. Publish, advance 60 seconds and verify delivery plus the two explicit records. Equivalent CLI: edit deployment-apps and serverclass.conf on ds01, then splunk reload deploy-server. lab-lnx-0002 must not receive this canary app.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "verify",
+      "instruction": "After the required activation, select the client in Forwarder Management and use Advance simulation 60 seconds. Inspect btool/forwarding output and independent Search as required. Record the evidence answer; an answer alone cannot complete the exercise.",
+      "paths": [
+        "web",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Distinguish staged source, published catalog, downloaded app and running configuration.",
+    "Use a narrow target and the component that owns the change. Inspect failures before retrying."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration",
+      "label": "Effective serverclass: whitelist.0 = lab-lnx-0001",
+      "host": "ds01",
+      "conf": "serverclass",
+      "stanza": "serverClass:v7_canary",
+      "key": "whitelist.0",
+      "equals": "lab-lnx-0001",
+      "effective": true
+    },
+    {
+      "kind": "forwarder",
+      "label": "Verify actual forwarder lifecycle and delivery",
+      "host": "lab-lnx-0001",
+      "app": "v7_forwarder",
+      "active": true,
+      "minimumCatalog": 1
+    },
+    {
+      "kind": "file-state",
+      "label": "Unselected client did not receive the canary app",
+      "host": "lab-lnx-0002",
+      "path": "/opt/splunkforwarder/etc/apps/v7_forwarder/local/inputs.conf",
+      "exists": false
+    },
+    {
+      "kind": "query",
+      "label": "Independent search finds only the explicit teaching records",
+      "search": "index=os host=lab-lnx-0001 sourcetype=v7_forwarder \"v7-canary-\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Explain the verified observation",
+      "id": "evidence",
+      "expected": "2"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/var/log/practice/forwarder.log",
+      "text": "practice_id=v7-canary-001 status=200 service=ops\npractice_id=v7-canary-002 status=500 service=ops\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "How many explicit canary records reached os?"
+    }
+  ],
+  "feedback": {
+    "success": "Verified real simulated source, delivery and operational outcomes.",
+    "incomplete": "Inspect component scope, activation, actual phone-home, latest run and independent search results."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-forwarders:SP-028:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-forwarders:SP-028:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-forwarders:SP-028:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-forwarders:SP-028:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-forwarders:SP-028:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-forwarders:SP-028:isolation"
+    }
+  ]
+}
