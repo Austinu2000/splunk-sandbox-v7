@@ -1,3 +1,4 @@
+import { SplEditor } from '../components/SplEditor';
 import { profileStorage } from '../environment';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import type { PageDto, ResultValue, SearchEventDto, SearchJobDto } from '@sandbox/shared';
@@ -530,7 +531,6 @@ export function SearchPage({ visible }: { visible: boolean }) {
   const [exporting, setExporting] = useState(false);
   const [notice, setNotice] = useState('');
   const [realtimePaused, setRealtimePaused] = useState(false);
-  const input = useRef<HTMLTextAreaElement>(null);
   const historyPosition = useRef(-1);
   const lastHashRun = useRef<string | null>(null);
   const generation = useRef(0);
@@ -806,15 +806,9 @@ export function SearchPage({ visible }: { visible: boolean }) {
           void run(query);
         }}
       >
-        <textarea
-          ref={input}
-          className="search-input mono"
+        <SplEditor
           value={query}
-          placeholder="enter search here..."
-          rows={Math.min(6, Math.max(1, query.split('\n').length))}
-          spellCheck={false}
-          onChange={(e) => setQuery(e.target.value)}
-          aria-label="Search"
+          onChange={setQuery}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault();

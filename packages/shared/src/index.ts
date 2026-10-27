@@ -473,3 +473,4 @@ export interface EnvironmentProfileDto {
 export * from './training';
 
 export * from './kvstore';
+export * from './splSyntax';

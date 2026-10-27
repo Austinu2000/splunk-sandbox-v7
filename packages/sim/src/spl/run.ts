@@ -1,3 +1,4 @@
+import { tokenizeSpl } from '@sandbox/shared';
 import { KvError } from '../kvstore/engine';
 import { training } from '../training/engine';
 import type { World } from '../world';
@@ -99,13 +100,30 @@ export function runSearch(world: World, req: SearchRequest, limits = LIMITS): Se
 function execute(world: World, req: SearchRequest, limits: typeof LIMITS, out: SearchOutcome): void {
   const now = world.clock.now;
   let text = req.search.trim();
-  for (let depth = 0; text.includes('`') && depth < 5; depth++)
-    text = text.replace(/`([\w-]+)`/g, (_all, key: string) => {
-      const macro = training(world).macros[key];
-      if (!macro) throw new SplError('Unknown macro: ' + key);
-      return macro;
-    });
-  if (text.includes('`')) throw new SplError('Unsupported or recursive macro');
+  const first = tokenizeSpl(text).find((t) => t.kind !== 'space');
+  for (let depth = 0; depth <= 5; depth++) {
+    let expanded = false;
+    text = tokenizeSpl(text)
+      .map((token) => {
+        if (token.kind === 'comment') {
+          if (!token.closed) throw new SplError('Unclosed SPL comment. Close it with three backticks (```).');
+          return ' ';
+        }
+        if (token.kind !== 'macro') return token.text;
+        if (!token.closed || !/^`[\w-]+`$/.test(token.text)) throw new SplError('Unsupported macro syntax.');
+        if (depth === 5) throw new SplError('Unsupported or recursive macro');
+        const key = token.text.slice(1, -1),
+          macro = training(world).macros[key];
+        if (!macro) throw new SplError('Unknown macro: ' + key);
+        expanded = true;
+        return macro;
+      })
+      .join('')
+      .trim();
+    if (!expanded) break;
+  }
+  if (first?.kind === 'comment' && text.startsWith('|'))
+    throw new SplError('Place the comment after the first generating command, not before it.');
   if (!text) throw new SplError('Search is empty.');
   const parts = splitPipeline(text);
   const leadingPipe = parts[0] === '';

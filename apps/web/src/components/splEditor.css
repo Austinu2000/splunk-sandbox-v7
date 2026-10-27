@@ -1,0 +1,123 @@
+.spl-editor-container {
+  flex: 1;
+  min-width: 120px;
+}
+.spl-editor {
+  position: relative;
+  background: #252b2e;
+  color: #e8ecee;
+  border: 1px solid #657078;
+  border-radius: 3px;
+}
+.spl-editor .spl-editor-highlight,
+.spl-editor textarea.spl-editor-input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 0;
+  font:
+    13px/20px ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+  font-variant-ligatures: none;
+  letter-spacing: normal;
+  tab-size: 4;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-align: left;
+}
+.spl-editor .spl-editor-highlight {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.spl-editor textarea.spl-editor-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  background: transparent;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: #fff;
+}
+.spl-editor textarea.spl-editor-input::placeholder {
+  color: #aab1b6;
+  -webkit-text-fill-color: #aab1b6;
+}
+.spl-editor textarea.spl-editor-input::selection {
+  background: #5085bc66;
+}
+.spl-editor:focus-within {
+  outline: 2px solid #45abdf;
+  outline-offset: 1px;
+}
+.spl-editor textarea.spl-editor-input:focus-visible {
+  outline: none;
+}
+.spl-token-command {
+  color: #78c7ff;
+}
+.spl-token-function {
+  color: #dcb1ff;
+}
+.spl-token-keyword {
+  color: #ffb96b;
+}
+.spl-token-string {
+  color: #a8df92;
+}
+.spl-token-number {
+  color: #ffca8a;
+}
+.spl-token-comment {
+  color: #a3b6ac;
+  font-style: italic;
+}
+.spl-token-macro {
+  color: #ffd983;
+}
+.spl-token-field {
+  color: #e8ecee;
+}
+.spl-editor-help {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+  color: #aab1b6;
+  font-size: 11px;
+}
+.spl-editor-help button {
+  background: #35424b;
+  color: #eef3f5;
+  border: 1px solid #657078;
+  border-radius: 3px;
+  padding: 3px 7px;
+  cursor: pointer;
+}
+.v5 .spl-editor-help {
+  color: #4b606c;
+}
+.search-replica .search-bar > .search-time-trigger,
+.search-replica .search-bar > .search-go {
+  align-self: flex-start;
+  height: 82px;
+}
+@media (forced-colors: active) {
+  .spl-editor-highlight {
+    display: none;
+  }
+  .spl-editor textarea.spl-editor-input {
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+    caret-color: CanvasText;
+  }
+}

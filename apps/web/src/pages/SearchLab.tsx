@@ -1,3 +1,4 @@
+import { SplEditor } from '../components/SplEditor';
 import { useState } from 'react';
 import { request } from './TrainingPage';
 export function SearchLab() {
@@ -49,11 +50,11 @@ export function SearchLab() {
       <div className="v5-split">
         <label>
           Baseline
-          <textarea value={left} onChange={(e) => setLeft(e.target.value)} />
+          <SplEditor value={left} onChange={setLeft} label="Baseline SPL" />
         </label>
         <label>
           Candidate
-          <textarea value={right} onChange={(e) => setRight(e.target.value)} />
+          <SplEditor value={right} onChange={setRight} label="Candidate SPL" />
         </label>
       </div>
       <button
@@ -75,7 +76,7 @@ export function SearchLab() {
       </label>
       <label className="v5-note">
         Definition
-        <textarea value={definition} onChange={(e) => setDefinition(e.target.value)} />
+        <SplEditor value={definition} onChange={setDefinition} label="Macro definition SPL" />
       </label>
       <button
         onClick={async () => {
