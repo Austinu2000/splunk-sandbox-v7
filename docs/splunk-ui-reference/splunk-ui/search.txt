@@ -1,0 +1,78 @@
+Browser tab: 2136985550, Title: "Search | Splunk 9.2.2", URL: "http://localhost:8000/en-US/app/search/search".
+1 AXWebArea Search | Splunk 9.2.2, URL: localhost:8000/en-US/app/search/search
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/search/search#navSkip
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button Description: View health report with status green, Help: Health: green
+				75 text 
+			10 pop up button Administrator ▾, Help: User
+				11 text Administrator
+				12 text ▾
+			13 pop up button 2 Messages ▾, Help: Messages
+				14 text 2
+				15 text Messages
+				16 text ▾
+			17 pop up button Settings ▾
+				18 text Settings
+				19 text ▾
+			20 pop up button Activity ▾
+				21 text Activity
+				22 text ▾
+			23 pop up button Help ▾
+				24 text Help
+				25 text ▾
+			26 container
+				27 text 
+				28 text field (settable) Description: Find, ID: control-view10098
+		29 container
+			30 link Description: Search, Value: localhost:8000/en-US/app/search/search
+			31 link Description: Analytics, Value: localhost:8000/en-US/app/search/analytics_workspace
+			32 link Description: Datasets, Value: localhost:8000/en-US/app/search/datasets
+			33 link Description: Reports, Value: localhost:8000/en-US/app/search/reports
+			34 link Description: Alerts, Value: localhost:8000/en-US/app/search/alerts
+			35 link Description: Dashboards, Value: localhost:8000/en-US/app/search/dashboards
+		36 link Description: App icon Search & Reporting, Value: localhost:8000/en-US/app/search/
+	37 container
+		38 heading Search, Value: 1
+			39 text Search
+		40 container
+			41 container  enter search here...
+				42 container
+					43 text entry area (settable) Description: Search, Value: 
+					44 text enter search here...
+			45 container Last 24 hours
+				46 link Description: Last 24 hours, Value: localhost:8000/en-US/app/search/search#
+			47 container Search Button
+				48 link Description: Search Button, Value: localhost:8000/en-US/app/search/search#
+		49 container
+			50 link Description: No Event Sampling, Value: localhost:8000/en-US/app/search/search#
+			51 link Description:  Smart Mode, Value: localhost:8000/en-US/app/search/search#
+		52 container
+			53 link Description: › Search History, Value: localhost:8000/en-US/app/search/search#
+			54 button More info
+			55 container aria-id-d717a3b3-5145-4251-b129-e85f89ecad6e
+				56 text You can toggle through past searches in the search bar
+				57 text Previous: CTRL + P
+				58 text Next: CTRL + N
+		59 container
+			60 heading How to Search, Value: 2
+				61 text How to Search
+			62 text If you are not familiar with the search features, or want to learn more, or see your available data, see one of the following resources.
+			63 link Description: Documentation link Open externally, Help: Splunk help, Value: localhost:8000/en-US/help?location=splunkcore.homepage.docs, ID: initial-help-documentation
+			64 link Description: Tutorial link Open externally, Help: Splunk help, Value: localhost:8000/en-US/help?location=search_app.tutorial, ID: initial-help-tutorial
+			76 link Description: Data Summary, Help: View sources, source types and hosts., Value: localhost:8000/en-US/app/search/search#
+		66 container
+			67 heading Analyze Your Data with Table Views, Value: 2
+				68 text Analyze Your Data with Table Views
+			69 text Table Views 
+			70 text let you prepare data without using SPL. First, use a point-and-click interface to select data. Then, clean and transform it for analysis in Analytics Workspace, Search, or Pivot!
+			71 link Description: Learn more Open externally, Value: localhost:8000/en-US/help?location=learnmore.datasets.listing
+			72 text  about Table Views, or view and manage your Table Views with the 
+			73 link Description: Datasets listing page., Value: localhost:8000/en-US/app/search/datasets
+			74 link Description: Create Table View, Value: localhost:8000/en-US/app/search/table
+
+The focused UI element is 1 AXWebArea Search | Splunk 9.2.2, URL: localhost:8000/en-US/app/search/search

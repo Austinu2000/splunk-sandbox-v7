@@ -1,0 +1,69 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/lookups".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/lookups
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/lookups#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1308
+	28 heading Lookups, Value: 1
+		29 text Lookups
+	30 text Create and configure lookups.
+	31 table dataInputs
+		32 row
+			33 cell
+				34 text Type
+			35 cell
+				36 text Actions
+		37 row
+			38 cell
+				39 link Description: Lookup table files, Value: localhost:8000/en-US/manager/search/data/lookup-table-files
+			40 cell
+				41 link Description: + Add new, Value: localhost:8000/en-US/manager/search/data/lookup-table-files/_new?action=edit
+		42 row
+			43 cell
+				44 text List existing lookup tables or upload a new file.
+		45 row
+			46 cell
+				47 link Description: Lookup definitions, Value: localhost:8000/en-US/manager/search/data/transforms/lookups
+			48 cell
+				49 link Description: + Add new, Value: localhost:8000/en-US/manager/search/data/transforms/lookups/_new?action=edit
+		50 row
+			51 cell
+				52 text Edit existing lookup definitions or define a new file-based or external lookup.
+		53 row
+			54 cell
+				55 link Description: Automatic lookups, Value: localhost:8000/en-US/manager/search/data/props/lookups
+			56 cell
+				57 link Description: + Add new, Value: localhost:8000/en-US/manager/search/data/props/lookups/_new?action=edit
+		58 row
+			59 cell
+				60 text Edit existing automatic lookups or configure a new lookup to run automatically.
+		61 row
+			62 cell
+				63 link Description: GeoIP lookups file, Value: localhost:8000/en-US/manager/search/lookup_geoip
+		64 row
+			65 cell
+				66 text Update the file used for GeoIP lookups.
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/lookups

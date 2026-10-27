@@ -1,0 +1,510 @@
+{
+  "source": "Local Splunk Enterprise 9.2.2 installation; fonts, static icons, Studio preview images, and home SVG paths extracted statically from build/pages/home.js",
+  "files": [
+    {
+      "path": "apps/web/public/assets/splunk/home/AddData.svg",
+      "sha256": "a2a05053edb15e02a4cbc2cabce2e6d313050defa8fa415d552e223fe939f6bd",
+      "bytes": 5832
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/CustomerSuccess.svg",
+      "sha256": "95f8c2121bf3d1852fa1bbcd7c90696a2b98dddf513fd588b621ff07bb88a39a",
+      "bytes": 4359
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/Document.svg",
+      "sha256": "7799f1b72fca7ddceb6049d915340faf1cfd85122100aae060ab5f2774251f2e",
+      "bytes": 4469
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/ManagePermissions.svg",
+      "sha256": "37cd3fb904d526e234e0595048fe481af3b37d439dd3e53c3d4aa68b831ea238",
+      "bytes": 6540
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/MobileDevices.svg",
+      "sha256": "160ff5b9737a4ecd3bef18d87f0f0a310454b695e8f46f73314fbdbde98ebda2",
+      "bytes": 2799
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/ProductTour.svg",
+      "sha256": "1f1a4799d3b7c785d4027e8c81f7f66ba0b6e6b77f7e5e7633cdae86d19f27eb",
+      "bytes": 1184
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/SearchData.svg",
+      "sha256": "428d1fe022a28d6d4356bfdaec92436ddcdbdd3f2021626ab43f4f28d528fbec",
+      "bytes": 4784
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/SplunkCommunity.svg",
+      "sha256": "778d80af7b7e25bbc805c12b3a4189e0090e701f4a739c22555c474f8cdb1fd7",
+      "bytes": 9496
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/SplunkLantern.svg",
+      "sha256": "d77db3bde31a692e90dc9c287a3548a001607d184fad3a21de7f1320b4e41846",
+      "bytes": 1966
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/SplunkObservability.svg",
+      "sha256": "dfe96ed1401964dd1349c0136fea851d774335a0f09aa28dd3f33929a240f29a",
+      "bytes": 3675
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/Splunkbase.svg",
+      "sha256": "db5033d832f4e39a688318933bbad0d621189bf25b381bd44ea762a5151c7b06",
+      "bytes": 6663
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/TeamMember.svg",
+      "sha256": "1033414b9b819a178bb2f9363f22e3d0661ae46a972a0f091cecf72ad94c0568",
+      "bytes": 3758
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/TrainingAndCertification.svg",
+      "sha256": "d1f13bb792cd0e3bbb82799512f5926adb809031b9e8e880611b40138c54aef3",
+      "bytes": 5373
+    },
+    {
+      "path": "apps/web/public/assets/splunk/home/VisualizeData.svg",
+      "sha256": "170e9fdb5c350326496f1492637f8e790b16d16307acc9629a7f55422b08c498",
+      "bytes": 6079
+    },
+    {
+      "path": "apps/web/public/assets/splunk/proxima-bold-webfont.woff",
+      "sha256": "5696ac8ea3260977a36e0d0945c82358c993dbb57b2e18fb5979149e13329a4c",
+      "bytes": 39716
+    },
+    {
+      "path": "apps/web/public/assets/splunk/proxima-regular-webfont.woff",
+      "sha256": "5e0d77dd7c8466877626439e520ea82042165a0c28ef9f72ecd36819d2ec23fa",
+      "bytes": 40052
+    },
+    {
+      "path": "apps/web/public/assets/splunk/proxima-semibold-webfont.woff",
+      "sha256": "06675a654924192e8271c0bf22810a2ef65c8cdd04f114e620df688dae942d31",
+      "bytes": 39652
+    },
+    {
+      "path": "apps/web/public/assets/splunk/python_upgrade_readiness_app-icon.png",
+      "sha256": "3b2820586d963e24d0f0718bebd67286f5290aaaa9c3ea1e45ab86758be5e4bd",
+      "bytes": 1199
+    },
+    {
+      "path": "apps/web/public/assets/splunk/search-icon.png",
+      "sha256": "1e2afab859a74979ecd8b335ca1ed278efa69d0fb8bcb9a37d1ea291e5fdefa9",
+      "bytes": 3556
+    },
+    {
+      "path": "apps/web/public/assets/splunk/splunk_logo-enterprise.png",
+      "sha256": "ad75acaca12fa779dbad2779b6a9c474bf2b2db926cf6b08de9a1762972b17c6",
+      "bytes": 27592
+    },
+    {
+      "path": "apps/web/public/assets/splunk/splunk_logo.png",
+      "sha256": "dc29be0cc2a993dae907e4cc2aec0754545cb4c878acd20d67b9abb3def16cc2",
+      "bytes": 1413
+    },
+    {
+      "path": "apps/web/public/assets/splunk/splunk_secure_gateway-icon.png",
+      "sha256": "47bda6ecbfba223fe649ff2157d94889f62e847a0e7426f36cf40a85614dbb40",
+      "bytes": 13861
+    },
+    {
+      "path": "apps/web/public/assets/splunk/splunkicons-regular-webfont.woff",
+      "sha256": "0bc4d47ba012e8be5edbdc07a5b0aef136bf5fd892dbcf9e33a3f560dc77636d",
+      "bytes": 13176
+    },
+    {
+      "path": "apps/web/public/replica/studio-banner.png",
+      "sha256": "da21f0eeb5075997711c367734ff6212fc964f00675b0b5840ffb19f9e9d2078",
+      "bytes": 3277722
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/VPN.jpeg",
+      "sha256": "8969f32886cee75fdbd19ce18c5e09d343b4516e6d30e6b742f71581889da66f",
+      "bytes": 605192
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/airport.jpeg",
+      "sha256": "0ea9ee0b6acc08b6cc690b694cf973afc3ec070c622435cd760969ad28d78829",
+      "bytes": 463699
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/assembly.png",
+      "sha256": "e28588db766844d88d3bb92a17e6f94ac2e2041abbc80e458bdbb077f7e2a3af",
+      "bytes": 529986
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/buttercup.jpeg",
+      "sha256": "77ce6ce030225c53af1052f2e384d5d875a031271057b423ea33d7e5db633100",
+      "bytes": 215628
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/customer.jpeg",
+      "sha256": "9ab3060dedad6b7794bab19b723e6846a75093482a669783e78d1a3cbcd1843b",
+      "bytes": 125670
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/data-command.png",
+      "sha256": "f94cc03296ed230a6728a52e94f58a4fff03554af64063c7998be86ebfd112cf",
+      "bytes": 824808
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/data-streaming.png",
+      "sha256": "fafe01eac3027de7bfd3e18c8171f651a991244ae91c16db288d5cabb3b459c0",
+      "bytes": 365602
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/datacenter.png",
+      "sha256": "c002e877a8c22f7d3b4e0db52e680e9f88110b58f3c41e5688223324a8b043ee",
+      "bytes": 252890
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/ecom-monitor.png",
+      "sha256": "8c8e4a5cfcc557ebd9bd200be2cd81516e43f6993c1ba161902aa3993cf84322",
+      "bytes": 634274
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/health.jpeg",
+      "sha256": "39ff5197eb3080333acccbc9a10c3d5785f73de6168c9d53c2d7490829a601aa",
+      "bytes": 604866
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/mdg.png",
+      "sha256": "7733e1eb854d585e61b785533fd70a330fa8727244ee94f5c039cd64d378f1a7",
+      "bytes": 634375
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/security-devices.png",
+      "sha256": "cfb42689268cdbaf9b2982a2d10e04e238a61280f01df305ae8ffd8cd972416f",
+      "bytes": 504268
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/security-network.png",
+      "sha256": "5de721bcd69824920e1a73effe24bc039f61b40392c55020e78a3cd5633401d3",
+      "bytes": 512573
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/security-summary.png",
+      "sha256": "8f7fbe73ec4ab26c27e1e4411adb74dae4a1a04df131cee319f450a632058c35",
+      "bytes": 491998
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/telecom.png",
+      "sha256": "2d48462251ce92335bdf7d202467685163819a4621eff2406c1da7349989e006",
+      "bytes": 411944
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/workplace-detail.jpeg",
+      "sha256": "8bd164302d5c727fdcc425d93fa3ab28ac276ad774a4dd0dc430a8ec867ae014",
+      "bytes": 110400
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/complete_examples/workplace-health.png",
+      "sha256": "944ceb8188e0e000e0493a23e218bcfc42545bf8c7a97fe7cfc314d927239fe1",
+      "bytes": 692324
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/images/default.png",
+      "sha256": "e0f84f434e1334393a2aa79f691af9497ba1af46312c1ebdb383b19da07acb69",
+      "bytes": 7923
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/advanced_showhide.png",
+      "sha256": "38c01ca3661f36ce8df8b94f2eb48d038ced06ee15b58dfcfd2c199bccec275c",
+      "bytes": 3990
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/annotations.png",
+      "sha256": "d593d49b5cf4c5530018081ca4f7c92dc721723db12f0a7529fc05b651650433",
+      "bytes": 8158
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/area.png",
+      "sha256": "ca7454315ebc457cc1d4c0b1fe5f5f557b751423bbd3dd734441003aa77c0dd2",
+      "bytes": 10957
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/bar.png",
+      "sha256": "a55a313b3b08dfcc928b1daced34755ac33d7d327af74ed3327af75101bdd4f9",
+      "bytes": 1604
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/bubble.png",
+      "sha256": "234f3b8ac195ce793a119c202916530935c77720f039923743adc065e8e3e0c5",
+      "bytes": 5796
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/cascading_input.png",
+      "sha256": "a7e32b45fb50c63f0b3d7b06fc16ce5e4569934c72507c76fd66ce53dd02652d",
+      "bytes": 16788
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/chart_colors.png",
+      "sha256": "aecdd9d1f2bf988b0000b79fe528303544f074a50530bb93ebaca9508b283a03",
+      "bytes": 8948
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/chart_display.png",
+      "sha256": "8d6b19197eff8244554941476672d0020025b78553135ea28a9cf46d6d8730e4",
+      "bytes": 17505
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/chart_scale.png",
+      "sha256": "9d51f0f68015265a42e9fd722c7b230c13a7df7f9ec3c5fe610ccb43bb6e6466",
+      "bytes": 8858
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/column.png",
+      "sha256": "0a83069b6fe9acc76f237901605ddb515f0d617e09a1be6655da5c91d73957c5",
+      "bytes": 1642
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/dropdown_input.png",
+      "sha256": "58a18de0dc2901472214c666be1f6ddb67ccc1e3aae83aa9a4c826563df7474a",
+      "bytes": 9675
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/eval_search.png",
+      "sha256": "5825acaf2f716d9a83a69e4fe99b40c40bc35f7bc7dfcd38191973f44aa841c6",
+      "bytes": 1216
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/filler.png",
+      "sha256": "c2fabd42ad82d820b8f860f2a7d1935d7fa766cd45104bf0ac085eddf408793f",
+      "bytes": 6458
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/filler_color.png",
+      "sha256": "34e106e8b2bb89c322e2aeb76fb0268bcb2ba8820a59241703df39c89c4197a1",
+      "bytes": 6457
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/icon.png",
+      "sha256": "e77cf5d9fa1524f4aaf91e54e67c46e941605682d54d1f0953530dff369a9a3e",
+      "bytes": 5739
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/icon_color.png",
+      "sha256": "2e4e6a7f2c0c1149cfab544d07cfb114c5d04e922122fd88c7997046f0f7dc46",
+      "bytes": 5968
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/image.png",
+      "sha256": "4a9f65a43176f40e51765bbfa1a00520c05757108e6d224692e73c30e25c2050",
+      "bytes": 4863
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/line.png",
+      "sha256": "9d994362d7b50419454ad842e4fe133e1df756f5c8f1274fc508c2eb234b1aa0",
+      "bytes": 6560
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/link.png",
+      "sha256": "500412939ce5e231a6972601830de6967a56ad474fa08e4361846901fc866827",
+      "bytes": 13646
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/map.png",
+      "sha256": "8e57f9e63d2f471e0dbd1c293df23b07f5b79dd06a44a5d54f36ed5cabea0ca2",
+      "bytes": 76584
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/markdown.png",
+      "sha256": "4c601633c025537834cad72abc6785447421c5f417574b3bc423c96fcfac7a6d",
+      "bytes": 20250
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/marker.png",
+      "sha256": "0ed105e4694be12860024036299dac2df9edc7ffd2a5951a58f749dd417bb5a3",
+      "bytes": 6805
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/marker_color.png",
+      "sha256": "58ac785f61f04d72ce76679f24677f50d0f7322818bc76c215cda814ebf2f1d2",
+      "bytes": 6723
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/moving_svg_1.png",
+      "sha256": "40a89ce6fd04fc7e09c24ad9aca058531280c196029f618c44d15eb5514071a9",
+      "bytes": 12550
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/multiselect_input.png",
+      "sha256": "cfc849b19f21860255690b26ab83ead4f919915ddb107affe5dfefeef36b2dde",
+      "bytes": 15130
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/number_input.png",
+      "sha256": "32803126eff1617b5980d6fdc8f431354a61c32caf2cb366171fc1a2ba72d7a5",
+      "bytes": 3062
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/overlays.png",
+      "sha256": "d36a935b6e634e9e8dd039029862562651b3b0700f19694d1df26871c51cbbf0",
+      "bytes": 2984
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/parallel.png",
+      "sha256": "b144be8b264bc9e3c4e8b814ab02fb431b2e9aaacc32dd3edc5dd3002e6c60b5",
+      "bytes": 329680
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/pie.png",
+      "sha256": "9342e27416b1fc56246065be8ec56b4a6c45b611b8c77543b63f49323822731e",
+      "bytes": 4633
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/progress_bar.png",
+      "sha256": "32a92baad27c04e74677eac43f327695b2fc28d4e05d822cb95a8bf2d4cdf174",
+      "bytes": 3019
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/punchcard.png",
+      "sha256": "dabb69773c14382984bd693fd55e0ebea8c3a40bee7225a61fd4e02368e20ca8",
+      "bytes": 42330
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/punchcard_color.png",
+      "sha256": "aa9731623bd1ecaf57b303c738f68bf8fa032262a3a642b81104775d44c41f97",
+      "bytes": 41709
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/punchcard_size.png",
+      "sha256": "f74c6c94dbbf9a8f80a73fb84e3559f4b850f961a0611fd4059275d3efeb29e9",
+      "bytes": 46285
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/sankey.png",
+      "sha256": "c681a32a1eb404c50258b4a9399ce199a696c2280d7f996d2d57f7f2cd2a5e5e",
+      "bytes": 13519
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/scatter.png",
+      "sha256": "9a357f55cf7d2618329efa5e8191560ef1c15243b9d637cf4556897d30eb960f",
+      "bytes": 1692
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/search_token.png",
+      "sha256": "6b0a41b2759d428254dce98686a900644837a30c5974e95e58a9ee8eb4a10890",
+      "bytes": 6030
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/set_token.png",
+      "sha256": "642a567b552e9106fa2c5f532c6df89ed9bbb43eaf086046f06e8f69d1bd3a31",
+      "bytes": 11977
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/shapes.png",
+      "sha256": "b082f3166368cf0d70d804ea554e5c29d2423b999b70e8d564fcc8abc00a51a1",
+      "bytes": 2263
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/submit_button.png",
+      "sha256": "afa7b9cbb27071fcf0a8b6ca1b489e74d5c1c3e32fd79da9ea1049e87868fe17",
+      "bytes": 3510
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/sv.png",
+      "sha256": "adb1e2d39d8a6bf5e325bc8c959646b197e3933eacdbfa3e87af319a53d99def",
+      "bytes": 10379
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/sv_color.png",
+      "sha256": "cff725052e453921945dcf51e2340d6c73c5d9d5e85d1179980c290a4a0ac1e1",
+      "bytes": 10213
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/sv_emoji.png",
+      "sha256": "ed3647d5729e28b216f1e7b142eae2a32589dc8f220e2b6088644f553ccb62b2",
+      "bytes": 70310
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/sv_icon.png",
+      "sha256": "75441246145530227e161a707584717c4e779a0b40263e2174c4652241cb8443",
+      "bytes": 2452
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/svg.png",
+      "sha256": "839335903b9bd305004f320e715cb513ed8ab99f51b71006e29986e45784c787",
+      "bytes": 71707
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/svr_new.png",
+      "sha256": "5dc6bfac7b897872f9d8be7aef2fb1c94afaa40489d29277ce43fba5e84b596e",
+      "bytes": 4462
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/svr_new_color.png",
+      "sha256": "4d12689bb450d536ac15d94a74b4a7c4f7392abe4950537786ae7050ee5dc0e0",
+      "bytes": 5012
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/table.png",
+      "sha256": "b91bbbacf2d6e5f9541ecf0297b0b57f4f2531bc8af91c18e4be3652171e44b8",
+      "bytes": 25950
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/table_color.png",
+      "sha256": "8b0cf034b8dd03a84d08127aaba7ec3b09e3492db0ed8b8ec6d2167d313494d7",
+      "bytes": 27112
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/table_format.png",
+      "sha256": "f74888cf42cce6c59ab9466ad1ccbf72a66ef74d626e342014e61fa63b196eee",
+      "bytes": 18604
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/text_input.png",
+      "sha256": "63bb6057bb61b40070c3acb2b0f11250c9f19d1162758de999c0abdcebb8d946",
+      "bytes": 3563
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/timerange.png",
+      "sha256": "f0ee6b12a3b49a9bda6d2e01d70c6613ce63f9ad64b7cfc4a28cd9961a5e97ea",
+      "bytes": 20442
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/token_default.png",
+      "sha256": "6be06022a6ae1f501d12fad11a80b746503447b3870c36f151e1c3fd24db8c6e",
+      "bytes": 7447
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/trellis_layout.png",
+      "sha256": "9297ea1cfee3472576b77638604d206f862d9751fba47ba6371ac2be61591ff3",
+      "bytes": 6980
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/nav-thumbnails/url.png",
+      "sha256": "e229ffa62d2c8a8685d0fa948a4367414625b7d602c1efb3196ac7194b32515b",
+      "bytes": 9645
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/search/inline.png",
+      "sha256": "61b59cce49169ccd787f9314211d7bfa264b5db9fbd0628f89a581a7746858ab",
+      "bytes": 3274
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/search/post.png",
+      "sha256": "52e136326a2b517b6b719baf95199e006ceab08b39d14541c7809ab0c24af735",
+      "bytes": 3351
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/search/report.png",
+      "sha256": "226f83c64cc339c32f2a69a97dda9adfdee34493398616e5f0a470cbd064bb42",
+      "bytes": 7486
+    },
+    {
+      "path": "apps/web/public/replica/studio-images/examples-hub/search/test.png",
+      "sha256": "977270b236d34f5d2ee7b55a36b50341f5556af563c45291908e822f90408728",
+      "bytes": 2815
+    },
+    {
+      "path": "apps/web/public/replica/studio-logo.svg",
+      "sha256": "087bbe81b3a0f311556375c3113f72ffc973a42719b2a1fa2a4c5201bd3f4e5b",
+      "bytes": 3553
+    }
+  ]
+}

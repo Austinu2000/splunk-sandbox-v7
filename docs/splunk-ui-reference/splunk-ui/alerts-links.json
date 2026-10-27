@@ -1,0 +1,62 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/app/search/search",
+    "text": "Search"
+  },
+  {
+    "href": "/en-US/app/search/analytics_workspace",
+    "text": "Analytics"
+  },
+  {
+    "href": "/en-US/app/search/datasets",
+    "text": "Datasets"
+  },
+  {
+    "href": "/en-US/app/search/reports",
+    "text": "Reports"
+  },
+  {
+    "href": "/en-US/app/search/alerts",
+    "text": "Alerts"
+  },
+  {
+    "href": "/en-US/app/search/dashboards",
+    "text": "Dashboards"
+  },
+  {
+    "href": "/en-US/app/search/",
+    "text": "Search & Reporting"
+  }
+]

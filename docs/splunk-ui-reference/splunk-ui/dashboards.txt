@@ -1,0 +1,135 @@
+Browser tab: 2136985550, Title: "Dashboards | Splunk 9.2.2", URL: "http://localhost:8000/en-US/app/search/dashboards".
+1 AXWebArea Dashboards | Splunk 9.2.2, URL: localhost:8000/en-US/app/search/dashboards
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/search/dashboards#navSkip
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button Description: View health report with status green, Help: Health: green
+				10 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text 
+				29 text field (settable) Description: Find, ID: control-view7312
+		30 container
+			31 link Description: Search, Value: localhost:8000/en-US/app/search/search
+			32 link Description: Analytics, Value: localhost:8000/en-US/app/search/analytics_workspace
+			33 link Description: Datasets, Value: localhost:8000/en-US/app/search/datasets
+			34 link Description: Reports, Value: localhost:8000/en-US/app/search/reports
+			35 link Description: Alerts, Value: localhost:8000/en-US/app/search/alerts
+			36 link Description: Dashboards, Value: localhost:8000/en-US/app/search/dashboards
+		37 link Description: App icon Search & Reporting, Value: localhost:8000/en-US/app/search/
+	38 container
+		39 container
+			40 button Create New Dashboard
+			41 heading Dashboards, Value: 1
+				42 text Dashboards
+			43 text Dashboards include searches, visualizations, and input controls that capture and present available data.
+		44 text Latest Resources
+		45 image
+		46 text Examples for Dashboard Studio Browse examples of dashboards & visualizations.
+		47 link Description: Visit Example Hub Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations
+		48 image
+		49 text Intro to Dashboard Studio Learn how to build dashboards with Dashboard Studio.
+		50 link Description: Learn More Open externally, Value: localhost:8000/en-US/help?location=Sds.Ent.dash
+		51 image
+		52 text Intro to Classic Dashboards Learn how to build traditional Simple XML dashboards.
+		53 link Description: Learn More Open externally, Value: localhost:8000/en-US/help?location=ent.to.classic.viz
+		54 text 4 Dashboards
+		55 container
+			56 checkbox Description: All, Value: 1
+			57 checkbox Description: Yours, Value: 0
+			58 checkbox Description: This App's, Value: 0
+		59 container
+			60 text field (settable) Description: filter, ID: control-view6669
+			61 text  
+		62 table
+			63 row
+				64 cell More Info
+					65 text i
+				66 cell Title
+				67 cell Actions
+					68 text Actions
+				69 cell Owner
+				70 cell App
+				71 cell Sharing
+				72 cell Type
+			73 row
+				74 cell
+					75 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/dashboards#
+				76 cell
+					77 link Description: Integrity Check of Installed Files, Value: localhost:8000/en-US/app/search/integrity_check_of_installed_files
+				78 cell
+					79 link Description: Edit , Value: localhost:8000/en-US/app/search/dashboards#
+				80 cell
+					81 text nobody
+				82 cell
+					83 text search
+				84 cell
+					85 text App
+				86 cell
+					87 text Classic
+			88 row
+				89 cell
+					90 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/dashboards#
+				91 cell
+					92 link Description: Job Details Dashboard, Value: localhost:8000/en-US/app/search/job_details_dashboard
+				93 cell
+					94 link Description: Edit , Value: localhost:8000/en-US/app/search/dashboards#
+				95 cell
+					96 text nobody
+				97 cell
+					98 text search
+				99 cell
+					100 text App
+				101 cell
+					102 text Classic
+			103 row
+				104 cell
+					105 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/dashboards#
+				106 cell
+					107 link Description: jQuery Upgrade, Value: localhost:8000/en-US/app/search/jquery_upgrade
+				108 cell
+					109 link Description: Edit , Value: localhost:8000/en-US/app/search/dashboards#
+				110 cell
+					111 text nobody
+				112 cell
+					113 text search
+				114 cell
+					115 text App
+				116 cell
+					117 text Classic
+			118 row
+				119 cell
+					120 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/dashboards#
+				121 cell
+					122 link Description: Orphaned Scheduled Searches, Reports, and Alerts, Value: localhost:8000/en-US/app/search/orphaned_scheduled_searches
+				123 cell
+					124 link Description: Edit , Value: localhost:8000/en-US/app/search/dashboards#
+				125 cell
+					126 text nobody
+				127 cell
+					128 text search
+				129 cell
+					130 text App
+				131 cell
+					132 text Classic
+
+The focused UI element is 1 AXWebArea Dashboards | Splunk 9.2.2, URL: localhost:8000/en-US/app/search/dashboards

@@ -1,0 +1,18 @@
+{
+  "id": "X5",
+  "title": "Revert a parsing incident",
+  "minutes": 40,
+  "level": 4,
+  "profile": "apl",
+  "instructions": "Find the bad commit, revert through a PR, redeploy, confirm parsing and write a five-line postmortem.",
+  "checks": [
+    {
+      "kind": "command",
+      "pattern": "git revert"
+    },
+    {
+      "kind": "deployed"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

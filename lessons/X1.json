@@ -1,0 +1,20 @@
+{
+  "id": "X1",
+  "title": "Write a new HEC role",
+  "minutes": 45,
+  "level": 4,
+  "profile": "apl",
+  "instructions": "Role has defaults, tasks, a template and a handler; passes checks; second run reports zero changes; merged through a PR.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "run",
+      "check": false,
+      "changed": 0
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

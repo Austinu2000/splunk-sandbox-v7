@@ -1,0 +1,66 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/server/settings/settings?action=edit",
+    "text": "General settings"
+  },
+  {
+    "href": "/en-US/manager/search/login_page_settings",
+    "text": "Login background"
+  },
+  {
+    "href": "/en-US/manager/search/global_banner",
+    "text": "Global banner"
+  },
+  {
+    "href": "/en-US/manager/search/internal_library_settings",
+    "text": "Internal Library Settings"
+  },
+  {
+    "href": "/en-US/manager/search/admin/alert_actions/email?action=edit",
+    "text": "Email settings"
+  },
+  {
+    "href": "/en-US/manager/search/server/logger",
+    "text": "Server logging"
+  },
+  {
+    "href": "/en-US/manager/search/deployment/client",
+    "text": "Deployment client"
+  },
+  {
+    "href": "/en-US/manager/system/searchprefs",
+    "text": "Search preferences"
+  }
+]

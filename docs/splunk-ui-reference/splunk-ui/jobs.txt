@@ -1,0 +1,68 @@
+Browser tab: 2136985550, Title: "Job Manager | Splunk 9.2.2", URL: "http://localhost:8000/en-US/app/splunk-dashboard-studio/job_manager".
+1 AXWebArea Job Manager | Splunk 9.2.2, URL: localhost:8000/en-US/app/splunk-dashboard-studio/job_manager
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/splunk-dashboard-studio/job_manager#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view6774
+	29 container
+		30 heading Jobs, Value: 1
+			31 text Jobs
+		32 container
+			33 text Manage your jobs. 
+			34 link Description: Learn More , Value: localhost:8000/en-US/help?location=learnmore.jobs.about
+		35 text 0 Jobs
+		36 pop up button (collapsed) App: Splunk Dashboard Studio (splunk-dashboard-st…, Secondary Actions: Expand
+		37 pop up button (collapsed) Owner: All, Secondary Actions: Expand
+		38 link Description: Status: All, Value: localhost:8000/en-US/app/splunk-dashboard-studio/job_manager#
+		39 text field (settable) Description: filter, ID: control-view7295
+		40 text 
+		41 text 
+		42 link Description: 10 Per Page, Value: localhost:8000/en-US/app/splunk-dashboard-studio/job_manager#
+		43 link Description: Edit Selected, Value: localhost:8000/en-US/app/splunk-dashboard-studio/job_manager#
+		44 table
+			45 row
+				46 cell More Info
+					47 text i
+				48 cell
+					49 checkbox Description: Select/Deselect all, Value: 0, ID: control-view7330
+				50 cell Owner
+				51 cell Application
+				52 cell Events
+				53 cell Size
+				54 cell Created at
+				55 cell Expires
+				56 cell Runtime
+				57 cell Status
+					58 text Status
+				59 cell Actions
+					60 text Actions
+			61 row
+				62 cell
+					63 heading There are no results that match the specified criteria., Value: 2
+						64 text There are no results that match the specified criteria.
+					65 link Description: Reload Page, Value: localhost:8000/en-US/app/splunk-dashboard-studio/job_manager#
+
+The focused UI element is 1 AXWebArea Job Manager | Splunk 9.2.2, URL: localhost:8000/en-US/app/splunk-dashboard-studio/job_manager

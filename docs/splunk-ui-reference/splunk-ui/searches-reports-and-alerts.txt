@@ -1,0 +1,119 @@
+Browser tab: 2136985550, Title: "Searches, reports, and alerts | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin".
+0 AXWebArea Searches, reports, and alerts | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin
+	1 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#navSkip
+	2 container
+		3 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		4 pop up button Apps ▾
+			5 text Apps
+			6 text ▾
+		7 button Description: View health report with status green, Help: Health: green
+			8 text 
+		9 pop up button Administrator ▾, Help: User
+			10 text Administrator
+			11 text ▾
+		12 pop up button 2 Messages ▾, Help: Messages
+			13 text 2
+			14 text Messages
+			15 text ▾
+		16 pop up button Settings ▾
+			17 text Settings
+			18 text ▾
+		19 pop up button Activity ▾
+			20 text Activity
+			21 text ▾
+		22 pop up button Help ▾
+			23 text Help
+			24 text ▾
+		25 container
+			26 text 
+			27 text field (settable) Description: Find, ID: control-view8470
+	28 container
+		29 container
+			30 link Description: New Report, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+			31 link Description: New Alert, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+		32 heading Searches, Reports, and Alerts, Value: 1
+			33 text Searches, Reports, and Alerts
+		34 text Searches, reports, and alerts are saved searches created from pivot or the search page. 
+		35 link Description: Learn more , Value: localhost:8000/en-US/help?location=learnmore.saved.searches
+		36 text 2 Searches, Reports, and Alerts
+		37 link Description: Type: All, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+		38 link Description: App: Search & Reporting (search), Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+		39 pop up button (collapsed) Owner: Administrator (admin), Secondary Actions: Expand
+		40 container
+			41 text field (settable) Description: filter, ID: control-view28207
+			42 text  
+		43 link Description: 10 per page, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+		44 table
+			45 row
+				46 cell
+					47 link Description: Name ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				48 cell
+					49 text Actions
+				50 cell
+					51 text Accelerate
+					52 container Accelerate
+						53 text ⌁
+				54 cell
+					55 text Type
+				56 cell
+					57 link Description: Next Scheduled Time ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				58 cell
+					59 link Description: Display View ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				60 cell
+					61 link Description: Owner ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				62 cell
+					63 link Description: App ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				64 cell
+					65 link Description: Alerts ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				66 cell
+					67 link Description: Sharing ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				68 cell
+					69 link Description: Status ↕, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+			70 row
+				71 cell
+					72 link Description: 403_by_clientip Clone, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				73 cell
+					74 link Description: Edit, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+					75 link Description: Run , Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				76 cell
+					77 text Report
+				78 cell
+					79 text none
+				80 cell
+					81 text none
+				82 cell
+					83 text admin
+				84 cell
+					85 text search
+				86 cell
+					87 text 0
+				88 cell
+					89 text Private
+				90 cell
+					91 container
+						92 text ✓ Enabled
+			93 row
+				94 cell
+					95 link Description: Internal Report, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				96 cell
+					97 link Description: Edit, Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+					98 link Description: Run , Value: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin#
+				99 cell
+					100 text Report
+				101 cell
+					102 text none
+				103 cell
+					104 text none
+				105 cell
+					106 text admin
+				107 cell
+					108 text search
+				109 cell
+					110 text 0
+				111 cell
+					112 text Private
+				113 cell
+					114 container
+						115 text ✓ Enabled
+
+The focused UI element is 0 AXWebArea Searches, reports, and alerts | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin

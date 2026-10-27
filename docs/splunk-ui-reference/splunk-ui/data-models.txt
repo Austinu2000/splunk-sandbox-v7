@@ -1,0 +1,114 @@
+Browser tab: 2136985550, Title: "Data Models | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search".
+1 AXWebArea Data Models | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view6872
+	29 container
+		30 container
+			31 link Description: Upload Data Model, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+			32 link Description: New Data Model, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+		33 heading Data Models, Value: 1
+			34 text Data Models
+		35 text Data models enable users to easily create reports in the Pivot tool. 
+		36 link Description: Learn More , Value: localhost:8000/en-US/help?location=learnmore.datamodel.about
+		37 text 3 Data Models
+		38 link Description: App: Search & Reporting (search), Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+		39 link Description: Visible in the App, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+		40 link Description: Owner: Any, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+		41 container
+			42 text field (settable) Description: filter, ID: control-view6160
+			43 text  
+		44 link Description: 20 per page, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+		45 table
+			46 row
+				47 cell i
+					48 text i
+				49 cell Title
+				50 cell Type
+				51 cell Accelerate
+					52 text ⌁
+				53 cell Actions
+					54 text Actions
+				55 cell App
+				56 cell Owner
+				57 cell Sharing
+			58 row
+				59 cell
+					60 link Description: ›, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+				61 cell
+					62 link Description: Splunk's Internal Audit Logs - SAMPLE, Value: localhost:8000/en-US/app/search/data_model_editor?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_audit_logs
+				63 cell
+					64 text data model
+				65 cell
+					66 text ⌁
+				67 cell
+					68 link Description: Edit, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+					69 link Description: Pivot, Value: localhost:8000/en-US/app/search/pivot?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_audit_logs
+				70 cell
+					71 text search
+				72 cell
+					73 text nobody
+				74 cell
+					75 text App
+			76 row
+				77 cell
+					78 link Description: ›, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+				79 cell
+					80 link Description: Splunk's Internal Server Logs - SAMPLE, Value: localhost:8000/en-US/app/search/data_model_editor?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_server
+				81 cell
+					82 text data model
+				83 cell
+					84 text ⌁
+				85 cell
+					86 link Description: Edit, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+					87 link Description: Pivot, Value: localhost:8000/en-US/app/search/pivot?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_server
+				88 cell
+					89 text search
+				90 cell
+					91 text nobody
+				92 cell
+					93 text App
+			94 row
+				95 cell
+					96 link Description: ›, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+				97 cell
+					98 link Description: Web Application Dataset, Value: localhost:8000/en-US/app/search/data_model_editor?model=%2FservicesNS%2Funame%2Fsearch%2Fdatamodel%2Fmodel%2FWeb_app_ds
+				99 cell
+					100 text data model
+				101 cell
+					102 text ⌁
+				103 cell
+					104 link Description: Edit, Value: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search#
+					105 link Description: Pivot, Value: localhost:8000/en-US/app/search/pivot?model=%2FservicesNS%2Funame%2Fsearch%2Fdatamodel%2Fmodel%2FWeb_app_ds
+				106 cell
+					107 text search
+				108 cell
+					109 text uname
+				110 cell
+					111 text Private
+
+The focused UI element is 1 AXWebArea Data Models | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search

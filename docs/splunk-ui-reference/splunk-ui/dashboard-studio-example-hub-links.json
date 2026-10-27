@@ -1,0 +1,478 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations",
+    "text": "Home"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/",
+    "text": "Splunk Dashboard Studio"
+  },
+  {
+    "href": "/en-US/help?location=Sds.Ent.dash",
+    "text": "Read Documentation"
+  },
+  {
+    "href": "https://ideas.splunk.com/ideas/new",
+    "text": "Submit Feature Request\nto ideas.splunk.com"
+  },
+  {
+    "href": "#New",
+    "text": "New"
+  },
+  {
+    "href": "#Chart Elements",
+    "text": "Chart Elements"
+  },
+  {
+    "href": "#Gauges",
+    "text": "Gauges"
+  },
+  {
+    "href": "#Single Value",
+    "text": "Single Value"
+  },
+  {
+    "href": "#Table",
+    "text": "Table"
+  },
+  {
+    "href": "#Spatial Elements",
+    "text": "Spatial Elements"
+  },
+  {
+    "href": "#Design Elements",
+    "text": "Design Elements"
+  },
+  {
+    "href": "#Trellis",
+    "text": "Trellis"
+  },
+  {
+    "href": "#Datasources",
+    "text": "Datasources"
+  },
+  {
+    "href": "#Defaults",
+    "text": "Defaults"
+  },
+  {
+    "href": "#Inputs",
+    "text": "Inputs"
+  },
+  {
+    "href": "#Interactions & Tokens",
+    "text": "Interactions & Tokens"
+  },
+  {
+    "href": "#Complete Dashboards",
+    "text": "Complete Dashboards"
+  },
+  {
+    "href": "#New",
+    "text": "New"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-submit-button",
+    "text": "Submit Button\n\nSubmit all input selections at once\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-search-tokens",
+    "text": "Evaluate Tokens Using Search\n\nPerform token manipulation with SPL\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-advanced-showhide",
+    "text": "Advanced Show/Hide\n\nDefine your own logic for conditionally visible dashboard panels"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-trellis-layout",
+    "text": "Trellis Layout\n\nOrganize your search results with the trellis layout for a holistic view of your data\n\nComparison"
+  },
+  {
+    "href": "#Chart Elements",
+    "text": "Chart Elements"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-column-chart-visualization",
+    "text": "Column Chart\n\nColumn charts can be used for time series data when comparing magnitudes over time. They can also be used in a similar way to bar charts to compare field values across a dataset\n\nTrend"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-bar-chart-visualization",
+    "text": "Bar Chart\n\nBar charts are used to compare data of one period or point in time across multiple categories\n\nComparison"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-line-chart-visualization",
+    "text": "Line Chart\n\nUse Line charts to track values and identify trends over a period of time\n\nTrend"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-area-chart-visualization",
+    "text": "Area Chart\n\nUse Area charts to track values and identify trends over a period of time. Stacked area charts can represent the accumulation of more than one data series\n\nTrend"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-bubble-chart-visualization",
+    "text": "Bubble Chart\n\nBubble charts can represent correlation for up to four dimensions of data. The first two dimensions are visualized as coordinates, the third as size, and the fourth as color\n\nCorrelation"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-scatter-chart-visualization",
+    "text": "Scatter Chart\n\nScatter charts plot points on a graph, where the data point distribution can represent the correlation across the two dimensions being shown. Multiple categories can also be compared by using colors\n\nCorrelation"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-pie-chart-visualization",
+    "text": "Pie Chart\n\nPie charts are used to show how different field values combine ver an entire data set. The size of the slice represents relative importance of one category out of a whole\n\nComparison"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-punchcard-chart-visualization",
+    "text": "Punchcard Chart\n\nAggregate metrics over two dimensions to visualize cyclical trends in your data\n\nCorrelation"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-sankey-diagram-visualization",
+    "text": "Sankey Diagram\n\nSankey Diagrams are used to depict flows from a set of elements to another using nodes and links\n\nFlow"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-parallel-coordinates-visualization",
+    "text": "Parallel Coordinates\n\nParallel coordinates are used to depict relationships in high-dimensional datasets. The advantage lies in being able to compare multiple variables all in a single chart\n\nCorrelation"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-link-graph-visualization",
+    "text": "Link Graph\n\nLink graphs show connections between distinct values in various fields. Certain relationships can be highlighted to see every link\n\nFlow"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-chart-overlays",
+    "text": "Chart Overlays\n\nSpecify a field to be represented as an overlay on your chart. This is useful when representing averages or bounds to your data\n\nAdvanced"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-event-annotations",
+    "text": "Chart Annotations\n\nMark important discrete events on time-series charts. This is useful when providing context behind a visible change in your data\n\nAdvanced"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-chart-coloring",
+    "text": "Chart Coloring\n\nCustomize chart colors to reflect your preferred aesthetic and branding\n\nColoring"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-chart-scaling",
+    "text": "Chart Scaling\n\nAdjust chart scaling properties to help fit your data correctly"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-chart-display",
+    "text": "Display Axes, Labels and Legends\n\nAdjust how chart properties such as axes and legends frame your data"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-punchcard-chart-sizing",
+    "text": "Punchcard Sizing\n\nAdjust sizing for punchcard visualizations"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-punchcard-chart-coloring",
+    "text": "Punchcard Coloring\n\nAdjust coloring for punchcard visualizations\n\nColoring"
+  },
+  {
+    "href": "#Gauges",
+    "text": "Gauges"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-filler-gauge-visualization",
+    "text": "Filler Gauge\n\nVisualize a single numeric value and represent it in relation to a limit with a filler gauge"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-filler-gauge-coloring",
+    "text": "Filler Gauge Coloring Options\n\nAdjust coloring for filler gauges\n\nColoring"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-marker-gauge-visualization",
+    "text": "Marker Gauge\n\nVisualize a single numeric value and display it in relation to ranges representing different statuses"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-marker-gauge-coloring",
+    "text": "Marker Gauge Coloring Options\n\nAdjust coloring for marker gauges\n\nColoring"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-single-value-radial-visualization",
+    "text": "Single Value Radial\n\nRepresent a single metric in relation to a radial gauge representing a limit"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-single-value-radial-coloring",
+    "text": "Single Value Radial with Dynamic Coloring\n\nDynamically color various parts of the Single Value Radial visualization based on your data\n\nColoring"
+  },
+  {
+    "href": "#Single Value",
+    "text": "Single Value"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-single-value-visualization",
+    "text": "Basic Single Value\n\nRepresent a discrete metric with the option of also showing the latest trend value and change over time with a sparkline"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-single-value-coloring",
+    "text": "Single Value Coloring\n\nDynamically color various parts of the Single Value visualization to show overall status and signify positive and negative change\n\nColoring"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-single-value-emojis",
+    "text": "Single Value Emojis\n\nEmojis can serve as a good at-a-glance representation of status instead of relying on numbers"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-single-value-icon-visualization",
+    "text": "Single Value with Icons\n\nUse Icons to indicate important changes or to provide more context to your Single Value metrics"
+  },
+  {
+    "href": "#Table",
+    "text": "Table"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-table-chart-visualization",
+    "text": "Basic Table\n\nUse Tables to simply display field and row data from your data sources"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-table-chart-coloring",
+    "text": "Table Coloring\n\nDynamically color table elements to contextualize and emphasize data\n\nColoring"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-table-chart-formatting",
+    "text": "Advanced Table Formatting\n\nAdjust column formatting and add sparklines to tables\n\nAdvanced"
+  },
+  {
+    "href": "#Spatial Elements",
+    "text": "Spatial Elements"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-choropleth-svg-visualization",
+    "text": "Basic Choropleth SVG\n\nRepresent values by coloring predefined regions in an SVG. Custom SVG images are great for introducing an extra bit of design flair to the dashboard\n\nSpatial"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-map-visualization",
+    "text": "Interactive Maps\n\nVisualize geo data on an interactive map area\n\nSpatial"
+  },
+  {
+    "href": "#Design Elements",
+    "text": "Design Elements"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-moving-svg-visualization",
+    "text": "Moving Choropleth SVG\n\nSome SVG images can move depending on how they are made. These also work as expected in dashboards, and tokens can be used to control their movement\n\nAdvanced\nSource Only"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-image-visualization",
+    "text": "Images\n\nUse Images to add visual context and personalize your dashboard"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-shape-visualization",
+    "text": "Shapes and Lines\n\nUse shapes and lines to direct flow, frame visualizations, and tell a story with your data"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-markdown-visualization",
+    "text": "Markdown Element\n\nWrite Markdown directly in your dashboard to provide descriptions, labels, and additional information"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-icon-visualization",
+    "text": "Basic Icons\n\nIcons without values can be used to indicate change or status without needing to display a metric"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-icon-coloring",
+    "text": "Icons with Dynamic Coloring and Values\n\nAdjust coloring for single value icon visualizations to help indicate status at a glance\n\nColoring"
+  },
+  {
+    "href": "#Trellis",
+    "text": "Trellis"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-trellis-layout",
+    "text": "Trellis Layout\n\nOrganize your search results with the trellis layout for a holistic view of your data\n\nComparison"
+  },
+  {
+    "href": "#Datasources",
+    "text": "Datasources"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-ad-hoc-data",
+    "text": "Ad Hoc Search\n\nPopulate a visualization with the results of an ad-hoc Splunk search query"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-base-chain-data",
+    "text": "Base and Chain Searches\n\nOptimize your dashboard by using base and chain searches to remove repitition"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-saved-data",
+    "text": "Saved Searches\n\nUse saved searches from various apps to use in your Dashboard, such as reports from Search and Reporting"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-test-data",
+    "text": "Test Data Source\n\nUse a JSON object with static data to populate visualizations without running searches. This is best for testing or displaying static visualizations for design purposes\n\nSource Only"
+  },
+  {
+    "href": "#Defaults",
+    "text": "Defaults"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-progress-bar-defaults",
+    "text": "Progress Bar Defaults\n\nProgress bars can be revealed per visualization instance, for every visualization of a certain type, or at a default global level\n\nTokens\nSource Only"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-refresh-defaults",
+    "text": "Refresh Defaults\n\nData sources of different types can refresh at different intervals, or a global default can be set for all data sources\n\nSource Only"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-set-token-drilldown-default",
+    "text": "Token Defaults\n\nPopulate token-dependent charts on page load by setting a static default value\n\nSource Only"
+  },
+  {
+    "href": "#Inputs",
+    "text": "Inputs"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-cascading-inputs",
+    "text": "Cascading Inputs\n\nPower a form input from other input values to further narrow search results\n\nAdvanced\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-dropdown-input",
+    "text": "Dropdown\n\nSet a token to a single value by using a form populated with static or dynamic options\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-multiselect-input",
+    "text": "Multiselect\n\nSet a token to multiple values by using a form populated with static or dynamic options\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-text-input",
+    "text": "Text\n\nSet tokens based on text entries\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-number-input",
+    "text": "Number\n\nSet tokens by selecting a number from a dropdown\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-timerange-input",
+    "text": "Timerange\n\nSelect the time range used by datasources powering your visualizations. By default, every dashboard comes with a time range input\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-submit-button",
+    "text": "Submit Button\n\nSubmit all input selections at once\n\nTokens"
+  },
+  {
+    "href": "#Interactions & Tokens",
+    "text": "Interactions & Tokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-set-token-drilldown",
+    "text": "Set Token on Click\n\nSet tokens based on certain interactions taking place on a visualization. Setting tokens opens the opportunity for more dynamic workflows on the dashboard\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-set-token-search",
+    "text": "Set Token from Search\n\nSet tokens from search results or search job metadata\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-custom-url-drilldown",
+    "text": "Link to Custom URL\n\nDirect users to external or relative URLs from interacting with a visualization\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-set-token-drilldown-default",
+    "text": "Token Defaults\n\nPopulate token-dependent charts on page load by setting a static default value\n\nSource Only"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-search-tokens",
+    "text": "Evaluate Tokens Using Search\n\nPerform token manipulation with SPL\n\nTokens"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-advanced-showhide",
+    "text": "Advanced Show/Hide\n\nDefine your own logic for conditionally visible dashboard panels"
+  },
+  {
+    "href": "#Complete Dashboards",
+    "text": "Complete Dashboards"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-airport-kpis-dashboard",
+    "text": "Airport KPI's\n\nThis classic example is an excellent use case for background images and simple, colored visualizations\n\nBasic"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-assembly-line-dashboard",
+    "text": "Assembly Line\n\nConsistent labelling, multiple charts and dynamic SVGs combine to show a factory management dashboard\n\nAdvanced"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-buttercup-games-dashboard",
+    "text": "Buttercup Games\n\nA simple thematic dashboard with simple complimentary charts\n\nBasic"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-customer-satisfaction-dashboard",
+    "text": "Customer Satisfaction\n\nThis example uses grid layout to show colored visualizations to show high level customer KPIs\n\nBasic\nGrid"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-security-summary-dashboard",
+    "text": "Cybersecurity Executive Summary\n\nThis dashboard shows a global cybersecurity executive summary of threats and security posture\n\nIntermediate\nSecurity"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-datacenter-dashboard",
+    "text": "Datacenter Sensors\n\nThis dashboard shows a thematic example of dynamic SVG options to track server room temperatures\n\nIntermediate"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-data-command-dashboard",
+    "text": "Data Command and Control\n\nA complex, data centric dashboard that pushes the limit in the visual control Dashboard Studio provides\n\nAdvanced"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-data-governance-dashboard",
+    "text": "Data Governance\n\nA data governance dashboard showing high level enterprise metrics\n\nIntermediate"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-data-streaming-dashboard",
+    "text": "Data Streaming\n\nA strong showcase of how simple visualizations with proper layout make for an effective dashboard\n\nIntermediate"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-ecommerce-monitoring-dashboard",
+    "text": "E-Commerce Monitoring\n\nA vibrant, thematic dashboard showing e-commerce metrics and use of SVGs\n\nIntermediate"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-security-devices-dashboard",
+    "text": "Employee Device Security\n\nThis dashboard shows a global cybersecurity view on employee devices\n\nIntermediate\nSecurity"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-security-network-dashboard",
+    "text": "Employee Network Access\n\nThis dashboard shows a global view of employee network accesses in the context of cybersecurity\n\nIntermediate\nSecurity"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-europe-telecom-network-hub-dashboard",
+    "text": "Europe Telecom Network Hub\n\nThis example shows one of the most intricate and effective uses of SVG coloring\n\nAdvanced"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-healthcare-dashboard",
+    "text": "Healthcare Dashboard\n\nThis dashboard shows how effective coloring and layering can combine simple visuals to an effective information flow\n\nIntermediate"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-vpn-health-by-region-dashboard",
+    "text": "VPN Health by Region\n\nAn effective use of icons and coloring to showcase a VPN infrastructure flow\n\nIntermediate"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-workplace-readiness",
+    "text": "Workforce Readiness\n\nAn effective use of images, icons, and visualizations to show office capacity metrics\n\nIntermediate"
+  },
+  {
+    "href": "/app/splunk-dashboard-studio/example-hub-workplace-readiness-detail",
+    "text": "Workforce Readiness Detail\n\nA detailed version of office capacity metrics by using SVGs to color office floor maps\n\nAdvanced"
+  }
+]

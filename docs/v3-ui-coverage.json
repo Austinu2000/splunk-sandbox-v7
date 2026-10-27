@@ -1,0 +1,360 @@
+{
+  "referenceVersion": "Splunk Enterprise 9.2.2",
+  "capturedStates": [
+    {
+      "reference": "account-menu",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "activity-menu",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "add-data",
+      "route": "#/settings/add-data",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "advanced-search",
+      "route": "#/settings/advanced-search",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "alert-actions",
+      "route": "#/settings/alert-actions",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "alerts",
+      "route": "#/alerts",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "all-configurations",
+      "route": "#/settings/all-configurations",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "analytics-workspace",
+      "route": "#/analytics",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "app-management",
+      "route": "#/apps",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "apps-menu",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "authentication-methods",
+      "route": "#/settings/authentication-methods",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "create-dashboard-dialog",
+      "route": "#/dashboards",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "dashboard-studio-column-chart",
+      "route": "#/studio/example-hub-column-chart-visualization",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "dashboard-studio-example-hub",
+      "route": "#/studio",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "dashboards",
+      "route": "#/dashboards",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "data-inputs",
+      "route": "#/settings/data-inputs",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "data-models",
+      "route": "#/settings/data-models",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "datasets",
+      "route": "#/datasets",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "distributed-search",
+      "route": "#/settings/distributed-search",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "event-types",
+      "route": "#/settings/event-types",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "federated-search",
+      "route": "#/settings/federated-search",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "fields",
+      "route": "#/settings/fields",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "forwarder-management",
+      "route": "#/forwarders",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "forwarding-and-receiving",
+      "route": "#/settings/forwarding-and-receiving",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "health-report-manager",
+      "route": "#/settings/health-report-manager",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "help-menu",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "home-created-by-you",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "home-dashboard",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "home-recently-viewed",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "home-shared-with-you",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "home",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "indexer-clustering",
+      "route": "#/settings/indexer-clustering",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "indexes",
+      "route": "#/settings/indexes",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "ingest-actions",
+      "route": "#/settings/ingest-actions",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "instrumentation",
+      "route": "#/settings/instrumentation",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "jobs",
+      "route": "#/jobs",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "licensing",
+      "route": "#/settings/licensing",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "lookups",
+      "route": "#/settings/lookups",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "mobile-settings",
+      "route": "#/settings/mobile-settings",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "monitoring-console",
+      "route": "#/monitoring",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "password-management",
+      "route": "#/settings/password-management",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "report-acceleration-summaries",
+      "route": "#/settings/report-acceleration-summaries",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "reports",
+      "route": "#/reports",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "roles",
+      "route": "#/settings/roles",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "search-time-picker",
+      "route": "#/search",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "search",
+      "route": "#/search",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "searches-reports-and-alerts",
+      "route": "#/settings/searches-reports-and-alerts",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "server-controls",
+      "route": "#/settings/server-controls",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "server-settings",
+      "route": "#/settings/server-settings",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "settings-menu",
+      "route": "#/home",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "source-types",
+      "route": "#/settings/source-types",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "tags",
+      "route": "#/settings/tags",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "tokens",
+      "route": "#/settings/tokens",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "triggered-alerts",
+      "route": "#/triggered-alerts",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "user-interface",
+      "route": "#/settings/user-interface",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "users",
+      "route": "#/settings/users",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    },
+    {
+      "reference": "workload-management",
+      "route": "#/settings/workload-management",
+      "implementation": "dedicated screen or interactive state",
+      "data": "local simulated state; captured installation values are not treated as live sandbox data"
+    }
+  ],
+  "observedStates": 57,
+  "settingsDestinations": 34,
+  "installedViewDefinitions": 260,
+  "staticPanelDefinitions": 1177,
+  "fullOneToOneParity": false,
+  "limitations": [
+    "Full Dashboard Studio canvas/schema is not reproduced",
+    "Compiled app-only views were inventoried but not captured; render explicit coverage notes",
+    "Simulator SPL subset cannot execute every shipped dashboard query",
+    "Settings drafts do not change engine configuration; use simulated terminal",
+    "Authentication, ingestion, deployment, app-installation, mobile-pairing and external alert delivery are not real services",
+    "Schedules are metadata only; realtime searches poll every5 seconds; search exports capped500 rows"
+  ]
+}

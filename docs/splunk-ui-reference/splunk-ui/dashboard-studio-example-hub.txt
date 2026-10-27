@@ -1,0 +1,176 @@
+Browser tab: 2136985550, Title: "Dashboard Examples Hub", URL: "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations".
+1 AXWebArea Dashboard Examples Hub, URL: localhost:8000/en-U…
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-U…
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button Description: View health report with status green, Help: Health: green
+				10 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text field (settable) Description: Find, ID: control-view6546
+		29 link Description: Home, Value: localhost:8000/en-U…
+		30 link Description: Splunk Dashboard Studio, Value: localhost:8000/en-U…
+	31 container
+		32 image Examples App Logo
+		33 heading Dashboard Examples Hub, Value: 2
+			34 text Dashboard Examples Hub
+		35 text Empowering dashboard creators with a toolkit of examples Submit feedback to: dashboard-studio@splunk.com
+		36 link Description: Read Documentation, Value: localhost:8000/en-U…
+		37 link Description: Submit Feature Request to ideas.splunk.com, Value: ideas.splunk.com/id…
+		38 heading Examples, Value: 2
+			39 text Examples
+		40 menu
+			41 New
+				42 text New
+			43 Chart Elements
+				44 text Chart Elements
+			45 Gauges
+				46 text Gauges
+			47 Single Value
+				48 text Single Value
+			49 Table
+				50 text Table
+			51 Spatial Elements
+				52 text Spatial Elements
+			53 Design Elements
+				54 text Design Elements
+			55 Trellis
+				56 text Trellis
+			57 Datasources
+				58 text Datasources
+			59 Defaults
+				60 text Defaults
+			61 Inputs
+				62 text Inputs
+			63 Interactions & Tokens
+				64 text Interactions & Tokens
+			65 Complete Dashboards
+				66 text Complete Dashboards
+		67 heading New, Value: 2
+			68 link Description: New, Value: localhost:8000/en-U…
+		69 link Description: Submit Button Submit Button Dashboard Thumbnail Submit all input selections at once Tokens, Value: localhost:8000/app/…
+		70 link Value: localhost:8000/app/…, Description: Evaluate Tokens Using Search Evaluate Tokens Using Search Dashboard Thumbnail Perform token manipulation with SPL Tokens
+		71 link Value: localhost:8000/app/…, Description: Advanced Show/Hide Advanced Show/Hide Dashboard Thumbnail Define your own logic for conditionally visible dashboard panels
+		72 link Value: localhost:8000/app/…, Description: Trellis Layout Trellis Layout Dashboard Thumbnail Organize your search results with the trellis layout for a holistic view of your data Comparison
+		73 heading Chart Elements, Value: 2
+			74 link Description: Chart Elements, Value: localhost:8000/en-U…
+		75 link Value: localhost:8000/app/…, Description: Column Chart Column Visualization Image Column charts can be used for time series data when comparing magnitudes over time. They can also be used in a similar way to bar charts to compare field values across a dataset Trend
+		76 link Value: localhost:8000/app/…, Description: Bar Chart Bar Visualization Image Bar charts are used to compare data of one period or point in time across multiple categories Comparison
+		77 link Value: localhost:8000/app/…, Description: Line Chart Line Visualization Image Use Line charts to track values and identify trends over a period of time Trend
+		78 link Value: localhost:8000/app/…, Description: Area Chart Area Visualization Image Use Area charts to track values and identify trends over a period of time. Stacked area charts can represent the accumulation of more than one data series Trend
+		79 link Value: localhost:8000/app/…, Description: Bubble Chart Bubble Visualization Image Bubble charts can represent correlation for up to four dimensions of data. The first two dimensions are visualized as coordinates, the third as size, and the fourth as color Correlation
+		80 link Value: localhost:8000/app/…, Description: Scatter Chart Scatter Visualization Image Scatter charts plot points on a graph, where the data point distribution can represent the correlation across the two dimensions being shown. Multiple categories can also be compared by using colors Correlation
+		81 link Value: localhost:8000/app/…, Description: Pie Chart Pie Visualization Image Pie charts are used to show how different field values combine ver an entire data set. The size of the slice represents relative importance of one category out of a whole Comparison
+		82 link Value: localhost:8000/app/…, Description: Punchcard Chart Punchcard Visualization Image Aggregate metrics over two dimensions to visualize cyclical trends in your data Correlation
+		83 link Value: localhost:8000/app/…, Description: Sankey Diagram Sankey Visualization Image Sankey Diagrams are used to depict flows from a set of elements to another using nodes and links Flow
+		84 link Value: localhost:8000/app/…, Description: Parallel Coordinates Parallel Coordinates Visualization Image Parallel coordinates are used to depict relationships in high-dimensional datasets. The advantage lies in being able to compare multiple variables all in a single chart Correlation
+		85 link Value: localhost:8000/app/…, Description: Link Graph Link Graph Image Link graphs show connections between distinct values in various fields. Certain relationships can be highlighted to see every link Flow
+		86 link Value: localhost:8000/app/…, Description: Chart Overlays Overlays Image Specify a field to be represented as an overlay on your chart. This is useful when representing averages or bounds to your data Advanced
+		87 link Value: localhost:8000/app/…, Description: Chart Annotations Annotations Image Mark important discrete events on time-series charts. This is useful when providing context behind a visible change in your data Advanced
+		88 link Value: localhost:8000/app/…, Description: Chart Coloring Chart Coloring Image Customize chart colors to reflect your preferred aesthetic and branding Coloring
+		89 link Description: Chart Scaling Chart Scaling Image Adjust chart scaling properties to help fit your data correctly, Value: localhost:8000/app/…
+		90 link Value: localhost:8000/app/…, Description: Display Axes, Labels and Legends Chart Display Image Adjust how chart properties such as axes and legends frame your data
+		91 link Description: Punchcard Sizing Punchcard Sizing Image Adjust sizing for punchcard visualizations, Value: localhost:8000/app/…
+		92 link Description: Punchcard Coloring Punchcard Coloring Image Adjust coloring for punchcard visualizations Coloring, Value: localhost:8000/app/…
+		93 heading Gauges, Value: 2
+			94 link Description: Gauges, Value: localhost:8000/en-U…
+		95 link Value: localhost:8000/app/…, Description: Filler Gauge Filler Gauge Image Visualize a single numeric value and represent it in relation to a limit with a filler gauge
+		96 link Description: Filler Gauge Coloring Options Filler Gauge Coloring Image Adjust coloring for filler gauges Coloring, Value: localhost:8000/app/…
+		97 link Value: localhost:8000/app/…, Description: Marker Gauge Marker Gauge Image Visualize a single numeric value and display it in relation to ranges representing different statuses
+		98 link Description: Marker Gauge Coloring Options Marker Gauge Coloring Image Adjust coloring for marker gauges Coloring, Value: localhost:8000/app/…
+		99 link Value: localhost:8000/app/…, Description: Single Value Radial Radial Image Represent a single metric in relation to a radial gauge representing a limit
+		100 link Value: localhost:8000/app/…, Description: Single Value Radial with Dynamic Coloring Radial Coloring Image Dynamically color various parts of the Single Value Radial visualization based on your data Coloring
+		101 heading Single Value, Value: 2
+			102 link Description: Single Value, Value: localhost:8000/en-U…
+		103 link Value: localhost:8000/app/…, Description: Basic Single Value Single Value Image Represent a discrete metric with the option of also showing the latest trend value and change over time with a sparkline
+		104 link Value: localhost:8000/app/…, Description: Single Value Coloring Single Value Coloring Image Dynamically color various parts of the Single Value visualization to show overall status and signify positive and negative change Coloring
+		105 link Value: localhost:8000/app/…, Description: Single Value Emojis Single Value Emoji Image Emojis can serve as a good at-a-glance representation of status instead of relying on numbers
+		106 link Value: localhost:8000/app/…, Description: Single Value with Icons Single Value Icon Image Use Icons to indicate important changes or to provide more context to your Single Value metrics
+		107 heading Table, Value: 2
+			108 link Description: Table, Value: localhost:8000/en-U…
+		109 link Description: Basic Table Table Image Use Tables to simply display field and row data from your data sources, Value: localhost:8000/app/…
+		110 link Value: localhost:8000/app/…, Description: Table Coloring Table Coloring Image Dynamically color table elements to contextualize and emphasize data Coloring
+		111 link Value: localhost:8000/app/…, Description: Advanced Table Formatting Table Formatting Image Adjust column formatting and add sparklines to tables Advanced
+		112 heading Spatial Elements, Value: 2
+			113 link Description: Spatial Elements, Value: localhost:8000/en-U…
+		114 link Value: localhost:8000/app/…, Description: Basic Choropleth SVG SVG Visualization Image Represent values by coloring predefined regions in an SVG. Custom SVG images are great for introducing an extra bit of design flair to the dashboard Spatial
+		115 link Description: Interactive Maps Map Visualization Image Visualize geo data on an interactive map area Spatial, Value: localhost:8000/app/…
+		116 heading Design Elements, Value: 2
+			117 link Description: Design Elements, Value: localhost:8000/en-U…
+		118 link Value: localhost:8000/app/…, Description: Moving Choropleth SVG Moving SVG Visualization Image Some SVG images can move depending on how they are made. These also work as expected in dashboards, and tokens can be used to control their movement Advanced Source Only
+		119 link Description: Images Image Visualization Image Use Images to add visual context and personalize your dashboard, Value: localhost:8000/app/…
+		120 link Value: localhost:8000/app/…, Description: Shapes and Lines Shape Visualization Image Use shapes and lines to direct flow, frame visualizations, and tell a story with your data
+		121 link Value: localhost:8000/app/…, Description: Markdown Element Markdown Visualization Image Write Markdown directly in your dashboard to provide descriptions, labels, and additional information
+		122 link Value: localhost:8000/app/…, Description: Basic Icons Icon Visualization Image Icons without values can be used to indicate change or status without needing to display a metric
+		123 link Value: localhost:8000/app/…, Description: Icons with Dynamic Coloring and Values Icon Coloring Image Adjust coloring for single value icon visualizations to help indicate status at a glance Coloring
+		124 heading Trellis, Value: 2
+			125 link Description: Trellis, Value: localhost:8000/en-U…
+		126 link Value: localhost:8000/app/…, Description: Trellis Layout Trellis Layout Dashboard Thumbnail Organize your search results with the trellis layout for a holistic view of your data Comparison
+		127 heading Datasources, Value: 2
+			128 link Description: Datasources, Value: localhost:8000/en-U…
+		129 link Value: localhost:8000/app/…, Description: Ad Hoc Search Search Image Populate a visualization with the results of an ad-hoc Splunk search query
+		130 link Value: localhost:8000/app/…, Description: Base and Chain Searches Base Chain Image Optimize your dashboard by using base and chain searches to remove repitition
+		131 link Value: localhost:8000/app/…, Description: Saved Searches Saved Search Image Use saved searches from various apps to use in your Dashboard, such as reports from Search and Reporting
+		132 link Value: localhost:8000/app/…, Description: Test Data Source Test Data Image Use a JSON object with static data to populate visualizations without running searches. This is best for testing or displaying static visualizations for design purposes Source Only
+		133 heading Defaults, Value: 2
+			134 link Description: Defaults, Value: localhost:8000/en-U…
+		135 link Value: localhost:8000/app/…, Description: Progress Bar Defaults Progress Bar Defaults Image Progress bars can be revealed per visualization instance, for every visualization of a certain type, or at a default global level Tokens Source Only
+		136 link Value: localhost:8000/app/…, Description: Refresh Defaults Refresh Defaults Image Data sources of different types can refresh at different intervals, or a global default can be set for all data sources Source Only
+		137 link Value: localhost:8000/app/…, Description: Token Defaults Token Defaults Image Populate token-dependent charts on page load by setting a static default value Source Only
+		138 heading Inputs, Value: 2
+			139 link Description: Inputs, Value: localhost:8000/en-U…
+		140 link Value: localhost:8000/app/…, Description: Cascading Inputs Cascading Image Power a form input from other input values to further narrow search results Advanced Tokens
+		141 link Value: localhost:8000/app/…, Description: Dropdown Dropdown Image Set a token to a single value by using a form populated with static or dynamic options Tokens
+		142 link Value: localhost:8000/app/…, Description: Multiselect Multiselect Image Set a token to multiple values by using a form populated with static or dynamic options Tokens
+		143 link Description: Text Text Input Image Set tokens based on text entries Tokens, Value: localhost:8000/app/…
+		144 link Description: Number Number Input Image Set tokens by selecting a number from a dropdown Tokens, Value: localhost:8000/app/…
+		145 link Value: localhost:8000/app/…, Description: Timerange Timerange Input Image Select the time range used by datasources powering your visualizations. By default, every dashboard comes with a time range input Tokens
+		146 link Description: Submit Button Submit Button Dashboard Thumbnail Submit all input selections at once Tokens, Value: localhost:8000/app/…
+		147 heading Interactions & Tokens, Value: 2
+			148 link Description: Interactions & Tokens, Value: localhost:8000/en-U…
+		149 link Value: localhost:8000/app/…, Description: Set Token on Click Set Token Image Set tokens based on certain interactions taking place on a visualization. Setting tokens opens the opportunity for more dynamic workflows on the dashboard Tokens
+		150 link Value: localhost:8000/app/…, Description: Set Token from Search Set Token from Search Image Set tokens from search results or search job metadata Tokens
+		151 link Value: localhost:8000/app/…, Description: Link to Custom URL Custom URL Image Direct users to external or relative URLs from interacting with a visualization Tokens
+		152 link Value: localhost:8000/app/…, Description: Token Defaults Token Defaults Image Populate token-dependent charts on page load by setting a static default value Source Only
+		153 link Value: localhost:8000/app/…, Description: Evaluate Tokens Using Search Evaluate Tokens Using Search Dashboard Thumbnail Perform token manipulation with SPL Tokens
+		154 link Value: localhost:8000/app/…, Description: Advanced Show/Hide Advanced Show/Hide Dashboard Thumbnail Define your own logic for conditionally visible dashboard panels
+		155 heading Complete Dashboards, Value: 2
+			156 link Description: Complete Dashboards, Value: localhost:8000/en-U…
+		157 link Value: localhost:8000/app/…, Description: Airport KPI's Airport Dashboard Thumbnail This classic example is an excellent use case for background images and simple, colored visualizations Basic
+		158 link Value: localhost:8000/app/…, Description: Assembly Line Assembly Dashboard Thumbnail Consistent labelling, multiple charts and dynamic SVGs combine to show a factory management dashboard Advanced
+		159 link Value: localhost:8000/app/…, Description: Buttercup Games Buttercup Games Dashboard Thumbnail A simple thematic dashboard with simple complimentary charts Basic
+		160 link Value: localhost:8000/app/…, Description: Customer Satisfaction Customer Satisfaction Dashboard Thumbnail This example uses grid layout to show colored visualizations to show high level customer KPIs Basic Grid
+		161 link Value: localhost:8000/app/…, Description: Cybersecurity Executive Summary Employee Devices Thumbnail This dashboard shows a global cybersecurity executive summary of threats and security posture Intermediate Security
+		162 link Value: localhost:8000/app/…, Description: Datacenter Sensors Datacenter Sensors Dashboard Thumbnail This dashboard shows a thematic example of dynamic SVG options to track server room temperatures Intermediate
+		163 link Value: localhost:8000/app/…, Description: Data Command and Control Data Command and Control Dashboard Thumbnail A complex, data centric dashboard that pushes the limit in the visual control Dashboard Studio provides Advanced
+		164 link Value: localhost:8000/app/…, Description: Data Governance Data Governance Dashboard Thumbnail A data governance dashboard showing high level enterprise metrics Intermediate
+		165 link Value: localhost:8000/app/…, Description: Data Streaming Data Streaming Dashboard Thumbnail A strong showcase of how simple visualizations with proper layout make for an effective dashboard Intermediate
+		166 link Value: localhost:8000/app/…, Description: E-Commerce Monitoring E-Commerce Monitoring Dashboard Thumbnail A vibrant, thematic dashboard showing e-commerce metrics and use of SVGs Intermediate
+		167 link Value: localhost:8000/app/…, Description: Employee Device Security Employee Devices Thumbnail This dashboard shows a global cybersecurity view on employee devices Intermediate Security
+		168 link Value: localhost:8000/app/…, Description: Employee Network Access Employee Devices Thumbnail This dashboard shows a global view of employee network accesses in the context of cybersecurity Intermediate Security
+		169 link Value: localhost:8000/app/…, Description: Europe Telecom Network Hub Europe Telecom Dashboard Thumbnail This example shows one of the most intricate and effective uses of SVG coloring Advanced
+		170 link Value: localhost:8000/app/…, Description: Healthcare Dashboard Healthcare Dashboard Thumbnail This dashboard shows how effective coloring and layering can combine simple visuals to an effective information flow Intermediate
+		171 link Value: localhost:8000/app/…, Description: VPN Health by Region VPN Health Dashboard Thumbnail An effective use of icons and coloring to showcase a VPN infrastructure flow Intermediate
+		172 link Value: localhost:8000/app/…, Description: Workforce Readiness Workforce Readiness Dashboard Thumbnail An effective use of images, icons, and visualizations to show office capacity metrics Intermediate
+		173 link Value: localhost:8000/app/…, Description: Workforce Readiness Detail Workforce Readiness Detail Dashboard Thumbnail A detailed version of office capacity metrics by using SVGs to color office floor maps Advanced
+
+The focused UI element is 1 AXWebArea Dashboard Examples Hub, URL: localhost:8000/en-U…

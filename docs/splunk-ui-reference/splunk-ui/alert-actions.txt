@@ -1,0 +1,159 @@
+Browser tab: 2136985550, Title: "Manage alert actions | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/alert_actions".
+1 AXWebArea Manage alert actions | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/alert_actions
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/alert_actions#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view7852
+	29 container
+		30 container
+			31 button Browse more
+			32 heading Alert Actions, Value: 1
+				33 text Alert Actions
+			34 text Review and manage available alert actions
+		35 container
+			36 text field (settable) Description: filter, ID: control-view7411
+			37 text  
+		38 table
+			39 row
+				40 cell Alert action
+				41 cell App
+				42 cell Sharing
+				43 cell Status
+				44 cell Usage
+					45 text Usage
+				46 cell Log
+					47 text Log
+				48 cell Setup
+					49 text Setup
+			50 row
+				51 cell
+					52 image Alert action icon
+					53 text Log Event
+					54 text Send log event to Splunk receiver endpoint
+				55 cell
+					56 text alert_logevent
+				57 cell
+					58 text Global | 
+					59 link Description: Permissions, Value: localhost:8000/en-US/manager/search/alert_actions#
+				60 cell
+					61 text Enabled | 
+					62 link Description: Disable, Value: localhost:8000/en-US/manager/search/alert_actions#
+				63 cell
+					64 link Description: Usage statistics, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22logevent%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count
+				65 cell
+					66 link Description: View log events, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22logevent%22
+			67 row
+				68 cell
+					69 image Alert action icon
+					70 text Output results to lookup
+					71 text Output the results of the search to a CSV lookup file
+				72 cell
+					73 text system
+				74 cell
+					75 text Global | 
+					76 link Description: Permissions, Value: localhost:8000/en-US/manager/search/alert_actions#
+				77 cell
+					78 text Enabled | 
+					79 link Description: Disable, Value: localhost:8000/en-US/manager/search/alert_actions#
+			80 row
+				81 cell
+					82 image Alert action icon
+					83 text Output results to telemetry endpoint
+					84 text Custom action to output results to telemetry endpoint
+				85 cell
+					86 text splunk_instrumentation
+				87 cell
+					88 text Global | 
+					89 link Description: Permissions, Value: localhost:8000/en-US/manager/search/alert_actions#
+				90 cell
+					91 text Enabled | 
+					92 link Description: Disable, Value: localhost:8000/en-US/manager/search/alert_actions#
+				93 cell
+					94 link Description: Usage statistics, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22outputtelemetry%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count
+				95 cell
+					96 link Description: View log events, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22outputtelemetry%22
+			97 row
+				98 cell
+					99 image Alert action icon
+					100 text Run a script
+					101 text Invoke a custom script
+				102 cell
+					103 text system
+				104 cell
+					105 text Global | 
+					106 link Description: Permissions, Value: localhost:8000/en-US/manager/search/alert_actions#
+				107 cell
+					108 text Enabled | 
+					109 link Description: Disable, Value: localhost:8000/en-US/manager/search/alert_actions#
+			110 row
+				111 cell
+					112 image Alert action icon
+					113 text Send email
+					114 text Send an email notification to specified recipients
+				115 cell
+					116 text system
+				117 cell
+					118 text Global | 
+					119 link Description: Permissions, Value: localhost:8000/en-US/manager/search/alert_actions#
+				120 cell
+					121 text Enabled | 
+					122 link Description: Disable, Value: localhost:8000/en-US/manager/search/alert_actions#
+			123 row
+				124 cell
+					125 image Alert action icon
+					126 text Send to Splunk Mobile
+					127 text Send a notification to Splunk Mobile recipients
+				128 cell
+					129 text splunk_secure_gateway
+				130 cell
+					131 text Global | 
+					132 link Description: Permissions, Value: localhost:8000/en-US/manager/search/alert_actions#
+				133 cell
+					134 text Enabled | 
+					135 link Description: Disable, Value: localhost:8000/en-US/manager/search/alert_actions#
+				136 cell
+					137 link Description: Usage statistics, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22ssg_mobile_alert%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count
+				138 cell
+					139 link Description: View log events, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22ssg_mobile_alert%22
+			140 row
+				141 cell
+					142 image Alert action icon
+					143 text Webhook
+					144 text Generic HTTP POST to a specified URL
+				145 cell
+					146 text alert_webhook
+				147 cell
+					148 text Global | 
+					149 link Description: Permissions, Value: localhost:8000/en-US/manager/search/alert_actions#
+				150 cell
+					151 text Enabled | 
+					152 link Description: Disable, Value: localhost:8000/en-US/manager/search/alert_actions#
+				153 cell
+					154 link Description: Usage statistics, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22webhook%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count
+				155 cell
+					156 link Description: View log events, Value: localhost:8000/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22webhook%22
+
+The focused UI element is 1 AXWebArea Manage alert actions | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/alert_actions

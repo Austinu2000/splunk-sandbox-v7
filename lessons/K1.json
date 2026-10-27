@@ -1,0 +1,27 @@
+{
+  "id": "K1",
+  "title": "Create and query a typed collection",
+  "minutes": 20,
+  "level": 2,
+  "profile": "lab",
+  "instructions": "Create a collection named services in app kv_training. Define field.name=string, field.owner=string and enforceTypes=true. Save at least two records. Use the KV Store page or simulated REST endpoint, then read the records back. Inspect splunk show kvstore-status --verbose and explain the distinction between Splunk 9.4.1 and the fixture KV server 7.0.0.",
+  "checks": [
+    {
+      "kind": "kv",
+      "label": "Inspect detailed KV status",
+      "operation": "inspect"
+    },
+    {
+      "kind": "kv",
+      "label": "Create a typed services collection with at least two records",
+      "collection": "services",
+      "minRecords": 2,
+      "schema": {
+        "field.name": "string",
+        "field.owner": "string",
+        "enforceTypes": "true"
+      }
+    }
+  ],
+  "completionScope": "KV checks validate persisted collection contents, service health and recovery outcomes. Review your explanation separately."
+}

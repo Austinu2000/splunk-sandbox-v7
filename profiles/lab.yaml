@@ -1,0 +1,30 @@
+id: lab
+name: Practice Lab
+description: Fictional beginner lab. 50 forwarders, one intentionally offline, and a simulated Git automation workspace.
+role: Learner
+seed: lab-v1
+scale: { targetDailyIngestTB: 0.01, fleetSize: 50, users: 1 }
+sites:
+  - { id: lab, name: Lab, weight: 1, subnet: 60 }
+infra:
+  indexerCluster: { indexers: 3, multisite: false, replicationFactor: 3, searchFactor: 2 }
+  searchHeadCluster: { members: 1, deployer: false }
+  esSearchHead: false
+  deploymentServers: 1
+  licenseManager: true
+  monitoringConsole: true
+  heavyForwarders:
+    - { name: hf01, site: lab, role: syslog }
+  extras: []
+auth: { method: native, roleMappings: [] }
+apps: [Splunk_TA_nix, Splunk_TA_windows]
+serverClasses:
+  - { id: linux_servers, short: lnx, os: linux, weight: 0.7, baseThroughputKBps: 8, outputs: indexers }
+  - { id: win_servers, short: win, os: windows, weight: 0.3, baseThroughputKBps: 10, outputs: indexers }
+indexes:
+  - { name: os, retentionDays: 30 }
+  - { name: wineventlog, retentionDays: 30 }
+dataSources:
+  - { id: linux, sourcetypes: [linux_secure, syslog], index: os, via: forwarders, shareOfIngest: 0.7 }
+  - { id: windows, sourcetypes: [XmlWinEventLog], index: wineventlog, via: forwarders, shareOfIngest: 0.3 }
+scenarios: { core: [], profile: [] }

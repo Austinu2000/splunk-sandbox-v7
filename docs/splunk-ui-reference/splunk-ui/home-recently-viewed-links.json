@@ -1,0 +1,54 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local",
+    "text": "Manage"
+  },
+  {
+    "href": "/en-US/app/search",
+    "text": "Search & Reporting"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway",
+    "text": "Splunk Secure Gateway"
+  },
+  {
+    "href": "/en-US/app/python_upgrade_readiness_app",
+    "text": "Upgrade Readiness App"
+  },
+  {
+    "href": "/en-US/manager/launcher/appsremote",
+    "text": "Find more apps"
+  }
+]

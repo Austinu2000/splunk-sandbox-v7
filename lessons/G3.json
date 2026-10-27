@@ -1,0 +1,15 @@
+{
+  "id": "G3",
+  "title": "Branch, push and open a pull request",
+  "minutes": 20,
+  "level": 1,
+  "profile": "lab",
+  "instructions": "Goal: propose a change the safe way, on a branch, for review.\n1 . Create and switch to a new branch: git switch -c add-retention-note\n2. Edit group_vars/indexers.yml  with nano and add a comment line starting with #\nthat says what the file is for. Save and exit.\n3. Stage and commit: git add group_vars/indexers.yml  then git commit -m\n\"Document indexer variables\"\n4. Send the branch to the shared server: git push -u origin add-retention-note\n5. In the Code app, click New pull request, choose your branch, write a one-line\ndescription and create it.\n\n6. Watch the checks run. When they're green and a teammate approves, click Merge.\nCheck yourself: why not commit straight to main ?",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

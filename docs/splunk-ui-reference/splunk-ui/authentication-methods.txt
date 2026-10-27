@@ -1,0 +1,48 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/authoverview".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/authoverview
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/authoverview#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1336
+	28 heading Authentication methods, Value: 1
+		29 text Authentication methods
+	30 text Select an authentication method. Splunk supports native authentication as well as the following external methods:
+	31 text Internal
+	32 checkbox (disabled, settable, integer) Description: Splunk Authentication (always on), Value: 1, ID: SplunkCheckbox
+	33 text External
+	34 container External
+		35 radio button (settable, integer) Description: None, Value: 1, ID: NoneRadio
+		36 radio button (settable, integer) Description: LDAP, Value: 0, ID: LDAPRadio
+		37 radio button (settable, integer) Description: SAML, Value: 0, ID: SAMLRadio
+	38 heading Multifactor Authentication, Value: 2, ID: mfaAuth
+		39 text Multifactor Authentication
+	40 text Not available with external authentication such as SAML.
+	41 container Multifactor Authentication
+		42 radio button Description: None, Value: 1
+		43 radio button Description: Duo Security, Value: 0
+		44 radio button Description: RSA Security, Value: 0
+	45 link Description: Reload authentication configuration, Value: localhost:8000/en-US/manager/search/authoverview#
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/authoverview

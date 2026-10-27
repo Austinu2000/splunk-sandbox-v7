@@ -1,0 +1,39 @@
+Browser tab: 2136985550, Title: "Indexer Clustering | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/system/clustering".
+1 AXWebArea Indexer Clustering | Splunk 9.2.2, URL: localhost:8000/en-US/manager/system/clustering
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/system/clustering#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view6127
+	29 container
+		30 heading Indexer Clustering, Value: 1
+			31 text Indexer Clustering
+		32 text Indexer Clusters are groups of Splunk indexers configured to keep multiple copies of data. This increases data
+		33 text availability, data fidelity, data redundancy, and search performance. Indexer clustering is a complex feature, we recommend reading the
+		34 text documentation before enabling indexer clustering. 
+		35 link Description: Learn More , Value: localhost:8000/en-US/help?location=manager.clustering.configureClustering
+		36 button Enable indexer clustering, ID: enable_clustering
+
+The focused UI element is 1 AXWebArea Indexer Clustering | Splunk 9.2.2, URL: localhost:8000/en-US/manager/system/clustering

@@ -1,0 +1,108 @@
+id: apl-cribl-route
+title: Firewall denies consume too much license
+profiles:
+  - apl
+summary: The optional Cribl evaluation pipeline is enabled for this drill with
+  full-fidelity deny events. Sample denies while retaining security signals.
+topics:
+  - apl
+  - configuration
+  - operations
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Security Operations
+  persona: methodical
+  urgency: high
+  text: Firewall denies consume too much license. Investigate the affected
+    service, correct its configuration, and verify recovery.
+changes:
+  - host: cribl01
+    path: /opt/splunk/etc/system/local/pipeline.conf
+    stanza: firewall
+    set:
+      deny_sample_rate: "1"
+      drop_all: "false"
+    apply: restart
+clues:
+  - "cribl01: /opt/splunk/etc/system/local/pipeline.conf [firewall]"
+  - splunk show profile-status on the affected host
+  - Apps → Engineer Sandbox → Operations
+redHerrings: []
+fixChecks:
+  all:
+    - metric:
+        host: cribl01
+        metric: denySampleRate
+        greaterThan: 0
+        lessThan: 1
+    - metric:
+        host: cribl01
+        metric: dropAll
+        equals: false
+recovery:
+  seconds: 30
+interview:
+  prompt: Firewall denies consume too much license. Walk through diagnosis, a
+    scoped fix, and verification.
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: scope
+      label: Scoped the affected environment
+      any:
+        - page: ^(environments|fleet|operations|monitoring)
+        - cmd: show\s+profile-status
+    - id: inspect
+      label: Inspected the effective configuration
+      any:
+        - cmd: btool|cat|less|grep
+  verification:
+    - cmd: show\s+profile-status|run\s+playbook
+    - page: ^operations
+    - search: index=
+  unsafe:
+    - label: Dropping all firewall data
+      match:
+        cmd: drop_all\s*=\s*true|REGEX\s*=\s*\.\*
+  rootCause:
+    - label: The optional Cribl evaluation pipeline is enabled for this drill with
+        full-fidelity deny events. Sample denies while retaining security
+        signals.
+      any:
+        - firewall
+        - deny_sample_rate
+        - drop_all
+  hints:
+    - cost: 10
+      text: Inspect the effective configuration on cribl01. File edits need the
+        correct reload or restart.
+  modelAnswer:
+    rootCause: The optional Cribl evaluation pipeline is enabled for this drill with
+      full-fidelity deny events. Sample denies while retaining security signals.
+    fix: 'cribl01: {"deny_sample_rate":"0.1"} in
+      /opt/splunk/etc/system/local/pipeline.conf, then splunk restart'
+    verification: Confirm the operational metrics have recovered, inspect fresh
+      data, and close the ticket with evidence.
+    prevention: Validate configuration before rollout, monitor the affected service,
+      and test changes on a limited scope.
+  spokenAnswer: The optional Cribl evaluation pipeline is enabled for this drill
+    with full-fidelity deny events. Sample denies while retaining security
+    signals. I would scope the affected service, inspect its effective
+    configuration and logs, apply a targeted correction with the appropriate
+    reload, then verify fresh data and recovered metrics.
+
+interviewQuestionIds:
+  - "IQ069"
+  - "IQ115"
+  - "IQ122"
+followups:
+  - "In a large enterprise, how do you control excessive log volume and license usage - what best practices or standards do you give application teams?"
+  - "What is your Cribl experience? Where did you use it, what did you do, and was it a POC or production?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

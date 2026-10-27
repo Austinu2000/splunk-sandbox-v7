@@ -1,0 +1,438 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/remote",
+    "text": "Browse more apps"
+  },
+  {
+    "href": "/en-US/manager/appinstall/_upload?breadcrumbs=Settings%7C%2Fmanager%2Flauncher%2F%09Apps%7C%2Fmanager%2Flauncher%2Fapps%2Flocal",
+    "text": "Install app from file"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/_new?action=edit&ns=launcher",
+    "text": "Create app"
+  },
+  {
+    "href": "?app_only=False&sort_key=label&sort_dir=asc",
+    "text": "Name"
+  },
+  {
+    "href": "?app_only=False&sort_key=name&sort_dir=asc",
+    "text": "Folder name"
+  },
+  {
+    "href": "?app_only=False&sort_key=version&sort_dir=asc",
+    "text": "Version"
+  },
+  {
+    "href": "?app_only=False&sort_key=check_for_updates&sort_dir=asc",
+    "text": "Update checking"
+  },
+  {
+    "href": "?app_only=False&sort_key=visible&sort_dir=asc",
+    "text": "Visible"
+  },
+  {
+    "href": "?app_only=False&sort_key=eai%3Aacl.sharing&sort_dir=asc",
+    "text": "Sharing"
+  },
+  {
+    "href": "?app_only=False&sort_key=disabled&sort_dir=asc",
+    "text": "Status"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/SplunkDeploymentServerConfig?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2FSplunkDeploymentServerConfig",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/SplunkDeploymentServerConfig?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=SplunkDeploymentServerConfig&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/SplunkForwarder?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2FSplunkForwarder",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/SplunkLightForwarder?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2FSplunkLightForwarder",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/alert_logevent?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Falert_logevent",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/alert_logevent?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=alert_logevent&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/alert_webhook?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Falert_webhook",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/alert_webhook?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=alert_webhook&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/appsbrowser?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fappsbrowser",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/appsbrowser?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=appsbrowser&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/introspection_generator_addon?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fintrospection_generator_addon",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/introspection_generator_addon?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=introspection_generator_addon&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/launcher?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Flauncher",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/app/launcher",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/launcher?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=launcher&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/learned?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Flearned",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/learned?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=learned&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/legacy?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Flegacy",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/logd_input?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Flogd_input",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/logd_input?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=logd_input&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "#",
+    "text": "Update to 4.7.0"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/python_upgrade_readiness_app?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fpython_upgrade_readiness_app",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/python_upgrade_readiness_app",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/python_upgrade_readiness_app?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=python_upgrade_readiness_app&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "https://apps.splunk.com/apps/id/python_upgrade_readiness_app",
+    "text": "View details on Splunkbase"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/sample_app?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsample_app",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/search?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsearch",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/app/search",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/search?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=search&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk-dashboard-studio?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk-dashboard-studio",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk-dashboard-studio?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk-dashboard-studio&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_assist?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_assist",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_assist?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_assist&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "https://apps.splunk.com/apps/id/assist",
+    "text": "View details on Splunkbase"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_gdi?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_gdi",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_gdi?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_gdi&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_httpinput?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_httpinput",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_httpinput?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_httpinput&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_ingest_actions?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_ingest_actions",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_ingest_actions?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_ingest_actions&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_instrumentation?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_instrumentation",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/app/splunk_instrumentation",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_instrumentation?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_instrumentation&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_internal_metrics?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_internal_metrics",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_internal_metrics?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_internal_metrics&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_metrics_workspace?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_metrics_workspace",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/splunk_metrics_workspace",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_metrics_workspace?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_metrics_workspace&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_monitoring_console?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_monitoring_console",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/splunk_monitoring_console",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_monitoring_console?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_monitoring_console&app_only=1",
+    "text": "View objects"
+  },
+  {
+    "href": "/en-US/manager/permissions/launcher/apps/local/splunk_secure_gateway?manager_cancel_url=%2Fmanager%2Flauncher%2Fapps%2Flocal&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fapps%2Flocal%2Fsplunk_secure_gateway",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway",
+    "text": "Launch app"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local/splunk_secure_gateway?action=edit",
+    "text": "Edit properties"
+  },
+  {
+    "href": "/en-US/manager/launcher/admin/directory?ns=splunk_secure_gateway&app_only=1",
+    "text": "View objects"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/times",
+    "text": "Time ranges"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/times/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/views",
+    "text": "Views"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/views/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/scheduled/views",
+    "text": "View PDF scheduling"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/nav",
+    "text": "Navigation menus"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/panels",
+    "text": "Prebuilt panels"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/panels/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/messages",
+    "text": "Bulletin messages"
+  },
+  {
+    "href": "/en-US/manager/search/messages/_new?action=edit",
+    "text": "Add new"
+  }
+]

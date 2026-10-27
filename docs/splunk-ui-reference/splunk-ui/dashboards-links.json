@@ -1,0 +1,122 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/app/search/search",
+    "text": "Search"
+  },
+  {
+    "href": "/en-US/app/search/analytics_workspace",
+    "text": "Analytics"
+  },
+  {
+    "href": "/en-US/app/search/datasets",
+    "text": "Datasets"
+  },
+  {
+    "href": "/en-US/app/search/reports",
+    "text": "Reports"
+  },
+  {
+    "href": "/en-US/app/search/alerts",
+    "text": "Alerts"
+  },
+  {
+    "href": "/en-US/app/search/dashboards",
+    "text": "Dashboards"
+  },
+  {
+    "href": "/en-US/app/search/",
+    "text": "Search & Reporting"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations",
+    "text": "Visit Example Hub"
+  },
+  {
+    "href": "/en-US/help?location=Sds.Ent.dash",
+    "text": "Learn More"
+  },
+  {
+    "href": "/en-US/help?location=ent.to.classic.viz",
+    "text": "Learn More"
+  },
+  {
+    "href": "#",
+    "text": "Expand Table Row"
+  },
+  {
+    "href": "/en-US/app/search/integrity_check_of_installed_files",
+    "text": "Integrity Check of Installed Files"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Expand Table Row"
+  },
+  {
+    "href": "/en-US/app/search/job_details_dashboard",
+    "text": "Job Details Dashboard"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Expand Table Row"
+  },
+  {
+    "href": "/en-US/app/search/jquery_upgrade",
+    "text": "jQuery Upgrade"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Expand Table Row"
+  },
+  {
+    "href": "/en-US/app/search/orphaned_scheduled_searches",
+    "text": "Orphaned Scheduled Searches, Reports, and Alerts"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  }
+]

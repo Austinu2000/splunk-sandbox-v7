@@ -1,0 +1,223 @@
+Browser tab: 2136985550, Title: "Reports | Splunk 9.2.2", URL: "http://localhost:8000/en-US/app/search/reports".
+1 AXWebArea Reports | Splunk 9.2.2, URL: localhost:8000/en-US/app/search/reports
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/search/reports#navSkip
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			221 button Description: View health report with status green, Help: Health: green
+				222 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text 
+				29 text field (settable) Description: Find, ID: control-view9858
+		30 container
+			31 link Description: Search, Value: localhost:8000/en-US/app/search/search
+			32 link Description: Analytics, Value: localhost:8000/en-US/app/search/analytics_workspace
+			33 link Description: Datasets, Value: localhost:8000/en-US/app/search/datasets
+			34 link Description: Reports, Value: localhost:8000/en-US/app/search/reports
+			35 link Description: Alerts, Value: localhost:8000/en-US/app/search/alerts
+			36 link Description: Dashboards, Value: localhost:8000/en-US/app/search/dashboards
+		37 link Description: App icon Search & Reporting, Value: localhost:8000/en-US/app/search/
+	38 container
+		39 heading Reports, Value: 1
+			40 text Reports
+		41 text Reports are based on single searches and can include visualizations, statistics and/or events. Click the name to view the report. Open the report in Pivot or Search to refine the parameters or further explore the data.
+		42 text 10 Reports
+		43 container
+			44 checkbox Description: All, Value: 1
+			45 checkbox Description: Yours, Value: 0
+			46 checkbox Description: This App's, Value: 0
+		47 container
+			48 text field (settable) Description: filter, ID: control-view11019
+			49 text  
+		50 table
+			51 row
+				52 cell More Info
+					53 text i
+				54 cell Title
+				55 cell Actions
+					56 text Actions
+				57 cell Next Scheduled Time
+				58 cell Owner
+				59 cell App
+				60 cell Sharing
+			61 row
+				62 cell
+					63 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				64 cell
+					65 link Description: 403_by_clientip, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip
+				66 cell
+					67 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip
+					68 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				69 cell
+					70 text None
+				71 cell
+					72 text uname
+				73 cell
+					74 text search
+				75 cell
+					76 text App
+			77 row
+				78 cell
+					79 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				80 cell
+					81 link Description: 403_by_clientip Clone, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip%2520Clone
+				82 cell
+					83 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip%2520Clone
+					84 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				85 cell
+					86 text None
+				87 cell
+					88 text admin
+				89 cell
+					90 text search
+				91 cell
+					92 text Private
+			93 row
+				94 cell
+					95 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				96 cell
+					97 link Description: Bucket Merge Retrieve Conf Settings, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FBucket%2520Merge%2520Retrieve%2520Conf%2520Settings
+				98 cell
+					99 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FBucket%2520Merge%2520Retrieve%2520Conf%2520Settings
+					100 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				101 cell
+					102 text None
+				103 cell
+					104 text nobody
+				105 cell
+					106 text search
+				107 cell
+					108 text App
+			109 row
+				110 cell
+					111 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				112 cell
+					113 link Description: Errors in the last 24 hours, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%252024%2520hours
+				114 cell
+					115 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%252024%2520hours
+					116 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				117 cell
+					118 text None
+				119 cell
+					120 text nobody
+				121 cell
+					122 text search
+				123 cell
+					124 text App
+			125 row
+				126 cell
+					127 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				128 cell
+					129 link Description: Errors in the last hour, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%2520hour
+				130 cell
+					131 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%2520hour
+					132 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				133 cell
+					134 text None
+				135 cell
+					136 text nobody
+				137 cell
+					138 text search
+				139 cell
+					140 text App
+			141 row
+				142 cell
+					143 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				144 cell
+					145 link Description: Internal Report, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2FInternal%2520Report
+				146 cell
+					147 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2FInternal%2520Report
+					148 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				149 cell
+					150 text None
+				151 cell
+					152 text admin
+				153 cell
+					154 text search
+				155 cell
+					156 text Private
+			157 row
+				158 cell
+					159 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				160 cell
+					161 link Description: License Usage Data Cube, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FLicense%2520Usage%2520Data%2520Cube
+				162 cell
+					163 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FLicense%2520Usage%2520Data%2520Cube
+					164 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				165 cell
+					166 text None
+				167 cell
+					168 text nobody
+				169 cell
+					170 text search
+				171 cell
+					172 text App
+			173 row
+				174 cell
+					175 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				176 cell
+					177 link Description: Messages by minute last 3 hours, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FMessages%2520by%2520minute%2520last%25203%2520hours
+				178 cell
+					179 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FMessages%2520by%2520minute%2520last%25203%2520hours
+					180 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				181 cell
+					182 text None
+				183 cell
+					184 text nobody
+				185 cell
+					186 text search
+				187 cell
+					188 text App
+			189 row
+				190 cell
+					191 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				192 cell
+					193 link Description: Orphaned scheduled searches, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FOrphaned%2520scheduled%2520searches
+				194 cell
+					195 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FOrphaned%2520scheduled%2520searches
+					196 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				197 cell
+					198 text None
+				199 cell
+					200 text nobody
+				201 cell
+					202 text search
+				203 cell
+					204 text App
+			205 row
+				206 cell
+					207 link Description: Expand Table Row, Value: localhost:8000/en-US/app/search/reports#
+				208 cell
+					209 link Description: Splunk errors last 24 hours, Value: localhost:8000/en-US/app/search/report?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FSplunk%2520errors%2520last%252024%2520hours
+				210 cell
+					211 link Description: Open in Search, Value: localhost:8000/en-US/app/search/search?s=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FSplunk%2520errors%2520last%252024%2520hours
+					212 link Description: Edit, Value: localhost:8000/en-US/app/search/reports#
+				213 cell
+					214 text None
+				215 cell
+					216 text nobody
+				217 cell
+					218 text search
+				219 cell
+					220 text App
+
+The focused UI element is 1 AXWebArea Reports | Splunk 9.2.2, URL: localhost:8000/en-US/app/search/reports

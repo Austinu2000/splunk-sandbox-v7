@@ -1,0 +1,327 @@
+Browser tab: 2136985550, Title: "Home", URL: "http://localhost:8000/en-US/app/launcher/home".
+1 AXWebArea Home, URL: localhost:8000/en-US/app/launcher/home
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/launcher/home#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view3202
+	29 container
+		30 heading Apps, Value: 2
+			31 text Apps
+		32 link Description: Manage, Help: Manage Apps, Value: localhost:8000/en-US/manager/launcher/apps/local
+		33 text field (settable) Value input
+		34 link Description: Navigate to Search & Reporting app, Value: localhost:8000/en-US/app/search
+		35 link Description: Navigate to Splunk Secure Gateway app, Value: localhost:8000/en-US/app/splunk_secure_gateway
+		36 link Description: Navigate to Upgrade Readiness App app, Value: localhost:8000/en-US/app/python_upgrade_readiness_app
+		37 link Description: Find more apps Open externally, Value: localhost:8000/en-US/manager/launcher/appsremote
+		38 heading Hello, Administrator, Value: 1
+			39 text Hello ,  Administrator
+		40 tab group
+			41 tab (selectable, settable, boolean) Quick links, Value: 0
+Quick links
+			42 tab (selectable, settable, boolean) Dashboard, Value: 0
+Dashboard
+			43 tab (selectable, settable, boolean) Recently viewed, Value: 0
+Recently viewed
+			44 tab (selectable, settable, boolean) Created by you, Value: 0
+Created by you
+			45 tab (selected, settable, boolean) Shared with you, Value: 1
+				46 text Shared with you
+		47 container
+			48 text field (settable) Value input
+		49 list Description: Dashboards, ID: toggle-be983ed0-db26-4483-af94-e2e7c8aae768
+			50 text Dashboards
+		51 container Pagination navigation
+			52 button (disabled) Go to previous page
+				53 text Prev
+			54 button Current page
+				55 text 1
+				56 text Selected
+			57 button Go to page 2
+			58 button Go to page 3
+			59 button Go to page 4
+			60 button Go to page 5
+			61 button Go to last page
+			62 button Go to next page
+				63 text Next
+		64 text 1-20 of 163 Dashboards
+		65 table
+			66 row
+				67 cell
+					68 container
+						69 text Name
+						70 image Click to sort
+				71 cell
+					72 container
+						73 text Owner
+						74 image Click to sort
+				75 cell
+					76 container
+						77 text Updated
+						78 image Press to sort ascending
+				79 cell
+					80 container
+						81 text App
+						82 image Click to sort
+				83 cell
+					84 container
+						85 text Sharing
+						86 image Click to sort
+			87 row
+				88 cell
+					89 link Description: SOC2 Compliance Opt In Page Open externally, Value: localhost:8000/en-US/app/splunk_secure_gateway/opt_in
+				90 cell
+					91 text nobody
+				92 cell
+					93 text Unknown
+				94 cell
+					95 text splunk_secure_gateway
+				96 cell
+					97 text App
+			98 row
+				99 cell
+					100 link Description: Ad Hoc Data Source Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-ad-hoc-data
+				101 cell
+					102 text nobody
+				103 cell
+					104 text Unknown
+				105 cell
+					106 text splunk-dashboard-studio
+				107 cell
+					108 text App
+			109 row
+				110 cell
+					111 link Description: Administration Open externally, Value: localhost:8000/en-US/app/splunk_secure_gateway/administration
+				112 cell
+					113 text nobody
+				114 cell
+					115 text Unknown
+				116 cell
+					117 text splunk_secure_gateway
+				118 cell
+					119 text App
+			120 row
+				121 cell
+					122 link Description: Advanced Show/Hide Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-advanced-showhide
+				123 cell
+					124 text nobody
+				125 cell
+					126 text Unknown
+				127 cell
+					128 text splunk-dashboard-studio
+				129 cell
+					130 text App
+			131 row
+				132 cell
+					133 link Description: Airport KPIs Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-airport-kpis-dashboard
+				134 cell
+					135 text nobody
+				136 cell
+					137 text Unknown
+				138 cell
+					139 text splunk-dashboard-studio
+				140 cell
+					141 text App
+			142 row
+				143 cell
+					144 link Description: Alerts Setup Open externally, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_alerts_setup
+				145 cell
+					146 text nobody
+				147 cell
+					148 text Unknown
+				149 cell
+					150 text splunk_monitoring_console
+				151 cell
+					152 text App
+			153 row
+				154 cell
+					155 link Description: Area Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-area-chart-visualization
+				156 cell
+					157 text nobody
+				158 cell
+					159 text Unknown
+				160 cell
+					161 text splunk-dashboard-studio
+				162 cell
+					163 text App
+			164 row
+				165 cell
+					166 link Description: Assembly Line Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-assembly-line-dashboard
+				167 cell
+					168 text nobody
+				169 cell
+					170 text Unknown
+				171 cell
+					172 text splunk-dashboard-studio
+				173 cell
+					174 text App
+			175 row
+				176 cell
+					177 link Description: Assist Open externally, Value: localhost:8000/en-US/app/splunk_monitoring_console/assist
+				178 cell
+					179 text nobody
+				180 cell
+					181 text Unknown
+				182 cell
+					183 text splunk_monitoring_console
+				184 cell
+					185 text App
+			186 row
+				187 cell
+					188 link Description: Bar Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-bar-chart-visualization
+				189 cell
+					190 text nobody
+				191 cell
+					192 text Unknown
+				193 cell
+					194 text splunk-dashboard-studio
+				195 cell
+					196 text App
+			197 row
+				198 cell
+					199 link Description: Base and Chain Data Sources Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-base-chain-data
+				200 cell
+					201 text nobody
+				202 cell
+					203 text Unknown
+				204 cell
+					205 text splunk-dashboard-studio
+				206 cell
+					207 text App
+			208 row
+				209 cell
+					210 link Description: Bubble Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-bubble-chart-visualization
+				211 cell
+					212 text nobody
+				213 cell
+					214 text Unknown
+				215 cell
+					216 text splunk-dashboard-studio
+				217 cell
+					218 text App
+			219 row
+				220 cell
+					221 link Description: Buttercup Games Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-buttercup-games-dashboard
+				222 cell
+					223 text nobody
+				224 cell
+					225 text Unknown
+				226 cell
+					227 text splunk-dashboard-studio
+				228 cell
+					229 text App
+			230 row
+				231 cell
+					232 link Description: Cascading Inputs Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-cascading-inputs
+				233 cell
+					234 text nobody
+				235 cell
+					236 text Unknown
+				237 cell
+					238 text splunk-dashboard-studio
+				239 cell
+					240 text App
+			241 row
+				242 cell
+					243 link Description: Cascading Replication Open externally, Value: localhost:8000/en-US/app/splunk_monitoring_console/cascading_replication
+				244 cell
+					245 text nobody
+				246 cell
+					247 text Unknown
+				248 cell
+					249 text splunk_monitoring_console
+				250 cell
+					251 text App
+			252 row
+				253 cell
+					254 link Description: Chart Annotations Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-event-annotations
+				255 cell
+					256 text nobody
+				257 cell
+					258 text Unknown
+				259 cell
+					260 text splunk-dashboard-studio
+				261 cell
+					262 text App
+			263 row
+				264 cell
+					265 link Description: Chart Coloring Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-chart-coloring
+				266 cell
+					267 text nobody
+				268 cell
+					269 text Unknown
+				270 cell
+					271 text splunk-dashboard-studio
+				272 cell
+					273 text App
+			274 row
+				275 cell
+					276 link Description: Chart Overlays Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-chart-overlays
+				277 cell
+					278 text nobody
+				279 cell
+					280 text Unknown
+				281 cell
+					282 text splunk-dashboard-studio
+				283 cell
+					284 text App
+			285 row
+				286 cell
+					287 link Description: Chart Scaling Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-chart-scaling
+				288 cell
+					289 text nobody
+				290 cell
+					291 text Unknown
+				292 cell
+					293 text splunk-dashboard-studio
+				294 cell
+					295 text App
+			296 row
+				297 cell
+					298 link Description: Choropleth SVG Open externally, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-choropleth-svg-visualization
+				299 cell
+					300 text nobody
+				301 cell
+					302 text Unknown
+				303 cell
+					304 text splunk-dashboard-studio
+				305 cell
+					306 text App
+		307 text 1-20 of 163 Dashboards
+		308 container Pagination navigation
+			309 button (disabled) Go to previous page
+				310 text Prev
+			311 button Current page
+				312 text 1
+				313 text Selected
+			314 button Go to page 2
+			315 button Go to page 3
+			316 button Go to page 4
+			317 button Go to page 5
+			318 button Go to last page
+			319 button Go to next page
+				320 text Next
+
+The focused UI element is 45 tab (selected, settable, boolean) Shared with you, Value: 1

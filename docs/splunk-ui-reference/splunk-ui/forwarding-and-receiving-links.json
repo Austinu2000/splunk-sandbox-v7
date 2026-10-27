@@ -1,0 +1,54 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/data/outputs/tcp/default/tcpout?action=edit",
+    "text": "Forwarding defaults"
+  },
+  {
+    "href": "/en-US/manager/search/data/outputs/tcp/server",
+    "text": "Configure forwarding"
+  },
+  {
+    "href": "/en-US/manager/search/data/outputs/tcp/server/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/tcp/cooked",
+    "text": "Configure receiving"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/tcp/cooked/_new?action=edit",
+    "text": "Add new"
+  }
+]

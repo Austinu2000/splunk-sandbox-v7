@@ -1,0 +1,15 @@
+{
+  "id": "G2",
+  "title": "Make your first commit",
+  "minutes": 15,
+  "level": 1,
+  "profile": "lab",
+  "instructions": "Goal: change a file and save that change in Git's history.\n1 . Open the readme in the editor: nano README.md\n2. Add a line at the bottom, such as Practice edit by <your name> . Save with Ctrl+O,\nEnter, then exit with Ctrl+X.\n3. See what changed: git diff . Added lines start with + .\n4. Stage the change (tell Git you want it in the next commit): git add README.md\n5. Run git status  again. The file is now listed under \"Changes to be committed\".\n6. Commit it: git commit -m \"Add practice line to README\"\n7. Run git log --oneline . Your commit is at the top.\nCheck yourself: what's the difference between a changed file and a staged file?",
+  "checks": [
+    {
+      "kind": "commits",
+      "min": 1
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

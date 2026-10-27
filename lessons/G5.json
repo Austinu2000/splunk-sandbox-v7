@@ -1,0 +1,15 @@
+{
+  "id": "G5",
+  "title": "Stay in sync with your team",
+  "minutes": 10,
+  "level": 2,
+  "profile": "lab",
+  "instructions": "Situation: someone merged changes to main  while you were away.\ngit switch main , then git pull .\nCompare: git log --oneline -5  before and after.\nStart new work from the fresh main  with git switch -c <new-branch> .\nDone when: your local main  matches the server.",
+  "checks": [
+    {
+      "kind": "command",
+      "pattern": "git pull"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

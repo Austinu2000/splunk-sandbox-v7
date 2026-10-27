@@ -1,0 +1,99 @@
+Browser tab: 2136985550, Title: "Instrumentation | Splunk", URL: "http://localhost:8000/en-US/manager/splunk_instrumentation/instrumentation_index".
+1 AXWebArea Instrumentation | Splunk, URL: localhost:8000/en-US/manager/splunk_instrumentation/instrumentation_index
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/splunk_instrumentation/instrumentation_index#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view3201
+	28 container
+		29 heading Instrumentation, Value: 1
+			30 text Instrumentation
+		31 text Configure automated reporting settings, view collected data, export data to file, work with diagnostic files, and send data to Splunk. 
+		32 link Description: Learn More Open externally, Value: localhost:8000/en-US/help?location=learnmore.settings.instrumentation
+		33 heading Usage Data, Value: 2
+			34 text Usage Data
+		35 container toggle-463618e3-120e-4ed7-ad27-e45284efa780
+			36 button Usage Settings
+				37 image Gear
+			38 text Configure automated reporting settings.
+		39 heading Value: 3, View license usage, anonymized usage, and support usage data that has been collected (does not include browser session data). Learn More Open externally
+			40 text View license usage, anonymized usage, and support usage data that has been collected (does not include browser session data). 
+			41 link Description: Learn More Open externally, Value: localhost:8000/en-US/help?location=instrumentation.usage.view
+		42 button Export
+		43 table
+			44 row
+				45 cell
+					46 container
+						47 text Date Range
+						48 image Click to sort
+				49 cell
+					50 text Actions
+				51 cell
+					52 container
+						53 text Time Sent
+						54 image Press to sort ascending
+				55 cell
+					56 container
+						57 text Status
+						58 image Click to sort
+		59 heading Diagnostic Log, Value: 2
+			60 text Diagnostic Log
+		61 heading Value: 3, Diagnostic files contain information about your Splunk deployment, such as configuration files and logs, to help Splunk Support diagnose and resolve problems. Learn More Open externally
+			62 text Diagnostic files contain information about your Splunk deployment, such as configuration files and logs, to help Splunk Support diagnose and resolve problems. 
+			63 link Description: Learn More Open externally, Value: localhost:8000/en-US/help?location=learnmore.settings.diag
+		64 button New Diag
+		65 table
+			66 row
+				67 cell
+					68 image More Information
+				69 cell
+					70 container
+						71 text Data
+						72 image Click to sort
+				73 cell
+					74 container
+						75 text Nodes
+						76 image Click to sort
+				77 cell
+					78 text Actions
+				79 cell
+					80 container
+						81 text Status
+						82 image Click to sort
+				83 cell
+					84 container
+						85 text Size
+						86 image Click to sort
+				87 cell
+					88 container
+						89 text Time Created
+						90 image Press to sort ascending
+			91 row
+				92 cell
+					93 heading No Diags found, Value: 2
+						94 text No Diags found
+					95 heading Create New Diags using the button above, Value: 3
+						96 text Create New Diags using the button above
+
+The focused UI element is 1 AXWebArea Instrumentation | Splunk, URL: localhost:8000/en-US/manager/splunk_instrumentation/instrumentation_index

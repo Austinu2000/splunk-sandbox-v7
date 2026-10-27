@@ -1,0 +1,174 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/forwardreceive",
+    "text": "Forwarding and receiving"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/monitor",
+    "text": "Files & Directories"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=file_monitor&input_mode=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/http-eventcollector",
+    "text": "HTTP Event Collector"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=http&input_mode=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/tcp/raw",
+    "text": "TCP"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=tcp&input_mode=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/udp",
+    "text": "UDP"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=udp&input_mode=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/script",
+    "text": "Scripts"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=scripts&input_mode=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/instance_id_modular_input",
+    "text": "Splunk Assist Instance Identifier"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=instance_id_modular_input&input_mode=1&modinput=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/journald",
+    "text": "Systemd Journald Input for Splunk"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=journald&input_mode=1&modinput=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/logd",
+    "text": "Logd Input for the Splunk platform"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=logd&input_mode=1&modinput=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/selfupdate_modular_input",
+    "text": "Splunk Assist Self-Update"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=selfupdate_modular_input&input_mode=1&modinput=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/supervisor_modular_input",
+    "text": "Splunk Assist Supervisor"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=supervisor_modular_input&input_mode=1&modinput=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/inputs/uiassets_modular_input",
+    "text": "Splunk Assist Supervisor"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectsource?input_type=uiassets_modular_input&input_mode=1&modinput=1",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/deployment/server/setup/data/inputs/remote_eventlogs",
+    "text": "Windows Event Logs"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectforwarders?input_type=evt_logs_local",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/deployment/server/setup/data/inputs/remote_monitor",
+    "text": "Files & Directories"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectforwarders?input_type=file_monitor",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/deployment/server/setup/data/inputs/remote_perfmon",
+    "text": "Windows Performance Monitoring"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectforwarders?input_type=perfmon_local",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/deployment/server/setup/data/inputs/tcp/remote_raw",
+    "text": "TCP"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectforwarders?input_type=tcp",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/deployment/server/setup/data/inputs/remote_udp",
+    "text": "UDP"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectforwarders?input_type=udp",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/deployment/server/setup/data/inputs/remote_script",
+    "text": "Scripts"
+  },
+  {
+    "href": "/en-US/manager/search/adddata/selectforwarders?input_type=scripts",
+    "text": "Add new"
+  }
+]

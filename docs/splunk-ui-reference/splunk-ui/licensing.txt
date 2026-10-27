@@ -1,0 +1,84 @@
+Browser tab: 2136985550, Title: "Licensing - Manager - Splunk", URL: "http://localhost:8000/en-US/manager/system/licensing".
+1 AXWebArea Licensing - Manager - Splunk, URL: localhost:8000/en-US/manager/system/licensing
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/system/licensing#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1872
+	28 heading Licensing, Value: 1
+		29 text Licensing
+	30 text This server is acting as a standalone license server
+	31 link Description: Change to peer, Value: localhost:8000/en-US/manager/system/licensing/self?return_to=%2Fen-US%2Fmanager%2Fsystem%2Flicensing
+	32 heading Trial license group, Value: 2
+		33 text Trial license group
+	34 link Description: Change license group, Value: localhost:8000/en-US/manager/system/licensing/switch?return_to=%2Fen-US%2Fmanager%2Fsystem%2Flicensing
+	35 container
+		36 text This server is configured to use licenses from the  Trial license group
+	37 link Description: Add license, Value: localhost:8000/en-US/manager/system/licensing/licenses/new?return_to=%2Fen-US%2Fmanager%2Fsystem%2Flicensing
+	38 link Description: Usage report, Value: localhost:8000/en-US/manager/search/licenseusage
+	39 heading Alerts, Value: 3
+		40 text Alerts
+	41 container
+		42 text Licensing alerts notify you of excessive indexing warnings and licensing misconfigurations. 
+		43 link Description:  Learn more, Value: localhost:8000/en-US/help?location=license.alerts
+	44 text Current
+	45 table
+		46 row
+			47 cell
+				48 text No licensing alerts
+	49 text Permanent
+	50 table
+		51 row
+			52 cell
+				53 text No licensing violations
+	54 heading Local server information, Value: 2
+		55 text Local server information
+	56 container
+		57 container Indexer name
+			58 text Indexer name
+		59 container Austins-MBP-2
+			60 text Austins-MBP-2
+		61 container License expiration
+			62 text License expiration
+		63 container Sep 18, 2024, 7:46:52 PM
+			64 text Sep 18, 2024, 7:46:52 PM
+		65 container Licensed daily volume
+			66 text Licensed daily volume
+		67 container 0 MB
+			68 text 0 MB
+		69 container Volume used today
+			70 text Volume used today
+		71 container 0 MB
+			72 text 0 MB
+		73 container Warning count
+			74 text Warning count
+		75 container 0
+			76 text 0
+		77 container Debug information
+			78 text Debug information
+		79 container All license details All indexer details
+			80 link Description: All license details, Value: localhost:8000/en-US/manager/system/licensing/licenses
+			81 link Description: All indexer details, Value: localhost:8000/en-US/manager/system/licensing/indexers
+
+The focused UI element is 1 AXWebArea Licensing - Manager - Splunk, URL: localhost:8000/en-US/manager/system/licensing

@@ -1,0 +1,454 @@
+Browser tab: 2136985550, Title: "Manage Indexes | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/data/indexes".
+1 AXWebArea Manage Indexes | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/data/indexes
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/data/indexes#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view6507
+	29 container
+		30 link Description: New Index, Value: localhost:8000/en-US/manager/search/data/indexes#
+		31 heading Indexes, Value: 1
+			32 text Indexes
+		33 text A repository for data in Splunk Enterprise. Indexes reside in flat files on the Splunk Enterprise instance known as the indexer. 
+		34 link Description: Learn more , Value: localhost:8000/en-US/help?location=manager.indexes.about
+		35 text 15 Indexes
+		36 container
+			37 text field (settable) Description: filter, ID: control-view7336
+			38 text  
+		39 link Description: 20 per page, Value: localhost:8000/en-US/manager/search/data/indexes#
+		40 table
+			41 row
+				42 cell
+					43 link Description: Name ↥, Value: localhost:8000/en-US/manager/search/data/indexes#
+				44 cell
+					45 text Actions
+				46 cell
+					47 link Description: Type ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				48 cell
+					49 link Description: App ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				50 cell
+					51 link Description: Current Size ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				52 cell
+					53 container
+						54 link Description: Max Size ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+						55 link Description: ?, Value: localhost:8000/en-US/manager/search/data/indexes#, ID: maxGlobalRawDataSizeMB-tooltip
+				56 cell
+					57 link Description: Event Count ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				58 cell
+					59 link Description: Earliest Event ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				60 cell
+					61 link Description: Latest Event ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				62 cell
+					63 link Description: Home Path ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				64 cell
+					65 link Description: Frozen Path ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+				66 cell
+					67 link Description: Status ↕, Value: localhost:8000/en-US/manager/search/data/indexes#
+			68 row
+				69 cell
+					70 link Description: _audit, Value: localhost:8000/en-US/manager/search/data/indexes/_audit?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_audit&ns=system&action=edit
+				71 cell
+					72 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_audit?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_audit&ns=system&action=edit
+					73 text Delete Disable
+				74 cell
+					75 text 
+					76 text  Events
+				77 cell
+					78 text system
+				79 cell
+					80 text 21 MB
+				81 cell
+					82 text 488.28 GB
+				83 cell 229044 events
+					84 text 229K
+				85 cell 7/20/2024, 7:46:29 PM
+					86 text 2 years ago
+				87 cell 10/24/2026, 10:15:13 PM
+					88 text a few seconds ago
+				89 cell /Applications/Splunk/var/lib/splunk/audit/db
+					90 text $SPLUNK_DB/audit/db
+				91 cell
+					92 text N/A
+				93 cell
+					94 container
+						95 text ✓ Enabled
+			96 row
+				97 cell
+					98 link Description: _configtracker, Value: localhost:8000/en-US/manager/search/data/indexes/_configtracker?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_configtracker&ns=system&action=edit
+				99 cell
+					100 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_configtracker?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_configtracker&ns=system&action=edit
+					101 text Delete Disable
+				102 cell
+					103 text 
+					104 text  Events
+				105 cell
+					106 text system
+				107 cell
+					108 text 1 MB
+				109 cell
+					110 text 488.28 GB
+				111 cell 2 events
+					112 text 2
+				113 cell 10/24/2026, 10:13:39 PM
+					114 text 2 minutes ago
+				115 cell 10/24/2026, 10:14:26 PM
+					116 text a minute ago
+				117 cell /Applications/Splunk/var/lib/splunk/_configtracker/db
+					118 text $SPLUNK_DB/_configtracker/db
+				119 cell
+					120 text N/A
+				121 cell
+					122 container
+						123 text ✓ Enabled
+			124 row
+				125 cell
+					126 link Description: _dsappevent, Value: localhost:8000/en-US/manager/search/data/indexes/_dsappevent?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsappevent&ns=SplunkDeploymentServerConfig&action=edit
+				127 cell
+					128 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_dsappevent?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsappevent&ns=SplunkDeploymentServerConfig&action=edit
+					129 text Delete Disable
+				130 cell
+					131 text 
+					132 text  Events
+				133 cell
+					134 text SplunkDeploymentServerConfig
+				135 cell
+					136 text 1 MB
+				137 cell
+					138 text 488.28 GB
+				139 cell 0 events
+					140 text 0
+				141 cell /Applications/Splunk/var/lib/splunk/_dsappevent/db
+					142 text $SPLUNK_DB/_dsappevent/db
+				143 cell
+					144 text N/A
+				145 cell
+					146 container
+						147 text ✓ Enabled
+			148 row
+				149 cell
+					150 link Description: _dsclient, Value: localhost:8000/en-US/manager/search/data/indexes/_dsclient?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsclient&ns=SplunkDeploymentServerConfig&action=edit
+				151 cell
+					152 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_dsclient?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsclient&ns=SplunkDeploymentServerConfig&action=edit
+					153 text Delete Disable
+				154 cell
+					155 text 
+					156 text  Events
+				157 cell
+					158 text SplunkDeploymentServerConfig
+				159 cell
+					160 text 1 MB
+				161 cell
+					162 text 488.28 GB
+				163 cell 0 events
+					164 text 0
+				165 cell /Applications/Splunk/var/lib/splunk/_dsclient/db
+					166 text $SPLUNK_DB/_dsclient/db
+				167 cell
+					168 text N/A
+				169 cell
+					170 container
+						171 text ✓ Enabled
+			172 row
+				173 cell
+					174 link Description: _dsphonehome, Value: localhost:8000/en-US/manager/search/data/indexes/_dsphonehome?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsphonehome&ns=SplunkDeploymentServerConfig&action=edit
+				175 cell
+					176 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_dsphonehome?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsphonehome&ns=SplunkDeploymentServerConfig&action=edit
+					177 text Delete Disable
+				178 cell
+					179 text 
+					180 text  Events
+				181 cell
+					182 text SplunkDeploymentServerConfig
+				183 cell
+					184 text 1 MB
+				185 cell
+					186 text 488.28 GB
+				187 cell 0 events
+					188 text 0
+				189 cell /Applications/Splunk/var/lib/splunk/_dsphonehome/db
+					190 text $SPLUNK_DB/_dsphonehome/db
+				191 cell
+					192 text N/A
+				193 cell
+					194 container
+						195 text ✓ Enabled
+			196 row
+				197 cell
+					198 link Description: _internal, Value: localhost:8000/en-US/manager/search/data/indexes/_internal?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_internal&ns=system&action=edit
+				199 cell
+					200 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_internal?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_internal&ns=system&action=edit
+					201 text Delete Disable
+				202 cell
+					203 text 
+					204 text  Events
+				205 cell
+					206 text system
+				207 cell
+					208 text 9 MB
+				209 cell
+					210 text 488.28 GB
+				211 cell 122405 events
+					212 text 122K
+				213 cell 10/24/2026, 5:49:52 PM
+					214 text 4 hours ago
+				215 cell 10/24/2026, 10:15:14 PM
+					216 text a few seconds ago
+				217 cell /Applications/Splunk/var/lib/splunk/_internaldb/db
+					218 text $SPLUNK_DB/_internaldb/db
+				219 cell
+					220 text N/A
+				221 cell
+					222 container
+						223 text ✓ Enabled
+			224 row
+				225 cell
+					226 link Description: _introspection, Value: localhost:8000/en-US/manager/search/data/indexes/_introspection?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_introspection&ns=system&action=edit
+				227 cell
+					228 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_introspection?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_introspection&ns=system&action=edit
+					229 text Delete Disable
+				230 cell
+					231 text 
+					232 text  Events
+				233 cell
+					234 text system
+				235 cell
+					236 text 16 MB
+				237 cell
+					238 text 488.28 GB
+				239 cell 2949 events
+					240 text 2.95K
+				241 cell 10/24/2026, 5:50:07 PM
+					242 text 4 hours ago
+				243 cell 10/24/2026, 10:15:10 PM
+					244 text a few seconds ago
+				245 cell /Applications/Splunk/var/lib/splunk/_introspection/db
+					246 text $SPLUNK_DB/_introspection/db
+				247 cell
+					248 text N/A
+				249 cell
+					250 container
+						251 text ✓ Enabled
+			252 row
+				253 cell
+					254 link Description: _metrics, Value: localhost:8000/en-US/manager/search/data/indexes/_metrics?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics&ns=system&action=edit
+				255 cell
+					256 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_metrics?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics&ns=system&action=edit
+					257 text Delete Disable
+				258 cell
+					259 text 
+					260 text  Metrics
+				261 cell
+					262 text system
+				263 cell
+					264 text 6 MB
+				265 cell
+					266 text 488.28 GB
+				267 cell 62842 events
+					268 text 62.8K
+				269 cell 10/24/2026, 5:49:58 PM
+					270 text 4 hours ago
+				271 cell 10/24/2026, 10:15:14 PM
+					272 text a few seconds ago
+				273 cell /Applications/Splunk/var/lib/splunk/_metrics/db
+					274 text $SPLUNK_DB/_metrics/db
+				275 cell
+					276 text N/A
+				277 cell
+					278 container
+						279 text ✓ Enabled
+			280 row
+				281 cell
+					282 link Description: _metrics_rollup, Value: localhost:8000/en-US/manager/search/data/indexes/_metrics_rollup?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics_rollup&ns=system&action=edit
+				283 cell
+					284 link Description: Edit, Value: localhost:8000/en-US/manager/search/data/indexes/_metrics_rollup?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics_rollup&ns=system&action=edit
+					285 text Delete Disable
+				286 cell
+					287 text 
+					288 text  Metrics
+				289 cell
+					290 text system
+				291 cell
+					292 text 1 MB
+				293 cell
+					294 text 488.28 GB
+				295 cell 0 events
+					296 text 0
+				297 cell /Applications/Splunk/var/lib/splunk/_metrics_rollup/db
+					298 text $SPLUNK_DB/_metrics_rollup/db
+				299 cell
+					300 text N/A
+				301 cell
+					302 container
+						303 text ✓ Enabled
+			304 row
+				305 cell
+					306 link Description: _telemetry, Value: localhost:8000/en-US/manager/search/data/indexes/_telemetry?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_telemetry&ns=system&action=edit
+				307 cell
+					308 link Description: Edit, Value: …
+					309 text Delete Disable
+				310 cell
+					311 text 
+					312 text  Events
+				313 cell
+					314 text system
+				315 cell
+					316 text 1 MB
+				317 cell
+					318 text 488.28 GB
+				319 cell 0 events
+					320 text 0
+				321 cell /Applications/Splunk/var/lib/splunk/_telemetry/db
+					322 text $SPLUNK_DB/_telemetry/db
+				323 cell
+					324 text N/A
+				325 cell
+					326 container
+						327 text ✓ Enabled
+			328 row
+				329 cell
+					330 link Description: _thefishbucket, Value: …
+				331 cell
+					332 link Description: Edit, Value: …
+					333 text Delete Disable
+				334 cell
+					335 text 
+					336 text  Events
+				337 cell
+					338 text system
+				339 cell
+					340 text 1 MB
+				341 cell
+					342 text 488.28 GB
+				343 cell 0 events
+					344 text 0
+				345 cell /Applications/Splunk/var/lib/splunk/fishbucket/db
+					346 text $SPLUNK_DB/fishbucket/db
+				347 cell
+					348 text N/A
+				349 cell
+					350 container
+						351 text ✓ Enabled
+			352 row
+				353 cell
+					354 link Description: history, Value: …
+				355 cell
+					356 link Description: Edit, Value: …
+					357 text Delete Disable
+				358 cell
+					359 text 
+					360 text  Events
+				361 cell
+					362 text system
+				363 cell
+					364 text 1 MB
+				365 cell
+					366 text 488.28 GB
+				367 cell 0 events
+					368 text 0
+				369 cell /Applications/Splunk/var/lib/splunk/historydb/db
+					370 text $SPLUNK_DB/historydb/db
+				371 cell
+					372 text N/A
+				373 cell
+					374 container
+						375 text ✓ Enabled
+			376 row
+				377 cell
+					378 link Description: main, Value: …
+				379 cell
+					380 link Description: Edit, Value: …
+					381 text Delete Disable
+				382 cell
+					383 text 
+					384 text  Events
+				385 cell
+					386 text system
+				387 cell
+					388 text 32 MB
+				389 cell
+					390 text 488.28 GB
+				391 cell 239625 events
+					392 text 240K
+				393 cell 6/19/2024, 5:05:02 AM
+					394 text 2 years ago
+				395 cell 7/19/2024, 11:59:45 PM
+					396 text 2 years ago
+				397 cell /Applications/Splunk/var/lib/splunk/defaultdb/db
+					398 text $SPLUNK_DB/defaultdb/db
+				399 cell
+					400 text N/A
+				401 cell
+					402 container
+						403 text ✓ Enabled
+			404 row
+				405 cell
+					406 link Description: splunklogger, Value: …
+				407 cell
+					408 link Description: Edit, Value: …
+					409 text Delete Enable
+				410 cell
+					411 text 
+					412 text  Events
+				413 cell
+					414 text system
+				415 cell
+					416 text 0 B
+				417 cell
+					418 text 488.28 GB
+				419 cell 0 events
+					420 text 0
+				421 cell /Applications/Splunk/var/lib/splunk/splunklogger/db
+					422 text $SPLUNK_DB/splunklogger/db
+				423 cell
+					424 text N/A
+				425 cell
+					426 container
+						427 text  Disabled
+			428 row
+				429 cell
+					430 link Description: summary, Value: …
+				431 cell
+					432 link Description: Edit, Value: …
+					433 text Delete Disable
+				434 cell
+					435 text 
+					436 text  Events
+				437 cell
+					438 text system
+				439 cell
+					440 text 1 MB
+				441 cell
+					442 text 488.28 GB
+				443 cell 0 events
+					444 text 0
+				445 cell /Applications/Splunk/var/lib/splunk/summarydb/db
+					446 text $SPLUNK_DB/summarydb/db
+				447 cell
+					448 text N/A
+				449 cell
+					450 container
+						451 text ✓ Enabled
+
+The focused UI element is 1 AXWebArea Manage Indexes | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/data/indexes

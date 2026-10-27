@@ -1,0 +1,147 @@
+id: input-permissions
+title: MySQL logs from a Dallas database server are missing
+summary: During a MySQL upgrade, /var/log/mysql/mysqld.log on dal-db-0001 was
+  recreated as mysql:mysql 0600. The forwarder runs as the splunk user, cannot
+  read the file, and logs a TailReader permission warning.
+topics:
+  - inputs
+  - linux
+  - forwarders
+difficulty: easy
+trigger:
+  onDemand: true
+ticket:
+  requester: Sam, Database Team
+  persona: methodical
+  urgency: medium
+  text: We upgraded MySQL on dal-db-0001 yesterday. The database is healthy, but
+    its mysqld logs stopped appearing in Splunk. The other database servers are
+    fine. Syslog from the same host still arrives.
+changes:
+  - host: dal-db-0001
+    file: /var/log/mysql/mysqld.log
+    mode: "0600"
+    owner: mysql
+    group: mysql
+clues:
+  - "dal-db-0001: ls -l /var/log/mysql"
+  - "dal-db-0001: grep TailReader
+    /opt/splunkforwarder/var/log/splunk/splunkd.log"
+  - index=_internal host=dal-db-0001 component=TailReader
+redHerrings:
+  - host: dal-db-0001
+    file: messages
+    component: mysqld
+    message: "[Warning] [MY-010068] [Server] CA certificate ca.pem is self signed."
+    everyMinutes: 7
+  - host: dal-db-0001
+    file: splunkd
+    level: WARN
+    component: ExecProcessor
+    message: message from
+      "/opt/splunkforwarder/etc/apps/Splunk_TA_nix/bin/vmstat.sh" Not all memory
+      statistics are available
+    everyMinutes: 5
+fixChecks:
+  collecting:
+    host: dal-db-0001
+    source: /var/log/mysql/mysqld.log
+recovery:
+  seconds: 30
+interview:
+  prompt: After a MySQL upgrade on one Dallas database server, its MySQL logs
+    stopped showing up in Splunk. Other data from the host still arrives. What
+    would you check?
+  timeLimitMinutes: 15
+  expectedPath:
+    - id: scope
+      label: Confirmed which data from the host is missing
+      any:
+        - search: dal-db-0001|mysqld
+    - id: logs
+      label: Read the forwarder's TailReader warnings
+      any:
+        - cmd: splunkd\.log|TailReader
+          host: ^dal-db-0001$
+        - search: TailReader|Insufficient permissions
+    - id: perms
+      label: Checked the file's ownership and mode
+      any:
+        - cmd: \b(ls|stat|namei|getfacl)\b.*mysql
+          host: ^dal-db-0001$
+  verification:
+    - search: mysqld|dal-db-0001
+    - cmd: splunkd\.log|TailReader|list\s+(monitor|inputstatus)
+      host: ^dal-db-0001$
+  unsafe:
+    - label: Made the log file world-writable
+      match:
+        cmd: chmod\s+(-R\s+)?(0?7[0-7]7|0?6[0-7]6|[a-z]*o\+w|a\+w)
+    - label: Took the file away from mysql (MySQL may stop logging)
+      match:
+        cmd: chown\s+(-R\s+)?splunk
+    - label: Restarted indexers for a single-host input problem
+      match:
+        cmd: splunk\s+(restart|stop)
+        role: indexer
+  rootCause:
+    - label: file permissions
+      any:
+        - permission
+        - 0?600
+        - unreadable
+        - can'?n?o?t read
+        - read access
+    - label: the splunk user can't read it
+      any:
+        - splunk (user|account|group)
+        - as splunk
+        - user splunk
+    - label: mysqld.log
+      any:
+        - mysqld\.log
+        - mysql log
+  hints:
+    - cost: 10
+      text: The forwarder logs a warning when it can't read a monitored file.
+    - cost: 15
+      text: Which user does the forwarder run as, and what are the owner, group and
+        mode of the file now?
+  modelAnswer:
+    rootCause: The upgrade recreated /var/log/mysql/mysqld.log as mysql:mysql 0600.
+      The forwarder runs as the splunk user, cannot read the file, and logs
+      TailReader "Insufficient permissions" warnings.
+    fix: Give the splunk user read access without breaking MySQL, for example chgrp
+      splunk plus chmod 640, or chmod 644. No restart is needed; the TailReader
+      picks the file up on its next retry. Make it persistent in the package's
+      logrotate or tmpfiles settings.
+    verification: Confirm the TailReader warnings stop and new index=app
+      sourcetype=mysqld events arrive for host=dal-db-0001.
+    prevention: Set log file group and mode in configuration management and
+      logrotate's create directive, and alert when a monitored file stops
+      producing data.
+  spokenAnswer: Since other data from the host still arrives, the forwarder and
+    network are fine, so it's specific to that input. In splunkd.log on the box
+    the TailReader says insufficient permissions for mysqld.log. ls shows the
+    upgrade recreated it as mysql:mysql 0600, and the forwarder runs as splunk.
+    I'd give splunk read access without weakening MySQL, setting the group to
+    splunk with mode 640, and make it stick in logrotate. Then I'd confirm the
+    warnings stop and mysqld events come back. Prevention is managing log
+    permissions in config management and alerting when an expected source goes
+    quiet.
+profiles:
+  - default
+  - apl
+  - erie
+
+interviewQuestionIds:
+  - "IQ153"
+followups:
+  - "Data from a forwarder/source is missing or not searchable. Where do you start, and which commands/logs do you check?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

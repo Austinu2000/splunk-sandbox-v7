@@ -1,0 +1,45 @@
+Browser tab: 2136985550, Title: "Add Data | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/adddata".
+1 AXWebArea Add Data | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/adddata
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/adddata#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view3201
+	29 container
+		30 heading What data do you want to send to the Splunk platform?, Value: 1
+			31 text What data do you want to send to the Splunk platform?
+		32 text Loading
+		33 container
+			34 link Description: Upload files from my computer, Value: localhost:8000/en-US/manager/search/adddatamethods/selectsource?input_mode=0, ID: btn-upload
+			35 text Local log files Local structured files (e.g. CSV)
+			36 link Description: Tutorial for adding data External, Value: localhost:8000/en-US/help?location=learnmore.adddata.datatutorial
+		37 container
+			38 link Description: Monitor files and ports on this Splunk platform instance, Value: localhost:8000/en-US/manager/search/adddatamethods/selectsource?input_mode=1, ID: btn-monitor
+			39 text Files - HTTP - WMI - TCP/UDP - Scripts Modular inputs for external data sources
+		40 container
+			41 link Description: Forward data from a Splunk forwarder, Value: localhost:8000/en-US/manager/search/adddatamethods/selectforwarders, ID: btn-forward
+			42 text Files - TCP/UDP - Scripts
+
+The focused UI element is 1 AXWebArea Add Data | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/adddata

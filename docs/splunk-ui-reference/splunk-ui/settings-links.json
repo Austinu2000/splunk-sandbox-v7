@@ -1,0 +1,138 @@
+[
+  {
+    "href": "/en-US/manager/search/adddata",
+    "text": "Add Data"
+  },
+  {
+    "href": "/en-US/app/splunk_monitoring_console/monitoringconsole_overview",
+    "text": "Monitoring Console"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches",
+    "text": "Searches, reports, and alerts"
+  },
+  {
+    "href": "/en-US/manager/search/data_model_manager",
+    "text": "Data models"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes",
+    "text": "Event types"
+  },
+  {
+    "href": "/en-US/manager/search/tags",
+    "text": "Tags"
+  },
+  {
+    "href": "/en-US/manager/search/fields",
+    "text": "Fields"
+  },
+  {
+    "href": "/en-US/manager/search/lookups",
+    "text": "Lookups"
+  },
+  {
+    "href": "/en-US/manager/search/ui",
+    "text": "User interface"
+  },
+  {
+    "href": "/en-US/manager/search/alert_actions",
+    "text": "Alert actions"
+  },
+  {
+    "href": "/en-US/manager/search/advancedsearch",
+    "text": "Advanced search"
+  },
+  {
+    "href": "/en-US/manager/search/admin/directory",
+    "text": "All configurations"
+  },
+  {
+    "href": "/en-US/manager/search/systemsettings",
+    "text": "Server settings"
+  },
+  {
+    "href": "/en-US/manager/search/control",
+    "text": "Server controls"
+  },
+  {
+    "href": "/en-US/manager/system/health/manager",
+    "text": "Health report manager"
+  },
+  {
+    "href": "/en-US/manager/splunk_instrumentation/instrumentation_index",
+    "text": "Instrumentation"
+  },
+  {
+    "href": "/en-US/manager/system/licensing",
+    "text": "Licensing"
+  },
+  {
+    "href": "/en-US/manager/system/workload_management",
+    "text": "Workload management"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway/administration#/",
+    "text": "Mobile settings"
+  },
+  {
+    "href": "/en-US/manager/search/datainputstats",
+    "text": "Data inputs"
+  },
+  {
+    "href": "/en-US/manager/search/forwardreceive",
+    "text": "Forwarding and receiving"
+  },
+  {
+    "href": "/en-US/manager/search/data/indexes",
+    "text": "Indexes"
+  },
+  {
+    "href": "/en-US/manager/system/summarization",
+    "text": "Report acceleration summaries"
+  },
+  {
+    "href": "/en-US/manager/search/sourcetypes",
+    "text": "Source types"
+  },
+  {
+    "href": "/en-US/manager/search/ingest_rulesets",
+    "text": "Ingest actions"
+  },
+  {
+    "href": "/en-US/manager/system/clustering",
+    "text": "Indexer clustering"
+  },
+  {
+    "href": "/en-US/manager/system/deploymentserver",
+    "text": "Forwarder management"
+  },
+  {
+    "href": "/en-US/manager/search/federated_search",
+    "text": "Federated search"
+  },
+  {
+    "href": "/en-US/manager/search/distsearch",
+    "text": "Distributed search"
+  },
+  {
+    "href": "/en-US/manager/search/authorization/roles",
+    "text": "Roles"
+  },
+  {
+    "href": "/en-US/manager/search/authentication/users",
+    "text": "Users"
+  },
+  {
+    "href": "/en-US/manager/search/authorization/tokens",
+    "text": "Tokens"
+  },
+  {
+    "href": "/en-US/manager/search/password/management",
+    "text": "Password management"
+  },
+  {
+    "href": "/en-US/manager/search/authoverview",
+    "text": "Authentication methods"
+  }
+]

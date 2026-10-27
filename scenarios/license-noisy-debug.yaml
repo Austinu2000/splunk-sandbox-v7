@@ -1,0 +1,151 @@
+id: license-noisy-debug
+title: License usage is heading for a violation
+summary: Someone added [monitor:///var/log/app/debug.log] (sourcetype app:debug)
+  to org_linux_app_inputs/local on {deployment_server} and reloaded the
+  deployment server. Every linux_app forwarder now ships its DEBUG request
+  dumps, and the projected daily volume goes well past the license quota.
+topics:
+  - licensing
+  - inputs
+  - deployment-server
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Dana, IT Finance
+  persona: concerned
+  urgency: high
+  text: We got an automated alert that today's Splunk license usage will exceed
+    our quota. Another violation this month means a call with the vendor. Nobody
+    on my side changed anything. Can you find out what's eating the license and
+    get it back under control?
+changes:
+  - host: "{deployment_server}"
+    path: /opt/splunk/etc/deployment-apps/org_linux_app_inputs/local/inputs.conf
+    stanza: monitor:///var/log/app/debug.log
+    set:
+      sourcetype: app:debug
+      index: app
+      disabled: "0"
+    apply: deploy-server
+clues:
+  - Monitoring Console > License usage, split by sourcetype
+  - index=_internal source=*license_usage.log type=Usage | stats sum(b) by st
+  - "{deployment_server}: splunk btool inputs list --app=org_linux_app_inputs
+    --debug (on the deployment apps)"
+redHerrings:
+  - host: "{license_manager}"
+    file: splunkd
+    level: WARN
+    component: LMStackMgr
+    message: 'License expiration warning: license with label="Splunk Enterprise
+      Term" (guid=7F3C1A0E) expires in 61 days'
+    everyMinutes: 8
+  - host: "{indexer:3}"
+    file: splunkd
+    level: WARN
+    component: TailReader
+    message: Could not send data to output queue (parsingQueue), retrying...
+    everyMinutes: 11
+fixChecks:
+  license:
+    maxProjectedPct: 90
+recovery:
+  seconds: 60
+interview:
+  prompt: Finance forwarded an alert saying we're on track to blow through our
+    daily license today. Nothing was supposedly changed. How would you find
+    what's eating the license and stop it?
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: usage
+      label: Looked at license usage (Monitoring Console or license_usage.log)
+      any:
+        - page: ^monitoring/license
+        - search: license_usage
+    - id: source
+      label: Identified the sourcetype or file driving the growth
+      any:
+        - search: app:debug|debug\.log
+        - search: license_usage.*\b(st|by)\b
+        - cmd: debug\.log
+    - id: config
+      label: Found the input that collects it (deployment apps on {deployment_server}
+        or the forwarder's btool)
+      any:
+        - cmd: inputs
+          host: ^{deployment_server}$
+        - page: ^forwarders/apps
+        - cmd: btool\s+inputs
+  verification:
+    - page: ^monitoring/license
+    - search: license_usage|app:debug
+  unsafe:
+    - label: Restarted indexers by hand
+      match:
+        cmd: splunk\s+(restart|stop)
+        role: indexer
+  rootCause:
+    - label: the application debug log (app:debug)
+      any:
+        - debug\.log
+        - app:debug
+        - debug log
+    - label: a new monitor input
+      any:
+        - inputs
+        - monitor
+    - label: in org_linux_app_inputs on the deployment server
+      any:
+        - org_linux_app_inputs
+        - deployment server
+        - "{deployment_server}"
+  hints:
+    - cost: 10
+      text: license_usage.log on the license manager records bytes by index (idx) and
+        sourcetype (st).
+    - cost: 15
+      text: Once you know the sourcetype, find which inputs stanza collects it and
+        where that stanza comes from.
+  modelAnswer:
+    rootCause: A [monitor:///var/log/app/debug.log] stanza (sourcetype app:debug)
+      was added to org_linux_app_inputs/local/inputs.conf on {deployment_server}
+      and deployed. Every linux_app forwarder now ships its DEBUG request dumps,
+      pushing projected daily usage well past the quota.
+    fix: Disable or remove that stanza on {deployment_server} and run splunk reload
+      deploy-server so the forwarders stop collecting it. Alternatively, drop
+      app:debug to nullQueue on the indexers through the cluster bundle.
+    verification: Watch the projected daily usage in the Monitoring Console fall
+      back under the quota, and confirm license_usage.log shows no new
+      st=app:debug bytes.
+    prevention: Review deployment-app changes, alert on projected license usage and
+      on new sourcetypes, and keep debug logging out of production inputs.
+  spokenAnswer: "First I'd quantify it: the license view shows projected usage
+    around 140 percent, so this started today. Splitting license_usage.log by
+    sourcetype, a new one, app:debug, is the biggest consumer. That's the
+    application debug log, which our inputs normally blacklist. A forwarder's
+    btool inputs list shows a monitor stanza for debug.log coming from
+    org_linux_app_inputs, and on {deployment_server} it's in the app's local
+    inputs.conf. I'd disable that stanza and reload the deployment server, or
+    drop app:debug to nullQueue if we must act at the indexers. Then I'd watch
+    projected usage come back under quota. To prevent repeats, deployment-app
+    changes get reviewed and we alert on new sourcetypes and projected license
+    usage."
+profiles:
+  - default
+  - apl
+  - erie
+
+interviewQuestionIds:
+  - "IQ050"
+  - "IQ069"
+followups:
+  - "An application (e.g., NGINX) suddenly started sending a lot of data and over-utilized the license - how do you find the total volume of data being sent from it?"
+  - "In a large enterprise, how do you control excessive log volume and license usage - what best practices or standards do you give application teams?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

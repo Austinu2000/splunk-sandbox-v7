@@ -1,0 +1,15 @@
+{
+  "id": "X4",
+  "title": "Recover failed indexer runs",
+  "minutes": 30,
+  "level": 4,
+  "profile": "apl",
+  "instructions": "Diagnose host failures and rerun only the failed host list; verify the expected configuration.",
+  "checks": [
+    {
+      "kind": "run",
+      "check": false
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

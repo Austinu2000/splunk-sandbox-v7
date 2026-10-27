@@ -1,0 +1,32 @@
+{
+  "id": "A9",
+  "title": "The servers Ansible forgot",
+  "minutes": 20,
+  "level": 3,
+  "profile": "apl",
+  "instructions": "Situation: two new indexers joined the cluster last week, but they never got the latest\nconfig.\nCompare what Ansible knows ( ansible-inventory --graph ) with what the cluster\nhas (Settings \u2192 Indexer clustering, or splunk show cluster-status  on the cluster\nmanager).\nAdd the missing hosts to the inventory on a branch, open a PR, merge, and run the\nplaybook with --limit  on the new hosts.\nDone when: btool  output matches on every indexer.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "run",
+      "check": false
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks.",
+  "setup": [
+    {
+      "repo": "splunk-automation",
+      "branch": "fixture/missing-peers",
+      "path": "inventories/prod/hosts.yml",
+      "title": "Inventory missing two cluster peers",
+      "replace": {
+        "from": "        idx19: {}\n        idx20: {}",
+        "to": ""
+      },
+      "baseline": true
+    }
+  ]
+}

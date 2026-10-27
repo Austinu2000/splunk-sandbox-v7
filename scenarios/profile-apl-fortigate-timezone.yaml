@@ -1,0 +1,93 @@
+id: apl-fortigate-timezone
+title: FortiGate events show the wrong time
+profiles:
+  - apl
+summary: The parsing relay has the wrong timezone for FortiGate event timestamps.
+topics:
+  - apl
+  - configuration
+  - operations
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Security Operations
+  persona: methodical
+  urgency: high
+  text: FortiGate events show the wrong time. Investigate the affected service,
+    correct its configuration, and verify recovery.
+changes:
+  - host: hf-syslog01
+    path: /opt/splunk/etc/system/local/props.conf
+    stanza: fgt_traffic
+    set:
+      TZ: America/New_York
+    apply: restart
+clues:
+  - "hf-syslog01: /opt/splunk/etc/system/local/props.conf [fgt_traffic]"
+  - splunk show profile-status on the affected host
+  - Apps → Engineer Sandbox → Operations
+redHerrings: []
+fixChecks:
+  metric:
+    host: hf-syslog01
+    metric: fortigate.timestampCorrect
+    equals: true
+recovery:
+  seconds: 30
+interview:
+  prompt: FortiGate events show the wrong time. Walk through diagnosis, a scoped
+    fix, and verification.
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: scope
+      label: Scoped the affected environment
+      any:
+        - page: ^(environments|fleet|operations|monitoring)
+        - cmd: show\s+profile-status
+    - id: inspect
+      label: Inspected the effective configuration
+      any:
+        - cmd: btool|cat|less|grep
+  verification:
+    - cmd: show\s+profile-status|run\s+playbook
+    - page: ^operations
+    - search: index=
+  unsafe:
+    - label: Changing the system clock on indexers
+      match:
+        cmd: (date\s+-s|timedatectl\s+set-time)
+        role: indexer
+  rootCause:
+    - label: The parsing relay has the wrong timezone for FortiGate event timestamps.
+      any:
+        - fgt_traffic
+        - TZ
+  hints:
+    - cost: 10
+      text: Inspect the effective configuration on hf-syslog01. File edits need the
+        correct reload or restart.
+  modelAnswer:
+    rootCause: The parsing relay has the wrong timezone for FortiGate event timestamps.
+    fix: 'hf-syslog01: {"TZ":"UTC"} in /opt/splunk/etc/system/local/props.conf, then
+      splunk restart'
+    verification: Confirm the operational metrics have recovered, inspect fresh
+      data, and close the ticket with evidence.
+    prevention: Validate configuration before rollout, monitor the affected service,
+      and test changes on a limited scope.
+  spokenAnswer: The parsing relay has the wrong timezone for FortiGate event
+    timestamps. I would scope the affected service, inspect its effective
+    configuration and logs, apply a targeted correction with the appropriate
+    reload, then verify fresh data and recovered metrics.
+
+interviewQuestionIds:
+  - "IQ079"
+followups:
+  - "Which configuration controls timestamp extraction, and which props.conf parameters do you use (TIME_PREFIX, MAX_TIMESTAMP_LOOKAHEAD, TIME_FORMAT)?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

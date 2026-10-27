@@ -1,0 +1,47 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/advancedsearch".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/advancedsearch
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/advancedsearch#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1336
+	28 heading Advanced search, Value: 1
+		29 text Advanced search
+	30 text Create and edit search macros. Edit permissions on search commands.
+	31 table
+		32 row
+			33 cell
+				34 text Type
+			35 cell
+				36 text Actions
+		37 row
+			38 cell
+				39 link Description: Search macros, Value: localhost:8000/en-US/manager/search/data/macros
+			40 cell
+				41 link Description: + Add new, Value: localhost:8000/en-US/manager/search/data/macros/_new?action=edit
+		42 row
+			43 cell
+				44 link Description: Search commands, Value: localhost:8000/en-US/manager/search/admin/commandsconf
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/advancedsearch

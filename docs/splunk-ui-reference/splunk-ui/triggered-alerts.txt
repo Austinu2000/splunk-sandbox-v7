@@ -1,0 +1,78 @@
+Browser tab: 2136985550, Title: "Triggered Alerts", URL: "http://localhost:8000/en-US/app/splunk-dashboard-studio/triggered_alerts?eai%3Aacl.app=splunk-dashboard-studio&eai%3Aacl.owner=*&severity=*&alert_name=*&sort_key=trigger_time&sort_dir=desc".
+1 AXWebArea Triggered Alerts, URL: localhost:8000/en-US/app/splunk-dashboard-studio/triggered_alerts?eai%3Aacl.app=splunk-dashboard-studio&eai%3Aacl.owner=*&severity=*&alert_name=*&sort_key=trigger_time&sort_dir=desc
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/splunk-dashboard-studio/triggered_alerts?eai%3Aacl.app=splunk-dashboard-studio&eai%3Aacl.owner=*&severity=*&alert_name=*&sort_key=trigger_time&sort_dir=desc#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view3201
+	29 container
+		30 heading Triggered Alerts, Value: 1
+			31 text Triggered Alerts
+		32 text field (settable) Filter
+		33 text App
+		34 list Description: App, Splunk Dashboard Studio (splunk-dashboard-studio), ID: input-id-a9dcb624-cb68-45bd-9d3b-5213fafbfa59
+			35 text Splunk Dashboard Studio (splunk-dashboard-studio)
+		36 text Owner
+		37 list Description: Owner, All owners, ID: input-id-9c13a9b9-235e-49a5-b7bd-80adf44c987f
+			38 text All owners
+		39 text Severity
+		40 list Description: Severity, All severity, ID: input-id-4e2f56c1-907d-456e-8fc0-458c9c87475d
+			41 text All severity
+		42 text Alert name
+		43 list Description: Alert name, All alerts, ID: input-id-187134a5-d235-4208-a332-f07d17aadbf4
+			44 text All alerts
+		45 table
+			46 row
+				47 checkbox No rows selected, Value: 0
+					48 container No rows selected
+				49 cell
+					50 container
+						51 text Time
+						52 image Press to sort ascending
+				53 cell
+					54 container
+						55 text Alert name
+						56 image Click to sort
+				57 cell
+					58 container
+						59 text App
+						60 image Click to sort
+				61 cell
+					62 container
+						63 text Type
+						64 image Click to sort
+				65 cell
+					66 container
+						67 text Severity
+						68 image Click to sort
+				69 cell
+					70 container
+						71 text Mode
+						72 image Click to sort
+				73 cell
+					74 text Actions
+		75 text No triggered alerts found. Try adjusting your search.
+
+The focused UI element is 1 AXWebArea Triggered Alerts, URL: localhost:8000/en-US/app/splunk-dashboard-studio/triggered_alerts?eai%3Aacl.app=splunk-dashboard-studio&eai%3Aacl.owner=*&severity=*&alert_name=*&sort_key=trigger_time&sort_dir=desc

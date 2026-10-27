@@ -1,0 +1,106 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local",
+    "text": "Manage"
+  },
+  {
+    "href": "/en-US/app/search",
+    "text": "Search & Reporting"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway",
+    "text": "Splunk Secure Gateway"
+  },
+  {
+    "href": "/en-US/app/python_upgrade_readiness_app",
+    "text": "Upgrade Readiness App"
+  },
+  {
+    "href": "/en-US/manager/launcher/appsremote",
+    "text": "Find more apps"
+  },
+  {
+    "href": "/en-US/manager/search/adddata",
+    "text": "Add data\nAdd data from a variety of common sources."
+  },
+  {
+    "href": "/en-US/app/search/search",
+    "text": "Search your data\nTurn data into doing with Splunk search."
+  },
+  {
+    "href": "/en-US/app/search/dashboards",
+    "text": "Visualize your data\nCreate dashboards that work for your data."
+  },
+  {
+    "href": "/en-US/manager/search/authentication/users",
+    "text": "Add team members\nAdd your team members to Splunk platform."
+  },
+  {
+    "href": "/en-US/manager/search/authorization/roles",
+    "text": "Manage permissions\nControl who has access with roles."
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway",
+    "text": "Configure mobile devices\nLogin or manage mobile devices using Splunk Secure Gateway."
+  },
+  {
+    "href": "#",
+    "text": "Product tours\nNew to Splunk? Take a tour to help you on your way."
+  },
+  {
+    "href": "https://docs.splunk.com/Documentation",
+    "text": "Learn more with Splunk Docs\nDeploy, manage, and use Splunk software with comprehensive guidance."
+  },
+  {
+    "href": "https://lantern.splunk.com/",
+    "text": "Get help from Splunk experts\nActionable guidance on the Splunk Lantern Customer Success Center."
+  },
+  {
+    "href": "https://splunkbase.splunk.com",
+    "text": "Extend your capabilities\nBrowse thousands of apps on Splunkbase."
+  },
+  {
+    "href": "https://community.splunk.com",
+    "text": "Join the Splunk Community\nLearn, get inspired, and share knowledge."
+  },
+  {
+    "href": "https://www.splunk.com/customers",
+    "text": "See how others use Splunk\nBrowse real customer stories."
+  },
+  {
+    "href": "https://www.splunk.com/training",
+    "text": "Training and Certification\nBecome a certified Splunk Ninja."
+  }
+]

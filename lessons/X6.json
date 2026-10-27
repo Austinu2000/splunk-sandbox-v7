@@ -1,0 +1,18 @@
+{
+  "id": "X6",
+  "title": "Bring manually changed servers under code",
+  "minutes": 60,
+  "level": 4,
+  "profile": "apl",
+  "instructions": "Capture every intended difference in source; the final all-host check run must report zero changes.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "cleanCheck"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

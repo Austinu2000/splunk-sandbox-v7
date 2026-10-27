@@ -1,0 +1,20 @@
+{
+  "id": "A6",
+  "title": "Canary first, then everyone",
+  "minutes": 20,
+  "level": 2,
+  "profile": "lab",
+  "instructions": "Situation: a new outputs.conf  needs to go to all 50 forwarders.\nPick one forwarder as the canary and run the playbook with --limit  on it only.\nConfirm it still sends data: in Search, index=_internal host=<canary> earliest=-5m\n| stats count\nThen run for the whole universal_forwarders  group.\nDone when: all forwarders run the new config and none went quiet.\nLearn: one host first, check it, then the rest. This is the habit interviewers look for.",
+  "checks": [
+    {
+      "kind": "run",
+      "check": true
+    },
+    {
+      "kind": "run",
+      "check": false,
+      "minHosts": 2
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

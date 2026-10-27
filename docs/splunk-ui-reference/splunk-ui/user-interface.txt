@@ -1,0 +1,65 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/ui".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/ui
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/ui#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1308
+	28 heading User interface, Value: 1
+		29 text User interface
+	30 text Create and edit views, dashboards, and navigation menus.
+	31 table
+		32 row
+			33 cell
+				34 text Type
+			35 cell
+				36 text Actions
+		37 row
+			38 cell
+				39 link Description: Time ranges, Value: localhost:8000/en-US/manager/search/data/ui/times
+			40 cell
+				41 link Description: + Add new, Value: localhost:8000/en-US/manager/search/data/ui/times/_new?action=edit
+		42 row
+			43 cell
+				44 link Description: Views, Value: localhost:8000/en-US/manager/search/data/ui/views
+			45 cell
+				46 link Description: + Add new, Value: localhost:8000/en-US/manager/search/data/ui/views/_new?action=edit
+		47 row
+			48 cell
+				49 link Description: View PDF scheduling, Value: localhost:8000/en-US/manager/search/scheduled/views
+		50 row
+			51 cell
+				52 link Description: Navigation menus, Value: localhost:8000/en-US/manager/search/data/ui/nav
+		53 row
+			54 cell
+				55 link Description: Prebuilt panels, Value: localhost:8000/en-US/manager/search/data/ui/panels
+			56 cell
+				57 link Description: + Add new, Value: localhost:8000/en-US/manager/search/data/ui/panels/_new?action=edit
+		58 row
+			59 cell
+				60 link Description: Bulletin messages, Value: localhost:8000/en-US/manager/search/messages
+			61 cell
+				62 link Description: + Add new, Value: localhost:8000/en-US/manager/search/messages/_new?action=edit
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/ui

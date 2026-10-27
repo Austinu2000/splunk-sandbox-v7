@@ -1,0 +1,47 @@
+Browser tab: 2136985550, Title: "Tokens | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/authorization/tokens".
+1 AXWebArea Tokens | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/authorization/tokens
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/authorization/tokens#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view5959
+	29 container
+		30 button Token Settings
+		31 button New Token
+		32 heading Tokens, Value: 1
+			33 text Tokens
+		34 text 0 Tokens
+		35 container
+			36 text field (settable)
+		37 table
+			38 row
+				39 cell
+				40 cell
+				41 cell
+				42 cell
+				43 cell
+				44 cell
+
+The focused UI element is 1 AXWebArea Tokens | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/authorization/tokens

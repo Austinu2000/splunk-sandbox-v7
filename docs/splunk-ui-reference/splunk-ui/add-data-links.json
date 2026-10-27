@@ -1,0 +1,50 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/adddatamethods/selectsource?input_mode=0",
+    "text": "Upload\nfiles from my computer"
+  },
+  {
+    "href": "/en-US/help?location=learnmore.adddata.datatutorial",
+    "text": "Tutorial for adding data"
+  },
+  {
+    "href": "/en-US/manager/search/adddatamethods/selectsource?input_mode=1",
+    "text": "Monitor\nfiles and ports on this Splunk platform instance"
+  },
+  {
+    "href": "/en-US/manager/search/adddatamethods/selectforwarders",
+    "text": "Forward\ndata from a Splunk forwarder"
+  }
+]

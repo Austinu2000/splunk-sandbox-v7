@@ -1,0 +1,44 @@
+Browser tab: 2136985550, Title: "Federated search | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/federated_search".
+1 AXWebArea Federated search | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/federated_search
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/federated_search#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view6429
+	29 container
+		30 heading Federated search, Value: 1
+			31 text Federated search
+		32 text Conducts searches and joins across multiple federated providers.
+		33 link Description: Learn more Open externally, Value: localhost:8000/en-US/help?location=learnmore.federated.search
+		34 tab group
+			35 tab (selected, settable, boolean) Federated Providers, ID: id-67db555d-333c-49cb-910d-e7d6a437d6f2-providers-tab, Value: 1
+Federated Providers
+			36 tab (selectable, settable, boolean) Federated Indexes, ID: id-67db555d-333c-49cb-910d-e7d6a437d6f2-indexes-tab, Value: 0
+Federated Indexes
+		37 container Description: Federated Providers, ID: id-67db555d-333c-49cb-910d-e7d6a437d6f2-providers
+			38 button Add federated provider
+			39 text No federated providers
+
+The focused UI element is 1 AXWebArea Federated search | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/federated_search

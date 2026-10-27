@@ -1,0 +1,102 @@
+Browser tab: 2136985550, Title: "Overview | Splunk 9.2.2", URL: "http://localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview".
+1 AXWebArea Overview | Splunk 9.2.2, URL: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview#navSkip
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button Description: View health report with status green, Help: Health: green
+				10 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text field (settable) Value input
+		29 container
+			30 link Description: Overview, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview
+			31 link Description: Summary, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_landing
+			32 link Description: Assist, Value: localhost:8000/en-US/app/splunk_monitoring_console/assist
+			33 link Description: Health Check, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_check
+			34 link Description: Indexing ▾, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview#
+			35 link Description: Search ▾, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview#
+			36 link Description: Resource Usage ▾, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview#
+			37 link Description: Forwarders ▾, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview#
+			38 link Description: Settings ▾, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview#
+			39 link Description: Run a Search, Value: localhost:8000/en-US/app/splunk_monitoring_console/search
+		40 link Description: App icon Monitoring Console, Value: localhost:8000/en-US/app/splunk_monitoring_console/
+	41 container
+		42 heading Splunk Enterprise Server 9.2.2, Value: 1
+			43 text Splunk Enterprise Server  9.2.2
+		44 heading Darwin, 16 GB Physical Memory, 4 CPU Cores, Value: 2
+			45 text Darwin, 16 GB Physical Memory, 4 CPU Cores
+		46 heading Mode: Standalone, Value: 2
+			47 text Mode: Standalone
+		48 container assist-overview
+			49 text Splunk Assist
+			50 text Brings the power of Splunk Cloud management insights to Splunk Enterprise deployments that you administer.
+			51 link Description: Go to Splunk Assist, Value: localhost:8000/en-US/app/splunk_monitoring_console/assist
+			52 image Waiting
+		53 text INDEXING RATE
+		54 image
+			55 text 11.66 KB/s
+			56 text Total
+		57 text LICENSE USAGE
+		58 container license-usage-element
+			59 text Today
+			60 progress indicator 0
+		61 text DISK USAGE
+		62 container disk-usage-element
+			63 text Disk
+			64 progress indicator 65
+			65 text 65%
+		66 text CONCURRENT SEARCHES
+		67 container
+			68 text I No results found.
+		69 text CONCURRENT SEARCHES BY TYPE
+		70 container
+			71 text I No results found.
+		72 text CPU USAGE
+		73 container
+			74 text I Waiting for data...
+		75 container
+			76 text I Waiting for data...
+		77 text CPU USAGE BY PROCESS
+		78 container
+			79 text I Waiting for data...
+		80 text MEMORY USAGE
+		81 container
+			82 text I Waiting for data...
+		83 container
+			84 text I Waiting for data...
+		85 text MEMORY USAGE BY PROCESS
+		86 container
+			87 text I Waiting for data...
+		88 text KV STORE
+		89 container
+			90 text I Waiting for data...
+		91 image
+			92 text 0
+			93 text Collections
+		94 container smc-alerts-view-container
+			95 text Alerts
+			96 heading ⚠ Alerts require setup. Please set up your instance first., Value: 3
+				97 text ⚠  Alerts require setup. Please 
+				98 link Description: set up, Value: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_configure
+				99 text  your instance first.
+
+The focused UI element is 1 AXWebArea Overview | Splunk 9.2.2, URL: localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview

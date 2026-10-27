@@ -1,0 +1,20 @@
+{
+  "id": "X2",
+  "title": "Upgrade every forwarder site by site",
+  "minutes": 45,
+  "level": 4,
+  "profile": "apl",
+  "instructions": "Use serial batches and max_fail_percentage, canary first, stop on failure, and preserve service availability.",
+  "checks": [
+    {
+      "kind": "run",
+      "check": true
+    },
+    {
+      "kind": "run",
+      "check": false,
+      "minHosts": 2
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

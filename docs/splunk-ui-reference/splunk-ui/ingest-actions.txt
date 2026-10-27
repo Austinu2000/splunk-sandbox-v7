@@ -1,0 +1,49 @@
+Browser tab: 2136985550, Title: "Ingest Actions", URL: "http://localhost:8000/en-US/manager/search/ingest_rulesets".
+1 AXWebArea Ingest Actions, URL: localhost:8000/en-US/manager/search/ingest_rulesets
+	2 container
+		3 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/ingest_rulesets#navSkip
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button Description: View health report with status green, Help: Health: green
+				10 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text 
+				29 text field (settable) Description: Find, ID: control-view3107
+		30 heading Ingest Actions, Value: 1
+			31 text Ingest Actions
+		32 container
+			33 text Create ingest-time rulesets to manipulate events based on their patterns. For more information, see
+			34 link Description: Splunk Docs Open externally, Value: localhost:8000/en-US/help?location=ingest_actions.intro
+			35 text .
+		36 container
+			37 text You are logged into: Austins-MacBook-Pro-2.local
+		38 pop up button (collapsed) Deploy, ID: toggle-b2c5c733-47ec-40d5-8793-cfcff080d7c0, Secondary Actions: Expand
+		39 tab group
+			40 tab (selected, settable, boolean) Rulesets, Value: 1
+Rulesets
+			41 tab (selectable, settable, boolean) Destinations, Value: 0
+Destinations
+		42 container
+			43 image Ingest Actions Ruleset Illustration
+			44 button New Ruleset
+
+The focused UI element is 1 AXWebArea Ingest Actions, URL: localhost:8000/en-US/manager/search/ingest_rulesets

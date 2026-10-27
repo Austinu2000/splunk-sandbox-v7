@@ -1,0 +1,182 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/app/search/search",
+    "text": "Search"
+  },
+  {
+    "href": "/en-US/app/search/analytics_workspace",
+    "text": "Analytics"
+  },
+  {
+    "href": "/en-US/app/search/datasets",
+    "text": "Datasets"
+  },
+  {
+    "href": "/en-US/app/search/reports",
+    "text": "Reports"
+  },
+  {
+    "href": "/en-US/app/search/alerts",
+    "text": "Alerts"
+  },
+  {
+    "href": "/en-US/app/search/dashboards",
+    "text": "Dashboards"
+  },
+  {
+    "href": "/en-US/app/search/",
+    "text": "Search & Reporting"
+  },
+  {
+    "href": "/en-US/app/search/table",
+    "text": "Create Table View"
+  },
+  {
+    "href": "/en-US/help?location=learnmore.datasets.listing",
+    "text": "Learn more about Datasets."
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_audit_logs.Audit&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Audit Logs - SAMPLE > Audit"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_audit_logs.Audit.modify&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Audit Logs - SAMPLE > Audit > Modify Splunk Configs"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_audit_logs.Audit.searches&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Audit Logs - SAMPLE > Audit > Searches"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.acceleration&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Acceleration"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.acceleration.dm_acceleration&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Acceleration > Data Model Acceleration"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.acceleration.report_acceleration&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Acceleration > Report Acceleration"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.licenser&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Licenser"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.licenser.slave_warn_summary&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Licenser > Daily Slave Warning Summary"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.licenser.daily_usage&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Licenser > Daily Usage Summary"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.licenser.pool_warnings&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Licenser > Pool Warnings"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.licenser.quota&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Licenser > Quota Usage"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.metrics&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Performance and System Data"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.metrics.pipeline&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Performance and System Data > Pipeline"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.metrics.queue&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Performance and System Data > Queue"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.metrics.systemwide_search_load_&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Performance and System Data > Search Load - Systemwide"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.metrics.user_search_load&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Performance and System Data > Search Load - Users"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.metrics.Thruput&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Performance and System Data > Thruput"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.splunkdaccess&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > REST API Calls"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.splunkdaccess.job_endpoint&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > REST API Calls > Job Endpoint"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.scheduler&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Scheduler"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.scheduler.alerts&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Scheduler > Alerts"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.scheduler.scheduled_reports&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Scheduler > Scheduled Reports"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=internal_server.server.scheduler.summaryindexing&eaiType=datamodel&eaiOwner=nobody&eaiApp=search",
+    "text": "Splunk's Internal Server Logs - SAMPLE > Splunk Server > Scheduler > Summary Indexing Searches"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=geo_attr_countries&eaiType=inputlookup-transform&eaiOwner=nobody&eaiApp=search&linksAlternate=%2FservicesNS%2Fnobody%2Fsearch%2Fdata%2Ftransforms%2Flookups%2Fgeo_attr_countries",
+    "text": "geo_attr_countries"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=geo_attr_countries.csv&eaiType=inputlookup-table&eaiOwner=nobody&eaiApp=search&linksAlternate=%2FservicesNS%2Fnobody%2Fsearch%2Fdata%2Flookup-table-files%2Fgeo_attr_countries.csv",
+    "text": "geo_attr_countries.csv"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=geo_attr_us_states&eaiType=inputlookup-transform&eaiOwner=nobody&eaiApp=search&linksAlternate=%2FservicesNS%2Fnobody%2Fsearch%2Fdata%2Ftransforms%2Flookups%2Fgeo_attr_us_states",
+    "text": "geo_attr_us_states"
+  },
+  {
+    "href": "/en-US/app/search/dataset?name=geo_attr_us_states.csv&eaiType=inputlookup-table&eaiOwner=nobody&eaiApp=search&linksAlternate=%2FservicesNS%2Fnobody%2Fsearch%2Fdata%2Flookup-table-files%2Fgeo_attr_us_states.csv",
+    "text": "geo_attr_us_states.csv"
+  }
+]

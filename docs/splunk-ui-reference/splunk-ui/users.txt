@@ -1,0 +1,108 @@
+Browser tab: 2136985550, Title: "Users | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/search/authentication/users".
+1 AXWebArea Users | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/authentication/users
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/authentication/users#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view6572
+	29 container
+		30 link Description: New User, Value: localhost:8000/en-US/manager/search/authentication/users#
+		31 heading Users, Value: 1
+			32 text Users
+		33 text 2 Users
+		34 container
+			35 text field (settable) Description: filter, ID: control-view6918
+			36 text  
+		37 link Description: 10 per page, Value: localhost:8000/en-US/manager/search/authentication/users#
+		38 table
+			39 row
+				40 cell
+					41 link Description: Name ↥, Value: localhost:8000/en-US/manager/search/authentication/users#
+				42 cell
+					43 text Actions
+				44 cell
+					45 link Description: Authentication system ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				46 cell
+					47 link Description: Full name ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				48 cell
+					49 link Description: Email address ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				50 cell
+					51 link Description: Time zone ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				52 cell
+					53 link Description: Default app ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				54 cell
+					55 link Description: Default app inherited from ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				56 cell
+					57 link Description: Roles ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				58 cell
+					59 link Description: Last Login ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+				60 cell
+					61 container
+						62 link Description: Status ↕, Value: localhost:8000/en-US/manager/search/authentication/users#
+						63 link Description: ?, Value: localhost:8000/en-US/manager/search/authentication/users#, ID: locked-out-tooltip
+			64 row
+				65 cell
+					66 link Description: admin, Value: localhost:8000/en-US/manager/search/authentication/users
+				67 cell
+					68 link Description: Edit, Value: localhost:8000/en-US/manager/search/authentication/users#
+				69 cell
+					70 text Splunk
+				71 cell
+					72 text Administrator
+				73 cell
+					74 text changeme@example.com
+				75 cell
+					76 text launcher
+				77 cell
+					78 text system
+				79 cell
+					80 text admin
+				81 cell
+					82 text 10/24/2026, 10:10:08 PM
+				83 cell
+					84 container
+						85 text ✓ Active
+			86 row
+				87 cell
+					88 link Description: uname, Value: localhost:8000/en-US/manager/search/authentication/users
+				89 cell
+					90 link Description: Edit, Value: localhost:8000/en-US/manager/search/authentication/users#
+				91 cell
+					92 text Splunk
+				93 cell
+					94 text America/New_York
+				95 cell
+					96 text launcher
+				97 cell
+					98 text system
+				99 cell
+					100 text power
+				101 cell
+					102 text 8/3/2024, 11:11:37 AM
+				103 cell
+					104 container
+						105 text ✓ Active
+
+The focused UI element is 1 AXWebArea Users | Splunk 9.2.2, URL: localhost:8000/en-US/manager/search/authentication/users

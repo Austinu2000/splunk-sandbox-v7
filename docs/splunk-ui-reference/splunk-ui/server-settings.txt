@@ -1,0 +1,58 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/systemsettings".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/systemsettings
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/systemsettings#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1308
+	28 heading Server settings, Value: 1
+		29 text Server settings
+	30 text Manage system settings including ports, host name, index path, email server, and system logging.
+	31 table
+		32 row
+			33 cell
+				34 link Description: General settings, Value: localhost:8000/en-US/manager/search/server/settings/settings?action=edit
+		35 row
+			36 cell
+				37 link Description: Login background, Value: localhost:8000/en-US/manager/search/login_page_settings
+		38 row
+			39 cell
+				40 link Description: Global banner, Value: localhost:8000/en-US/manager/search/global_banner
+		41 row
+			42 cell
+				43 link Description: Internal Library Settings, Value: localhost:8000/en-US/manager/search/internal_library_settings
+		44 row
+			45 cell
+				46 link Description: Email settings, Value: localhost:8000/en-US/manager/search/admin/alert_actions/email?action=edit
+		47 row
+			48 cell
+				49 link Description: Server logging, Value: localhost:8000/en-US/manager/search/server/logger
+		50 row
+			51 cell
+				52 link Description: Deployment client, Value: localhost:8000/en-US/manager/search/deployment/client
+		53 row
+			54 cell
+				55 link Description: Search preferences, Value: localhost:8000/en-US/manager/system/searchprefs
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/systemsettings

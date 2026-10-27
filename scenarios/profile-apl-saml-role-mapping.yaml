@@ -1,0 +1,102 @@
+id: apl-saml-role-mapping
+title: Analysts lost access to Enterprise Security
+profiles:
+  - apl
+summary: The simulated identity provider renamed APL-SOC-Analysts to
+  APL-SOC-Analysts-v2, while role mappings retain the old group.
+topics:
+  - apl
+  - configuration
+  - operations
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Security Operations
+  persona: methodical
+  urgency: high
+  text: Analysts lost access to Enterprise Security. Investigate the affected
+    service, correct its configuration, and verify recovery.
+changes:
+  - host: es01
+    path: /opt/splunk/etc/system/local/authentication.conf
+    stanza: saml
+    set:
+      expectedGroup: APL-SOC-Analysts-v2
+    apply: restart
+clues:
+  - "es01: /opt/splunk/etc/system/local/authentication.conf [saml]"
+  - splunk show profile-status on the affected host
+  - Apps → Engineer Sandbox → Operations
+redHerrings: []
+fixChecks:
+  all:
+    - metric:
+        host: es01
+        metric: analystAccess
+        equals: true
+    - metric:
+        host: es01
+        metric: analystAdmin
+        equals: false
+recovery:
+  seconds: 30
+interview:
+  prompt: Analysts lost access to Enterprise Security. Walk through diagnosis, a
+    scoped fix, and verification.
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: scope
+      label: Scoped the affected environment
+      any:
+        - page: ^(environments|fleet|operations|monitoring)
+        - cmd: show\s+profile-status
+    - id: inspect
+      label: Inspected the effective configuration
+      any:
+        - cmd: btool|cat|less|grep
+  verification:
+    - cmd: show\s+profile-status|run\s+playbook
+    - page: ^operations
+    - search: index=
+  unsafe:
+    - label: Granting analysts admin
+      match:
+        cmd: APL-SOC-Analysts.*=.*admin
+  rootCause:
+    - label: The simulated identity provider renamed APL-SOC-Analysts to
+        APL-SOC-Analysts-v2, while role mappings retain the old group.
+      any:
+        - saml
+        - expectedGroup
+  hints:
+    - cost: 10
+      text: Inspect the effective configuration on es01. File edits need the correct
+        reload or restart.
+  modelAnswer:
+    rootCause: The simulated identity provider renamed APL-SOC-Analysts to
+      APL-SOC-Analysts-v2, while role mappings retain the old group.
+    fix: 'es01:
+      {"stanza":"roleMap_saml","set":{"APL-SOC-Analysts-v2":"ess_analyst;user"}}
+      in /opt/splunk/etc/system/local/authentication.conf, then splunk restart'
+    verification: Confirm the operational metrics have recovered, inspect fresh
+      data, and close the ticket with evidence.
+    prevention: Validate configuration before rollout, monitor the affected service,
+      and test changes on a limited scope.
+  spokenAnswer: The simulated identity provider renamed APL-SOC-Analysts to
+    APL-SOC-Analysts-v2, while role mappings retain the old group. I would scope
+    the affected service, inspect its effective configuration and logs, apply a
+    targeted correction with the appropriate reload, then verify fresh data and
+    recovered metrics.
+
+interviewQuestionIds:
+  - "IQ039"
+followups:
+  - "What's your experience with identity and access management integration with Splunk (SSO/roles)?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

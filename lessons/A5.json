@@ -1,0 +1,16 @@
+{
+  "id": "A5",
+  "title": "Handlers and idempotency",
+  "minutes": 15,
+  "level": 2,
+  "profile": "lab",
+  "instructions": "Situation: Splunk only needs a restart when a config file actually changed.\nOpen roles/splunk_outputs/tasks/main.yml  and find notify: restart splunk .\nOpen roles/splunk_outputs/handlers/main.yml  to see the handler.\nRun ansible-playbook playbooks/deploy_apps.yml --limit idx01  twice.\nDone when: you can explain why the first run shows changed  and a RUNNING HANDLER\nline, and the second run shows only ok .\nLearn: a well-written playbook is safe to run again. If the second run shows changed ,\nsomething is wrong.",
+  "checks": [
+    {
+      "kind": "run",
+      "check": false,
+      "changed": 0
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "A3",
+  "title": "Your first dry run",
+  "minutes": 15,
+  "level": 1,
+  "profile": "lab",
+  "instructions": "Goal: see what a playbook would change, without changing anything.\n1 . Open the playbook and read it: cat playbooks/deploy_apps.yml . Find the hosts:\nline and the list of tasks: .\n2. Do a dry run on one server only: ansible-playbook playbooks/deploy_apps.yml --\ncheck --diff --limit idx01\n3. Read the output. Each task shows ok  (already correct), changed  (would change) or\nskipping . --diff  shows the exact lines that would change.\n4. The last block, PLAY RECAP , totals it up.\nCheck yourself: what do --check , --diff  and --limit  each do? Always use all three\nbefore a real run on production.\n",
+  "checks": [
+    {
+      "kind": "run",
+      "check": true
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

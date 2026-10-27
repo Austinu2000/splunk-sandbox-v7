@@ -1,0 +1,28 @@
+{
+  "id": "K2",
+  "title": "Configure a KV lookup and restore service",
+  "minutes": 20,
+  "level": 2,
+  "profile": "lab",
+  "instructions": "An application cannot read its asset lookup. Inspect server.conf with splunk btool server list kvstore --debug on sh01. Compare disk and running state. Correct the kvstore setting in the KV Store configuration page or terminal and restart Splunk. Verify | inputlookup assets_lookup returns both baseline assets. Close the incident with a root-cause and verification explanation. Collection and transforms changes use app reload; server changes require restart.",
+  "checks": [
+    {
+      "kind": "kv",
+      "label": "Assets are readable again",
+      "collection": "assets",
+      "minRecords": 2
+    },
+    {
+      "kind": "kv",
+      "label": "Service healthy on all members",
+      "healthy": true
+    },
+    {
+      "kind": "kv",
+      "label": "Incident resolved with debrief",
+      "resolved": true
+    }
+  ],
+  "completionScope": "KV checks validate persisted collection contents, service health and recovery outcomes. Review your explanation separately.",
+  "kvIncident": "service"
+}

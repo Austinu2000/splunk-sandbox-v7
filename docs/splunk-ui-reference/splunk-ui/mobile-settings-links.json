@@ -1,0 +1,54 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway/home",
+    "text": "Home"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway/administration",
+    "text": "Administration"
+  },
+  {
+    "href": "#",
+    "text": "Dashboards"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway/",
+    "text": ""
+  },
+  {
+    "href": "https://www.splunk.com/en_us/legal/splunk-specific-terms.html?301=/specificterms#splunk-secure-gateway",
+    "text": "Specific Terms for Splunk Offerings"
+  }
+]

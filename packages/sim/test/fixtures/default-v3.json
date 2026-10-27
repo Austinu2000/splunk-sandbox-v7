@@ -1,0 +1,536 @@
+{
+  "initial": {
+    "clock": {
+      "now": 1792742400000,
+      "tick": 0,
+      "speed": 1,
+      "paused": false
+    },
+    "fleet": {
+      "size": 2000,
+      "site": "a7761634dd79681d1565a71ea7c71e801829183260edf19ddbdf83896ff45137",
+      "serverClass": "8a432ee9d9bd48b6e6c42ea9b5e46df99b7ef2dabfe028b2b8112deaa40fec17",
+      "assignedClass": "8985e6a266b376ab546573a4e7d2f9ebd18524ac11c7fb1156d9b66b01f54aa1",
+      "hostNum": "a1ee007aa813116ce2bbcb88bc47a919f75b907a763162e31bb13e52987a94f7",
+      "version": "0b7382121f807a5420c7a302bfa2aa11a6854d3b1c7db9a937b0424208428890",
+      "health": "7a33df81202267a86b4eccd995306a509e8ddb81c072365ea3cdda3e51dc0412",
+      "healthSince": "a9aceaf99d868339b453c726ed5c7b35ce694dbf9c9c72b344d5215d18b005b9",
+      "phoneHomeFrozenAt": "b649cc3aeac8bb1ed28dfbca7f00679b5f44be16536630f7ef5dffc788a375cf"
+    },
+    "infra": [
+      {
+        "hostname": "idx01",
+        "role": "indexer",
+        "site": "dal",
+        "ip": "10.10.0.20",
+        "status": "up"
+      },
+      {
+        "hostname": "idx02",
+        "role": "indexer",
+        "site": "dal",
+        "ip": "10.10.0.21",
+        "status": "up"
+      },
+      {
+        "hostname": "idx03",
+        "role": "indexer",
+        "site": "ash",
+        "ip": "10.20.0.20",
+        "status": "up"
+      },
+      {
+        "hostname": "idx04",
+        "role": "indexer",
+        "site": "ash",
+        "ip": "10.20.0.21",
+        "status": "up"
+      },
+      {
+        "hostname": "idx05",
+        "role": "indexer",
+        "site": "fra",
+        "ip": "10.30.0.20",
+        "status": "up"
+      },
+      {
+        "hostname": "idx06",
+        "role": "indexer",
+        "site": "fra",
+        "ip": "10.30.0.21",
+        "status": "up"
+      },
+      {
+        "hostname": "sh01",
+        "role": "search_head",
+        "site": "dal",
+        "ip": "10.10.0.31",
+        "status": "up"
+      },
+      {
+        "hostname": "sh02",
+        "role": "search_head",
+        "site": "dal",
+        "ip": "10.10.0.32",
+        "status": "up"
+      },
+      {
+        "hostname": "sh03",
+        "role": "search_head",
+        "site": "dal",
+        "ip": "10.10.0.33",
+        "status": "up"
+      },
+      {
+        "hostname": "ds01",
+        "role": "deployment_server",
+        "site": "dal",
+        "ip": "10.10.0.10",
+        "status": "up"
+      },
+      {
+        "hostname": "cm01",
+        "role": "cluster_manager",
+        "site": "dal",
+        "ip": "10.10.0.11",
+        "status": "up"
+      },
+      {
+        "hostname": "lm01",
+        "role": "license_manager",
+        "site": "dal",
+        "ip": "10.10.0.12",
+        "status": "up"
+      },
+      {
+        "hostname": "hf01",
+        "role": "heavy_forwarder",
+        "site": "dal",
+        "ip": "10.10.0.40",
+        "status": "up"
+      },
+      {
+        "hostname": "hf02",
+        "role": "heavy_forwarder",
+        "site": "ash",
+        "ip": "10.20.0.40",
+        "status": "up"
+      },
+      {
+        "hostname": "hf03",
+        "role": "heavy_forwarder",
+        "site": "fra",
+        "ip": "10.30.0.40",
+        "status": "up"
+      },
+      {
+        "hostname": "idx07",
+        "role": "indexer",
+        "site": "dal",
+        "ip": "10.10.0.27",
+        "status": "down",
+        "retired": true
+      }
+    ],
+    "summary": {
+      "at": 1792742400000,
+      "total": 2000,
+      "byHealth": {
+        "healthy": 1972,
+        "stale_phonehome": 9,
+        "blocked_queue": 2,
+        "offline": 10,
+        "version_drift": 5,
+        "wrong_serverclass": 2
+      },
+      "bySite": [
+        {
+          "id": "dal",
+          "name": "Dallas",
+          "total": 859,
+          "byHealth": {
+            "healthy": 846,
+            "stale_phonehome": 5,
+            "blocked_queue": 1,
+            "offline": 6,
+            "version_drift": 0,
+            "wrong_serverclass": 1
+          }
+        },
+        {
+          "id": "ash",
+          "name": "Ashburn",
+          "total": 724,
+          "byHealth": {
+            "healthy": 711,
+            "stale_phonehome": 3,
+            "blocked_queue": 1,
+            "offline": 4,
+            "version_drift": 4,
+            "wrong_serverclass": 1
+          }
+        },
+        {
+          "id": "fra",
+          "name": "Frankfurt",
+          "total": 417,
+          "byHealth": {
+            "healthy": 415,
+            "stale_phonehome": 1,
+            "blocked_queue": 0,
+            "offline": 0,
+            "version_drift": 1,
+            "wrong_serverclass": 0
+          }
+        }
+      ],
+      "byServerClass": [
+        {
+          "id": "win_servers",
+          "name": "win_servers",
+          "total": 829,
+          "byHealth": {
+            "healthy": 820,
+            "stale_phonehome": 0,
+            "blocked_queue": 2,
+            "offline": 5,
+            "version_drift": 1,
+            "wrong_serverclass": 1
+          }
+        },
+        {
+          "id": "win_dc",
+          "name": "win_dc",
+          "total": 77,
+          "byHealth": {
+            "healthy": 77,
+            "stale_phonehome": 0,
+            "blocked_queue": 0,
+            "offline": 0,
+            "version_drift": 0,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "linux_app",
+          "name": "linux_app",
+          "total": 622,
+          "byHealth": {
+            "healthy": 609,
+            "stale_phonehome": 6,
+            "blocked_queue": 0,
+            "offline": 4,
+            "version_drift": 2,
+            "wrong_serverclass": 1
+          }
+        },
+        {
+          "id": "linux_web",
+          "name": "linux_web",
+          "total": 277,
+          "byHealth": {
+            "healthy": 275,
+            "stale_phonehome": 0,
+            "blocked_queue": 0,
+            "offline": 0,
+            "version_drift": 2,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "linux_db",
+          "name": "linux_db",
+          "total": 172,
+          "byHealth": {
+            "healthy": 168,
+            "stale_phonehome": 3,
+            "blocked_queue": 0,
+            "offline": 1,
+            "version_drift": 0,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "syslog_relay",
+          "name": "syslog_relay",
+          "total": 23,
+          "byHealth": {
+            "healthy": 23,
+            "stale_phonehome": 0,
+            "blocked_queue": 0,
+            "offline": 0,
+            "version_drift": 0,
+            "wrong_serverclass": 0
+          }
+        }
+      ]
+    }
+  },
+  "advanced": {
+    "clock": {
+      "now": 1792743600000,
+      "tick": 120,
+      "speed": 1,
+      "paused": false
+    },
+    "fleet": {
+      "size": 2000,
+      "site": "a7761634dd79681d1565a71ea7c71e801829183260edf19ddbdf83896ff45137",
+      "serverClass": "8a432ee9d9bd48b6e6c42ea9b5e46df99b7ef2dabfe028b2b8112deaa40fec17",
+      "assignedClass": "8a432ee9d9bd48b6e6c42ea9b5e46df99b7ef2dabfe028b2b8112deaa40fec17",
+      "hostNum": "a1ee007aa813116ce2bbcb88bc47a919f75b907a763162e31bb13e52987a94f7",
+      "version": "36c0ceacb131e6a39039980cf48c6d4f263670c8941e40d44f80d55027d604ec",
+      "health": "d06fc55679fd6bd12404ccd3551bf52f17c63169c3ef8f7e9a35dff37b113547",
+      "healthSince": "557ee8a69de3eefca3f0cad95bdbdba640796558cb0063c9381241fd04679247",
+      "phoneHomeFrozenAt": "f3f8d2aaa3cf51722b1d99dba8ef2520d6acca33af6500fd0c5c76985638bbfe"
+    },
+    "infra": [
+      {
+        "hostname": "idx01",
+        "role": "indexer",
+        "site": "dal",
+        "ip": "10.10.0.20",
+        "status": "up"
+      },
+      {
+        "hostname": "idx02",
+        "role": "indexer",
+        "site": "dal",
+        "ip": "10.10.0.21",
+        "status": "up"
+      },
+      {
+        "hostname": "idx03",
+        "role": "indexer",
+        "site": "ash",
+        "ip": "10.20.0.20",
+        "status": "up"
+      },
+      {
+        "hostname": "idx04",
+        "role": "indexer",
+        "site": "ash",
+        "ip": "10.20.0.21",
+        "status": "up"
+      },
+      {
+        "hostname": "idx05",
+        "role": "indexer",
+        "site": "fra",
+        "ip": "10.30.0.20",
+        "status": "up"
+      },
+      {
+        "hostname": "idx06",
+        "role": "indexer",
+        "site": "fra",
+        "ip": "10.30.0.21",
+        "status": "up"
+      },
+      {
+        "hostname": "sh01",
+        "role": "search_head",
+        "site": "dal",
+        "ip": "10.10.0.31",
+        "status": "up"
+      },
+      {
+        "hostname": "sh02",
+        "role": "search_head",
+        "site": "dal",
+        "ip": "10.10.0.32",
+        "status": "up"
+      },
+      {
+        "hostname": "sh03",
+        "role": "search_head",
+        "site": "dal",
+        "ip": "10.10.0.33",
+        "status": "up"
+      },
+      {
+        "hostname": "ds01",
+        "role": "deployment_server",
+        "site": "dal",
+        "ip": "10.10.0.10",
+        "status": "up"
+      },
+      {
+        "hostname": "cm01",
+        "role": "cluster_manager",
+        "site": "dal",
+        "ip": "10.10.0.11",
+        "status": "up"
+      },
+      {
+        "hostname": "lm01",
+        "role": "license_manager",
+        "site": "dal",
+        "ip": "10.10.0.12",
+        "status": "up"
+      },
+      {
+        "hostname": "hf01",
+        "role": "heavy_forwarder",
+        "site": "dal",
+        "ip": "10.10.0.40",
+        "status": "up"
+      },
+      {
+        "hostname": "hf02",
+        "role": "heavy_forwarder",
+        "site": "ash",
+        "ip": "10.20.0.40",
+        "status": "up"
+      },
+      {
+        "hostname": "hf03",
+        "role": "heavy_forwarder",
+        "site": "fra",
+        "ip": "10.30.0.40",
+        "status": "up"
+      },
+      {
+        "hostname": "idx07",
+        "role": "indexer",
+        "site": "dal",
+        "ip": "10.10.0.27",
+        "status": "down",
+        "retired": true
+      }
+    ],
+    "summary": {
+      "at": 1792743600000,
+      "total": 2000,
+      "byHealth": {
+        "healthy": 1974,
+        "stale_phonehome": 12,
+        "blocked_queue": 3,
+        "offline": 7,
+        "version_drift": 4,
+        "wrong_serverclass": 0
+      },
+      "bySite": [
+        {
+          "id": "dal",
+          "name": "Dallas",
+          "total": 859,
+          "byHealth": {
+            "healthy": 844,
+            "stale_phonehome": 9,
+            "blocked_queue": 0,
+            "offline": 5,
+            "version_drift": 1,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "ash",
+          "name": "Ashburn",
+          "total": 724,
+          "byHealth": {
+            "healthy": 718,
+            "stale_phonehome": 2,
+            "blocked_queue": 1,
+            "offline": 2,
+            "version_drift": 1,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "fra",
+          "name": "Frankfurt",
+          "total": 417,
+          "byHealth": {
+            "healthy": 412,
+            "stale_phonehome": 1,
+            "blocked_queue": 2,
+            "offline": 0,
+            "version_drift": 2,
+            "wrong_serverclass": 0
+          }
+        }
+      ],
+      "byServerClass": [
+        {
+          "id": "win_servers",
+          "name": "win_servers",
+          "total": 829,
+          "byHealth": {
+            "healthy": 819,
+            "stale_phonehome": 4,
+            "blocked_queue": 2,
+            "offline": 4,
+            "version_drift": 0,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "win_dc",
+          "name": "win_dc",
+          "total": 77,
+          "byHealth": {
+            "healthy": 76,
+            "stale_phonehome": 0,
+            "blocked_queue": 0,
+            "offline": 1,
+            "version_drift": 0,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "linux_app",
+          "name": "linux_app",
+          "total": 622,
+          "byHealth": {
+            "healthy": 613,
+            "stale_phonehome": 5,
+            "blocked_queue": 1,
+            "offline": 1,
+            "version_drift": 2,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "linux_web",
+          "name": "linux_web",
+          "total": 277,
+          "byHealth": {
+            "healthy": 275,
+            "stale_phonehome": 0,
+            "blocked_queue": 0,
+            "offline": 0,
+            "version_drift": 2,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "linux_db",
+          "name": "linux_db",
+          "total": 172,
+          "byHealth": {
+            "healthy": 168,
+            "stale_phonehome": 3,
+            "blocked_queue": 0,
+            "offline": 1,
+            "version_drift": 0,
+            "wrong_serverclass": 0
+          }
+        },
+        {
+          "id": "syslog_relay",
+          "name": "syslog_relay",
+          "total": 23,
+          "byHealth": {
+            "healthy": 23,
+            "stale_phonehome": 0,
+            "blocked_queue": 0,
+            "offline": 0,
+            "version_drift": 0,
+            "wrong_serverclass": 0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,333 @@
+Browser tab: 2136985550, Title: "Datasets", URL: "http://localhost:8000/en-US/app/search/datasets".
+1 AXWebArea Datasets, URL: localhost:8000/en-US/app/search/datasets
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/search/datasets#navSkip
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button Description: View health report with status green, Help: Health: green
+				10 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text 
+				29 text field (settable) Description: Find, ID: control-view3346
+		30 container
+			31 link Description: Search, Value: localhost:8000/en-US/app/search/search
+			32 link Description: Analytics, Value: localhost:8000/en-US/app/search/analytics_workspace
+			33 link Description: Datasets, Value: localhost:8000/en-US/app/search/datasets
+			34 link Description: Reports, Value: localhost:8000/en-US/app/search/reports
+			35 link Description: Alerts, Value: localhost:8000/en-US/app/search/alerts
+			36 link Description: Dashboards, Value: localhost:8000/en-US/app/search/dashboards
+		37 link Description: App icon Search & Reporting, Value: localhost:8000/en-US/app/search/
+	38 container
+		39 link Description: Create Table View, Value: localhost:8000/en-US/app/search/table
+		40 heading Datasets, Value: 1
+			41 text Datasets
+		42 text Use the Datasets listing page to view and manage your existing datasets. Click a dataset name to view its contents. Select Explore > Visualize in Pivot to design a visualization-rich report based on the dataset. Select Explore > Investigate in Search to extend a dataset in Search and save it as a new report, alert, or dashboard panel.
+		43 link Description: Learn more about Datasets. Open externally, Value: localhost:8000/en-US/help?location=learnmore.datasets.listing
+		44 container
+			45 text field (settable) Filter
+		46 list Description: This App's, ID: toggle-cc888fc2-803a-480f-8d2d-f4e8c4af48c2
+			47 text This App's
+		48 text 28 Datasets
+		49 table
+			50 row
+				51 cell
+					52 image More Information
+				53 cell
+					54 container
+						55 text Title
+						56 image Press to sort descending
+				57 cell
+					58 container
+						59 text Dataset Type
+						60 image Click to sort
+				61 cell
+					62 container
+						63 text Accelerated
+						64 image Click to sort
+				65 cell
+					66 container
+						67 text Owner
+						68 image Click to sort
+				69 cell
+					70 container
+						71 text App
+						72 image Click to sort
+				73 cell
+					74 container
+						75 text Sharing
+						76 image Click to sort
+				77 cell
+					78 text Actions
+			79 row
+				80 cell
+				81 cell
+					82 link localhost:8000/en-US/app/search/dataset?name=internal_audit_logs.Audit&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				83 cell
+					84 pop up button (collapsed) Secondary Actions: Expand
+						85 image
+					86 pop up button (collapsed) Secondary Actions: Expand
+						87 image
+			88 row
+				89 cell
+				90 cell
+					91 link localhost:8000/en-US/app/search/dataset?name=internal_audit_logs.Audit.modify&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				92 cell
+					93 pop up button (collapsed) Secondary Actions: Expand
+						94 image
+					95 pop up button (collapsed) Secondary Actions: Expand
+						96 image
+			97 row
+				98 cell
+				99 cell
+					100 link localhost:8000/en-US/app/search/dataset?name=internal_audit_logs.Audit.searches&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				101 cell
+					102 pop up button (collapsed) Secondary Actions: Expand
+						103 image
+					104 pop up button (collapsed) Secondary Actions: Expand
+						105 image
+			106 row
+				107 cell
+				108 cell
+					109 link localhost:8000/en-US/app/search/dataset?name=internal_server.server&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				110 cell
+					111 pop up button (collapsed) Secondary Actions: Expand
+						112 image
+					113 pop up button (collapsed) Secondary Actions: Expand
+						114 image
+			115 row
+				116 cell
+				117 cell
+					118 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.acceleration&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				119 cell
+					120 pop up button (collapsed) Secondary Actions: Expand
+						121 image
+					122 pop up button (collapsed) Secondary Actions: Expand
+						123 image
+			124 row
+				125 cell
+				126 cell
+					127 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.acceleration.dm_acceleration&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				128 cell
+					129 pop up button (collapsed) Secondary Actions: Expand
+						130 image
+					131 pop up button (collapsed) Secondary Actions: Expand
+						132 image
+			133 row
+				134 cell
+				135 cell
+					136 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.acceleration.report_acceleration&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				137 cell
+					138 pop up button (collapsed) Secondary Actions: Expand
+						139 image
+					140 pop up button (collapsed) Secondary Actions: Expand
+						141 image
+			142 row
+				143 cell
+				144 cell
+					145 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.licenser&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				146 cell
+					147 pop up button (collapsed) Secondary Actions: Expand
+						148 image
+					149 pop up button (collapsed) Secondary Actions: Expand
+						150 image
+			151 row
+				152 cell
+				153 cell
+					154 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.licenser.slave_warn_summary&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				155 cell
+					156 pop up button (collapsed) Secondary Actions: Expand
+						157 image
+					158 pop up button (collapsed) Secondary Actions: Expand
+						159 image
+			160 row
+				161 cell
+				162 cell
+					163 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.licenser.daily_usage&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				164 cell
+					165 pop up button (collapsed) Secondary Actions: Expand
+						166 image
+					167 pop up button (collapsed) Secondary Actions: Expand
+						168 image
+			169 row
+				170 cell
+				171 cell
+					172 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.licenser.pool_warnings&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				173 cell
+					174 pop up button (collapsed) Secondary Actions: Expand
+						175 image
+					176 pop up button (collapsed) Secondary Actions: Expand
+						177 image
+			178 row
+				179 cell
+				180 cell
+					181 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.licenser.quota&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				182 cell
+					183 pop up button (collapsed) Secondary Actions: Expand
+						184 image
+					185 pop up button (collapsed) Secondary Actions: Expand
+						186 image
+			187 row
+				188 cell
+				189 cell
+					190 link localhost:8000/en-US/app/search/dataset?name=internal_server.server.metrics&eaiType=datamodel&eaiOwner=nobody&eaiApp=search
+				191 cell
+					192 pop up button (collapsed) Secondary Actions: Expand
+						193 image
+					194 pop up button (collapsed) Secondary Actions: Expand
+						195 image
+			196 row
+				197 cell
+				198 cell
+					199 link …
+				200 cell
+					201 pop up button (collapsed) Secondary Actions: Expand
+						202 image
+					203 pop up button (collapsed) Secondary Actions: Expand
+						204 image
+			205 row
+				206 cell
+				207 cell
+					208 link …
+				209 cell
+					210 pop up button (collapsed) Secondary Actions: Expand
+						211 image
+					212 pop up button (collapsed) Secondary Actions: Expand
+						213 image
+			214 row
+				215 cell
+				216 cell
+					217 link …
+				218 cell
+					219 pop up button (collapsed) Secondary Actions: Expand
+						220 image
+					221 pop up button (collapsed) Secondary Actions: Expand
+						222 image
+			223 row
+				224 cell
+				225 cell
+					226 link …
+				227 cell
+					228 pop up button (collapsed) Secondary Actions: Expand
+						229 image
+					230 pop up button (collapsed) Secondary Actions: Expand
+						231 image
+			232 row
+				233 cell
+				234 cell
+					235 link …
+				236 cell
+					237 pop up button (collapsed) Secondary Actions: Expand
+						238 image
+					239 pop up button (collapsed) Secondary Actions: Expand
+						240 image
+			241 row
+				242 cell
+				243 cell
+					244 link …
+				245 cell
+					246 pop up button (collapsed) Secondary Actions: Expand
+						247 image
+					248 pop up button (collapsed) Secondary Actions: Expand
+						249 image
+			250 row
+				251 cell
+				252 cell
+					253 link …
+				254 cell
+					255 pop up button (collapsed) Secondary Actions: Expand
+						256 image
+					257 pop up button (collapsed) Secondary Actions: Expand
+						258 image
+			259 row
+				260 cell
+				261 cell
+					262 link …
+				263 cell
+					264 pop up button (collapsed) Secondary Actions: Expand
+						265 image
+					266 pop up button (collapsed) Secondary Actions: Expand
+						267 image
+			268 row
+				269 cell
+				270 cell
+					271 link …
+				272 cell
+					273 pop up button (collapsed) Secondary Actions: Expand
+						274 image
+					275 pop up button (collapsed) Secondary Actions: Expand
+						276 image
+			277 row
+				278 cell
+				279 cell
+					280 link …
+				281 cell
+					282 pop up button (collapsed) Secondary Actions: Expand
+						283 image
+					284 pop up button (collapsed) Secondary Actions: Expand
+						285 image
+			286 row
+				287 cell
+				288 cell
+					289 link …
+				290 cell
+					291 pop up button (collapsed) Secondary Actions: Expand
+						292 image
+					293 pop up button (collapsed) Secondary Actions: Expand
+						294 image
+			295 row
+				296 cell
+				297 cell
+					298 link …
+				299 cell
+					300 pop up button (collapsed) Secondary Actions: Expand
+						301 image
+					302 pop up button (collapsed) Secondary Actions: Expand
+						303 image
+			304 row
+				305 cell
+				306 cell
+					307 link …
+				308 cell
+					309 pop up button (collapsed) Secondary Actions: Expand
+						310 image
+					311 pop up button (collapsed) Secondary Actions: Expand
+						312 image
+			313 row
+				314 cell
+				315 cell
+					316 link …
+				317 cell
+					318 pop up button (collapsed) Secondary Actions: Expand
+						319 image
+					320 pop up button (collapsed) Secondary Actions: Expand
+						321 image
+			322 row
+				323 cell
+				324 cell
+					325 link …
+				326 cell
+					327 pop up button (collapsed) Secondary Actions: Expand
+						328 image
+					329 pop up button (collapsed) Secondary Actions: Expand
+						330 image
+
+The focused UI element is 1 AXWebArea Datasets, URL: localhost:8000/en-US/app/search/datasets

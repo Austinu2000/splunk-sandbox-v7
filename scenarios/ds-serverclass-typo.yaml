@@ -1,0 +1,151 @@
+id: ds-serverclass-typo
+title: Dallas web access logs went quiet
+summary: A typo in the serverClass:linux_web whitelist on {deployment_server}
+  (dal-wbe-* instead of dal-web-*) unmapped every Dallas web server from
+  org_linux_web_inputs, so their nginx access logs stopped being collected.
+topics:
+  - deployment-server
+  - forwarder-management
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Priya, Web Platform
+  persona: impatient
+  urgency: high
+  text: Dallas web logs have gone quiet. The web services are up and serving
+    traffic, but our access logs are missing from Splunk.
+changes:
+  - host: "{deployment_server}"
+    path: /opt/splunk/etc/system/local/serverclass.conf
+    stanza: serverClass:linux_web
+    set:
+      whitelist.0: dal-wbe-*
+    apply: deploy-server
+clues:
+  - "{deployment_server}: splunkd.log DeploymentServer client counts per server
+    class"
+  - splunk btool serverclass list --debug
+  - "Fleet Overview: Dallas linux_web wrong server class"
+redHerrings:
+  - host: "{deployment_server}"
+    file: splunkd
+    level: WARN
+    component: ClientSessionsManager
+    message: Client name=ash-win-2391 ip=10.20.73.4 phonehome delay of 412s exceeds
+      3x phoneHomeIntervalInSecs
+    everyMinutes: 6
+  - host: dal-web-0001
+    file: messages
+    component: nginx
+    message: "[warn] 2214#2214: *88231 an upstream response is buffered to a
+      temporary file /var/cache/nginx/proxy_temp/7/31/0000004317"
+    everyMinutes: 4
+fixChecks:
+  fleet:
+    site: dal
+    serverClass: linux_web
+    health: wrong_serverclass
+    maxPct: 3
+recovery:
+  seconds: 30
+interview:
+  prompt: Our Dallas web team says their access logs stopped arriving in Splunk
+    about an hour ago, but the web servers are healthy. Walk me through how
+    you'd investigate.
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: scope
+      label: Scoped which forwarders are affected (fleet view, Forwarder Management or
+        a search)
+      any:
+        - page: ^fleet
+        - page: ^forwarders
+        - search: dal-web|linux_web|access_combined
+    - id: ds-config
+      label: Read the running serverclass configuration on {deployment_server}
+      any:
+        - cmd: btool\s+serverclass
+          host: ^{deployment_server}$
+        - cmd: serverclass\.conf
+          host: ^{deployment_server}$
+        - page: ^forwarders/serverclasses
+    - id: ds-logs
+      label: Checked what the deployment server is serving to clients
+      any:
+        - cmd: splunkd\.log
+          host: ^({deployment_server}|dal-web-)
+        - search: DeploymentServer|deployment/server/clients|phonehome
+        - cmd: deploy-(poll|clients)
+        - page: ^forwarders/clients
+  verification:
+    - search: dal-web|access_combined|linux_web
+    - page: ^(fleet|forwarders)
+  unsafe:
+    - label: Restarted an indexer that had nothing to do with the problem
+      match:
+        cmd: splunk\s+(restart|stop)
+        role: indexer
+  rootCause:
+    - label: the serverClass whitelist
+      any:
+        - whitelist
+        - server ?class
+    - label: the dal-wbe-* typo
+      any:
+        - dal-wbe
+        - typo
+        - misspel
+    - label: the deployment server ({deployment_server})
+      any:
+        - "{deployment_server}"
+        - deployment server
+  hints:
+    - cost: 10
+      text: Which component decides what inputs a forwarder runs?
+    - cost: 15
+      text: Compare the whitelists in serverclass.conf on {deployment_server} with the
+        Dallas web server hostnames.
+  modelAnswer:
+    rootCause: On {deployment_server}, the serverClass:linux_web whitelist was
+      changed to dal-wbe-* (a typo for dal-web-*) and the deployment server was
+      reloaded. The Dallas web servers stopped matching the class, so they lost
+      org_linux_web_inputs and stopped collecting nginx access logs.
+    fix: Correct whitelist.0 to dal-web-* in
+      /opt/splunk/etc/system/local/serverclass.conf on {deployment_server} and
+      run splunk reload deploy-server. The clients pick the app back up at their
+      next phone-home.
+    verification: Watch the wrong-server-class count for Dallas linux_web fall to
+      zero in the fleet view or Forwarder Management, then confirm index=app
+      sourcetype=access_combined host=dal-web-* events are arriving again.
+    prevention: Review serverclass.conf changes (version control and peer review),
+      and alert when a server class's client count drops sharply.
+  spokenAnswer: "I'd start by scoping it: only Dallas web servers, only their
+    access logs, and the hosts themselves are healthy. That points away from the
+    indexers and towards what the forwarders are told to collect. The deployment
+    server owns that, so on {deployment_server} I'd run btool serverclass list
+    and look at Forwarder Management. The linux_web whitelist says dal-wbe-star,
+    a typo, so the Dallas web servers no longer match the class and lost their
+    inputs app. I'd fix the whitelist, reload the deployment server, and watch
+    the clients map back at their next phone-home, then confirm access_combined
+    events are flowing for those hosts. To prevent it, serverclass changes go
+    through review, and we alert on a sudden drop in a class's client count."
+profiles:
+  - default
+  - apl
+  - erie
+
+interviewQuestionIds:
+  - "IQ021"
+  - "IQ032"
+  - "IQ153"
+followups:
+  - "How do you push configs from the deployment server to forwarders - what's the difference between reload and restart, and when do you use each?"
+  - "What happens if a server class is misconfigured on the deployment server?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

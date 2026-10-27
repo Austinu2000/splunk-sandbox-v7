@@ -1,0 +1,106 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/app/search/search",
+    "text": "Search"
+  },
+  {
+    "href": "/en-US/app/search/analytics_workspace",
+    "text": "Analytics"
+  },
+  {
+    "href": "/en-US/app/search/datasets",
+    "text": "Datasets"
+  },
+  {
+    "href": "/en-US/app/search/reports",
+    "text": "Reports"
+  },
+  {
+    "href": "/en-US/app/search/alerts",
+    "text": "Alerts"
+  },
+  {
+    "href": "/en-US/app/search/dashboards",
+    "text": "Dashboards"
+  },
+  {
+    "href": "/en-US/app/search/",
+    "text": "Search & Reporting"
+  },
+  {
+    "href": "#",
+    "text": "Last 24 hours"
+  },
+  {
+    "href": "#",
+    "text": "Search Button"
+  },
+  {
+    "href": "#",
+    "text": "No Event Sampling"
+  },
+  {
+    "href": "#",
+    "text": "Smart Mode"
+  },
+  {
+    "href": "#",
+    "text": "Search History"
+  },
+  {
+    "href": "/en-US/help?location=splunkcore.homepage.docs",
+    "text": "Documentation"
+  },
+  {
+    "href": "/en-US/help?location=search_app.tutorial",
+    "text": "Tutorial"
+  },
+  {
+    "href": "#",
+    "text": "Data Summary"
+  },
+  {
+    "href": "/en-US/help?location=learnmore.datasets.listing",
+    "text": "Learn more"
+  },
+  {
+    "href": "/en-US/app/search/datasets",
+    "text": "Datasets listing page."
+  },
+  {
+    "href": "/en-US/app/search/table",
+    "text": "Create Table View"
+  }
+]

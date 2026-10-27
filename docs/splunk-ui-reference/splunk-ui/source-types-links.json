@@ -1,0 +1,330 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "#",
+    "text": "New Source Type"
+  },
+  {
+    "href": "/en-US/help?location=learnmore.adddata.sourcetypes",
+    "text": "Learn more"
+  },
+  {
+    "href": "#",
+    "text": "pulldown"
+  },
+  {
+    "href": "#",
+    "text": "Category: All"
+  },
+  {
+    "href": "#",
+    "text": "App: All"
+  },
+  {
+    "href": "#",
+    "text": "20 per page"
+  },
+  {
+    "href": "#",
+    "text": "1"
+  },
+  {
+    "href": "#",
+    "text": "2"
+  },
+  {
+    "href": "#",
+    "text": "3"
+  },
+  {
+    "href": "#",
+    "text": "Next"
+  },
+  {
+    "href": "#",
+    "text": "Name"
+  },
+  {
+    "href": "#",
+    "text": "Category"
+  },
+  {
+    "href": "#",
+    "text": "App"
+  },
+  {
+    "href": "#",
+    "text": "_json"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "access_combined"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "apache_error"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "catalina"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "cisco:asa"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "collectd_http"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "csv"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "db2_diag"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "db_audit"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "Delete"
+  },
+  {
+    "href": "#",
+    "text": "dmesg"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "generic_single_line"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "iis"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "json_no_timestamp"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "linux_audit"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "linux_messages_syslog"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "linux_secure"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "log2metrics_csv"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "log2metrics_json"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "log2metrics_keyvalue"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "log4j"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "#",
+    "text": "Clone"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/saved/fvtags",
+    "text": "List by field value pair"
+  },
+  {
+    "href": "/en-US/manager/search/saved/fvtags/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/saved/ntags",
+    "text": "List by tag name"
+  },
+  {
+    "href": "/en-US/manager/search/saved/ntags/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/admin/tags",
+    "text": "All unique tag objects"
+  },
+  {
+    "href": "/en-US/manager/search/admin/tags/_new?action=edit",
+    "text": "Add new"
+  }
+]

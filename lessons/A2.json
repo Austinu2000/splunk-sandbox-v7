@@ -1,0 +1,15 @@
+{
+  "id": "A2",
+  "title": "Say hello to your servers",
+  "minutes": 10,
+  "level": 1,
+  "profile": "lab",
+  "instructions": "Goal: run your first Ansible command.\n1 . Ping the indexers: ansible indexers -m ping . Each one should answer SUCCESS  and\n\"ping\": \"pong\" . (This isn't a network ping; it checks Ansible can log in and run.)\n2. Now try everyone: ansible all -m ping\n3. One forwarder answers UNREACHABLE! . That's on purpose: it's switched off. Real fleets\nalways have a few.\nCheck yourself: what does -m  stand for?",
+  "checks": [
+    {
+      "kind": "command",
+      "pattern": "ansible indexers -m ping"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

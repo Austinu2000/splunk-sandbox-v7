@@ -1,0 +1,97 @@
+id: apl-fortigate-sourcetype
+title: Firewall dashboards are empty while data arrives
+profiles:
+  - apl
+summary: The FortiGate add-on on hf-syslog01 is disabled; incoming events are
+  classified as fgt_log.
+topics:
+  - apl
+  - configuration
+  - operations
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Security Operations
+  persona: methodical
+  urgency: high
+  text: Firewall dashboards are empty while data arrives. Investigate the affected
+    service, correct its configuration, and verify recovery.
+changes:
+  - host: hf-syslog01
+    path: /opt/splunk/etc/system/local/app.conf
+    stanza: fortigate
+    set:
+      enabled: "false"
+    apply: restart
+clues:
+  - "hf-syslog01: /opt/splunk/etc/system/local/app.conf [fortigate]"
+  - splunk show profile-status on the affected host
+  - Apps → Engineer Sandbox → Operations
+redHerrings: []
+fixChecks:
+  metric:
+    host: hf-syslog01
+    metric: fortigate.classified
+    equals: true
+recovery:
+  seconds: 30
+interview:
+  prompt: Firewall dashboards are empty while data arrives. Walk through
+    diagnosis, a scoped fix, and verification.
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: scope
+      label: Scoped the affected environment
+      any:
+        - page: ^(environments|fleet|operations|monitoring)
+        - cmd: show\s+profile-status
+    - id: inspect
+      label: Inspected the effective configuration
+      any:
+        - cmd: btool|cat|less|grep
+  verification:
+    - cmd: show\s+profile-status|run\s+playbook
+    - page: ^operations
+    - search: index=
+  unsafe:
+    - label: Changing dashboards to search the incorrect sourcetype
+      match:
+        cmd: (savedsearches|dashboard).*fgt_log|fgt_log.*(savedsearches|dashboard)
+  rootCause:
+    - label: The FortiGate add-on on hf-syslog01 is disabled; incoming events are
+        classified as fgt_log.
+      any:
+        - fortigate
+        - enabled
+  hints:
+    - cost: 10
+      text: Inspect the effective configuration on hf-syslog01. File edits need the
+        correct reload or restart.
+  modelAnswer:
+    rootCause: The FortiGate add-on on hf-syslog01 is disabled; incoming events are
+      classified as fgt_log.
+    fix: 'hf-syslog01: {"enabled":"true"} in /opt/splunk/etc/system/local/app.conf,
+      then splunk restart'
+    verification: Confirm the operational metrics have recovered, inspect fresh
+      data, and close the ticket with evidence.
+    prevention: Validate configuration before rollout, monitor the affected service,
+      and test changes on a limited scope.
+  spokenAnswer: The FortiGate add-on on hf-syslog01 is disabled; incoming events
+    are classified as fgt_log. I would scope the affected service, inspect its
+    effective configuration and logs, apply a targeted correction with the
+    appropriate reload, then verify fresh data and recovered metrics.
+
+interviewQuestionIds:
+  - "IQ071"
+  - "IQ078"
+followups:
+  - "What is CIM, why does it matter, and how do you normalize data (e.g., firewall logs) to it?"
+  - "Where does parsing happen, and what is the impact of parsing data on the heavy forwarder vs. the indexer?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

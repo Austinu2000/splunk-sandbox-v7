@@ -1,0 +1,32 @@
+{
+  "id": "G7",
+  "title": "Undo a bad change safely",
+  "minutes": 15,
+  "level": 3,
+  "profile": "apl",
+  "instructions": "Situation: a merged commit broke parsing for one sourcetype. Roll it back without\nrewriting history.\nFind it: git log --oneline  and git show <commit-id> .\nUndo it with a new commit: git revert <commit-id> , then push and open a PR.\nTrap: git reset --hard  followed by git push --force  on main . The sandbox blocks\nforce-pushes to main  and records the attempt.\nDone when: the revert is merged and deployed, and events parse correctly again.",
+  "checks": [
+    {
+      "kind": "command",
+      "pattern": "git revert"
+    },
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "deployed"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks.",
+  "setup": [
+    {
+      "repo": "splunk-apps",
+      "branch": "teammate/bad-parsing",
+      "path": "manager-apps/_cluster/default/props.conf",
+      "title": "Incorrect parsing change",
+      "text": "[fgt_traffic]\nSHOULD_LINEMERGE = true\nLINE_BREAKER = (NEVER_MATCH)\n",
+      "review": "deployed"
+    }
+  ]
+}

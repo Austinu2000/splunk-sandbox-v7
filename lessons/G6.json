@@ -1,0 +1,43 @@
+{
+  "id": "G6",
+  "title": "Resolve a merge conflict",
+  "minutes": 20,
+  "level": 3,
+  "profile": "apl",
+  "instructions": "Situation: your PR changes the fortinet  stanza in indexes.conf . A teammate merged a\nchange to the same stanza first, and now your PR says it can't merge.\nUpdate your branch: git switch <your-branch> , then git pull origin main .\n\nGit marks the conflict in the file with <<<<<<< , =======  and >>>>>>> . Edit the file to\nkeep both changes and remove the markers.\ngit add  the file, git commit , git push .\nTrap: deleting the teammate's lines to make the conflict go away.\nDone when: both changes are in main  and checks are green.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "command",
+      "pattern": "git pull origin main"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks.",
+  "setup": [
+    {
+      "repo": "splunk-apps",
+      "path": "manager-apps/_cluster/default/indexes.conf",
+      "branch": "practice/retention",
+      "title": "Add archival retention policy",
+      "replace": {
+        "from": "maxTotalDataSizeMB = 500000",
+        "to": "coldToFrozenDir = /archive\nmaxTotalDataSizeMB = 500000"
+      },
+      "review": "open"
+    },
+    {
+      "repo": "splunk-apps",
+      "path": "manager-apps/_cluster/default/indexes.conf",
+      "branch": "teammate/capacity",
+      "title": "Teammate capacity change",
+      "replace": {
+        "from": "maxTotalDataSizeMB = 500000",
+        "to": "maxTotalDataSizeMB = 600000"
+      },
+      "review": "merged"
+    }
+  ]
+}

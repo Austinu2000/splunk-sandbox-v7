@@ -1,0 +1,19 @@
+{
+  "id": "X3",
+  "title": "Make dry runs mandatory",
+  "minutes": 40,
+  "level": 4,
+  "profile": "apl",
+  "instructions": "A revision-bound CI dry run posts its diff to the PR and rejects unexpected changes.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "run",
+      "check": true
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

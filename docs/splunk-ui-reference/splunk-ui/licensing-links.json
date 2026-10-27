@@ -1,0 +1,62 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/system/licensing/self?return_to=%2Fen-US%2Fmanager%2Fsystem%2Flicensing",
+    "text": "Change to peer"
+  },
+  {
+    "href": "/en-US/manager/system/licensing/switch?return_to=%2Fen-US%2Fmanager%2Fsystem%2Flicensing",
+    "text": "Change license group"
+  },
+  {
+    "href": "/en-US/manager/system/licensing/licenses/new?return_to=%2Fen-US%2Fmanager%2Fsystem%2Flicensing",
+    "text": "Add license"
+  },
+  {
+    "href": "/en-US/manager/search/licenseusage",
+    "text": "Usage report"
+  },
+  {
+    "href": "/en-US/help?location=license.alerts",
+    "text": "Learn more"
+  },
+  {
+    "href": "/en-US/manager/system/licensing/licenses",
+    "text": "All license details"
+  },
+  {
+    "href": "/en-US/manager/system/licensing/indexers",
+    "text": "All indexer details"
+  }
+]

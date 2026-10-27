@@ -1,0 +1,38 @@
+Browser tab: 2136985550, Title: "Report Acceleration Summaries - Manager - Splunk", URL: "http://localhost:8000/en-US/manager/system/summarization".
+1 AXWebArea Report Acceleration Summaries - Manager - Splunk, URL: localhost:8000/en-US/manager/system/summarization
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/system/summarization#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1872
+	28 heading Report Acceleration Summaries, Value: 1
+		29 text Report Acceleration Summaries
+	30 container
+		31 text field (settable) searchInput
+		32 button search
+	33 container
+		34 text There are no report acceleration summaries. 
+		35 link Description:  Learn more., Value: localhost:8000/en-US/help?location=learnmore.search.acceleration
+
+The focused UI element is 1 AXWebArea Report Acceleration Summaries - Manager - Splunk, URL: localhost:8000/en-US/manager/system/summarization

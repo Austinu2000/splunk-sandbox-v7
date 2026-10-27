@@ -1,0 +1,44 @@
+Browser tab: 2136985550, Title: "Splunk Secure Gateway", URL: "http://localhost:8000/en-US/app/splunk_secure_gateway/administration#/".
+1 AXWebArea Splunk Secure Gateway, URL: localhost:8000/en-US/app/splunk_secure_gateway/administration#/
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/splunk_secure_gateway/administration#navSkip
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button Description: View health report with status green, Help: Health: green
+				10 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text field (settable) Description: Find, ID: control-view4468
+		29 container
+			30 link Description: Home, Value: localhost:8000/en-US/app/splunk_secure_gateway/home
+			31 link Description: Administration, Value: localhost:8000/en-US/app/splunk_secure_gateway/administration
+			32 link Description: Dashboards ▾, Value: localhost:8000/en-US/app/splunk_secure_gateway/administration#
+		33 link Description: App logo, Value: localhost:8000/en-US/app/splunk_secure_gateway/
+	34 container onboarding_container
+		35 container onboarding_animation_container
+		36 container onboarding_content_container
+			37 text Splunk Secure Gateway
+			38 text Unleash the power of Splunk Mobile, TV & AR. Monitor dashboards, view reports and receive actionable alerts anywhere at any time!
+			39 text By continuing, you acknowledge and accept Splunk Secure Gateway's
+			40 link Description: Specific Terms for Splunk Offerings Open externally, Help: Splunk, Value: splunk.com/en_us/legal/splunk-specific-terms.html?301=/specificterms#splunk-secure-gateway
+		41 text To start using Splunk Secure Gateway, contact your administrator
+
+The focused UI element is 1 AXWebArea Splunk Secure Gateway, URL: localhost:8000/en-US/app/splunk_secure_gateway/administration#/

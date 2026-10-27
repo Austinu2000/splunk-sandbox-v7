@@ -1,0 +1,15 @@
+{
+  "id": "A1",
+  "title": "Read the inventory",
+  "minutes": 10,
+  "level": 1,
+  "profile": "lab",
+  "instructions": "Goal: see which servers Ansible knows about.\n1 . Still on ansible01, in ~/splunk-automation , run: ansible-inventory --graph\n2. You'll see groups such as indexers , search_heads , deployment_server  and\nuniversal_forwarders , with server names under each.\n3. Open the file it came from: cat inventories/lab/hosts.yml\nCheck yourself: how many indexers are in the lab? Which group would you target to\nchange every forwarder?",
+  "checks": [
+    {
+      "kind": "command",
+      "pattern": "ansible-inventory --graph"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

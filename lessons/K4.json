@@ -1,0 +1,28 @@
+{
+  "id": "K4",
+  "title": "Recover deleted collection data",
+  "minutes": 20,
+  "level": 3,
+  "profile": "lab",
+  "instructions": "A bulk update deleted the asset records. Inspect the backup list and verify that the current collection is empty. Restore the incident backup. Read assets_lookup and verify asset-1 and asset-2 are present. Confirm the automatic pre-restore safety snapshot appears. Close the incident with the selected archive and validation evidence. This model backs up data; collection definitions must already exist.",
+  "checks": [
+    {
+      "kind": "kv",
+      "label": "Restore a saved backup",
+      "operation": "restore"
+    },
+    {
+      "kind": "kv",
+      "label": "At least two assets recovered",
+      "collection": "assets",
+      "minRecords": 2
+    },
+    {
+      "kind": "kv",
+      "label": "Recovery incident closed",
+      "resolved": true
+    }
+  ],
+  "completionScope": "KV checks validate persisted collection contents, service health and recovery outcomes. Review your explanation separately.",
+  "kvIncident": "recovery"
+}

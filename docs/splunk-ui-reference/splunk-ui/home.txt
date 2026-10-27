@@ -1,0 +1,70 @@
+Browser tab: 2136985550, Title: "Home", URL: "http://localhost:8000/en-US/app/launcher/home".
+1 AXWebArea Home, URL: localhost:8000/en-US/app/launcher/home
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/launcher/home#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view3202
+	29 container
+		30 heading Apps, Value: 2
+			31 text Apps
+		32 link Description: Manage, Help: Manage Apps, Value: localhost:8000/en-US/manager/launcher/apps/local
+		33 text field (settable) Value input
+		34 link Description: Navigate to Search & Reporting app, Value: localhost:8000/en-US/app/search
+		35 link Description: Navigate to Splunk Secure Gateway app, Value: localhost:8000/en-US/app/splunk_secure_gateway
+		36 link Description: Navigate to Upgrade Readiness App app, Value: localhost:8000/en-US/app/python_upgrade_readiness_app
+		37 link Description: Find more apps Open externally, Value: localhost:8000/en-US/manager/launcher/appsremote
+		38 heading Hello, Administrator, Value: 1
+			39 text Hello ,  Administrator
+		40 tab group
+			41 tab (selected, settable, boolean) Quick links, Value: 1
+Quick links
+			42 tab (selectable, settable, boolean) Dashboard, Value: 0
+Dashboard
+			43 tab (selectable, settable, boolean) Recently viewed, Value: 0
+Recently viewed
+			44 tab (selectable, settable, boolean) Created by you, Value: 0
+Created by you
+			45 tab (selectable, settable, boolean) Shared with you, Value: 0
+Shared with you
+		46 heading Common tasks, Value: 3
+			47 text Common tasks
+		48 link Description: Add data Add data from a variety of common sources., Value: localhost:8000/en-US/manager/search/adddata
+		49 link Description: Search your data Turn data into doing with Splunk search., Value: localhost:8000/en-US/app/search/search
+		50 link Description: Visualize your data Create dashboards that work for your data., Value: localhost:8000/en-US/app/search/dashboards
+		51 link Description: Add team members Add your team members to Splunk platform., Value: localhost:8000/en-US/manager/search/authentication/users
+		52 link Description: Manage permissions Control who has access with roles., Value: localhost:8000/en-US/manager/search/authorization/roles
+		53 link Description: Configure mobile devices Login or manage mobile devices using Splunk Secure Gateway., Value: localhost:8000/en-US/app/splunk_secure_gateway
+		54 heading Learning and resources, Value: 3
+			55 text Learning and resources
+		56 link Description: Product tours New to Splunk? Take a tour to help you on your way., Value: localhost:8000/en-US/app/launcher/home#
+		57 link Value: docs.splunk.com/Documentation, Description: Learn more with Splunk Docs Open external link Deploy, manage, and use Splunk software with comprehensive guidance.
+		58 link Value: lantern.splunk.com/, Description: Get help from Splunk experts Open external link Actionable guidance on the Splunk Lantern Customer Success Center.
+		59 link Description: Extend your capabilities Open external link Browse thousands of apps on Splunkbase., Value: splunkbase.splunk.com/
+		60 link Description: Join the Splunk Community Open external link Learn, get inspired, and share knowledge., Value: community.splunk.com/
+		61 link Description: See how others use Splunk Open external link Browse real customer stories., Value: splunk.com/customers
+		62 link Description: Training and Certification Open external link Become a certified Splunk Ninja., Value: splunk.com/training
+
+The focused UI element is 1 AXWebArea Home, URL: localhost:8000/en-US/app/launcher/home

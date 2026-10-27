@@ -1,0 +1,492 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/admin/directory".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/admin/directory
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/admin/directory#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1336
+	28 heading All configurations, Value: 1
+		29 text All configurations
+	30 container
+		31 link Description: Reassign Knowledge Objects, Value: localhost:8000/en-US/manager/search/bulkreassign?app=search&owner=-&count=25&offset=0&search=&appOnly=False&sortDir=&sortKey=
+		32 text Showing  1-25  of 298 items
+		33 text App
+		34 pop up button (collapsed, settable) App, Value: Search & Reporting (search), ID: appContextSelect, Secondary Actions: Expand
+			35 menu
+				36 All
+				37 Log Event Alert Action (alert_logevent)
+				38 Webhook Alert Action (alert_webhook)
+				39 Apps Browser (appsbrowser)
+				40 introspection_generator_addon (introspection_generator_addon)
+				41 Home (launcher)
+				42 learned (learned)
+				43 logd_input (logd_input)
+				44 Upgrade Readiness App (python_upgrade_readiness_app)
+				45 (selected) Search & Reporting (search)
+				46 Splunk Dashboard Studio (splunk-dashboard-studio)
+				47 Splunk Assist (splunk_assist)
+				48 Splunk Get Data In (splunk_gdi)
+				49 splunk_httpinput (splunk_httpinput)
+				50 splunk_ingest_actions (splunk_ingest_actions)
+				51 Instrumentation (splunk_instrumentation)
+				52 Clones Internal Metrics into Metrics Index (splunk_internal_metrics)
+				53 Splunk Analytics Workspace (splunk_metrics_workspace)
+				54 Monitoring Console (splunk_monitoring_console)
+				55 Splunk Secure Gateway (splunk_secure_gateway)
+				56 SplunkDeploymentServerConfig (SplunkDeploymentServerConfig)
+		57 text Configuration Source
+		58 pop up button (collapsed, settable) Configuration Source, Value: Visible in the App, ID: appOnlyFilterSelect, Secondary Actions: Expand
+			59 menu
+				60 (selected) Visible in the App
+				61 Created in the App
+		62 text Owner
+		63 pop up button (collapsed, settable) Owner, Value: Any, ID: ownerSelect, Secondary Actions: Expand
+			64 menu
+				65 (selected) Any
+				66 Administrator (admin)
+				67 uname (uname)
+				68 No owner
+		69 text field (settable) Description: Search Input, ID: searchInput
+		70 button search
+		71 pop up button (collapsed, settable) Description: Results Per Page, Value: 25 per page, ID: resultsPerPageSelect, Secondary Actions: Expand
+			72 menu
+				73 10 per page
+				74 (selected) 25 per page
+				75 50 per page
+				76 100 per page
+		77 content list
+			78 text « Prev
+			79 link Description: 1, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=0
+			80 link Description: 2, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=25
+			81 link Description: 3, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=50
+			82 link Description: 4, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=75
+			83 link Description: 5, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=100
+			84 link Description: 6, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=125
+			85 link Description: 7, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=150
+			86 link Description: 8, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=175
+			87 link Description: 9, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=200
+			88 link Description: 10, Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=225
+			89 link Description: Next », Value: localhost:8000/en-US/manager/search/admin/directory?app_only=False&can_reassign=True&offset=25
+	90 table
+		91 row
+			92 cell
+				93 button Name
+			94 cell
+				95 button Config type
+			96 cell
+				97 button Owner
+			98 cell
+				99 button App
+			100 cell
+				101 button Sharing
+			102 cell
+				103 button Status
+		104 row
+			105 cell
+				106 link Description: 403_by_clientip, Value: localhost:8000/en-US/manager/search/saved/searches/403_by_clientip?app=search&owner=uname&search=%22403_by_clientip%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip&action=edit
+			107 cell
+				108 text savedsearch
+			109 cell
+				110 text uname
+			111 cell
+				112 text search
+			113 cell
+				114 text App  |
+				115 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/saved/searches/403_by_clientip?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip
+			116 cell
+				117 text Enabled  |
+				118 link Description: Disable, Value: localhost:8000/en-US/manager/search/admin/directory#
+		119 row
+			120 cell
+				121 link Description: 403_by_clientip Clone, Value: localhost:8000/en-US/manager/search/saved/searches/403_by_clientip%20Clone?app=search&owner=admin&search=%22403_by_clientip%20Clone%22&uri=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip%2520Clone&action=edit
+			122 cell
+				123 text savedsearch
+			124 cell
+				125 text admin
+			126 cell
+				127 text search
+			128 cell
+				129 text Private  |
+				130 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/saved/searches/403_by_clientip%20Clone?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip%2520Clone
+			131 cell
+				132 text Enabled  |
+				133 link Description: Disable, Value: localhost:8000/en-US/manager/search/admin/directory#
+		134 row
+			135 cell
+				136 link Description: ActiveDirectory : EXTRACT-GUID, Value: localhost:8000/en-US/manager/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-GUID?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-GUID
+			137 cell
+				138 text props-extract
+			139 cell
+				140 text No owner
+			141 cell
+				142 text system
+			143 cell
+				144 text Global  |
+				145 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-GUID?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-GUID
+			146 cell
+				147 text Enabled
+		148 row
+			149 cell
+				150 link Description: ActiveDirectory : EXTRACT-SID, Value: localhost:8000/en-US/manager/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-SID?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-SID
+			151 cell
+				152 text props-extract
+			153 cell
+				154 text No owner
+			155 cell
+				156 text system
+			157 cell
+				158 text Global  |
+				159 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-SID?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-SID
+			160 cell
+				161 text Enabled
+		162 row
+			163 cell
+				164 link Description: ActiveDirectory : REPORT-MESSAGE, Value: localhost:8000/en-US/manager/search/data/props/extractions/ActiveDirectory%20%3A%20REPORT-MESSAGE?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520REPORT-MESSAGE
+			165 cell
+				166 text props-extract
+			167 cell
+				168 text No owner
+			169 cell
+				170 text system
+			171 cell
+				172 text Global  |
+				173 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/data/props/extractions/ActiveDirectory%20%3A%20REPORT-MESSAGE?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520REPORT-MESSAGE
+			174 cell
+				175 text Enabled
+		176 row
+			177 cell
+				178 link Description: BANNER_MESSAGE_SINGLETON, Value: localhost:8000/en-US/manager/search/data/ui/global-banner/BANNER_MESSAGE_SINGLETON?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fui%2Fglobal-banner%2FBANNER_MESSAGE_SINGLETON
+			179 cell
+				180 text global-banner
+			181 cell
+				182 text No owner
+			183 cell
+				184 text system
+			185 cell
+				186 text Global  |
+				187 link Description: Permissions, Value: …
+			188 cell
+				189 text Enabled  |
+				190 link Description: Disable, Value: localhost:8000/en-US/manager/search/admin/directory#
+		191 row
+			192 cell
+				193 link Description: Bucket Merge Retrieve Conf Settings, Value: …
+			194 cell
+				195 text savedsearch
+			196 cell
+				197 text No owner
+			198 cell
+				199 text search
+			200 cell
+				201 text App  |
+				202 link Description: Permissions, Value: …
+			203 cell
+				204 text Enabled  |
+				205 link Description: Disable, Value: …
+		206 row
+			207 cell
+				208 link Description: Errors in the last 24 hours, Value: …
+			209 cell
+				210 text savedsearch
+			211 cell
+				212 text No owner
+			213 cell
+				214 text search
+			215 cell
+				216 text App  |
+				217 link Description: Permissions, Value: …
+			218 cell
+				219 text Enabled  |
+				220 link Description: Disable, Value: …
+		221 row
+			222 cell
+				223 link Description: Errors in the last hour, Value: …
+			224 cell
+				225 text savedsearch
+			226 cell
+				227 text No owner
+			228 cell
+				229 text search
+			230 cell
+				231 text App  |
+				232 link Description: Permissions, Value: …
+			233 cell
+				234 text Enabled  |
+				235 link Description: Disable, Value: …
+		236 row
+			237 cell
+				238 link Description: Internal Report, Value: …
+			239 cell
+				240 text savedsearch
+			241 cell
+				242 text admin
+			243 cell
+				244 text search
+			245 cell
+				246 text Private  |
+				247 link Description: Permissions, Value: …
+			248 cell
+				249 text Enabled  |
+				250 link Description: Disable, Value: …
+		251 row
+			252 cell
+				253 text JsonWebTokensV1
+			254 cell
+				255 text collections-conf
+			256 cell
+				257 text No owner
+			258 cell
+				259 text system
+			260 cell
+				261 text Global  |
+				262 link Description: Permissions, Value: …
+			263 cell
+				264 text Disabled  |
+				265 link Description: Enable, Value: …
+		266 row
+			267 cell
+				268 link Description: License Usage Data Cube, Value: …
+			269 cell
+				270 text savedsearch
+			271 cell
+				272 text No owner
+			273 cell
+				274 text search
+			275 cell
+				276 text App  |
+				277 link Description: Permissions, Value: …
+			278 cell
+				279 text Enabled  |
+				280 link Description: Disable, Value: …
+		281 row
+			282 cell
+				283 text LoggedOutSessionTokens
+			284 cell
+				285 text collections-conf
+			286 cell
+				287 text No owner
+			288 cell
+				289 text system
+			290 cell
+				291 text Global  |
+				292 link Description: Permissions, Value: …
+			293 cell
+				294 text Disabled  |
+				295 link Description: Enable, Value: …
+		296 row
+			297 cell
+				298 link Description: Messages by minute last 3 hours, Value: …
+			299 cell
+				300 text savedsearch
+			301 cell
+				302 text No owner
+			303 cell
+				304 text search
+			305 cell
+				306 text App  |
+				307 link Description: Permissions, Value: …
+			308 cell
+				309 text Enabled  |
+				310 link Description: Disable, Value: …
+		311 row
+			312 cell
+				313 link Description: Orphaned scheduled searches, Value: …
+			314 cell
+				315 text savedsearch
+			316 cell
+				317 text No owner
+			318 cell
+				319 text search
+			320 cell
+				321 text App  |
+				322 link Description: Permissions, Value: …
+			323 cell
+				324 text Enabled  |
+				325 link Description: Disable, Value: …
+		326 row
+			327 cell
+				328 link Description: PerformanceMonitor : REPORT-MESSAGE, Value: …
+			329 cell
+				330 text props-extract
+			331 cell
+				332 text No owner
+			333 cell
+				334 text system
+			335 cell
+				336 text Global  |
+				337 link Description: Permissions, Value: …
+			338 cell
+				339 text Enabled
+		340 row
+			341 cell
+				342 text RecentlyViewedKO
+			343 cell
+				344 text collections-conf
+			345 cell
+				346 text No owner
+			347 cell
+				348 text system
+			349 cell
+				350 text Global  |
+				351 link Description: Permissions, Value: …
+			352 cell
+				353 text Enabled  |
+				354 link Description: Disable, Value: …
+		355 row
+			356 cell
+				357 text SSLCertificates
+			358 cell
+				359 text collections-conf
+			360 cell
+				361 text No owner
+			362 cell
+				363 text system
+			364 cell
+				365 text Global  |
+				366 link Description: Permissions, Value: …
+			367 cell
+				368 text Disabled  |
+				369 link Description: Enable, Value: …
+		370 row
+			371 cell
+				372 text SamlIdpCerts
+			373 cell
+				374 text collections-conf
+			375 cell
+				376 text No owner
+			377 cell
+				378 text system
+			379 cell
+				380 text Global  |
+				381 link Description: Permissions, Value: …
+			382 cell
+				383 text Disabled  |
+				384 link Description: Enable, Value: …
+		385 row
+			386 cell
+				387 text SavedSearchHistory
+			388 cell
+				389 text collections-conf
+			390 cell
+				391 text No owner
+			392 cell
+				393 text system
+			394 cell
+				395 text Global  |
+				396 link Description: Permissions, Value: …
+			397 cell
+				398 text Enabled  |
+				399 link Description: Disable, Value: …
+		400 row
+			401 cell
+				402 text SearchHeadClusterHealthStates
+			403 cell
+				404 text collections-conf
+			405 cell
+				406 text No owner
+			407 cell
+				408 text system
+			409 cell
+				410 text Global  |
+				411 link Description: Permissions, Value: …
+			412 cell
+				413 text Enabled  |
+				414 link Description: Disable, Value: …
+		415 row
+			416 cell
+				417 text SearchHeadClusterMemberInfo
+			418 cell
+				419 text collections-conf
+			420 cell
+				421 text No owner
+			422 cell
+				423 text system
+			424 cell
+				425 text Global  |
+				426 link Description: Permissions, Value: …
+			427 cell
+				428 text Enabled  |
+				429 link Description: Disable, Value: …
+		430 row
+			431 cell
+				432 text SearchHistory
+			433 cell
+				434 text collections-conf
+			435 cell
+				436 text No owner
+			437 cell
+				438 text system
+			439 cell
+				440 text Global  |
+				441 link Description: Permissions, Value: …
+			442 cell
+				443 text Enabled  |
+				444 link Description: Disable, Value: …
+		445 row
+			446 cell
+				447 text Spl2Modules
+			448 cell
+				449 text collections-conf
+			450 cell
+				451 text No owner
+			452 cell
+				453 text system
+			454 cell
+				455 text Global  |
+				456 link Description: Permissions, Value: …
+			457 cell
+				458 text Enabled  |
+				459 link Description: Disable, Value: …
+		460 row
+			461 cell
+				462 link Description: Splunk errors last 24 hours, Value: …
+			463 cell
+				464 text savedsearch
+			465 cell
+				466 text No owner
+			467 cell
+				468 text search
+			469 cell
+				470 text App  |
+				471 link Description: Permissions, Value: …
+			472 cell
+				473 text Enabled  |
+				474 link Description: Disable, Value: …
+	475 container
+		476 text Showing  1-25  of 298 items
+	477 content list
+		478 text « Prev
+		479 link Description: 1, Value: …
+		480 link Description: 2, Value: …
+		481 link Description: 3, Value: …
+		482 link Description: 4, Value: …
+		483 link Description: 5, Value: …
+		484 link Description: 6, Value: …
+		485 link Description: 7, Value: …
+		486 link Description: 8, Value: …
+		487 link Description: 9, Value: …
+		488 link Description: 10, Value: …
+		489 link Description: Next », Value: …
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/admin/directory

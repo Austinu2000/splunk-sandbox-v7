@@ -1,0 +1,214 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "#",
+    "text": "New Index"
+  },
+  {
+    "href": "/en-US/help?location=manager.indexes.about",
+    "text": "Learn more"
+  },
+  {
+    "href": "#",
+    "text": "20 per page"
+  },
+  {
+    "href": "#",
+    "text": "Name"
+  },
+  {
+    "href": "#",
+    "text": "Type"
+  },
+  {
+    "href": "#",
+    "text": "App"
+  },
+  {
+    "href": "#",
+    "text": "Current Size"
+  },
+  {
+    "href": "#",
+    "text": "Max Size"
+  },
+  {
+    "href": "#",
+    "text": "?"
+  },
+  {
+    "href": "#",
+    "text": "Event Count"
+  },
+  {
+    "href": "#",
+    "text": "Earliest Event"
+  },
+  {
+    "href": "#",
+    "text": "Latest Event"
+  },
+  {
+    "href": "#",
+    "text": "Home Path"
+  },
+  {
+    "href": "#",
+    "text": "Frozen Path"
+  },
+  {
+    "href": "#",
+    "text": "Status"
+  },
+  {
+    "href": "indexes/_audit?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_audit&ns=system&action=edit",
+    "text": "_audit"
+  },
+  {
+    "href": "indexes/_audit?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_audit&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_configtracker?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_configtracker&ns=system&action=edit",
+    "text": "_configtracker"
+  },
+  {
+    "href": "indexes/_configtracker?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_configtracker&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_dsappevent?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsappevent&ns=SplunkDeploymentServerConfig&action=edit",
+    "text": "_dsappevent"
+  },
+  {
+    "href": "indexes/_dsappevent?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsappevent&ns=SplunkDeploymentServerConfig&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_dsclient?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsclient&ns=SplunkDeploymentServerConfig&action=edit",
+    "text": "_dsclient"
+  },
+  {
+    "href": "indexes/_dsclient?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsclient&ns=SplunkDeploymentServerConfig&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_dsphonehome?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsphonehome&ns=SplunkDeploymentServerConfig&action=edit",
+    "text": "_dsphonehome"
+  },
+  {
+    "href": "indexes/_dsphonehome?uri=%2FservicesNS%2Fnobody%2FSplunkDeploymentServerConfig%2Fdata%2Findexes%2F_dsphonehome&ns=SplunkDeploymentServerConfig&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_internal?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_internal&ns=system&action=edit",
+    "text": "_internal"
+  },
+  {
+    "href": "indexes/_internal?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_internal&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_introspection?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_introspection&ns=system&action=edit",
+    "text": "_introspection"
+  },
+  {
+    "href": "indexes/_introspection?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_introspection&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_metrics?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics&ns=system&action=edit",
+    "text": "_metrics"
+  },
+  {
+    "href": "indexes/_metrics?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_metrics_rollup?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics_rollup&ns=system&action=edit",
+    "text": "_metrics_rollup"
+  },
+  {
+    "href": "indexes/_metrics_rollup?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_metrics_rollup&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_telemetry?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_telemetry&ns=system&action=edit",
+    "text": "_telemetry"
+  },
+  {
+    "href": "indexes/_telemetry?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_telemetry&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/_thefishbucket?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_thefishbucket&ns=system&action=edit",
+    "text": "_thefishbucket"
+  },
+  {
+    "href": "indexes/_thefishbucket?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2F_thefishbucket&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/history?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fhistory&ns=system&action=edit",
+    "text": "history"
+  },
+  {
+    "href": "indexes/history?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fhistory&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/main?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fmain&ns=system&action=edit",
+    "text": "main"
+  },
+  {
+    "href": "indexes/main?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fmain&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/splunklogger?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fsplunklogger&ns=system&action=edit",
+    "text": "splunklogger"
+  },
+  {
+    "href": "indexes/splunklogger?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fsplunklogger&ns=system&action=edit",
+    "text": "Edit"
+  },
+  {
+    "href": "indexes/summary?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fsummary&ns=system&action=edit",
+    "text": "summary"
+  },
+  {
+    "href": "indexes/summary?uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Findexes%2Fsummary&ns=system&action=edit",
+    "text": "Edit"
+  }
+]

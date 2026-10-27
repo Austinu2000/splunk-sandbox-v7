@@ -1,0 +1,313 @@
+Browser tab: 2136985550, Title: "Features | Splunk 9.2.2", URL: "http://localhost:8000/en-US/manager/system/health/manager".
+1 AXWebArea Features | Splunk 9.2.2, URL: localhost:8000/en-US/manager/system/health/manager
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/system/health/manager#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text 
+			28 text field (settable) Description: Find, ID: control-view6058
+	29 container
+		30 button Manage Alerts
+		31 heading Health Report Manager, Value: 1
+			32 text Health Report Manager
+		33 text Use the health report manager page to set feature indicator thresholds and enable health report monitoring for Splunk components. Threshold values apply to the local instance. For features related to search head clusters, values are replicated across cluster members.
+		34 link Description: Learn more. Open externally, Value: localhost:8000/en-US/help?location=learnmore.configure.health_report
+		35 text 35 Features
+		36 container
+			37 text field (settable)
+		38 container
+			39 text Legend
+			40 button More info
+			41 container aria-id-0e106bca-ba2c-4b3e-9339-b22468f03b3f
+				42 text Green: The feature is functioning properly.
+				43 text Yellow: The feature is experiencing a problem. The feature's status might automatically improve, or it may worsen over time. For details, see Root Cause.
+				44 text Red: The feature has severe issues and is negatively impacting functionality of your deployment. For details, see Root Cause.
+				45 text Grey: Health report is disabled or snoozed for the feature.
+		46 list Description: 20 per page, ID: toggle-aff0ad77-b500-4e17-8ab0-43b9de38f43a
+			47 text 20 per page
+		48 container Pagination navigation
+			49 button (disabled) Go to previous page
+				50 text Prev
+			51 button Current page
+				52 text 1
+				53 text Selected
+			54 button Go to page 2
+			55 button Go to next page
+				56 text Next
+		57 table
+			58 row
+				59 cell
+					60 container
+						61 text Name
+						62 image Press to sort descending
+				63 cell
+					64 text Actions
+				65 cell
+					66 text Threshold
+				67 cell
+					68 container
+						69 text Alert Status
+						70 image Click to sort
+			71 row
+				72 cell
+					73 button feature:admission_rules_check
+						74 text feature:admission_rules_check
+				75 cell
+					76 container
+						77 button Edit
+						78 button Snooze
+				79 cell
+					80 text Default
+				81 cell
+					82 text Enabled
+			83 row
+				84 cell
+					85 button feature:batchreader
+						86 text feature:batchreader
+				87 cell
+					88 container
+						89 button Edit
+						90 button Snooze
+				91 cell
+					92 text Default
+				93 cell
+					94 text Enabled
+			95 row
+				96 cell
+					97 button feature:buckets
+						98 text feature:buckets
+				99 cell
+					100 container
+						101 button Edit
+						102 button Snooze
+				103 cell
+					104 text Default
+				105 cell
+					106 text Enabled
+			107 row
+				108 cell
+					109 button feature:cluster_bundles
+						110 text feature:cluster_bundles
+				111 cell
+					112 container
+						113 button Edit
+						114 button Snooze
+				115 cell
+					116 text Default
+				117 cell
+					118 text Enabled
+			119 row
+				120 cell
+					121 button feature:data_durability
+						122 text feature:data_durability
+				123 cell
+					124 container
+						125 button Edit
+						126 button Snooze
+				127 cell
+					128 text Default
+				129 cell
+					130 text Enabled
+			131 row
+				132 cell
+					133 button feature:data_searchable
+						134 text feature:data_searchable
+				135 cell
+					136 container
+						137 button Edit
+						138 button Snooze
+				139 cell
+					140 text Default
+				141 cell
+					142 text Enabled
+			143 row
+				144 cell
+					145 button feature:ddaa_archived_buckets
+						146 text feature:ddaa_archived_buckets
+				147 cell
+					148 container
+						149 button Edit
+						150 button Snooze
+				151 cell
+					152 text Default
+				153 cell
+					154 text Enabled
+			155 row
+				156 cell
+					157 button feature:disk_space
+						158 text feature:disk_space
+				159 cell
+					160 container
+						161 button Edit
+						162 button Snooze
+				163 cell
+					164 text Default
+				165 cell
+					166 text Enabled
+			167 row
+				168 cell
+					169 button feature:indexers
+						170 text feature:indexers
+				171 cell
+					172 container
+						173 button Edit
+						174 button Snooze
+				175 cell
+					176 text Default
+				177 cell
+					178 text Enabled
+			179 row
+				180 cell
+					181 button feature:indexing_ready
+						182 text feature:indexing_ready
+				183 cell
+					184 container
+						185 button Edit
+						186 button Snooze
+				187 cell
+					188 text Default
+				189 cell
+					190 text Enabled
+			191 row
+				192 cell
+					193 button feature:ingest_actions_output
+						194 text feature:ingest_actions_output
+				195 cell
+					196 container
+						197 button Edit
+						198 button Snooze
+				199 cell
+					200 text Default
+				201 cell
+					202 text Enabled
+			203 row
+				204 cell
+					205 button feature:ingestion_latency
+						206 text feature:ingestion_latency
+				207 cell
+					208 container
+						209 button Edit
+						210 button Snooze
+				211 cell
+					212 text Default
+				213 cell
+					214 text Enabled
+			215 row
+				216 cell
+					217 button feature:ingestion_latency_reported
+						218 text feature:ingestion_latency_reported
+				219 cell
+					220 container
+						221 button Edit
+						222 button Snooze
+				223 cell
+					224 text Default
+				225 cell
+					226 text Enabled
+			227 row
+				228 cell
+					229 button feature:iowait
+						230 text feature:iowait
+				231 cell
+					232 container
+						233 button Edit
+						234 button Snooze
+				235 cell
+					236 text Default
+				237 cell
+					238 text Enabled
+			239 row
+				240 cell
+					241 button feature:peer_connectivity
+						242 text feature:peer_connectivity
+				243 cell
+					244 container
+						245 button Edit
+						246 button Snooze
+				247 cell
+					248 text Default
+				249 cell
+					250 text Enabled
+			251 row
+				252 cell
+					253 button feature:peer_state
+						254 text feature:peer_state
+				255 cell
+					256 container
+						257 button Edit
+						258 button Snooze
+				259 cell
+					260 text Default
+				261 cell
+					262 text Enabled
+			263 row
+				264 cell
+					265 button feature:peer_version
+						266 text feature:peer_version
+				267 cell
+					268 container
+						269 button Edit
+						270 button Snooze
+				271 cell
+					272 text Default
+				273 cell
+					274 text Enabled
+			275 row
+				276 cell
+					277 button feature:remote_storage_configuration
+						278 text feature:remote_storage_configuration
+				279 cell
+					280 container
+						281 button Edit
+						282 button Snooze
+				283 cell
+					284 text Default
+				285 cell
+					286 text Enabled
+			287 row
+				288 cell
+					289 button feature:replication_failures
+						290 text feature:replication_failures
+				291 cell
+					292 container
+						293 button Edit
+						294 button Snooze
+				295 cell
+					296 text Default
+				297 cell
+					298 text Enabled
+			299 row
+				300 cell
+					301 button feature:s2s_autolb
+						302 text feature:s2s_autolb
+				303 cell
+					304 container
+						305 button Edit
+						306 button Snooze
+				307 cell
+					308 text Default
+				309 cell
+					310 text Enabled
+
+The focused UI element is 1 AXWebArea Features | Splunk 9.2.2, URL: localhost:8000/en-US/manager/system/health/manager

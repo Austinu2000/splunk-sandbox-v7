@@ -1,0 +1,149 @@
+.environments-page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 42px 32px 64px;
+  color: #e3e8ec;
+}
+.environment-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.environment-heading h1 {
+  font-size: 30px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.environment-heading p {
+  max-width: 760px;
+  color: #aebbc5;
+  line-height: 1.6;
+}
+.environment-eyebrow {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #8fcca5;
+}
+.environment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 22px;
+}
+.environment-card {
+  border: 1px solid #455463;
+  border-radius: 6px;
+  background: #202b35;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.environment-card.active {
+  border-color: #5baf7a;
+}
+.environment-card h2 {
+  font-size: 23px;
+  font-weight: 500;
+  margin: 10px 0 0;
+}
+.environment-card p {
+  line-height: 1.5;
+  color: #bac5ce;
+  margin: 0;
+}
+.environment-card .environment-role {
+  color: #92c9a6;
+  font-size: 13px;
+}
+.environment-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.environment-monogram {
+  background: #35485a;
+  border-radius: 6px;
+  padding: 13px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.environment-monogram.apl {
+  background: #21483d;
+  color: #91deb4;
+}
+.environment-monogram.erie {
+  background: #254363;
+  color: #a2cdf5;
+}
+.environment-current {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #9edbb3;
+  letter-spacing: 1px;
+}
+.environment-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 16px 0;
+}
+.environment-scale dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #aebbc5;
+}
+.environment-scale dd {
+  font-size: 22px;
+  margin: 8px 0 0;
+}
+.environment-last {
+  font-size: 12px;
+}
+.environment-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+.environment-card details {
+  margin-top: 14px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.environment-card summary {
+  cursor: pointer;
+  color: #a6cee9;
+}
+.environment-card ul {
+  padding-left: 16px;
+}
+.environment-card li {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.environment-warning {
+  color: #f1d39b !important;
+  padding: 12px 0;
+}
+.environment-footnote {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #aebbc5;
+  margin-top: 28px;
+  max-width: 900px;
+}
+@media (max-width: 1000px) {
+  .environment-grid {
+    grid-template-columns: 1fr;
+  }
+  .environment-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+  .environments-page {
+    padding: 24px;
+  }
+}

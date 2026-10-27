@@ -1,0 +1,46 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/data/macros",
+    "text": "Search macros"
+  },
+  {
+    "href": "/en-US/manager/search/data/macros/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/admin/commandsconf",
+    "text": "Search commands"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "source": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/fonts/proxima-regular-webfont.woff",
+    "file": "proxima-regular-webfont.woff",
+    "sha256": "5e0d77dd7c8466877626439e520ea82042165a0c28ef9f72ecd36819d2ec23fa"
+  },
+  {
+    "source": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/fonts/proxima-semibold-webfont.woff",
+    "file": "proxima-semibold-webfont.woff",
+    "sha256": "06675a654924192e8271c0bf22810a2ef65c8cdd04f114e620df688dae942d31"
+  },
+  {
+    "source": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/fonts/proxima-bold-webfont.woff",
+    "file": "proxima-bold-webfont.woff",
+    "sha256": "5696ac8ea3260977a36e0d0945c82358c993dbb57b2e18fb5979149e13329a4c"
+  },
+  {
+    "source": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/fonts/splunkicons-regular-webfont.woff",
+    "file": "splunkicons-regular-webfont.woff",
+    "sha256": "0bc4d47ba012e8be5edbdc07a5b0aef136bf5fd892dbcf9e33a3f560dc77636d"
+  },
+  {
+    "source": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/img/skins/default/splunk_logo-enterprise.png",
+    "file": "splunk_logo-enterprise.png",
+    "sha256": "ad75acaca12fa779dbad2779b6a9c474bf2b2db926cf6b08de9a1762972b17c6"
+  },
+  {
+    "source": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/img/skins/default/splunk_logo.png",
+    "file": "splunk_logo.png",
+    "sha256": "dc29be0cc2a993dae907e4cc2aec0754545cb4c878acd20d67b9abb3def16cc2"
+  }
+]

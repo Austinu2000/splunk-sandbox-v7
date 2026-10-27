@@ -1,0 +1,394 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/bulkreassign?app=search&owner=-&count=25&offset=0&search=&appOnly=False&sortDir=&sortKey=",
+    "text": "Reassign Knowledge Objects"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=0",
+    "text": "1"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=25",
+    "text": "2"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=50",
+    "text": "3"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=75",
+    "text": "4"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=100",
+    "text": "5"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=125",
+    "text": "6"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=150",
+    "text": "7"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=175",
+    "text": "8"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=200",
+    "text": "9"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=225",
+    "text": "10"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=25",
+    "text": "Next »"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&sort_key=name&sort_dir=asc",
+    "text": "Name"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&sort_key=eai%3Atype&sort_dir=asc",
+    "text": "Config type"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&sort_key=eai%3Aacl.owner&sort_dir=asc",
+    "text": "Owner"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&sort_key=eai%3Aacl.app&sort_dir=asc",
+    "text": "App"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&sort_key=eai%3Aacl.sharing&sort_dir=asc",
+    "text": "Sharing"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&sort_key=disabled&sort_dir=asc",
+    "text": "Status"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/403_by_clientip?app=search&owner=uname&search=%22403_by_clientip%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip&action=edit",
+    "text": "403_by_clientip"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/403_by_clientip?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/403_by_clientip%20Clone?app=search&owner=admin&search=%22403_by_clientip%20Clone%22&uri=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip%2520Clone&action=edit",
+    "text": "403_by_clientip Clone"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/403_by_clientip%20Clone?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2F403_by_clientip%2520Clone",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-GUID?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-GUID",
+    "text": "ActiveDirectory : EXTRACT-GUID"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-GUID?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-GUID",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-SID?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-SID",
+    "text": "ActiveDirectory : EXTRACT-SID"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/data/props/extractions/ActiveDirectory%20%3A%20EXTRACT-SID?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520EXTRACT-SID",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/extractions/ActiveDirectory%20%3A%20REPORT-MESSAGE?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520REPORT-MESSAGE",
+    "text": "ActiveDirectory : REPORT-MESSAGE"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/data/props/extractions/ActiveDirectory%20%3A%20REPORT-MESSAGE?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FActiveDirectory%2520%253A%2520REPORT-MESSAGE",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/global-banner/BANNER_MESSAGE_SINGLETON?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fui%2Fglobal-banner%2FBANNER_MESSAGE_SINGLETON",
+    "text": "BANNER_MESSAGE_SINGLETON"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/data/ui/global-banner/BANNER_MESSAGE_SINGLETON?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fui%2Fglobal-banner%2FBANNER_MESSAGE_SINGLETON",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/Bucket%20Merge%20Retrieve%20Conf%20Settings?app=search&owner=nobody&search=%22Bucket%20Merge%20Retrieve%20Conf%20Settings%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FBucket%2520Merge%2520Retrieve%2520Conf%2520Settings&action=edit",
+    "text": "Bucket Merge Retrieve Conf Settings"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/Bucket%20Merge%20Retrieve%20Conf%20Settings?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FBucket%2520Merge%2520Retrieve%2520Conf%2520Settings",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/Errors%20in%20the%20last%2024%20hours?app=search&owner=nobody&search=%22Errors%20in%20the%20last%2024%20hours%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%252024%2520hours&action=edit",
+    "text": "Errors in the last 24 hours"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/Errors%20in%20the%20last%2024%20hours?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%252024%2520hours",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/Errors%20in%20the%20last%20hour?app=search&owner=nobody&search=%22Errors%20in%20the%20last%20hour%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%2520hour&action=edit",
+    "text": "Errors in the last hour"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/Errors%20in%20the%20last%20hour?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FErrors%2520in%2520the%2520last%2520hour",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/Internal%20Report?app=search&owner=admin&search=%22Internal%20Report%22&uri=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2FInternal%2520Report&action=edit",
+    "text": "Internal Report"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/Internal%20Report?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fadmin%2Fsearch%2Fsaved%2Fsearches%2FInternal%2520Report",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/JsonWebTokensV1?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FJsonWebTokensV1",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/License%20Usage%20Data%20Cube?app=search&owner=nobody&search=%22License%20Usage%20Data%20Cube%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FLicense%2520Usage%2520Data%2520Cube&action=edit",
+    "text": "License Usage Data Cube"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/License%20Usage%20Data%20Cube?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FLicense%2520Usage%2520Data%2520Cube",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/LoggedOutSessionTokens?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FLoggedOutSessionTokens",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/Messages%20by%20minute%20last%203%20hours?app=search&owner=nobody&search=%22Messages%20by%20minute%20last%203%20hours%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FMessages%2520by%2520minute%2520last%25203%2520hours&action=edit",
+    "text": "Messages by minute last 3 hours"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/Messages%20by%20minute%20last%203%20hours?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FMessages%2520by%2520minute%2520last%25203%2520hours",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/Orphaned%20scheduled%20searches?app=search&owner=nobody&search=%22Orphaned%20scheduled%20searches%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FOrphaned%2520scheduled%2520searches&action=edit",
+    "text": "Orphaned scheduled searches"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/Orphaned%20scheduled%20searches?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FOrphaned%2520scheduled%2520searches",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/extractions/PerformanceMonitor%20%3A%20REPORT-MESSAGE?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FPerformanceMonitor%2520%253A%2520REPORT-MESSAGE",
+    "text": "PerformanceMonitor : REPORT-MESSAGE"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/data/props/extractions/PerformanceMonitor%20%3A%20REPORT-MESSAGE?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fdata%2Fprops%2Fextractions%2FPerformanceMonitor%2520%253A%2520REPORT-MESSAGE",
+    "text": "Permissions"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/RecentlyViewedKO?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FRecentlyViewedKO",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/SSLCertificates?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FSSLCertificates",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/SamlIdpCerts?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FSamlIdpCerts",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Enable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/SavedSearchHistory?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FSavedSearchHistory",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/SearchHeadClusterHealthStates?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FSearchHeadClusterHealthStates",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/SearchHeadClusterMemberInfo?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FSearchHeadClusterMemberInfo",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/SearchHistory?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FSearchHistory",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/storage/collections/config/Spl2Modules?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fstorage%2Fcollections%2Fconfig%2FSpl2Modules",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/searches/Splunk%20errors%20last%2024%20hours?app=search&owner=nobody&search=%22Splunk%20errors%20last%2024%20hours%22&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FSplunk%2520errors%2520last%252024%2520hours&action=edit",
+    "text": "Splunk errors last 24 hours"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/searches/Splunk%20errors%20last%2024%20hours?manager_cancel_url=%2Fmanager%2Fsearch%2Fadmin%2Fdirectory&uri=%2FservicesNS%2Fnobody%2Fsearch%2Fsaved%2Fsearches%2FSplunk%2520errors%2520last%252024%2520hours",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=0",
+    "text": "1"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=25",
+    "text": "2"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=50",
+    "text": "3"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=75",
+    "text": "4"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=100",
+    "text": "5"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=125",
+    "text": "6"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=150",
+    "text": "7"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=175",
+    "text": "8"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=200",
+    "text": "9"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=225",
+    "text": "10"
+  },
+  {
+    "href": "?app_only=False&can_reassign=True&offset=25",
+    "text": "Next »"
+  }
+]

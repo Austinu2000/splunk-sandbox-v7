@@ -1,0 +1,110 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "#",
+    "text": "Upload Data Model"
+  },
+  {
+    "href": "#",
+    "text": "New Data Model"
+  },
+  {
+    "href": "/en-US/help?location=learnmore.datamodel.about",
+    "text": "Learn More"
+  },
+  {
+    "href": "#",
+    "text": "App: Search & Reporting (search)"
+  },
+  {
+    "href": "#",
+    "text": "Visible in the App"
+  },
+  {
+    "href": "#",
+    "text": "Owner: Any"
+  },
+  {
+    "href": "#",
+    "text": "20 per page"
+  },
+  {
+    "href": "#",
+    "text": ""
+  },
+  {
+    "href": "/en-US/app/search/data_model_editor?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_audit_logs",
+    "text": "Splunk's Internal Audit Logs - SAMPLE"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "/en-US/app/search/pivot?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_audit_logs",
+    "text": "Pivot"
+  },
+  {
+    "href": "#",
+    "text": ""
+  },
+  {
+    "href": "/en-US/app/search/data_model_editor?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_server",
+    "text": "Splunk's Internal Server Logs - SAMPLE"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "/en-US/app/search/pivot?model=%2FservicesNS%2Fnobody%2Fsearch%2Fdatamodel%2Fmodel%2Finternal_server",
+    "text": "Pivot"
+  },
+  {
+    "href": "#",
+    "text": ""
+  },
+  {
+    "href": "/en-US/app/search/data_model_editor?model=%2FservicesNS%2Funame%2Fsearch%2Fdatamodel%2Fmodel%2FWeb_app_ds",
+    "text": "Web Application Dataset"
+  },
+  {
+    "href": "#",
+    "text": "Edit"
+  },
+  {
+    "href": "/en-US/app/search/pivot?model=%2FservicesNS%2Funame%2Fsearch%2Fdatamodel%2Fmodel%2FWeb_app_ds",
+    "text": "Pivot"
+  }
+]

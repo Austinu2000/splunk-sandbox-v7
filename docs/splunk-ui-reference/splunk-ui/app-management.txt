@@ -1,0 +1,542 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/launcher/apps/local".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/launcher/apps/local
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/launcher/apps/local
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view4971
+	28 heading Apps, Value: 1
+		29 text Apps
+	30 container
+		31 link Description: Browse more apps, Value: localhost:8000/en-US/manager/launcher/apps/remote
+		32 link Description: Install app from file, Value: localhost:8000/en-US/manager/appinstall/_upload
+		33 link Description: Create app, Value: localhost:8000/en-US/manager/launcher/apps/local/_new
+		34 text Showing  1-24  of 24 items
+		35 text field (settable) Description: Search Input, ID: searchInput
+		36 button search
+		37 pop up button (collapsed, settable) Description: Results Per Page, Value: 25 per page, ID: resultsPerPageSelect, Secondary Actions: Expand
+			38 menu
+				39 10 per page
+				40 (selected) 25 per page
+				41 50 per page
+				42 100 per page
+	43 table
+		44 row
+			45 cell
+				46 button Name
+			47 cell
+				48 button Folder name
+			49 cell
+				50 button Version
+			51 cell
+				52 button Update checking
+			53 cell
+				54 button Visible
+			55 cell
+				56 button Sharing
+			57 cell
+				58 button Status
+			59 cell
+				60 text Actions
+		61 row
+			62 cell
+				63 text SplunkDeploymentServerConfig
+			64 cell
+				65 text SplunkDeploymentServerConfig
+			66 cell
+				67 text Yes
+			68 cell
+				69 text No
+			70 cell
+				71 text App  |
+				72 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/SplunkDeploymentServerConfig
+			73 cell
+				74 text Enabled  |
+				75 link Description: Disable, Value: localhost:8000/en-US/manager/launcher/apps/local
+			76 cell
+				77 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/SplunkDeploymentServerConfig
+				78 text |
+				79 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		80 row
+			81 cell
+				82 text SplunkForwarder
+			83 cell
+				84 text SplunkForwarder
+			85 cell
+				86 text Yes
+			87 cell
+				88 text No
+			89 cell
+				90 text App  |
+				91 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/SplunkForwarder
+			92 cell
+				93 text Disabled  |
+				94 link Description: Enable, Value: localhost:8000/en-US/manager/launcher/apps/local
+		95 row
+			96 cell
+				97 text SplunkLightForwarder
+			98 cell
+				99 text SplunkLightForwarder
+			100 cell
+				101 text Yes
+			102 cell
+				103 text No
+			104 cell
+				105 text App  |
+				106 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/SplunkLightForwarder
+			107 cell
+				108 text Disabled  |
+				109 link Description: Enable, Value: localhost:8000/en-US/manager/launcher/apps/local
+		110 row
+			111 cell
+				112 text Log Event Alert Action
+			113 cell
+				114 text alert_logevent
+			115 cell
+				116 text 9.2.2
+			117 cell
+				118 text Yes
+			119 cell
+				120 text No
+			121 cell
+				122 text App  |
+				123 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/alert_logevent
+			124 cell
+				125 text Enabled
+			126 cell
+				127 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/alert_logevent
+				128 text |
+				129 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		130 row
+			131 cell
+				132 text Webhook Alert Action
+			133 cell
+				134 text alert_webhook
+			135 cell
+				136 text 9.2.2
+			137 cell
+				138 text Yes
+			139 cell
+				140 text No
+			141 cell
+				142 text App  |
+				143 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/alert_webhook
+			144 cell
+				145 text Enabled
+			146 cell
+				147 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/alert_webhook
+				148 text |
+				149 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		150 row
+			151 cell
+				152 text Apps Browser
+			153 cell
+				154 text appsbrowser
+			155 cell
+				156 text 9.2.2
+			157 cell
+				158 text Yes
+			159 cell
+				160 text No
+			161 cell
+				162 text App  |
+				163 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/appsbrowser
+			164 cell
+				165 text Enabled
+			166 cell
+				167 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/appsbrowser
+				168 text |
+				169 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		170 row
+			171 cell
+				172 text introspection_generator_addon
+			173 cell
+				174 text introspection_generator_addon
+			175 cell
+				176 text 9.2.2
+			177 cell
+				178 text Yes
+			179 cell
+				180 text No
+			181 cell
+				182 text App  |
+				183 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/introspection_generator_addon
+			184 cell
+				185 text Enabled  |
+				186 link Description: Disable, Value: localhost:8000/en-US/manager/launcher/apps/local
+			187 cell
+				188 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/introspection_generator_addon
+				189 text |
+				190 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		191 row
+			192 cell
+				193 text Home
+			194 cell
+				195 text launcher
+			196 cell
+				197 text Yes
+			198 cell
+				199 text Yes
+			200 cell
+				201 text App  |
+				202 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/launcher
+			203 cell
+				204 text Enabled
+			205 cell
+				206 link Description: Launch app, Value: localhost:8000/en-US/app/launcher
+				207 text |
+				208 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/launcher
+				209 text |
+				210 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		211 row
+			212 cell
+				213 text learned
+			214 cell
+				215 text learned
+			216 cell
+				217 text Yes
+			218 cell
+				219 text No
+			220 cell
+				221 text App  |
+				222 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/learned
+			223 cell
+				224 text Enabled  |
+				225 link Description: Disable, Value: localhost:8000/en-US/manager/launcher/apps/local
+			226 cell
+				227 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/learned
+				228 text |
+				229 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		230 row
+			231 cell
+				232 text legacy
+			233 cell
+				234 text legacy
+			235 cell
+				236 text Yes
+			237 cell
+				238 text No
+			239 cell
+				240 text App  |
+				241 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/legacy
+			242 cell
+				243 text Disabled  |
+				244 link Description: Enable, Value: localhost:8000/en-US/manager/launcher/apps/local
+		245 row
+			246 cell
+				247 text logd_input
+			248 cell
+				249 text logd_input
+			250 cell
+				251 text Yes
+			252 cell
+				253 text No
+			254 cell
+				255 text App  |
+				256 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/logd_input
+			257 cell
+				258 text Enabled  |
+				259 link Description: Disable, Value: localhost:8000/en-US/manager/launcher/apps/local
+			260 cell
+				261 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/logd_input
+				262 text |
+				263 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		264 row
+			265 cell
+				266 text Upgrade Readiness App
+			267 cell
+				268 text python_upgrade_readiness_app
+			269 cell
+				270 text 4.3.0  |
+				271 link Description: Update to 4.7.0, Value: localhost:8000/en-US/manager/launcher/apps/local
+			272 cell
+				273 text Yes
+			274 cell
+				275 text Yes
+			276 cell
+				277 text App  |
+				278 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/python_upgrade_readiness_app
+			279 cell
+				280 text Enabled  |
+				281 link Description: Disable, Value: localhost:8000/en-US/manager/launcher/apps/local
+			282 cell
+				283 link Description: Launch app, Value: localhost:8000/en-US/app/python_upgrade_readiness_app
+				284 text |
+				285 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/python_upgrade_readiness_app
+				286 text |
+				287 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+				288 text |
+				289 link Description: View details on Splunkbase, Value: apps.splunk.com/apps/id/python_upgrade_readiness_app
+		290 row
+			291 cell
+				292 text sample data
+			293 cell
+				294 text sample_app
+			295 cell
+				296 text Yes
+			297 cell
+				298 text No
+			299 cell
+				300 text App  |
+				301 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/sample_app
+			302 cell
+				303 text Disabled  |
+				304 link Description: Enable, Value: localhost:8000/en-US/manager/launcher/apps/local
+		305 row
+			306 cell
+				307 text Search & Reporting
+			308 cell
+				309 text search
+			310 cell
+				311 text 9.2.2
+			312 cell
+				313 text Yes
+			314 cell
+				315 text Yes
+			316 cell
+				317 text App  |
+				318 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/search
+			319 cell
+				320 text Enabled
+			321 cell
+				322 link Description: Launch app, Value: localhost:8000/en-US/app/search
+				323 text |
+				324 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/search
+				325 text |
+				326 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		327 row
+			328 cell
+				329 text Splunk Dashboard Studio
+			330 cell
+				331 text splunk-dashboard-studio
+			332 cell
+				333 text 1.13.4
+			334 cell
+				335 text Yes
+			336 cell
+				337 text Yes
+			338 cell
+				339 text App  |
+				340 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/splunk-dashboard-studio
+			341 cell
+				342 text Enabled  |
+				343 link Description: Disable, Value: localhost:8000/en-US/manager/launcher/apps/local
+			344 cell
+				345 link Description: Launch app, Value: localhost:8000/en-US/app/splunk-dashboard-studio
+				346 text |
+				347 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/splunk-dashboard-studio
+				348 text |
+				349 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		350 row
+			351 cell
+				352 text Splunk Assist
+			353 cell
+				354 text splunk_assist
+			355 cell
+				356 text 1.0.61
+			357 cell
+				358 text No
+			359 cell
+				360 text No
+			361 cell
+				362 text App  |
+				363 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/splunk_assist
+			364 cell
+				365 text Enabled
+			366 cell
+				367 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/splunk_assist
+				368 text |
+				369 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+				370 text |
+				371 link Description: View details on Splunkbase, Value: apps.splunk.com/apps/id/assist
+		372 row
+			373 cell
+				374 text Splunk Get Data In
+			375 cell
+				376 text splunk_gdi
+			377 cell
+				378 text 1.0.6
+			379 cell
+				380 text Yes
+			381 cell
+				382 text No
+			383 cell
+				384 text App  |
+				385 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/splunk_gdi
+			386 cell
+				387 text Enabled
+			388 cell
+				389 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/splunk_gdi
+				390 text |
+				391 link Description: View objects, Value: localhost:8000/en-US/manager/launcher/admin/directory
+		392 row
+			393 cell
+				394 text splunk_httpinput
+			395 cell
+				396 text splunk_httpinput
+			397 cell
+				398 text Yes
+			399 cell
+				400 text No
+			401 cell
+				402 text App  |
+				403 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/launcher/apps/local/splunk_httpinput
+			404 cell
+				405 text Enabled  |
+				406 link Description: Disable, Value: localhost:8000/en-US/manager/launcher/apps/local
+			407 cell
+				408 link Description: Edit properties, Value: localhost:8000/en-US/manager/launcher/apps/local/splunk_httpinput
+				409 text |
+				410 link Description: View objects, Value: …
+		411 row
+			412 cell
+				413 text splunk_ingest_actions
+			414 cell
+				415 text splunk_ingest_actions
+			416 cell
+				417 text Yes
+			418 cell
+				419 text No
+			420 cell
+				421 text App  |
+				422 link Description: Permissions, Value: …
+			423 cell
+				424 text Enabled  |
+				425 link Description: Disable, Value: …
+			426 cell
+				427 link Description: Edit properties, Value: …
+				428 text |
+				429 link Description: View objects, Value: …
+		430 row
+			431 cell
+				432 text Instrumentation
+			433 cell
+				434 text splunk_instrumentation
+			435 cell
+				436 text 6.0.10
+			437 cell
+				438 text Yes
+			439 cell
+				440 text Yes
+			441 cell
+				442 text App  |
+				443 link Description: Permissions, Value: …
+			444 cell
+				445 text Enabled
+			446 cell
+				447 link Description: Launch app, Value: …
+				448 text |
+				449 link Description: Edit properties, Value: …
+				450 text |
+				451 link Description: View objects, Value: …
+		452 row
+			453 cell
+				454 text Clones Internal Metrics into Metrics Index
+			455 cell
+				456 text splunk_internal_metrics
+			457 cell
+				458 text Yes
+			459 cell
+				460 text No
+			461 cell
+				462 text App  |
+				463 link Description: Permissions, Value: …
+			464 cell
+				465 text Enabled  |
+				466 link Description: Disable, Value: …
+			467 cell
+				468 link Description: Edit properties, Value: …
+				469 text |
+				470 link Description: View objects, Value: …
+		471 row
+			472 cell
+				473 text Splunk Analytics Workspace
+			474 cell
+				475 text splunk_metrics_workspace
+			476 cell
+				477 text 2.49.0
+			478 cell
+				479 text Yes
+			480 cell
+				481 text Yes
+			482 cell
+				483 text App  |
+				484 link Description: Permissions, Value: …
+			485 cell
+				486 text Enabled  |
+				487 link Description: Disable, Value: …
+			488 cell
+				489 link Description: Launch app, Value: …
+				490 text |
+				491 link Description: Edit properties, Value: …
+				492 text |
+				493 link Description: View objects, Value: …
+		494 row
+			495 cell
+				496 text Monitoring Console
+			497 cell
+				498 text splunk_monitoring_console
+			499 cell
+				500 text 10.0.2
+			501 cell
+				502 text Yes
+			503 cell
+				504 text Yes
+			505 cell
+				506 text App  |
+				507 link Description: Permissions, Value: …
+			508 cell
+				509 text Enabled  |
+				510 link Description: Disable, Value: …
+			511 cell
+				512 link Description: Launch app, Value: …
+				513 text |
+				514 link Description: Edit properties, Value: …
+				515 text |
+				516 link Description: View objects, Value: …
+		517 row
+			518 cell
+				519 text Splunk Secure Gateway
+			520 cell
+				521 text splunk_secure_gateway
+			522 cell
+				523 text 3.6.17
+			524 cell
+				525 text No
+			526 cell
+				527 text Yes
+			528 cell
+				529 text App  |
+				530 link Description: Permissions, Value: …
+			531 cell
+				532 text Enabled  |
+				533 link Description: Disable, Value: …
+			534 cell
+				535 link Description: Launch app, Value: …
+				536 text |
+				537 link Description: Edit properties, Value: …
+				538 text |
+				539 link Description: View objects, Value: …
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/launcher/apps/local

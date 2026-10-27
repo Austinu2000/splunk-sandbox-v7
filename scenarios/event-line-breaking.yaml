@@ -1,0 +1,136 @@
+id: event-line-breaking
+title: Application search results look jumbled
+summary: "{indexer:1}'s cluster props for app:log were changed to
+  SHOULD_LINEMERGE = true with a LINE_BREAKER that never matches, so app:log
+  events received by {indexer:1} merge into multi-request events."
+topics:
+  - parsing
+  - props
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Mateo, Application Support
+  persona: methodical
+  urgency: medium
+  text: Some Dallas application search results contain several timestamped
+    requests in one event. The original application log files look normal.
+changes:
+  - host: "{indexer:1}"
+    path: /opt/splunk/etc/peer-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      SHOULD_LINEMERGE: "true"
+      LINE_BREAKER: (NEVER_MATCH)
+    apply: restart
+clues:
+  - Compare index=app host=dal-app-0001 with its source file
+  - "{indexer:1}: splunk btool props list app:log --debug"
+redHerrings:
+  - host: "{indexer:1}"
+    file: splunkd
+    level: WARN
+    component: DateParserVerbose
+    message: "A possible timestamp match (Fri Oct 23 08:12:44 2026) is outside of
+      the acceptable time window. If this timestamp is correct, consider
+      adjusting MAX_DAYS_AGO and MAX_DAYS_HENCE. Context:
+      source=/var/log/mysql/mysqld.log|host=dal-db-0042|mysqld|"
+    everyMinutes: 5
+fixChecks:
+  eventBreaking:
+    host: "{indexer:1}"
+    sourcetype: app:log
+    separate: true
+recovery:
+  seconds: 30
+interview:
+  prompt: Application support says some search results contain several log entries
+    glued into one event, but the log files on the servers look fine. What's
+    going on?
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: scope
+      label: Reproduced it in search and scoped which data is affected
+      any:
+        - search: index=app|app:log
+    - id: compare
+      label: Compared the indexed events with the source file on a forwarder
+      any:
+        - cmd: (cat|tail|head|less|more|grep).*app\.log
+    - id: props
+      label: Checked the parsing-tier props for app:log with btool
+      any:
+        - cmd: btool\s+props
+          host: ^idx
+        - cmd: props\.conf
+          host: ^(idx|{cluster_manager})
+  verification:
+    - search: index=app|app:log
+  unsafe:
+    - label: Restarted indexers that weren't affected
+      match:
+        cmd: splunk\s+(restart|stop)
+        host: ^idx0[2-6]$
+  rootCause:
+    - label: line merging (SHOULD_LINEMERGE)
+      any:
+        - SHOULD_LINEMERGE
+        - line ?merg
+    - label: a LINE_BREAKER that never matches
+      any:
+        - LINE_BREAKER
+        - line ?break
+    - label: on {indexer:1}'s props.conf
+      any:
+        - "{indexer:1}"
+  hints:
+    - cost: 10
+      text: Line breaking happens at index time. Which tier parses the data?
+    - cost: 15
+      text: Do the merged events all come from data indexed on one indexer? Check
+        splunk_server.
+  modelAnswer:
+    rootCause: On {indexer:1}, the cluster props for app:log were changed to
+      SHOULD_LINEMERGE = true with a LINE_BREAKER that never matches, so app:log
+      events parsed by {indexer:1} are merged into multi-request events. Data on
+      the other indexers is fine.
+    fix: Restore SHOULD_LINEMERGE = false and a working LINE_BREAKER (for example
+      ([\r\n]+)\d{4}-\d{2}-\d{2}T) for [app:log] on {indexer:1}, then restart
+      {indexer:1}. In a cluster, make the change in manager-apps and push the
+      bundle so the peers stay consistent.
+    verification: Search new app:log events from hosts sending to {indexer:1} and
+      confirm each event is one request; events indexed before the fix stay
+      merged.
+    prevention: Keep parsing config in the cluster bundle only, test props changes
+      on a non-production indexer, and set explicit LINE_BREAKER and
+      SHOULD_LINEMERGE for every sourcetype.
+  spokenAnswer: "If the source files are fine but events are merged, the problem
+    is index-time parsing, so it lives on the indexers, not the forwarders. I'd
+    confirm it in search and check splunk_server: the merged events all come
+    from {indexer:1}. Then btool props list app:log on {indexer:1} shows
+    SHOULD_LINEMERGE true with a LINE_BREAKER that can never match, so
+    consecutive lines get glued together. I'd restore line merging off and a
+    proper LINE_BREAKER, ideally through the cluster bundle, restart
+    {indexer:1}, and verify new events are single requests. Old events stay
+    merged, so I'd tell the app team that data before the fix is affected.
+    Prevention is explicit props per sourcetype, managed only via the bundle and
+    tested first."
+profiles:
+  - default
+  - apl
+  - erie
+
+interviewQuestionIds:
+  - "IQ078"
+  - "IQ080"
+  - "IQ157"
+followups:
+  - "Where does parsing happen, and what is the impact of parsing data on the heavy forwarder vs. the indexer?"
+  - "You need to onboard a log file with multi-line events (e.g., stack traces) as single events - what configs would you deploy, and on which Splunk tier?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

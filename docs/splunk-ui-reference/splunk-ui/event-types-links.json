@@ -1,0 +1,138 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/_new?action=edit&ns=search",
+    "text": "New Event Type"
+  },
+  {
+    "href": "?app_only=False&sort_key=name&sort_dir=asc",
+    "text": "Name"
+  },
+  {
+    "href": "?app_only=False&sort_key=search&sort_dir=asc",
+    "text": "Search string"
+  },
+  {
+    "href": "?app_only=False&sort_key=tags&sort_dir=asc",
+    "text": "Tag(s)"
+  },
+  {
+    "href": "?app_only=False&sort_key=eai%3Aacl.owner&sort_dir=asc",
+    "text": "Owner"
+  },
+  {
+    "href": "?app_only=False&sort_key=eai%3Aacl.app&sort_dir=asc",
+    "text": "App"
+  },
+  {
+    "href": "?app_only=False&sort_key=eai%3Aacl.sharing&sort_dir=asc",
+    "text": "Sharing"
+  },
+  {
+    "href": "?app_only=False&sort_key=disabled&sort_dir=asc",
+    "text": "Status"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/internal_search_terms?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Finternal_search_terms",
+    "text": "internal_search_terms"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/eventtypes/internal_search_terms?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Finternal_search_terms",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Finternal_search_terms",
+    "text": "Clone"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/splunkd-access?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-access",
+    "text": "splunkd-access"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/eventtypes/splunkd-access?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-access",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-access",
+    "text": "Clone"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/splunkd-log?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-log",
+    "text": "splunkd-log"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/eventtypes/splunkd-log?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-log",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-log",
+    "text": "Clone"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/successful_purchase?action=edit&ns=search&uri=%2FservicesNS%2Funame%2Fsearch%2Fsaved%2Feventtypes%2Fsuccessful_purchase",
+    "text": "successful_purchase"
+  },
+  {
+    "href": "/en-US/manager/permissions/search/saved/eventtypes/successful_purchase?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Funame%2Fsearch%2Fsaved%2Feventtypes%2Fsuccessful_purchase",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Funame%2Fsearch%2Fsaved%2Feventtypes%2Fsuccessful_purchase",
+    "text": "Clone"
+  },
+  {
+    "href": "#",
+    "text": "Move"
+  },
+  {
+    "href": "#",
+    "text": "Delete"
+  }
+]

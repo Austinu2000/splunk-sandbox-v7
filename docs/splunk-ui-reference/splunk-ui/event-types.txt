@@ -1,0 +1,169 @@
+Browser tab: 2136985550, Title: "Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/saved/eventtypes".
+1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/saved/eventtypes
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/saved/eventtypes#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1336
+	28 heading Event types, Value: 1
+		29 text Event types
+	30 container
+		31 link Description: New Event Type, Value: localhost:8000/en-US/manager/search/saved/eventtypes/_new?action=edit&ns=search
+		32 text Showing  1-4  of 4 items
+		33 text App
+		34 pop up button (collapsed, settable) App, Value: Search & Reporting (search), ID: appContextSelect, Secondary Actions: Expand
+			35 menu
+				36 All
+				37 Log Event Alert Action (alert_logevent)
+				38 Webhook Alert Action (alert_webhook)
+				39 Apps Browser (appsbrowser)
+				40 introspection_generator_addon (introspection_generator_addon)
+				41 Home (launcher)
+				42 learned (learned)
+				43 logd_input (logd_input)
+				44 Upgrade Readiness App (python_upgrade_readiness_app)
+				45 (selected) Search & Reporting (search)
+				46 Splunk Dashboard Studio (splunk-dashboard-studio)
+				47 Splunk Assist (splunk_assist)
+				48 Splunk Get Data In (splunk_gdi)
+				49 splunk_httpinput (splunk_httpinput)
+				50 splunk_ingest_actions (splunk_ingest_actions)
+				51 Instrumentation (splunk_instrumentation)
+				52 Clones Internal Metrics into Metrics Index (splunk_internal_metrics)
+				53 Splunk Analytics Workspace (splunk_metrics_workspace)
+				54 Monitoring Console (splunk_monitoring_console)
+				55 Splunk Secure Gateway (splunk_secure_gateway)
+				56 SplunkDeploymentServerConfig (SplunkDeploymentServerConfig)
+		57 text Configuration Source
+		58 pop up button (collapsed, settable) Configuration Source, Value: Visible in the App, ID: appOnlyFilterSelect, Secondary Actions: Expand
+			59 menu
+				60 (selected) Visible in the App
+				61 Created in the App
+		62 text Owner
+		63 pop up button (collapsed, settable) Owner, Value: Any, ID: ownerSelect, Secondary Actions: Expand
+			64 menu
+				65 (selected) Any
+				66 Administrator (admin)
+				67 uname (uname)
+				68 No owner
+		69 text field (settable) Description: Search Input, ID: searchInput
+		70 button search
+		71 pop up button (collapsed, settable) Description: Results Per Page, Value: 25 per page, ID: resultsPerPageSelect, Secondary Actions: Expand
+			72 menu
+				73 10 per page
+				74 (selected) 25 per page
+				75 50 per page
+				76 100 per page
+	77 table
+		78 row
+			79 cell
+				80 button Name
+			81 cell
+				82 button Search string
+			83 cell
+				84 button Tag(s)
+			85 cell
+				86 button Owner
+			87 cell
+				88 button App
+			89 cell
+				90 button Sharing
+			91 cell
+				92 button Status
+			93 cell
+				94 text Actions
+		95 row
+			96 cell
+				97 link Description: internal_search_terms, Value: localhost:8000/en-US/manager/search/saved/eventtypes/internal_search_terms?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Finternal_search_terms
+			98 cell
+				99 text ( "After evaluating args" OR "Before evaluating args" OR "context dispatched for search=" OR "SearchParser - PARSING" OR "got search" OR "_dispatchNewSearch - search" OR "search:* - q" OR ( decomposition fullsearch ) OR "PAAAAAARSER! - search" OR "view:* - DECOMPOSITION" OR "Splunk.Module.SearchBar .setInputField" OR ( typeahead prefix ) OR "DEBUG HTTPServer - Deleting request=GET" OR /en-US/api/search/typeahead )
+			100 cell
+				101 text No owner
+			102 cell
+				103 text system
+			104 cell
+				105 text Global  |
+				106 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/saved/eventtypes/internal_search_terms?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Finternal_search_terms
+			107 cell
+				108 text Enabled  |
+				109 link Description: Disable, Value: localhost:8000/en-US/manager/search/saved/eventtypes#
+			110 cell
+				111 link Description: Clone, Value: localhost:8000/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Finternal_search_terms
+		112 row
+			113 cell
+				114 link Description: splunkd-access, Value: localhost:8000/en-US/manager/search/saved/eventtypes/splunkd-access?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-access
+			115 cell
+				116 text index=_internal source=*/splunkd_access.log OR source=*\\splunkd_access.log
+			117 cell
+				118 text No owner
+			119 cell
+				120 text system
+			121 cell
+				122 text Global  |
+				123 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/saved/eventtypes/splunkd-access?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-access
+			124 cell
+				125 text Enabled  |
+				126 link Description: Disable, Value: localhost:8000/en-US/manager/search/saved/eventtypes#
+			127 cell
+				128 link Description: Clone, Value: localhost:8000/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-access
+		129 row
+			130 cell
+				131 link Description: splunkd-log, Value: localhost:8000/en-US/manager/search/saved/eventtypes/splunkd-log?action=edit&ns=system&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-log
+			132 cell
+				133 text index=_internal source=*/splunkd.log OR source=*\\splunkd.log
+			134 cell
+				135 text No owner
+			136 cell
+				137 text system
+			138 cell
+				139 text Global  |
+				140 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/saved/eventtypes/splunkd-log?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-log
+			141 cell
+				142 text Enabled  |
+				143 link Description: Disable, Value: localhost:8000/en-US/manager/search/saved/eventtypes#
+			144 cell
+				145 link Description: Clone, Value: localhost:8000/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Fnobody%2Fsystem%2Fsaved%2Feventtypes%2Fsplunkd-log
+		146 row
+			147 cell
+				148 link Description: successful_purchase, Value: localhost:8000/en-US/manager/search/saved/eventtypes/successful_purchase?action=edit&ns=search&uri=%2FservicesNS%2Funame%2Fsearch%2Fsaved%2Feventtypes%2Fsuccessful_purchase
+			149 cell
+				150 text index=main sourcetype="access_combined_wcookie" action=purchase file="success.do" status=200
+			151 cell
+				152 text uname
+			153 cell
+				154 text search
+			155 cell
+				156 text Private  |
+				157 link Description: Permissions, Value: localhost:8000/en-US/manager/permissions/search/saved/eventtypes/successful_purchase?manager_cancel_url=%2Fmanager%2Fsearch%2Fsaved%2Feventtypes&uri=%2FservicesNS%2Funame%2Fsearch%2Fsaved%2Feventtypes%2Fsuccessful_purchase
+			158 cell
+				159 text Enabled  |
+				160 link Description: Disable, Value: localhost:8000/en-US/manager/search/saved/eventtypes#
+			161 cell
+				162 link Description: Clone, Value: localhost:8000/en-US/manager/search/saved/eventtypes/_new?action=edit&uri=%2FservicesNS%2Funame%2Fsearch%2Fsaved%2Feventtypes%2Fsuccessful_purchase
+				163 text |
+				164 link Description: Move, Value: localhost:8000/en-US/manager/search/saved/eventtypes#
+				165 text |
+				166 link Description: Delete, Value: localhost:8000/en-US/manager/search/saved/eventtypes#
+
+The focused UI element is 1 AXWebArea Settings | Splunk, URL: localhost:8000/en-US/manager/search/saved/eventtypes

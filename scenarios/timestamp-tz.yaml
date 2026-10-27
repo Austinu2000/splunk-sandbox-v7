@@ -1,0 +1,192 @@
+id: timestamp-tz
+title: Application events are showing up in the future
+summary: The cluster bundle's props for app:log gained TIME_FORMAT =
+  %Y-%m-%dT%H:%M:%S.%3N and TZ = America/New_York. The format stops before the
+  trailing Z, so the UTC timestamps are read as New York local time and every
+  app:log event is indexed four hours in the future. The change is in
+  manager-apps on {cluster_manager} and was pushed to every peer.
+topics:
+  - parsing
+  - timestamps
+  - indexer-clustering
+difficulty: hard
+trigger:
+  onDemand: true
+ticket:
+  requester: Mateo, Application Support
+  persona: methodical
+  urgency: medium
+  text: Our "last 15 minutes" app dashboards are empty, but the application is
+    clearly logging. If I search All time I can see the events, but their times
+    are hours ahead of now. Other data looks fine.
+changes:
+  - host: "{cluster_manager}"
+    path: /opt/splunk/etc/manager-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      TIME_FORMAT: "%Y-%m-%dT%H:%M:%S.%3N"
+      TZ: America/New_York
+    apply: none
+  - host: "{indexer:1}"
+    path: /opt/splunk/etc/peer-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      TIME_FORMAT: "%Y-%m-%dT%H:%M:%S.%3N"
+      TZ: America/New_York
+    apply: restart
+  - host: "{indexer:2}"
+    path: /opt/splunk/etc/peer-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      TIME_FORMAT: "%Y-%m-%dT%H:%M:%S.%3N"
+      TZ: America/New_York
+    apply: restart
+  - host: "{indexer:3}"
+    path: /opt/splunk/etc/peer-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      TIME_FORMAT: "%Y-%m-%dT%H:%M:%S.%3N"
+      TZ: America/New_York
+    apply: restart
+  - host: "{indexer:4}"
+    path: /opt/splunk/etc/peer-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      TIME_FORMAT: "%Y-%m-%dT%H:%M:%S.%3N"
+      TZ: America/New_York
+    apply: restart
+  - host: "{indexer:5}"
+    path: /opt/splunk/etc/peer-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      TIME_FORMAT: "%Y-%m-%dT%H:%M:%S.%3N"
+      TZ: America/New_York
+    apply: restart
+  - host: "{indexer:6}"
+    path: /opt/splunk/etc/peer-apps/_cluster/local/props.conf
+    stanza: app:log
+    set:
+      TIME_FORMAT: "%Y-%m-%dT%H:%M:%S.%3N"
+      TZ: America/New_York
+    apply: restart
+clues:
+  - index=app sourcetype=app:log earliest=-1h latest=+1d | eval
+    lag=_time-_indextime | stats avg(lag)
+  - Compare _raw timestamps with _time
+  - "{cluster_manager}: splunk btool props list app:log --debug, then splunk
+    apply cluster-bundle"
+redHerrings:
+  - host: "{indexer:2}"
+    file: messages
+    component: chronyd
+    message: Selected source 10.10.0.5 (ntp1.corp.example)
+    everyMinutes: 10
+  - host: "{indexer:4}"
+    file: splunkd
+    level: WARN
+    component: DateParserVerbose
+    message: "Failed to parse timestamp in first MAX_TIMESTAMP_LOOKAHEAD (128)
+      characters of event. Defaulting to timestamp of previous event (Fri Oct 23
+      06:41:09 2026). Context:
+      source=/var/log/messages|host=ash-web-0117|syslog|"
+    everyMinutes: 6
+fixChecks:
+  timestamps:
+    host: dal-app-0001
+    sourcetype: app:log
+    maxSkewSeconds: 60
+recovery:
+  seconds: 30
+interview:
+  prompt: The app team says their last-15-minutes dashboards are empty, but if
+    they search All time the events are there with times hours in the future.
+    How do you approach it?
+  timeLimitMinutes: 25
+  expectedPath:
+    - id: future
+      label: Found the events by searching ahead of now or comparing with _indextime
+      any:
+        - search: latest=\+|_indextime
+    - id: compare
+      label: Compared the raw timestamps with _time
+      any:
+        - cmd: (cat|tail|head|less|grep).*app\.log
+        - search: strftime|eval .*_time|_raw
+    - id: props
+      label: Checked the app:log timestamp settings on the parsing tier
+      any:
+        - cmd: btool\s+props
+          host: ^(idx|{cluster_manager})
+        - cmd: props\.conf
+          host: ^(idx|{cluster_manager})
+  verification:
+    - search: index=app|app:log
+  unsafe:
+    - label: Edited peer-apps on an indexer directly (the next bundle push overwrites
+        it)
+      match:
+        cmd: (vi|vim|nano|tee|sed\s+-i).*peer-apps
+  rootCause:
+    - label: the TZ setting
+      any:
+        - \bTZ\b
+        - time ?zone
+        - America/New_York
+    - label: a TIME_FORMAT that ignores the trailing Z (UTC)
+      any:
+        - TIME_FORMAT
+        - "%z"
+        - trailing Z
+        - \bUTC\b
+    - label: in the cluster bundle (manager-apps on {cluster_manager})
+      any:
+        - cluster bundle
+        - manager-apps
+        - "{cluster_manager}"
+        - peer-apps
+  hints:
+    - cost: 10
+      text: Try latest=+1d, and compare _time with _indextime.
+    - cost: 15
+      text: The raw events end in Z. What does the parsing tier do with a timestamp
+        when TZ is set and the format stops before the zone?
+  modelAnswer:
+    rootCause: The cluster bundle's props for app:log set TIME_FORMAT =
+      %Y-%m-%dT%H:%M:%S.%3N and TZ = America/New_York. The format stops before
+      the trailing Z, so the UTC timestamps are read as New York local time and
+      every event lands four hours in the future.
+    fix: On {cluster_manager}, remove TZ (or add %z to TIME_FORMAT) for [app:log] in
+      manager-apps/_cluster/local/props.conf and run splunk apply cluster-bundle
+      so every peer gets the fix and restarts.
+    verification: Confirm splunk show cluster-bundle-status is in sync, then check
+      that new app:log events have _time close to _indextime and appear in
+      last-15-minutes searches. Events already indexed keep their wrong times.
+    prevention: Test timestamp settings against sample data before pushing a bundle,
+      prefer explicit zones from the data (%z) over TZ, and alert when _time -
+      _indextime drifts.
+  spokenAnswer: "Empty recent dashboards with events visible under All time
+    suggests bad timestamp extraction. Searching with latest plus one day and
+    comparing _time with _indextime shows a steady four-hour offset, which
+    smells like a time zone. The raw events are UTC with a trailing Z. btool
+    props on an indexer shows TIME_FORMAT without %z plus TZ America/New_York,
+    coming from the cluster bundle. So Splunk reads UTC times as New York time.
+    I'd fix it in manager-apps on the cluster manager, either drop TZ or add %z,
+    and apply the cluster bundle, then confirm new events land at the right
+    time. Existing events stay wrong, which I'd flag to the app team.
+    Prevention: test props against sample data and alert on index-time lag."
+profiles:
+  - default
+  - apl
+  - erie
+
+interviewQuestionIds:
+  - "IQ079"
+followups:
+  - "Which configuration controls timestamp extraction, and which props.conf parameters do you use (TIME_PREFIX, MAX_TIMESTAMP_LOOKAHEAD, TIME_FORMAT)?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

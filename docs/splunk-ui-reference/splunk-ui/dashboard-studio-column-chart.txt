@@ -1,0 +1,161 @@
+Browser tab: 2136985550, Title: "Column Chart", URL: "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-column-chart-visualization".
+1 AXWebArea Column Chart, URL: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-column-chart-visualization
+	2 container
+		3 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-column-chart-visualization#navSkip
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			181 button Description: View health report with status green, Help: Health: green
+				182 text 
+			11 pop up button Administrator ▾, Help: User
+				12 text Administrator
+				13 text ▾
+			14 pop up button 2 Messages ▾, Help: Messages
+				15 text 2
+				16 text Messages
+				17 text ▾
+			18 pop up button Settings ▾
+				19 text Settings
+				20 text ▾
+			21 pop up button Activity ▾
+				22 text Activity
+				23 text ▾
+			24 pop up button Help ▾
+				25 text Help
+				26 text ▾
+			27 container
+				28 text field (settable) Description: Find, ID: control-view3383
+		29 container
+			30 link Description: Home, Value: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations
+			31 link Description: App icon Splunk Dashboard Studio, Value: localhost:8000/en-US/app/splunk-dashboard-studio/
+		32 text Column Chart
+		33 image Show less
+		34 text Column charts can be used for time series data when comparing magnitudes over time.
+		35 container
+			36 container
+				37 heading Overview, Value: 2
+					38 text Overview
+				39 text A column chart is primarily used to compare and track the development of quantitative values over a period of time. Compared to area and line charts, column charts are suitable for discrete data points. Column charts can also compare non time series data, however a bar chart or another comparison chart might be better suited for that purpose. Column charts get their x-axis from the first column of a statistics table, and their y-axis values from the next columns. The first column returned can be 
+				40 text _time
+				41 text  with the 
+				42 text timechart
+				43 text  command. Note that in this example, since we are using a lookup file, we use the 
+				44 text chart
+				45 text  command and use the 
+				46 text over
+				47 text  clause to chart over the 
+				48 text myTime
+				49 text  field which is the time each event in the lookup took place.
+				50 text | timechart count by <category_of_interest>
+			51 container
+				118 text Column Chart
+				53 text Single Series
+				119 container Chart. Highcharts interactive chart.
+					120 container Description: Chart screen reader information., ID: highcharts-information-region-3
+						121 heading Bar chart with 15 bars., Value: 5
+							122 text Bar chart with 15 bars.
+						123 text The chart has 1 X axis displaying myTime. Range: 15 categories.
+						124 text The chart has 1 Y axis displaying count. Range: 0 to 500.
+					125 heading Chart graphic., Value: 6
+						126 text Chart graphic.
+					127 container highcharts-5lmldfa-102
+						128 image Description: Interactive chart, Help: Created with Highcharts 7.2.2
+						129 container Toggle series visibility
+							130 checkbox Description: Toggle visibility of count, Value: 0
+					131 heading End of interactive chart, Value: 6
+						132 text End of interactive chart
+			57 container
+				133 text Column Chart
+				58 text Multiple Series
+				59 container Chart. Highcharts interactive chart.
+					134 container Description: Chart screen reader information., ID: highcharts-information-region-0
+						135 heading Bar chart with 2 data series., Value: 5
+							136 text Bar chart with 2 data series.
+						137 text The chart has 1 X axis displaying myTime. Range: 15 categories.
+						138 text The chart has 1 Y axis displaying axis_5. Range: 0 to 150.
+					61 heading Chart graphic., Value: 6
+						139 text Chart graphic.
+					140 container highcharts-5lmldfa-0
+						141 image Description: Interactive chart, Help: Created with Highcharts 7.2.2
+							142 container
+								143 container host18, bar series 1 of 2 with 15 bars.
+								144 container host8, bar series 2 of 2 with 15 bars.
+						145 container Toggle series visibility
+							146 checkbox Description: Toggle visibility of host18, Value: 0
+							147 checkbox Description: Toggle visibility of host8, Value: 0
+					67 heading End of interactive chart, Value: 6
+						148 text End of interactive chart
+			68 container
+				149 text Column Chart
+				69 text Multiple Series - Stacked
+				70 container Chart. Highcharts interactive chart.
+					150 container Description: Chart screen reader information., ID: highcharts-information-region-1
+						151 heading Bar chart with 2 data series., Value: 5
+							152 text Bar chart with 2 data series.
+						153 text The chart has 1 X axis displaying myTime. Range: 15 categories.
+						154 text The chart has 1 Y axis displaying axis_11. Range: 0 to 200.
+					72 heading Chart graphic., Value: 6
+						155 text Chart graphic.
+					156 container highcharts-5lmldfa-34
+						157 image Description: Interactive chart, Help: Created with Highcharts 7.2.2
+							158 container
+								159 container host18, bar series 1 of 2 with 15 bars.
+								160 container host8, bar series 2 of 2 with 15 bars.
+						161 container Toggle series visibility
+							162 checkbox Description: Toggle visibility of host18, Value: 0
+							163 checkbox Description: Toggle visibility of host8, Value: 0
+					78 heading End of interactive chart, Value: 6
+						164 text End of interactive chart
+			79 container
+				165 text Column Chart
+				80 text Multiple Series - Stacked Mode 100%
+				81 container Chart. Highcharts interactive chart.
+					166 container Description: Chart screen reader information., ID: highcharts-information-region-2
+						167 heading Bar chart with 2 data series., Value: 5
+							168 text Bar chart with 2 data series.
+						169 text The chart has 1 X axis displaying myTime. Range: 15 categories.
+						170 text The chart has 1 Y axis displaying axis_17. Range: 0 to 100.
+					83 heading Chart graphic., Value: 6
+						171 text Chart graphic.
+					172 container highcharts-5lmldfa-68
+						173 image Description: Interactive chart, Help: Created with Highcharts 7.2.2
+							174 container
+								175 container host18, bar series 1 of 2 with 15 bars.
+								176 container host8, bar series 2 of 2 with 15 bars.
+						177 container Toggle series visibility
+							178 checkbox Description: Toggle visibility of host18, Value: 0
+							179 checkbox Description: Toggle visibility of host8, Value: 0
+					89 heading End of interactive chart, Value: 6
+						180 text End of interactive chart
+			90 container
+				91 heading SPL For Single Series, Value: 3
+					92 text SPL For Single Series
+				93 container
+					94 text |  inputlookup firewall_example . csv |  eval myTime = strftime ( timestamp , "%H:%M" ) | chart count over myTime
+				95 heading Source Definition, Value: 3
+					96 text Source Definition
+				97 container
+					98 text { "type" : "splunk.column" , "dataSources" : { "primary" : "ds_search1" } , "options" : { } , "context" : { } }
+			99 container
+				100 heading SPL For Multiple Series, Value: 3
+					101 text SPL For Multiple Series
+				102 container
+					103 text |  inputlookup firewall_example . csv |  search host  IN ( host18 ,  host8 ) |  eval myTime = strftime ( timestamp , "%H:%M" ) | chart count over myTime by host
+				104 heading Source Definition, Value: 3
+					105 text Source Definition
+				106 container
+					107 text { "type" : "splunk.column" , "dataSources" : { "primary" : "ds_search2" } , "options" : { } , "context" : { } , }
+			108 container
+				109 heading Source Definition, Value: 3
+					110 text Source Definition
+				111 container
+					112 text { "type" : "splunk.column" , "dataSources" : { "primary" : "ds_search2" } , "options" : { "stackMode" : "stacked" } , "context" : { } }
+			113 container
+				114 heading Source Definition, Value: 3
+					115 text Source Definition
+				116 container
+					117 text { "type" : "splunk.column" , "dataSources" : { "primary" : "ds_search2" } , "options" : { "stackMode" : "stacked100" } , "context" : { } }
+
+The focused UI element is 1 AXWebArea Column Chart, URL: localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-column-chart-visualization

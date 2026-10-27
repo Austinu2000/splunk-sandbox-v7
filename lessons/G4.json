@@ -1,0 +1,25 @@
+{
+  "id": "G4",
+  "title": "Fix a pull request that fails its checks",
+  "minutes": 20,
+  "level": 2,
+  "profile": "lab",
+  "instructions": "Situation: a teammate's PR in the splunk-apps  repo adds a new log source, but the\nbtool-check  check is red.\nOpen the PR in the Code app and read the failed check's log. It names the file and line.\nGet the branch locally: cd ~/splunk-apps , then git fetch  and git switch\n<branch-name> .\nFix the file, commit, and git push . The checks rerun automatically.\nDone when: all checks are green and the PR is merged.\nLearn: automated checks catch mistakes before they reach servers. Read the log before\nguessing.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks.",
+  "setup": [
+    {
+      "repo": "splunk-apps",
+      "path": "manager-apps/TA_new_source/default/inputs.conf",
+      "branch": "teammate/new-source",
+      "title": "Add source with a malformed stanza",
+      "text": "[new_source\nmaxTotalDataSizeMB = 500000\n",
+      "review": "open"
+    }
+  ]
+}

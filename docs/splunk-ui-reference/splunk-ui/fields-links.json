@@ -1,0 +1,82 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/fieldaliases",
+    "text": "Field aliases"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/fieldaliases/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/calcfields",
+    "text": "Calculated fields"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/calcfields/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/extractions",
+    "text": "Field extractions"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/extractions/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/transforms/extractions",
+    "text": "Field transformations"
+  },
+  {
+    "href": "/en-US/manager/search/data/transforms/extractions/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/sourcetype-rename",
+    "text": "Sourcetype renaming"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/sourcetype-rename/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/workflow-actions",
+    "text": "Workflow actions"
+  },
+  {
+    "href": "/en-US/manager/search/data/ui/workflow-actions/_new?action=edit",
+    "text": "Add new"
+  }
+]

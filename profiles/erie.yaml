@@ -1,0 +1,75 @@
+# Profile: Erie Insurance
+# Values marked "confirm" are placeholders. Replace them with what you actually ran.
+# Never copy figures between profiles: Erie numbers belong to Erie only.
+id: erie
+name: Erie Insurance
+description: Large commercial insurance platform. Scale-driven work across 35,000+ forwarders and 50+ indexers.
+role: Splunk Engineer
+seed: erie-v1
+
+scale:
+  targetDailyIngestTB: 12           # resume figure (~12 TB/day)
+  fleetSize: 35000                  # resume figure (35,000+)
+  users: 2500                       # confirm
+
+sites:                              # confirm: site layout
+  - { id: eri, name: Erie HQ, weight: 0.8, subnet: 10 }
+  - { id: drs, name: DR site, weight: 0.2, subnet: 20 }
+
+infra:
+  indexerCluster:
+    indexers: 52                    # resume says 50+
+    multisite: true                 # confirm
+    sitePlacement: { eri: 40, drs: 12 }   # confirm
+    replicationFactor: 3            # confirm (site_replication_factor if multisite)
+    searchFactor: 2                 # confirm
+  searchHeadCluster:
+    members: 6                      # confirm
+    deployer: true
+  esSearchHead: false               # confirm whether ES or ITSI ran here
+  deploymentServers: 2              # confirm (35,000 clients usually needs more than one)
+  licenseManager: true
+  monitoringConsole: true
+  heavyForwarders:                  # confirm
+    - { name: hf01, site: eri, role: syslog }
+    - { name: hf02, site: eri, role: syslog }
+    - { name: hf03, site: drs, role: syslog }
+    - { name: hf04, site: eri, role: dbconnect }
+
+auth:
+  method: ldap                      # confirm
+  roleMappings:
+    - { group: SPLUNK_ADMINS, roles: [admin] }
+    - { group: SPLUNK_POWER, roles: [power] }
+    - { group: SPLUNK_USERS, roles: [user] }
+
+apps: [Splunk_TA_windows, Splunk_TA_nix, Splunk_SA_CIM]   # confirm
+
+serverClasses:                      # confirm weights
+  - { id: win_servers, short: win, os: windows, weight: 0.42, baseThroughputKBps: 4, outputs: indexers }
+  - { id: win_dc, short: dc, os: windows, weight: 0.03, baseThroughputKBps: 20, outputs: indexers }
+  - { id: linux_app, short: app, os: linux, weight: 0.3, baseThroughputKBps: 4, outputs: indexers }
+  - { id: linux_web, short: web, os: linux, weight: 0.15, baseThroughputKBps: 6, outputs: indexers }
+  - { id: linux_db, short: db, os: linux, weight: 0.09, baseThroughputKBps: 5, outputs: indexers }
+  - { id: syslog_relay, short: syslog, os: linux, weight: 0.01, baseThroughputKBps: 900, outputs: hf }
+
+indexes:                            # confirm names and retention
+  - { name: wineventlog, retentionDays: 90 }
+  - { name: os, retentionDays: 90 }
+  - { name: network, retentionDays: 90 }
+  - { name: app, retentionDays: 180 }
+  - { name: db, retentionDays: 180 }
+  - { name: web, retentionDays: 90 }
+
+dataSources:                        # confirm: placeholder mix
+  - { id: windows, sourcetypes: [XmlWinEventLog], index: wineventlog, via: forwarders, shareOfIngest: 0.4 }
+  - { id: linux, sourcetypes: [linux_secure, syslog], index: os, via: forwarders, shareOfIngest: 0.15 }
+  - { id: network, sourcetypes: [syslog], index: network, via: hf01, transport: syslog, shareOfIngest: 0.15 }
+  - { id: app, sourcetypes: [app_log, log4j], index: app, via: forwarders, shareOfIngest: 0.18 }
+  - { id: web, sourcetypes: [access_combined], index: web, via: forwarders, shareOfIngest: 0.08 }
+  - { id: db, sourcetypes: [db_audit], index: db, via: forwarders, shareOfIngest: 0.04 }
+
+scenarios:
+  core: [ds-serverclass-typo, forwarder-retired-indexer, blocked-parsing-queue, license-noisy-debug,
+         skipped-searches, event-line-breaking, timestamp-tz, input-permissions]
+  profile: [erie-phonehome-storm, erie-uf-upgrade-drift, erie-wineventlog-volume, erie-peer-disk-full, erie-retention-capacity]

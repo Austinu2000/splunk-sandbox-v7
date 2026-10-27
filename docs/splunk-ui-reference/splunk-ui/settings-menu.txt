@@ -1,0 +1,125 @@
+Browser tab: 2136985550, Title: "Home", URL: "http://localhost:8000/en-US/app/launcher/home".
+0 AXWebArea Home, URL: localhost:8000/en-US/app/launcher/home
+	1 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/launcher/home#navSkip
+	2 container
+		3 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		4 pop up button Apps ▾
+			5 text Apps
+			6 text ▾
+		123 button Description: View health report with status green, Help: Health: green
+			124 text 
+		9 pop up button Administrator ▾, Help: User
+			10 text Administrator
+			11 text ▾
+		12 pop up button 2 Messages ▾, Help: Messages
+			64 text 2
+			65 text Messages
+			66 text ▾
+		16 pop up button (expanded) Settings ▾, Secondary Actions: Collapse
+			17 text Settings
+			67 text ▾
+		68 container dialog-view7128
+			69 container
+				70 Add Data
+					71 image Layer_1
+					72 text Add Data
+				73 Monitoring Console
+					74 image
+					75 text Monitoring Console
+				76 heading KNOWLEDGE, Value: 1
+					77 text KNOWLEDGE
+				78 container
+					79 Open Searches, reports, and alerts
+					80 Open Data models
+					81 Open Event types
+					82 Open Tags
+					83 Open Fields
+					84 Open Lookups
+					85 Open User interface
+					86 Open Alert actions
+					87 Open Advanced search
+					88 Open All configurations
+				89 heading SYSTEM, Value: 1
+					90 text SYSTEM
+				91 container
+					92 Open Server settings
+					93 Open Server controls
+					94 Open Health report manager
+					95 Open Instrumentation
+					96 Open Licensing
+					97 Open Workload management
+					98 Open Mobile settings
+				99 heading DATA, Value: 1
+					100 text DATA
+				101 container
+					102 Open Data inputs
+					103 Open Forwarding and receiving
+					104 Open Indexes
+					105 Open Report acceleration summaries
+					106 Open Source types
+					107 Open Ingest actions
+				108 heading DISTRIBUTED ENVIRONMENT, Value: 1
+					109 text DISTRIBUTED ENVIRONMENT
+				110 container
+					111 Open Indexer clustering
+					112 Open Forwarder management
+					113 Open Federated search
+					114 Open Distributed search
+				115 heading USERS AND AUTHENTICATION, Value: 1
+					116 text USERS AND AUTHENTICATION
+				117 container
+					118 Open Roles
+					119 Open Users
+					120 Open Tokens
+					121 Open Password management
+					122 Open Authentication methods
+		19 pop up button Activity ▾
+			20 text Activity
+			21 text ▾
+		22 pop up button Help ▾
+			23 text Help
+			24 text ▾
+		25 container
+			26 text 
+			27 text field (settable) Description: Find, ID: control-view3201
+	28 container
+		29 heading Apps, Value: 2
+			30 text Apps
+		31 link Description: Manage, Help: Manage Apps, Value: localhost:8000/en-US/manager/launcher/apps/local
+		32 text field (settable) Value input
+		33 link Description: Navigate to Search & Reporting app, Value: localhost:8000/en-US/app/search
+		34 link Description: Navigate to Splunk Secure Gateway app, Value: localhost:8000/en-US/app/splunk_secure_gateway
+		35 link Description: Navigate to Upgrade Readiness App app, Value: localhost:8000/en-US/app/python_upgrade_readiness_app
+		36 link Description: Find more apps Open externally, Value: localhost:8000/en-US/manager/launcher/appsremote
+		37 heading Hello, Administrator, Value: 1
+			38 text Hello ,  Administrator
+		39 tab group
+			40 tab (selected, settable, boolean) Quick links, Value: 1
+Quick links
+			41 tab (selectable, settable, boolean) Dashboard, Value: 0
+Dashboard
+			42 tab (selectable, settable, boolean) Recently viewed, Value: 0
+Recently viewed
+			43 tab (selectable, settable, boolean) Created by you, Value: 0
+Created by you
+			44 tab (selectable, settable, boolean) Shared with you, Value: 0
+Shared with you
+		45 heading Common tasks, Value: 3
+			46 text Common tasks
+		47 link Description: Add data Add data from a variety of common sources., Value: localhost:8000/en-US/manager/search/adddata
+		48 link Description: Search your data Turn data into doing with Splunk search., Value: localhost:8000/en-US/app/search/search
+		49 link Description: Visualize your data Create dashboards that work for your data., Value: localhost:8000/en-US/app/search/dashboards
+		50 link Description: Add team members Add your team members to Splunk platform., Value: localhost:8000/en-US/manager/search/authentication/users
+		51 link Description: Manage permissions Control who has access with roles., Value: localhost:8000/en-US/manager/search/authorization/roles
+		52 link Description: Configure mobile devices Login or manage mobile devices using Splunk Secure Gateway., Value: localhost:8000/en-US/app/splunk_secure_gateway
+		53 heading Learning and resources, Value: 3
+			54 text Learning and resources
+		55 link Description: Product tours New to Splunk? Take a tour to help you on your way., Value: localhost:8000/en-US/app/launcher/home#
+		56 link Value: docs.splunk.com/Documentation, Description: Learn more with Splunk Docs Open external link Deploy, manage, and use Splunk software with comprehensive guidance.
+		57 link Value: lantern.splunk.com/, Description: Get help from Splunk experts Open external link Actionable guidance on the Splunk Lantern Customer Success Center.
+		58 link Description: Extend your capabilities Open external link Browse thousands of apps on Splunkbase., Value: splunkbase.splunk.com/
+		59 link Description: Join the Splunk Community Open external link Learn, get inspired, and share knowledge., Value: community.splunk.com/
+		60 link Description: See how others use Splunk Open external link Browse real customer stories., Value: splunk.com/customers
+		61 link Description: Training and Certification Open external link Become a certified Splunk Ninja., Value: splunk.com/training
+
+The focused UI element is 70 Add Data

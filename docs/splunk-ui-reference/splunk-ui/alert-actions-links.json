@@ -1,0 +1,122 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "#",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22logevent%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count",
+    "text": "Usage statistics"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22logevent%22",
+    "text": "View log events"
+  },
+  {
+    "href": "#",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "#",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22outputtelemetry%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count",
+    "text": "Usage statistics"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22outputtelemetry%22",
+    "text": "View log events"
+  },
+  {
+    "href": "#",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "#",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "#",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22ssg_mobile_alert%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count",
+    "text": "Usage statistics"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22ssg_mobile_alert%22",
+    "text": "View log events"
+  },
+  {
+    "href": "#",
+    "text": "Permissions"
+  },
+  {
+    "href": "#",
+    "text": "Disable"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22webhook%22%20%22Invoking%20modular%20alert%20action%22%20%7C%20timechart%20count",
+    "text": "Usage statistics"
+  },
+  {
+    "href": "/en-US/app/search/search?q=index%3D_internal%20sourcetype%3Dsplunkd%20component%3Dsendmodalert%20action%3D%22webhook%22",
+    "text": "View log events"
+  }
+]

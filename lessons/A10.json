@@ -1,0 +1,34 @@
+{
+  "id": "A10",
+  "title": "The fix that kept disappearing",
+  "minutes": 25,
+  "level": 3,
+  "profile": "apl",
+  "instructions": "Situation: someone fixed props.conf  directly on a server. Every night it reverts.\nWork out what's overwriting it (the nightly Ansible run from the repo).\nPut the fix in the repo, through a PR, so Ansible deploys it instead of undoing it.\nDone when: after the next nightly run the fix is still there.\nLearn: with automation, the repo is the source of truth. Manual edits on servers get\nerased.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "run",
+      "check": false
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks.",
+  "setup": [
+    {
+      "repo": "splunk-automation",
+      "branch": "fixture/nightly-config",
+      "path": "playbooks/nightly_props.yml",
+      "title": "Nightly configuration convergence",
+      "text": "- hosts: heavy_forwarders\n  become: true\n  tasks:\n    - name: Enforce source parsing\n      copy:\n        dest: /opt/splunk/etc/system/local/props.conf\n        content: \"[fgt_traffic]\\nSHOULD_LINEMERGE = true\\n\"\n",
+      "baseline": true,
+      "schedule": {
+        "path": "playbooks/nightly_props.yml",
+        "interval": 30,
+        "limit": "hf-syslog01"
+      }
+    }
+  ]
+}

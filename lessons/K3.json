@@ -1,0 +1,27 @@
+{
+  "id": "K3",
+  "title": "Diagnose and recover stale replication",
+  "minutes": 20,
+  "level": 3,
+  "profile": "apl",
+  "instructions": "A search head serves stale asset ownership. Open KV Store \u2192 Replication and compare member revisions. Inspect status from both members. Restore transport using the clearly labeled lab fault controls, then resynchronize or advance the simulation. Verify every member has the current asset-1 owner and revision. Close the incident. Explain why the KV replica-set primary and SHC captain are separate roles.",
+  "checks": [
+    {
+      "kind": "kv",
+      "label": "Capture diagnosis",
+      "operation": "inspect"
+    },
+    {
+      "kind": "kv",
+      "label": "All members synchronized",
+      "healthy": true
+    },
+    {
+      "kind": "kv",
+      "label": "Recovery verified and incident closed",
+      "resolved": true
+    }
+  ],
+  "completionScope": "KV checks validate persisted collection contents, service health and recovery outcomes. Review your explanation separately.",
+  "kvIncident": "replication"
+}

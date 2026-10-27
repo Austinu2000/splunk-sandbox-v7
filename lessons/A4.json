@@ -1,0 +1,19 @@
+{
+  "id": "A4",
+  "title": "Variables and templates",
+  "minutes": 20,
+  "level": 2,
+  "profile": "lab",
+  "instructions": "Situation: indexes need a bigger size limit. The value lives in a variable, and a template\nturns it into indexes.conf .\nFind the variable: grep -r max_total_data_size group_vars/\nFind where it's used: cat roles/splunk_indexes/templates/indexes.conf.j2 . The\n{{ ... }}  parts are filled in from variables.\nChange the value on a branch, then dry-run: ansible-playbook\nplaybooks/cluster_bundle.yml --check --diff\nOpen a PR, merge it, then run the playbook for real.\n\nDone when: splunk btool indexes list --debug  on an indexer shows the new value.\nLearn: change variables, not the generated files. The template keeps every server\nconsistent.",
+  "checks": [
+    {
+      "kind": "merged",
+      "min": 1
+    },
+    {
+      "kind": "run",
+      "check": false
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

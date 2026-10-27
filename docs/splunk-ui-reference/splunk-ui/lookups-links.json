@@ -1,0 +1,62 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/search/data/lookup-table-files",
+    "text": "Lookup table files"
+  },
+  {
+    "href": "/en-US/manager/search/data/lookup-table-files/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/transforms/lookups",
+    "text": "Lookup definitions"
+  },
+  {
+    "href": "/en-US/manager/search/data/transforms/lookups/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/lookups",
+    "text": "Automatic lookups"
+  },
+  {
+    "href": "/en-US/manager/search/data/props/lookups/_new?action=edit",
+    "text": "Add new"
+  },
+  {
+    "href": "/en-US/manager/search/lookup_geoip",
+    "text": "GeoIP lookups file"
+  }
+]

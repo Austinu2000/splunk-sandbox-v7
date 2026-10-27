@@ -1,0 +1,78 @@
+# Profile: Johns Hopkins Applied Physics Laboratory (APL)
+# Values marked "confirm" are placeholders. Replace them with what you actually ran.
+# Never copy figures between profiles: APL numbers belong to APL only.
+id: apl
+name: Johns Hopkins APL
+description: Federal research lab. Security-focused Splunk with ES and SOAR, clustered indexers and search heads.
+role: Contractor team lead
+seed: apl-v1
+
+scale:
+  targetDailyIngestTB: 3.5          # resume figure
+  fleetSize: 6000                   # confirm: forwarder count not recorded
+  users: 8000                       # resume figure
+
+sites:                              # confirm: site layout
+  - { id: lau, name: Laurel, weight: 0.9, subnet: 10 }
+  - { id: aws, name: AWS, weight: 0.1, subnet: 40 }
+
+infra:
+  indexerCluster:
+    indexers: 20                    # resume figure (~20)
+    multisite: false                # confirm
+    replicationFactor: 2            # confirm
+    searchFactor: 2                 # confirm
+  searchHeadCluster:
+    members: 3                      # resume says 3-5 search heads in total
+    deployer: true
+  esSearchHead: true                # dedicated ES search head (4th search head)
+  deploymentServers: 1
+  licenseManager: true
+  monitoringConsole: true
+  heavyForwarders:                  # confirm: count and roles
+    - { name: hf-syslog01, site: lau, role: syslog }
+    - { name: hf-aws01, site: aws, role: aws_addon }
+    - { name: hf-ot01, site: lau, role: ot_dmz }
+  extras:
+    - { name: soar01, role: soar }  # SOAR scoped to playbooks + ServiceNow/email
+    - { name: cribl01, role: cribl_poc, enabled: false }   # PoC/evaluation only
+
+auth:
+  method: saml                      # resume: RBAC with SAML SSO
+  roleMappings:
+    - { group: APL-Splunk-Admins, roles: [admin] }
+    - { group: APL-SOC-Analysts, roles: [ess_analyst, user] }
+    - { group: APL-Splunk-Users, roles: [user] }
+
+apps: [Splunk_SA_CIM, SplunkEnterpriseSecuritySuite, Splunk_TA_fortinet_fortigate, Splunk_TA_symantec-ep, Splunk_TA_aws, Splunk_TA_windows, Splunk_TA_nix]
+
+serverClasses:                      # confirm weights
+  - { id: win_workstations, short: ws, os: windows, weight: 0.55, baseThroughputKBps: 4, outputs: indexers }
+  - { id: win_servers, short: win, os: windows, weight: 0.2, baseThroughputKBps: 10, outputs: indexers }
+  - { id: linux_servers, short: lnx, os: linux, weight: 0.18, baseThroughputKBps: 8, outputs: indexers }
+  - { id: sep_managers, short: sep, os: windows, weight: 0.005, baseThroughputKBps: 120, outputs: hf }
+  - { id: syslog_relay, short: syslog, os: linux, weight: 0.01, baseThroughputKBps: 900, outputs: hf }
+  - { id: ot_relay, short: ot, os: linux, weight: 0.005, baseThroughputKBps: 300, outputs: hf }
+
+indexes:
+  - { name: fortinet, retentionDays: 365 }      # confirm retention
+  - { name: symantec, retentionDays: 365 }
+  - { name: aws, retentionDays: 365 }
+  - { name: ot, retentionDays: 365 }
+  - { name: wineventlog, retentionDays: 365 }
+  - { name: os, retentionDays: 365 }
+  - { name: notable, retentionDays: 365 }
+  - { name: risk, retentionDays: 365 }
+
+dataSources:                         # resume: SCADA/ICS, FortiGate, Symantec Endpoint, AWS Flow Logs
+  - { id: fortigate, sourcetypes: [fgt_traffic, fgt_utm, fgt_event], index: fortinet, via: hf-syslog01, transport: syslog, shareOfIngest: 0.45 }
+  - { id: symantec, sourcetypes: [symantec:ep:security:file, symantec:ep:risk:file], index: symantec, via: hf-syslog01, transport: syslog, shareOfIngest: 0.05 }
+  - { id: aws_vpc_flow, sourcetypes: [aws:cloudwatchlogs:vpcflow], index: aws, via: hf-aws01, transport: aws_addon, shareOfIngest: 0.2 }
+  - { id: scada_ics, sourcetypes: [ot:syslog], index: ot, via: hf-ot01, transport: udp_syslog, shareOfIngest: 0.05 }
+  - { id: windows, sourcetypes: [XmlWinEventLog], index: wineventlog, via: forwarders, shareOfIngest: 0.18 }
+  - { id: linux, sourcetypes: [linux_secure, syslog], index: os, via: forwarders, shareOfIngest: 0.07 }
+
+scenarios:
+  core: [event-line-breaking, timestamp-tz, input-permissions, skipped-searches]
+  profile: [apl-fortigate-timezone, apl-fortigate-sourcetype, apl-aws-flowlogs-stalled, apl-ot-udp-drops, apl-cribl-route,
+            apl-sep-cim, apl-es-dm-acceleration, apl-saml-role-mapping, apl-shc-bundle-push, apl-idx-rolling-restart, apl-soar-servicenow]

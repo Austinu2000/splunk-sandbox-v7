@@ -1,0 +1,228 @@
+Browser tab: 2136985550, Title: "Data inputs - Settings | Splunk", URL: "http://localhost:8000/en-US/manager/search/datainputstats".
+1 AXWebArea Data inputs - Settings | Splunk, URL: localhost:8000/en-US/manager/search/datainputstats
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/datainputstats#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button Description: View health report with status green, Help: Health: green
+			9 text 
+		10 pop up button Administrator ▾, Help: User
+			11 text Administrator
+			12 text ▾
+		13 pop up button 2 Messages ▾, Help: Messages
+			14 text 2
+			15 text Messages
+			16 text ▾
+		17 pop up button Settings ▾
+			18 text Settings
+			19 text ▾
+		20 pop up button Activity ▾
+			21 text Activity
+			22 text ▾
+		23 pop up button Help ▾
+			24 text Help
+			25 text ▾
+		26 container
+			27 text field (settable) Description: Find, ID: control-view1242
+	28 heading Data inputs, Value: 1
+		29 text Data inputs
+	30 container
+		31 text Set up data inputs from files and directories, network ports, and scripted inputs. If you want to set up forwarding and receiving between two Splunk instances, go to 
+		32 link Description: Forwarding and receiving, Value: localhost:8000/en-US/manager/search/forwardreceive
+		33 text .
+	34 heading Local inputs, Value: 2
+		35 text Local inputs
+	36 table dataInputs
+		37 row
+			38 cell
+				39 text Type
+			40 cell
+				41 text Inputs
+			42 cell
+				43 text Actions
+		44 row
+			45 cell
+				46 link Description: Files & Directories, Value: localhost:8000/en-US/manager/search/data/inputs/monitor
+			47 cell
+				48 text 18
+			49 cell
+				50 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=file_monitor&input_mode=1
+		51 row
+			52 cell
+				53 text Index a local file or monitor an entire directory.
+		54 row
+			55 cell
+				56 link Description: HTTP Event Collector, Value: localhost:8000/en-US/manager/search/http-eventcollector
+			57 cell
+				58 text 0
+			59 cell
+				60 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=http&input_mode=1
+		61 row
+			62 cell
+				63 text Receive data over HTTP or HTTPS.
+		64 row
+			65 cell
+				66 link Description: TCP, Value: localhost:8000/en-US/manager/search/data/inputs/tcp/raw
+			67 cell
+				68 text 0
+			69 cell
+				70 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=tcp&input_mode=1
+		71 row
+			72 cell
+				73 text Listen on a TCP port for incoming data, e.g. syslog.
+		74 row
+			75 cell
+				76 link Description: UDP, Value: localhost:8000/en-US/manager/search/data/inputs/udp
+			77 cell
+				78 text 0
+			79 cell
+				80 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=udp&input_mode=1
+		81 row
+			82 cell
+				83 text Listen on a UDP port for incoming data, e.g. syslog.
+		84 row
+			85 cell
+				86 link Description: Scripts, Value: localhost:8000/en-US/manager/search/data/inputs/script
+			87 cell
+				88 text 24
+			89 cell
+				90 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=scripts&input_mode=1
+		91 row
+			92 cell
+				93 text Run custom scripts to collect or generate more data.
+		94 row
+			95 cell
+				96 link Description: Splunk Assist Instance Identifier, Value: localhost:8000/en-US/manager/search/data/inputs/instance_id_modular_input
+			97 cell
+				98 text 1
+			99 cell
+				100 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=instance_id_modular_input&input_mode=1&modinput=1
+		101 row
+			102 cell
+				103 text Assigns a random identifier to every node
+		104 row
+			105 cell
+				106 link Description: Systemd Journald Input for Splunk, Value: localhost:8000/en-US/manager/search/data/inputs/journald
+			107 cell
+				108 text 0
+			109 cell
+				110 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=journald&input_mode=1&modinput=1
+		111 row
+			112 cell
+				113 text This is the input that gets data from journald (systemd's logging component) into Splunk.
+		114 row
+			115 cell
+				116 link Description: Logd Input for the Splunk platform, Value: localhost:8000/en-US/manager/search/data/inputs/logd
+			117 cell
+				118 text 0
+			119 cell
+				120 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=logd&input_mode=1&modinput=1
+		121 row
+			122 cell
+				123 text This input collects data from logd on macOS and sends it to the Splunk platform.
+		124 row
+			125 cell
+				126 link Description: Splunk Assist Self-Update, Value: localhost:8000/en-US/manager/search/data/inputs/selfupdate_modular_input
+			127 cell
+				128 text 1
+			129 cell
+				130 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=selfupdate_modular_input&input_mode=1&modinput=1
+		131 row
+			132 cell
+				133 text Detects and Downloads Assist Supervisor Updates
+		134 row
+			135 cell
+				136 link Description: Splunk Assist Supervisor, Value: localhost:8000/en-US/manager/search/data/inputs/supervisor_modular_input
+			137 cell
+				138 text 1
+			139 cell
+				140 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=supervisor_modular_input&input_mode=1&modinput=1
+		141 row
+			142 cell
+				143 text Manages and Executes Splunk Assist Packages
+		144 row
+			145 cell
+				146 link Description: Splunk Assist Supervisor, Value: localhost:8000/en-US/manager/search/data/inputs/uiassets_modular_input
+			147 cell
+				148 text 1
+			149 cell
+				150 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectsource?input_type=uiassets_modular_input&input_mode=1&modinput=1
+		151 row
+			152 cell
+				153 text Manages and Executes Splunk Assist Packages
+	154 container
+		155 text Showing  1-6  of 6 modular inputs
+	156 heading Forwarded inputs, Value: 2
+		157 text Forwarded inputs
+	158 table forwarded-dataInputs
+		159 row
+			160 cell
+				161 text Type
+			162 cell
+				163 text Inputs
+			164 cell
+				165 text Actions
+		166 row
+			167 cell
+				168 link Description: Windows Event Logs, Value: localhost:8000/en-US/manager/search/deployment/server/setup/data/inputs/remote_eventlogs
+			169 cell
+				170 text 0
+			171 cell
+				172 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectforwarders?input_type=evt_logs_local
+		173 row
+			174 cell
+				175 text Collect event logs from forwarders.
+		176 row
+			177 cell
+				178 link Description: Files & Directories, Value: localhost:8000/en-US/manager/search/deployment/server/setup/data/inputs/remote_monitor
+			179 cell
+				180 text 0
+			181 cell
+				182 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectforwarders?input_type=file_monitor
+		183 row
+			184 cell
+				185 text Monitor files or directories on forwarders.
+		186 row
+			187 cell
+				188 link Description: Windows Performance Monitoring, Value: localhost:8000/en-US/manager/search/deployment/server/setup/data/inputs/remote_perfmon
+			189 cell
+				190 text 0
+			191 cell
+				192 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectforwarders?input_type=perfmon_local
+		193 row
+			194 cell
+				195 text Collect performance data from forwarders.
+		196 row
+			197 cell
+				198 link Description: TCP, Value: localhost:8000/en-US/manager/search/deployment/server/setup/data/inputs/tcp/remote_raw
+			199 cell
+				200 text 0
+			201 cell
+				202 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectforwarders?input_type=tcp
+		203 row
+			204 cell
+				205 text Configure a forwarder to listen on a TCP port for incoming data.
+		206 row
+			207 cell
+				208 link Description: UDP, Value: localhost:8000/en-US/manager/search/deployment/server/setup/data/inputs/remote_udp
+			209 cell
+				210 text 0
+			211 cell
+				212 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectforwarders?input_type=udp
+		213 row
+			214 cell
+				215 text Configure a forwarder to listen on a UDP port for incoming data.
+		216 row
+			217 cell
+				218 link Description: Scripts, Value: localhost:8000/en-US/manager/search/deployment/server/setup/data/inputs/remote_script
+			219 cell
+				220 text 0
+			221 cell
+				222 link Description: + Add new, Value: localhost:8000/en-US/manager/search/adddata/selectforwarders?input_type=scripts
+		223 row
+			224 cell
+				225 text Collect data from scripts installed on forwarders.
+
+The focused UI element is 1 AXWebArea Data inputs - Settings | Splunk, URL: localhost:8000/en-US/manager/search/datainputstats

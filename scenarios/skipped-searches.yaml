@@ -1,0 +1,284 @@
+id: skipped-searches
+title: Security alerts are arriving late or not at all
+summary: "Twelve new \"Security - ...\" correlation searches were added to
+  {search_head}, all on cron 0 * * * * over -24h with no schedule_window. At the
+  top of every hour they exceed the scheduler's concurrency limit (9 on
+  {search_head}: max_searches_perc = 25) and most of them, plus some existing
+  searches, are skipped."
+topics:
+  - search-heads
+  - scheduler
+  - performance
+difficulty: hard
+trigger:
+  onDemand: true
+ticket:
+  requester: Riley, Security Operations
+  persona: concerned
+  urgency: high
+  text: We deployed our new correlation searches on {search_head} yesterday, but
+    most of them never fire, and some older alerts have gone quiet too. The
+    searches run fine when we open them by hand.
+changes:
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Brute Force Attempts
+    set:
+      search: index=os sourcetype=linux_secure "Failed password" | stats count by src,
+        user | where count > 20
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Privileged Account Changes
+    set:
+      search: index=wineventlog EventCode IN (4728,4732,4756) | stats values(user) by
+        Group_Name
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Rare Process Execution
+    set:
+      search: index=os | rare limit=20 process
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Outbound Data Spike
+    set:
+      search: index=network | timechart span=1h sum(bytes_out) by src
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Disabled Account Logons
+    set:
+      search: index=wineventlog EventCode=4625 Sub_Status=0xC0000072 | stats count by
+        user
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - New Admin Group Members
+    set:
+      search: index=wineventlog EventCode=4728 | table _time user Group_Name
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Firewall Deny Surge
+    set:
+      search: index=network action=blocked | timechart count
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Suspicious PowerShell
+    set:
+      search: index=wineventlog EventCode=4104 | search ScriptBlockText="*-enc*"
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - DNS Tunneling Indicators
+    set:
+      search: index=network sourcetype=syslog query_length>60 | stats count by src
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Impossible Travel
+    set:
+      search: index=os sourcetype=linux_secure Accepted | iplocation src | stats
+        dc(Country) by user
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Service Account Interactive Logon
+    set:
+      search: index=wineventlog EventCode=4624 Logon_Type=2 user=svc_* | stats count
+        by user, host
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+  - host: "{search_head}"
+    path: /opt/splunk/etc/apps/search/local/savedsearches.conf
+    stanza: Security - Excessive Failed VPN Logins
+    set:
+      search: index=network vpn action=failure | stats count by user | where count > 10
+      enableSched: "1"
+      cron_schedule: 0 * * * *
+      dispatch.earliest_time: -24h
+      dispatch.latest_time: now
+      alert.track: "1"
+    apply: restart
+clues:
+  - index=_internal sourcetype=scheduler status=skipped | stats count by
+    savedsearch_name, reason
+  - Monitoring Console > Scheduler activity
+  - "{search_head}: splunk btool savedsearches list --debug | grep cron_schedule"
+  - "{search_head}: splunk btool limits list scheduler --debug"
+redHerrings:
+  - host: "{search_head}"
+    file: splunkd
+    level: WARN
+    component: DispatchManager
+    message: The minimum free disk space (5000MB) reached for
+      /opt/splunk/var/run/splunk/dispatch. user=riley.
+    everyMinutes: 13
+  - host: sh02
+    file: splunkd
+    level: ERROR
+    component: KVStorageProvider
+    message: "An error occurred during the last operation ('getServerVersion',
+      domain: '15', code: '13053'): No suitable servers found"
+    everyMinutes: 9
+fixChecks:
+  scheduler:
+    host: "{search_head}"
+    maxSkipped: 0
+    minutes: 60
+recovery:
+  seconds: 60
+interview:
+  prompt: Security says their new correlation searches on our main search head
+    mostly never fire, and some older alerts have gone quiet too. They run fine
+    by hand. What's happening?
+  timeLimitMinutes: 25
+  expectedPath:
+    - id: scope
+      label: Looked at scheduler activity (Monitoring Console or scheduler.log)
+      any:
+        - page: ^monitoring/scheduler
+        - search: sourcetype=scheduler|scheduler\.log
+    - id: reason
+      label: Found the skip reason
+      any:
+        - search: skipped|reason
+        - cmd: scheduler\.log
+          host: ^{search_head}$
+    - id: config
+      label: Checked the schedules and the scheduler limit with btool
+      any:
+        - cmd: btool\s+(savedsearches|limits)
+          host: ^{search_head}$
+        - cmd: (savedsearches|limits)\.conf
+          host: ^{search_head}$
+  verification:
+    - page: ^monitoring/scheduler
+    - search: scheduler
+  unsafe:
+    - label: Restarted indexers for a search-head problem
+      match:
+        cmd: splunk\s+(restart|stop)
+        role: indexer
+  rootCause:
+    - label: all scheduled at the same minute
+      any:
+        - cron
+        - same (time|minute)
+        - top of the hour
+        - 0 \* \* \* \*
+        - stagger
+    - label: the scheduler concurrency limit
+      any:
+        - concurren
+        - limit
+        - max_searches
+    - label: searches are skipped
+      any:
+        - skip
+  hints:
+    - cost: 10
+      text: index=_internal sourcetype=scheduler status=skipped tells you why a run
+        was skipped.
+    - cost: 15
+      text: Look at when the new searches are scheduled and how long a 24-hour search
+        takes.
+  modelAnswer:
+    rootCause: Twelve new "Security - ..." searches on {search_head} all run on cron
+      0 * * * * over the last 24 hours, with no schedule_window. At the top of
+      each hour they exceed {search_head}'s historical scheduler limit (9, with
+      max_searches_perc = 25), so most are skipped, along with existing searches
+      due then.
+    fix: Stagger the cron schedules across the hour (and/or add schedule_window =
+      auto so runs can wait), shorten the time ranges where possible, then
+      restart {search_head}. Raising max_searches_perc is a last resort that
+      adds load.
+    verification: Watch the Monitoring Console scheduler view, or index=_internal
+      sourcetype=scheduler status=skipped, show no new skips over the next
+      hours.
+    prevention: Review new scheduled searches for schedule and cost, use schedule
+      windows and priorities, and alert on the skip ratio.
+  spokenAnswer: If searches work by hand but don't fire on schedule, I'd look at
+    the scheduler. The scheduler log shows status skipped with the reason that
+    the concurrency limit was reached, and the skips cluster at the top of the
+    hour. btool savedsearches shows the twelve new security searches all on cron
+    zero, star, star, star, star, over 24 hours, and limits gives {search_head}
+    a limit of nine. They pile up together and push everything else out. I'd
+    stagger them across the hour and add a schedule window, restart, and watch
+    the skip count drop to zero. Going forward, new scheduled searches get a
+    review for timing and cost, and we alert on the skip ratio.
+profiles:
+  - default
+  - apl
+  - erie
+
+interviewQuestionIds:
+  - "IQ059"
+  - "IQ168"
+followups:
+  - "Where would you put those platform-health alerts, which datasets (_internal, _introspection) would you use, and how would you structure the SPL?"
+  - "A dashboard is slow to load. How do you troubleshoot and optimize it?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

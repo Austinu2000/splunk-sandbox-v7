@@ -1,0 +1,150 @@
+id: blocked-parsing-queue
+title: Dallas forwarders are backing up
+summary: "{indexer:1}'s parsingQueue maxSize was set to 1KB in
+  system/local/server.conf. The queue blocks, and the backpressure blocks every
+  Dallas forwarder whose output group includes {indexer:1}."
+topics:
+  - indexing
+  - queues
+difficulty: medium
+trigger:
+  onDemand: true
+ticket:
+  requester: Avery, Operations
+  persona: concerned
+  urgency: high
+  text: Dallas forwarders are reporting blocked output queues and indexing has
+    slowed down. Nothing changed on the forwarders themselves.
+changes:
+  - host: "{indexer:1}"
+    path: /opt/splunk/etc/system/local/server.conf
+    stanza: queue=parsingQueue
+    set:
+      maxSize: 1KB
+    apply: restart
+clues:
+  - "{indexer:1}: metrics.log name=parsingqueue blocked=true"
+  - splunk btool server list --debug
+  - Forwarder metrics.log tcpout queues
+redHerrings:
+  - host: "{indexer:2}"
+    file: splunkd
+    level: WARN
+    component: DiskMon
+    message: Minimum free disk space (5000MB) reached for
+      /opt/splunk/var/run/splunk/dispatch. user=admin.
+    everyMinutes: 7
+  - host: "{indexer:1}"
+    file: messages
+    component: chronyd
+    message: System clock wrong by 1.204883 seconds, adjustment started
+    everyMinutes: 9
+fixChecks:
+  all:
+    - parsingQueue:
+        host: "{indexer:1}"
+        blocked: false
+    - fleet:
+        site: dal
+        health: blocked_queue
+        maxPct: 2
+recovery:
+  seconds: 30
+interview:
+  prompt: Forwarders across one of our sites are reporting blocked output queues
+    and indexing has slowed. Nobody touched the forwarders. Where do you start?
+  timeLimitMinutes: 20
+  expectedPath:
+    - id: scope
+      label: Scoped the problem to the Dallas site and its indexers
+      any:
+        - page: ^fleet
+        - page: ^monitoring/(forwarders|indexing)
+        - search: blocked
+    - id: queues
+      label: Looked at indexer queue metrics
+      any:
+        - search: group=queue|parsingqueue
+        - page: ^monitoring/indexing
+        - cmd: metrics\.log
+          host: ^idx
+    - id: config
+      label: Checked {indexer:1}'s queue configuration with btool or server.conf
+      any:
+        - cmd: btool\s+server
+          host: ^{indexer:1}$
+        - cmd: server\.conf
+          host: ^{indexer:1}$
+  verification:
+    - search: parsingqueue|blocked|group=queue
+    - page: ^monitoring/indexing
+    - page: ^fleet
+    - cmd: metrics\.log
+      host: ^{indexer:1}$
+  unsafe:
+    - label: Restarted healthy indexers
+      match:
+        cmd: splunk\s+(restart|stop)
+        host: ^idx0[2-6]$
+  rootCause:
+    - label: the parsing queue
+      any:
+        - parsing ?queue
+    - label: its maxSize was far too small
+      any:
+        - max ?size
+        - 1 ?KB
+        - too small
+        - queue size
+    - label: on {indexer:1}
+      any:
+        - "{indexer:1}"
+  hints:
+    - cost: 10
+      text: Backpressure on forwarders usually starts at the receiver. Which indexers
+        do the Dallas forwarders send to?
+    - cost: 15
+      text: Search metrics.log on the Dallas indexers for group=queue and compare
+        current_size_kb with max_size_kb.
+  modelAnswer:
+    rootCause: "{indexer:1}'s parsingQueue was set to maxSize = 1KB in
+      system/local/server.conf. The queue saturates immediately, {indexer:1}
+      stops accepting data, and backpressure blocks every Dallas forwarder whose
+      output group includes {indexer:1}."
+    fix: Set [queue=parsingQueue] maxSize back to a sensible value (the 6MB default
+      or larger) on {indexer:1} and restart splunkd on {indexer:1} only.
+    verification: Confirm metrics.log on {indexer:1} no longer shows
+      name=parsingqueue blocked=true, the Monitoring Console queue fill drops,
+      and the Dallas blocked-queue count in the fleet view returns to its
+      background level.
+    prevention: Manage indexer server.conf through version control, and alert on
+      blocked=true for indexer queues before forwarders back up.
+  spokenAnswer: "Forwarders reporting blocked output queues are usually a symptom
+    of the receiver, so first I'd scope it: it's only Dallas, and Dallas
+    forwarders send to {indexer:1} and {indexer:2}. On those indexers I'd check
+    queue metrics in metrics.log or the Monitoring Console. {indexer:1}'s
+    parsing queue is permanently blocked, and btool server list shows maxSize of
+    1KB in system/local. That tiny queue stops {indexer:1} accepting data and
+    the pressure flows back to the forwarders. I'd restore a proper size,
+    restart {indexer:1} only, then confirm blocked=true disappears and the
+    Dallas blocked count drops. Going forward, indexer configs live in version
+    control and we alert on blocked queues."
+profiles:
+  - default
+  - apl
+  - erie
+
+interviewQuestionIds:
+  - "IQ156"
+  - "IQ157"
+  - "IQ162"
+followups:
+  - "Firewall logs are coming in with an ingestion delay - how do you investigate and resolve it?"
+  - "How do you troubleshoot ingestion pipeline failures, and at which stage do most issues occur?"
+  - "What would you check next if this change failed?"
+  - "How would you verify recovery without hiding data loss?"
+requestedEvidence:
+  - "Scope the affected service before changing it."
+  - "Record the failing hop and winning configuration, with a rejected alternative."
+  - "Verify recovery after the correct application step and describe rollback."
+  - "Give a stakeholder update and a prevention action."

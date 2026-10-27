@@ -1,0 +1,98 @@
+Browser tab: 2136985550, Title: "Analytics Workspace", URL: "http://localhost:8000/en-US/app/search/analytics_workspace".
+1 AXWebArea Analytics Workspace, URL: localhost:8000/en-US/app/search/analytics_workspace
+	2 container
+		3 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/search/analytics_workspace#navSkip
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			9 button View health report with status green
+			10 pop up button Administrator ▾, Help: User
+				11 text Administrator
+				12 text ▾
+			13 pop up button 2 Messages ▾, Help: Messages
+				14 text 2
+				15 text Messages
+				16 text ▾
+			17 pop up button Settings ▾
+				18 text Settings
+				19 text ▾
+			20 pop up button Activity ▾
+				21 text Activity
+				22 text ▾
+			23 pop up button Help ▾
+				24 text Help
+				25 text ▾
+			26 container
+				27 text 
+				28 text field (settable) Description: Find, ID: control-view7833
+		29 container
+			30 container
+				31 link Description: Search, Value: localhost:8000/en-US/app/search/search
+				32 link Description: Analytics, Value: localhost:8000/en-US/app/search/analytics_workspace
+				33 link Description: Datasets, Value: localhost:8000/en-US/app/search/datasets
+				34 link Description: Reports, Value: localhost:8000/en-US/app/search/reports
+				35 link Description: Alerts, Value: localhost:8000/en-US/app/search/alerts
+				36 link Description: Dashboards, Value: localhost:8000/en-US/app/search/dashboards
+			37 link Description: App icon Search & Reporting, Value: localhost:8000/en-US/app/search/
+		38 container
+			39 container Data
+				40 heading Data, Value: 2
+					41 button (expanded) Data, Secondary Actions: Collapse
+						42 text Data
+				43 container
+					44 text field (settable) Find Data to Analyze
+					45 image Search
+				46 heading Panel is open Metrics, Value: 2
+					47 button (expanded) Panel is open Metrics, ID: toggle-cf3d6bd5-9b15-4fbe-ab3b-7afeb2b1aad4, Secondary Actions: Collapse
+						48 image Panel is open
+						49 text Metrics
+				50 container Panel is open Metrics
+					51 button  Add new filter
+						52 text Add new filter
+					53 container
+						54 image Waiting
+						55 text Loading...
+				56 heading Panel is closed Datasets, Value: 2
+					57 button (collapsed) Panel is closed Datasets, ID: toggle-f3eb8cd6-e5d2-4e7e-95a9-4f4d0f4f7d23, Secondary Actions: Expand
+						58 image Panel is closed
+						59 text Datasets
+				60 heading Panel is closed Alerts, Value: 2
+					61 button (collapsed) Panel is closed Alerts, ID: toggle-c8a96bee-c48a-43be-881f-b562b8fa21e9, Secondary Actions: Expand
+						62 image Panel is closed
+						63 text Alerts
+				64 container
+					65 image Info Circle
+					66 text Data ingested from 
+					67 pop up button (collapsed) Description: Data ingested from Last 15 minutes. Changing this time setting will affect performance, ID: toggle-e5ac9a5a-9d4e-4468-af31-3f006a6c6d3b, Secondary Actions: Expand
+					68 text Changing this time setting will affect performance
+			69 container Global controls
+				70 menu bar Time range Menu
+					71 button (disabled) Zoom out
+					72 pop up button (collapsed) Last 1 hour, ID: toggle-199d78ee-1625-4553-b83e-0d20d253ab9f, Secondary Actions: Expand
+				73 button (disabled) Refresh Chart Data
+				74 pop up button (disabled, collapsed) Description: Auto refresh settings, ID: toggle-e66a4af8-1828-4476-ae25-cd5da8f39042, Secondary Actions: Expand
+				75 text Auto refresh settings
+				76 button Split By
+				77 button (disabled) Clear all
+				78 container Grid Layout
+					79 checkbox Tiles, Value: 0
+						80 image Tiles
+					81 text Grid Layout
+				82 container Stack Layout
+					83 checkbox Hamburger Menu, Value: 1
+						84 image Hamburger Menu
+					85 text Stack Layout
+				86 pop up button (collapsed) Description: Global Actions, ID: toggle-b7d16c55-d20d-43d8-8cf8-f6ae42598977, Secondary Actions: Expand
+					87 image More
+				88 text Global Actions
+			89 container Charting grid
+				90 container
+					91 text Start by selecting data. Find something interesting? Save it to a dashboard, or create an alert.
+			92 container Analysis
+				93 heading Analysis, Value: 2
+					94 button (expanded) Analysis, Secondary Actions: Collapse
+						95 text Analysis
+
+The focused UI element is 1 AXWebArea Analytics Workspace, URL: localhost:8000/en-US/app/search/analytics_workspace

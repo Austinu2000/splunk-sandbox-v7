@@ -1,0 +1,282 @@
+[
+  {
+    "name": "reports",
+    "url": "http://localhost:8000/en-US/app/search/reports",
+    "title": "Reports | Splunk 9.2.2"
+  },
+  {
+    "name": "alerts",
+    "url": "http://localhost:8000/en-US/app/search/alerts",
+    "title": "Alerts | Splunk 9.2.2"
+  },
+  {
+    "name": "dashboards",
+    "url": "http://localhost:8000/en-US/app/search/dashboards",
+    "title": "Dashboards | Splunk 9.2.2"
+  },
+  {
+    "name": "dashboards",
+    "url": "http://localhost:8000/en-US/app/search/dashboards",
+    "title": "Dashboards | Splunk 9.2.2"
+  },
+  {
+    "name": "create-dashboard-dialog",
+    "url": "http://localhost:8000/en-US/app/search/dashboards",
+    "title": "Dashboards | Splunk 9.2.2"
+  },
+  {
+    "name": "add-data",
+    "url": "http://localhost:8000/en-US/manager/search/adddata",
+    "title": "Add Data | Splunk 9.2.2"
+  },
+  {
+    "name": "monitoring-console",
+    "url": "http://localhost:8000/en-US/app/splunk_monitoring_console/monitoringconsole_overview",
+    "title": "Overview | Splunk 9.2.2"
+  },
+  {
+    "name": "searches-reports-and-alerts",
+    "url": "http://localhost:8000/en-US/manager/search/saved/searches?app=search&count=10&offset=0&itemType=&owner=admin",
+    "title": "Searches, reports, and alerts | Splunk 9.2.2"
+  },
+  {
+    "name": "data-models",
+    "url": "http://localhost:8000/en-US/manager/search/data_model_manager?sortKey=displayName&sortDirection=asc&count=20&offset=0&ownerSearch=*&visible=true&appSearch=search",
+    "title": "Data Models | Splunk 9.2.2"
+  },
+  {
+    "name": "event-types",
+    "url": "http://localhost:8000/en-US/manager/search/saved/eventtypes",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "tags",
+    "url": "http://localhost:8000/en-US/manager/search/tags",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "fields",
+    "url": "http://localhost:8000/en-US/manager/search/fields",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "lookups",
+    "url": "http://localhost:8000/en-US/manager/search/lookups",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "user-interface",
+    "url": "http://localhost:8000/en-US/manager/search/ui",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "alert-actions",
+    "url": "http://localhost:8000/en-US/manager/search/alert_actions",
+    "title": "Manage alert actions | Splunk 9.2.2"
+  },
+  {
+    "name": "advanced-search",
+    "url": "http://localhost:8000/en-US/manager/search/advancedsearch",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "all-configurations",
+    "url": "http://localhost:8000/en-US/manager/search/admin/directory",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "server-settings",
+    "url": "http://localhost:8000/en-US/manager/search/systemsettings",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "server-controls",
+    "url": "http://localhost:8000/en-US/manager/search/control",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "health-report-manager",
+    "url": "http://localhost:8000/en-US/manager/system/health/manager",
+    "title": "Features | Splunk 9.2.2"
+  },
+  {
+    "name": "instrumentation",
+    "url": "http://localhost:8000/en-US/manager/splunk_instrumentation/instrumentation_index",
+    "title": "Instrumentation | Splunk"
+  },
+  {
+    "name": "licensing",
+    "url": "http://localhost:8000/en-US/manager/system/licensing",
+    "title": "Licensing - Manager - Splunk"
+  },
+  {
+    "name": "workload-management",
+    "url": "http://localhost:8000/en-US/manager/system/workload_management",
+    "title": "Workload Management | Splunk 9.2.2"
+  },
+  {
+    "name": "mobile-settings",
+    "url": "http://localhost:8000/en-US/app/splunk_secure_gateway/administration#/",
+    "title": "Splunk Secure Gateway"
+  },
+  {
+    "name": "data-inputs",
+    "url": "http://localhost:8000/en-US/manager/search/datainputstats",
+    "title": "Data inputs - Settings | Splunk"
+  },
+  {
+    "name": "forwarding-and-receiving",
+    "url": "http://localhost:8000/en-US/manager/search/forwardreceive",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "indexes",
+    "url": "http://localhost:8000/en-US/manager/search/data/indexes",
+    "title": "Manage Indexes | Splunk 9.2.2"
+  },
+  {
+    "name": "report-acceleration-summaries",
+    "url": "http://localhost:8000/en-US/manager/system/summarization",
+    "title": "Report Acceleration Summaries - Manager - Splunk"
+  },
+  {
+    "name": "source-types",
+    "url": "http://localhost:8000/en-US/manager/search/sourcetypes",
+    "title": "Source Types | Splunk 9.2.2"
+  },
+  {
+    "name": "ingest-actions",
+    "url": "http://localhost:8000/en-US/manager/search/ingest_rulesets",
+    "title": "Ingest Actions"
+  },
+  {
+    "name": "indexer-clustering",
+    "url": "http://localhost:8000/en-US/manager/system/clustering",
+    "title": "Indexer Clustering | Splunk 9.2.2"
+  },
+  {
+    "name": "forwarder-management",
+    "url": "http://localhost:8000/en-US/manager/system/deploymentserver",
+    "title": "Forwarder Management | Splunk 9.2.2"
+  },
+  {
+    "name": "federated-search",
+    "url": "http://localhost:8000/en-US/manager/search/federated_search",
+    "title": "Federated search | Splunk 9.2.2"
+  },
+  {
+    "name": "distributed-search",
+    "url": "http://localhost:8000/en-US/manager/search/distsearch",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "roles",
+    "url": "http://localhost:8000/en-US/manager/search/authorization/roles",
+    "title": "Roles | Splunk"
+  },
+  {
+    "name": "users",
+    "url": "http://localhost:8000/en-US/manager/search/authentication/users",
+    "title": "Users | Splunk 9.2.2"
+  },
+  {
+    "name": "tokens",
+    "url": "http://localhost:8000/en-US/manager/search/authorization/tokens",
+    "title": "Tokens | Splunk 9.2.2"
+  },
+  {
+    "name": "password-management",
+    "url": "http://localhost:8000/en-US/manager/search/password/management",
+    "title": "Password Management | Splunk 9.2.2"
+  },
+  {
+    "name": "authentication-methods",
+    "url": "http://localhost:8000/en-US/manager/search/authoverview",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "datasets",
+    "url": "http://localhost:8000/en-US/app/search/datasets",
+    "title": "Datasets"
+  },
+  {
+    "name": "analytics-workspace",
+    "url": "http://localhost:8000/en-US/app/search/analytics_workspace",
+    "title": "Analytics Workspace"
+  },
+  {
+    "name": "app-management",
+    "url": "http://localhost:8000/en-US/manager/launcher/apps/local",
+    "title": "Settings | Splunk"
+  },
+  {
+    "name": "dashboard-studio-example-hub",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations",
+    "title": "Dashboard Examples Hub"
+  },
+  {
+    "name": "activity-menu",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations",
+    "title": "Dashboard Examples Hub"
+  },
+  {
+    "name": "account-menu",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations",
+    "title": "Dashboard Examples Hub"
+  },
+  {
+    "name": "help-menu",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations",
+    "title": "Dashboard Examples Hub"
+  },
+  {
+    "name": "apps-menu",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-nav-visualizations",
+    "title": "Dashboard Examples Hub"
+  },
+  {
+    "name": "jobs",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/job_manager",
+    "title": "Job Manager | Splunk 9.2.2"
+  },
+  {
+    "name": "triggered-alerts",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/triggered_alerts?eai%3Aacl.app=splunk-dashboard-studio&eai%3Aacl.owner=*&severity=*&alert_name=*&sort_key=trigger_time&sort_dir=desc",
+    "title": "Triggered Alerts"
+  },
+  {
+    "name": "dashboard-studio-column-chart",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-column-chart-visualization",
+    "title": "Column Chart"
+  },
+  {
+    "name": "dashboard-studio-column-chart",
+    "url": "http://localhost:8000/en-US/app/splunk-dashboard-studio/example-hub-column-chart-visualization",
+    "title": "Column Chart"
+  },
+  {
+    "name": "home",
+    "url": "http://localhost:8000/en-US/app/launcher/home",
+    "title": "Home"
+  },
+  {
+    "name": "home-dashboard",
+    "url": "http://localhost:8000/en-US/app/launcher/home",
+    "title": "Home"
+  },
+  {
+    "name": "home-recently-viewed",
+    "url": "http://localhost:8000/en-US/app/launcher/home",
+    "title": "Home"
+  },
+  {
+    "name": "home-created-by-you",
+    "url": "http://localhost:8000/en-US/app/launcher/home",
+    "title": "Home"
+  },
+  {
+    "name": "home-shared-with-you",
+    "url": "http://localhost:8000/en-US/app/launcher/home",
+    "title": "Home"
+  }
+]

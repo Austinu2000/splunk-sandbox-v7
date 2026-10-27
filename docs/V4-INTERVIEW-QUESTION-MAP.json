@@ -1,0 +1,3154 @@
+{
+  "schemaVersion": 1,
+  "status": "analysis only; not loaded by the app",
+  "source": {
+    "filename": "Austin_Interview_Questions.docx",
+    "sha256": "45525e77db40897b584f8c7bb37978bf29f0861a9ea2f79f7a6163c6d0606616",
+    "reportedTranscriptCount": 69,
+    "reportedInterviewSessionCount": 44,
+    "reportedRawQuestions": 462,
+    "canonicalQuestions": 235,
+    "sumOfReportedQuestionSessionCounts": 442,
+    "countNote": "Session counts are per canonical question and overlap across questions; they are not unique interview totals. Part A counts sum to 442. The source separately reports 462 raw question occurrences."
+  },
+  "questionIdPolicy": "IQ001–IQ235 are assigned in supplied Part A order; these IDs are new planning references, not original document labels. Preserve them on future revisions.",
+  "workstreams": [
+    "architecture",
+    "cluster-storage",
+    "ingestion-cloud",
+    "change-automation",
+    "spl-dashboards",
+    "observability",
+    "cribl",
+    "security",
+    "communication",
+    "answer-practice",
+    "linux-windows",
+    "later-specialist"
+  ],
+  "questions": [
+    {
+      "id": "IQ001",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Describe the Splunk environment(s) you have owned or administered: size, components, and daily ingest.",
+      "reportedSessionCount": 5,
+      "sourceParagraphIndex": 27,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ002",
+      "topic": "Splunk Architecture & Administration",
+      "question": "How do you monitor the health and performance of Splunk itself? Which metrics, alerts and proactive checks do you use?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 33,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ003",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What does your day-to-day work look like? What have you been working on recently in Splunk?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 38,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ004",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What hands-on admin experience do you have with Splunk Enterprise (indexers, search heads, forwarders, clustering)?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 43,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ005",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Explain the Splunk bucket lifecycle and how it relates to retention.",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 48,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [
+        "erie-retention-capacity"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ006",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Have you used/implemented SmartStore? How is it configured, and how does data flow through it?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 52,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ007",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What are the main components of a (distributed) Splunk architecture?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 56,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ008",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Explain indexer clustering: what is the difference between replication factor and search factor?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 60,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ009",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Have you built a Splunk environment from scratch or end to end, or did you inherit and enhance an existing one?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 63,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ010",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Have you performed Splunk upgrades in production? Which tooling did you use, and how did you mitigate risk and downtime?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 66,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-idx-rolling-restart",
+        "erie-uf-upgrade-drift"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ011",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What happens if the cluster manager goes down (including for forwarders that use indexer discovery)?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 69,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ012",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What is the difference between a universal forwarder and a heavy forwarder?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 72,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ013",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Which Splunk premium apps or add-ons (e.g., ES) have you worked with?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 75,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ014",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Which Splunk versions have you supported, and which is the most recent?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 78,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ015",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Does the security team have a say in the retention period?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 81,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ016",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Explain the stages of the Splunk indexing pipeline.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 82,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ017",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Give me a sample btool command - e.g., to check the list of inputs.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 83,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ018",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Have you built an indexer cluster? How do you add an additional indexer to an existing cluster, and what do you configure on the new indexer?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 84,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ019",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Have you used indexer discovery before?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 85,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ020",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Have you worked on Splunk deployments - putting forwarders on servers, creating roles, and validating that logs are ingested?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 86,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ021",
+      "topic": "Splunk Architecture & Administration",
+      "question": "How do you push configs from the deployment server to forwarders - what's the difference between reload and restart, and when do you use each?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 87,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "ds-serverclass-typo"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ022",
+      "topic": "Splunk Architecture & Administration",
+      "question": "How do you set retention for an index? What is your standard policy for searchable vs. archived data?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 88,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [
+        "erie-retention-capacity"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ023",
+      "topic": "Splunk Architecture & Administration",
+      "question": "How does the deployment server work, and what is its main role?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 91,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ024",
+      "topic": "Splunk Architecture & Administration",
+      "question": "How would you design the data ingestion architecture for Splunk Cloud at about 2 TB/day?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 92,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ025",
+      "topic": "Splunk Architecture & Administration",
+      "question": "How would you roll out a new app to 35,000 universal forwarders without creating a widespread outage?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 93,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ026",
+      "topic": "Splunk Architecture & Administration",
+      "question": "In high-ingestion environments, how does understanding the indexing strategy contribute to query optimization?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 94,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ027",
+      "topic": "Splunk Architecture & Administration",
+      "question": "On which Splunk tier would you configure and run those alerts?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 95,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ028",
+      "topic": "Splunk Architecture & Administration",
+      "question": "Were you retaining frozen data (e.g., seven years) inside Splunk or outside it?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 96,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ029",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What about the infrastructure/administrative side - were you doing Linux engineering?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 97,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ030",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What are the queues in Splunk, and what do the parsing and typing queues do?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 98,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ031",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What command do you use on the cluster manager for a rolling restart / to push the cluster bundle?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 99,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ032",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What happens if a server class is misconfigured on the deployment server?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 100,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "ds-serverclass-typo",
+        "erie-phonehome-storm"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ033",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What happens if the replication factor is not met?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 101,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [
+        "erie-peer-disk-full"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ034",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What information is available only on the Monitoring Console?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 102,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ035",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What is a tsidx / index file?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 103,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ036",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What is your current replication factor (RF) and search factor (SF)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 104,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ037",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What were the largest indexes in your environment, and what were their sizes?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 105,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ038",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What's your current Splunk architecture - multi-site or single-site?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 106,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ039",
+      "topic": "Splunk Architecture & Administration",
+      "question": "What's your experience with identity and access management integration with Splunk (SSO/roles)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 107,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-saml-role-mapping"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ040",
+      "topic": "Splunk Architecture & Administration",
+      "question": "When evaluating the health and effectiveness of a logging or analytics service, which metrics are the most valuable?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 108,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ041",
+      "topic": "Splunk Architecture & Administration",
+      "question": "When you started at your last role, what was the current state of the Splunk environment?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 109,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "architecture"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ042",
+      "topic": "Splunk Architecture & Administration",
+      "question": "With 50 indexers, can you set the replication factor to 8 and the search factor to 6? Does that ratio affect anything?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 110,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ043",
+      "topic": "Splunk Architecture & Administration",
+      "question": "You can modify the size of tsidx files - what are the drawbacks of making them smaller?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 111,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ044",
+      "topic": "Splunk Architecture & Administration",
+      "question": "You have 60 indexers in an indexer cluster and need to retire one - walk me through the process (would you stop it, or use the splunk offline command?).",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 112,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ045",
+      "topic": "Splunk Architecture & Administration",
+      "question": "You were a Splunk admin - can you describe the difference between Splunk admin work and working on observability?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 113,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ046",
+      "topic": "SPL & Searches",
+      "question": "Compare stats, tstats, eventstats, streamstats, chart and timechart.",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 115,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ047",
+      "topic": "SPL & Searches",
+      "question": "How do you optimize slow searches? What are the key search-optimization principles?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 118,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ048",
+      "topic": "SPL & Searches",
+      "question": "What is a summary index, and when would you use it?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 121,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ049",
+      "topic": "SPL & Searches",
+      "question": "What is the transaction command, and have you used it?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 124,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ050",
+      "topic": "SPL & Searches",
+      "question": "An application (e.g., NGINX) suddenly started sending a lot of data and over-utilized the license - how do you find the total volume of data being sent from it?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 127,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud",
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [
+        "license-noisy-debug",
+        "erie-wineventlog-volume"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ051",
+      "topic": "SPL & Searches",
+      "question": "Live exercise: here are two queries - which one performs better, and why?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 128,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ052",
+      "topic": "SPL & Searches",
+      "question": "Live exercise: here is an SPL query (status=500 errors, stats count by service/URI/user, earliest=-24h, sort) - what's wrong with it and how would you optimize it?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 129,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ053",
+      "topic": "SPL & Searches",
+      "question": "Live exercise: write a command/regex to extract valid IPv4 addresses.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 130,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ054",
+      "topic": "SPL & Searches",
+      "question": "Scenario: from employee_lookup.csv (employee ID, name, department, location), read the lookup, filter the IT department and save it to a new file it_employees.csv - which commands do you use? Does outputlookup overwrite, and how would you append?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 131,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ055",
+      "topic": "SPL & Searches",
+      "question": "What is a macro in Splunk?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 132,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ056",
+      "topic": "SPL & Searches",
+      "question": "What is the difference between the join and append commands, and when do you use each?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 133,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ057",
+      "topic": "SPL & Searches",
+      "question": "What's the difference between data model acceleration and report acceleration, and when would you use each?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 134,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ058",
+      "topic": "SPL & Searches",
+      "question": "When you get a request to build an alert, what requirements do you gather?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 135,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ059",
+      "topic": "SPL & Searches",
+      "question": "Where would you put those platform-health alerts, which datasets (_internal, _introspection) would you use, and how would you structure the SPL?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 136,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [
+        "skipped-searches"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ060",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What is your data onboarding experience and general ingestion approach? Describe a challenging one.",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 138,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ061",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What are the main Splunk configuration files, and what is each used for?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 143,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ062",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "Did you work with heavy forwarders, and what did you use them for?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 146,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ063",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "Do you have experience creating custom collector agents (universal/heavy forwarders) for hardware devices?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 147,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ064",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "Have you configured a Splunk agent/forwarder? What configuration is needed for it to send logs to Splunk or Cribl?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 148,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ065",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "Have you pulled data from databases into Splunk (DB Connect)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 149,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ066",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "How did you handle customer-sensitive data (masking, access restrictions)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 150,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ067",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "How do you remove duplicate data, ideally before it gets into Splunk?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 151,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ068",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "How would you get data ingested into Splunk Cloud from store hardware devices, and build dashboards for proactive monitoring of those devices?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 152,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ069",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "In a large enterprise, how do you control excessive log volume and license usage - what best practices or standards do you give application teams?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 153,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "license-noisy-debug",
+        "erie-wineventlog-volume",
+        "apl-cribl-route"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ070",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "Talk to me about the data - was it server logs, network logs, telemetry (IoT/SCADA)? Give me a deeper dive.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 154,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ071",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What is CIM, why does it matter, and how do you normalize data (e.g., firewall logs) to it?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 155,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-sep-cim",
+        "apl-fortigate-sourcetype"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ072",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What is the difference between props.conf and transforms.conf?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 158,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ073",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What is the fishbucket, and what is it used for?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 159,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ074",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What protocols have you used in outputs.conf?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 160,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ075",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What's your experience configuring and managing syslog servers (syslog-ng/rsyslog), including editing their configurations?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 161,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ076",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "What's your experience creating custom add-ons (TAs)? Give an example and the config files/configurations you created to ingest that custom log source.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 162,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ077",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "When onboarding a new data source, what factors do you consider in choosing TCP vs. UDP vs. HEC as the ingestion mechanism?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 163,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ078",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "Where does parsing happen, and what is the impact of parsing data on the heavy forwarder vs. the indexer?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 164,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "event-line-breaking",
+        "apl-fortigate-sourcetype"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ079",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "Which configuration controls timestamp extraction, and which props.conf parameters do you use (TIME_PREFIX, MAX_TIMESTAMP_LOOKAHEAD, TIME_FORMAT)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 165,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "timestamp-tz",
+        "apl-fortigate-timezone"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ080",
+      "topic": "Data Onboarding, props/transforms & Configs",
+      "question": "You need to onboard a log file with multi-line events (e.g., stack traces) as single events - what configs would you deploy, and on which Splunk tier?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 166,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "event-line-breaking"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ081",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "What SOAR (Phantom) / ServiceNow playbook experience do you have? Walk through an example.",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 168,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-soar-servicenow"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ082",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "How did you integrate Splunk alerts and dashboards with ServiceNow?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 172,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-soar-servicenow"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ083",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "What SIEM experience do you have, including platforms outside Splunk?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 175,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ084",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "Describe your understanding of vulnerability management concepts (CVE, CVSS, remediation workflows, secure configuration).",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 178,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ085",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "Do you have experience with CrowdStrike?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 179,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ086",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "How do you investigate a Splunk alert for a suspicious privileged account?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 180,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ087",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "How would you respond to a ransomware incident detected by Splunk?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 181,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ088",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "In Enterprise Security, how do you leverage asset and identity data? Have you done that?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 182,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ089",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "Was your Splunk implementation more observability-focused, Enterprise Security-focused, or both?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 183,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ090",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "What hands-on experience do you have with security monitoring tools (SIEM, EDR, IAM, alert triage)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 184,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ091",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "What security measures have you put in place to help secure systems, networks or applications in your past roles?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 188,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ092",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "What types of actions were you able to automate, and how did that impact the manual effort that was happening before?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 189,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ093",
+      "topic": "Enterprise Security, SOC & SOAR",
+      "question": "Which specific tools or environments did you use to manage access controls and patching?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 190,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ094",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Where did you use OpenTelemetry, which collectors/agents, and how was it deployed and consumed?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 192,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ095",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "What is your Splunk ITSI experience? Did you configure services and entities, or were you a user?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 197,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ096",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Which APM, trace or observability tools have you used besides Splunk?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 201,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ097",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "How do you visualize telemetry/OTel data (front end, e.g., Grafana)?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 206,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ098",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Do you know what a span is (vs. a trace)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 209,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ099",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "How did the operations team use what you created?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 210,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ100",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "†How do you work with application/system owners to decide which metrics, logs and traces to collect while avoiding alert fatigue?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 211,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ101",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "†How have you deployed and managed telemetry agents at scale?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 212,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ102",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "How would you design a system that correlates signals across tools and determines the likely root cause?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 215,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ103",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "If there were a use case to leverage ITSI - including taking an automated action (e.g., restarting a service when a KPI detects it's stopped) - could you do that?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 216,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ104",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Observability vs. monitoring: what are the pillars (MELT)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 217,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ105",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Once it goes to an operations team or managed service provider, how do you make that correlated information actionable for them?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 220,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ106",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Splunk Observability Cloud: did you configure it end to end? What are detectors?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 221,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ107",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "†Walk through an incident or noisy-alert cleanup where telemetry made the difference, and discuss your SLO/alerting standards.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 224,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ108",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Walk through how you split use cases between Splunk and OpenTelemetry.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 225,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ109",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "Were you primarily identifying the missing information (dashboard-style), or building the instrumentation/collectors yourself?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 226,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ110",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "†What experience do you have with the LGTM stack (Loki, Grafana, Tempo, Mimir)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 227,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ111",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "What ports are used for OpenTelemetry connections, and which tokens are used to connect OpenTelemetry to Splunk Observability Cloud?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 228,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ112",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "What were the observability (OpenTelemetry/trace) coverage gaps, and what did you do about them?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 229,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ113",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "What's the most advanced observability implementation you've worked on?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 230,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ114",
+      "topic": "ITSI, Observability & OpenTelemetry",
+      "question": "When you say incident management, do you mean operational (infrastructure/application) incidents rather than security incidents?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 231,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ115",
+      "topic": "Cribl & Edge Processing",
+      "question": "What is your Cribl experience? Where did you use it, what did you do, and was it a POC or production?",
+      "reportedSessionCount": 6,
+      "sourceParagraphIndex": 233,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-cribl-route"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ116",
+      "topic": "Cribl & Edge Processing",
+      "question": "What is Splunk Edge Processor, and do you have experience with it?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 241,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ117",
+      "topic": "Cribl & Edge Processing",
+      "question": "Describe what you did across the unsecured and secured (classified/unclassified) environments - how were they segregated, and did they send to the same Splunk or different Splunk instances?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 244,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ118",
+      "topic": "Cribl & Edge Processing",
+      "question": "Did you have a Cribl layer, or did forwarders talk directly to the Splunk indexers?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 245,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ119",
+      "topic": "Cribl & Edge Processing",
+      "question": "What experience do you have with queuing and streaming platforms (e.g., Cribl, Kafka)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 246,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ120",
+      "topic": "Cribl & Edge Processing",
+      "question": "What was the purpose of Cribl when you still need heavy and universal forwarders? Couldn't you just use the forwarders to do that?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 247,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ121",
+      "topic": "Cribl & Edge Processing",
+      "question": "What's your high-level impression of Cribl - worth it, great tool, or lots of problems?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 248,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ122",
+      "topic": "Cribl & Edge Processing",
+      "question": "With Cribl persistent queue in always-on mode, what happens to the historical data sitting in the queue, and why was the PQ engaged in the first place?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 249,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-cribl-route"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ123",
+      "topic": "Cribl & Edge Processing",
+      "question": "Your Cribl exposure looks light or dated. Are you comfortable with it, and have you kept it current?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 250,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cribl"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ124",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "Have you worked on Splunk Cloud, Splunk Enterprise on-prem, or both (hybrid)?",
+      "reportedSessionCount": 8,
+      "sourceParagraphIndex": 254,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ125",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "Have you done Splunk migrations to the cloud? How would you plan and execute an on-prem to Splunk Cloud migration?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 263,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ126",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "How have you integrated AWS (or other clouds) with Splunk? Which services, and which collection method (push vs. pull, S3+SQS)?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 268,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-aws-flowlogs-stalled"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ127",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "What Kubernetes/container experience do you have, and how would you monitor Kubernetes?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 273,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ128",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "What experience do you have with cloud platforms (AWS/Azure)?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 278,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ129",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "Do you have experience with native AWS monitoring (CloudWatch)? Do you find any difference between CloudWatch logs and Splunk logs in ingesting, reading and searching?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 281,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ130",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "Do you understand cloud and SaaS security concepts like the shared responsibility model, logging and configuration hardening?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 282,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ131",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "Have you built AWS infrastructure with Terraform (e.g., an auto-scaling heavy forwarder)? Which resources would you need?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 283,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ132",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "Have you worked with AWS ECS?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 286,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ133",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "How would you balance the need for flexibility and control when deciding between on-prem and cloud?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 287,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ134",
+      "topic": "Cloud, AWS & Migrations",
+      "question": "Which Splunk Enterprise components would you deploy on a cloud platform such as Oracle Cloud (indexers, search heads, deployment server, deployer)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 288,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ135",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "Which scripting languages do you use (Python, Bash, PowerShell), and how strong are you with them?",
+      "reportedSessionCount": 5,
+      "sourceParagraphIndex": 290,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ136",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "Give examples of automation you have done to improve platform operations or handle a big task.",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 296,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ137",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "Tell me about using scripted inputs or scripting to onboard data into Splunk.",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 301,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ138",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "What is your Ansible experience? How was it set up and used with Splunk (playbooks, templates)?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 305,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ139",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "What CI/CD and Git experience do you have (Jenkins, GitHub Actions, Bitbucket)?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 309,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ140",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "Are you familiar with DevOps tools and technologies (Ansible, Terraform, cloud, Kubernetes/microservices)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 312,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ141",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "†How do you deliver agent/telemetry configs safely across many hosts without a snowflake mess (infrastructure as code)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 313,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ142",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "How do you make sure a configuration change (e.g., in server.conf) stays persistent across platform rebuilds and outages, and how do you structure the release to production?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 314,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ143",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "How do you test your changes - do you push straight to prod? How do you know settings will have the expected effect?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 315,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ144",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "How does Ansible communicate with the managed nodes?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 316,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ145",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "If all configs were managed in Git and delivered through Ansible, did users have no access to make changes in the search head cluster UI - including alerts and saved searches?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 317,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ146",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "If you need to make a bulk change to 10-20 hosts at once, which tool would you use?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 318,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ147",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "What are handlers in Ansible?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 319,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ148",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "What did you use for Ansible tests and syntax checking?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 320,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ149",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "What is the difference between an Ansible role and a playbook (and the raw module)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 321,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ150",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "When building out infrastructure (e.g., with Terraform), which automation tools did you use?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 322,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ151",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "With configs in Git, how do you manage secrets/credentials for third-party integrations (e.g., ServiceNow) and deliver them to the Splunk tiers?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 323,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-soar-servicenow"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ152",
+      "topic": "Scripting, Automation & DevOps",
+      "question": "You're good with APIs - have you ever built an MCP server?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 324,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "later-specialist"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ153",
+      "topic": "Troubleshooting Scenarios",
+      "question": "Data from a forwarder/source is missing or not searchable. Where do you start, and which commands/logs do you check?",
+      "reportedSessionCount": 5,
+      "sourceParagraphIndex": 326,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "input-permissions",
+        "forwarder-retired-indexer",
+        "ds-serverclass-typo",
+        "apl-aws-flowlogs-stalled"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ154",
+      "topic": "Troubleshooting Scenarios",
+      "question": "A search head cluster member is out of sync, pending, or missing from the cluster. How do you troubleshoot and resolve it?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 332,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [
+        "apl-shc-bundle-push"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ155",
+      "topic": "Troubleshooting Scenarios",
+      "question": "Describe a major Splunk outage you helped resolve.",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 336,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ156",
+      "topic": "Troubleshooting Scenarios",
+      "question": "Firewall logs are coming in with an ingestion delay - how do you investigate and resolve it?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 339,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "blocked-parsing-queue",
+        "apl-ot-udp-drops"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ157",
+      "topic": "Troubleshooting Scenarios",
+      "question": "How do you troubleshoot ingestion pipeline failures, and at which stage do most issues occur?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 340,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "blocked-parsing-queue",
+        "event-line-breaking"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ158",
+      "topic": "Troubleshooting Scenarios",
+      "question": "How would you know Splunk itself is down (e.g., the whole search head cluster and captain are gone at 3 AM)? What would you configure, and where? (monitoring the monitor)",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 343,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ159",
+      "topic": "Troubleshooting Scenarios",
+      "question": "How would you test network connectivity between nodes, and which port would you check?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 344,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ160",
+      "topic": "Troubleshooting Scenarios",
+      "question": "Once you've identified the root cause, how do you determine the best course of action to resolve the incident and minimize downtime?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 345,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ161",
+      "topic": "Troubleshooting Scenarios",
+      "question": "What if you see the same ingestion issues at the universal forwarder or heavy forwarder level?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 346,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ162",
+      "topic": "Troubleshooting Scenarios",
+      "question": "What is your go-to step if the ingestion issue is seen at the indexer, and what are the most common indexer-side causes?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 347,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [
+        "blocked-parsing-queue",
+        "erie-peer-disk-full"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ163",
+      "topic": "Troubleshooting Scenarios",
+      "question": "What tools are available in Splunk to detect such an issue? What is the sourcetype of Splunk's internal logs, and can you give a search string?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 348,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "ingestion-cloud"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ164",
+      "topic": "Troubleshooting Scenarios",
+      "question": "When handling P1/P0 incidents with Splunk Observability, how do you prioritize the actions you take when you first identify an issue?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 349,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "observability"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ165",
+      "topic": "Troubleshooting Scenarios",
+      "question": "You log in for the day and the Splunk Web page won't launch (you're an admin) - what would you do?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 350,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ166",
+      "topic": "Troubleshooting Scenarios",
+      "question": "You see in the logs that the KV Store is not syncing - how do you troubleshoot it?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 351,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "cluster-storage"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ167",
+      "topic": "Dashboards & Visualization",
+      "question": "What dashboards, alerting or monitoring solutions have you built, and for which domains?",
+      "reportedSessionCount": 5,
+      "sourceParagraphIndex": 353,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ168",
+      "topic": "Dashboards & Visualization",
+      "question": "A dashboard is slow to load. How do you troubleshoot and optimize it?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 359,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [
+        "skipped-searches"
+      ],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ169",
+      "topic": "Dashboards & Visualization",
+      "question": "Do you build dashboards in Classic (Simple XML) or Dashboard Studio? What is the difference?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 363,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ170",
+      "topic": "Dashboards & Visualization",
+      "question": "How do you gather requirements from the client and build dashboards around them?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 367,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ171",
+      "topic": "Dashboards & Visualization",
+      "question": "If we have a dashboard in Splunk and want to view some of its data in Grafana, how do we do that?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 368,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ172",
+      "topic": "Dashboards & Visualization",
+      "question": "Is there a limit on how many panels you can create in a dashboard?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 369,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "spl-dashboards"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ173",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Tell me about your leadership: team size, mentoring, and guiding engineers through new technology.",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 371,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ174",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Explain your role at APL. What did \"unclassified\" work mean, and who were the end clients?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 376,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ175",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "What is your experience with agile/sprints, and how do you track work and raise blockers?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 379,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ176",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Your stints have been short and your contracts have ended. Why, and what says you would stay?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 382,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ177",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Describe a situation where you needed your team to adopt an unpopular change. How did you build buy-in, and what would you do differently today?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 385,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ178",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Describe a time you translated a customer's business need into a technical solution (e.g., a dashboard or new log source), and how you made sure the customer was satisfied.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 386,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ179",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Do you review your peers' dashboards and configurations? What do you check for from a best-practice perspective?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 387,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "change-automation",
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ180",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "How do you support environments where uptime and responsiveness are critical to operations?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 388,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ181",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "How would you remediate quickly when something goes down and impacts the customer experience, without bypassing controls?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 389,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ182",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "If you hit a problem and nobody's around, what would you look at, what would you try, and who would you reach out to?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 390,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ183",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "In your current technical Splunk role, what are your top five achievements?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 391,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ184",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Is there anything else you'd like to add about why you're a fit for this role?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 392,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ185",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Share experiences where you've had to work directly with internal stakeholders (business vs. IT teams) to build out data analytics.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 393,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ186",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "†Tell me about a time you took ownership of a stalled or unowned technical initiative.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 394,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ187",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "This would be a new domain for you (healthcare) - how soon could you ramp up, and how do you set yourself up to learn a new domain's terminology and concepts?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 395,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ188",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "†Walk through your most recent project: what you were building, what you owned, and what actually shipped or changed because of you.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 396,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ189",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "†What has been your favorite career experience so far?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 397,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ190",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "What type of production support have you provided (L2/L3)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 398,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ191",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "What's the nerdiest thing you've ever done?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 399,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ192",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Where do you see your career going in the next 1 to 3 years?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 400,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ193",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "You'll have 3-4 tickets at the same time - how do you prioritize them (or convince the customer)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 401,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ194",
+      "topic": "Behavioral & Experience Deep-Dives",
+      "question": "Your background sounds primarily SRE - at your last role, was it production support with the operations team, or working with business and IT users?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 402,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "communication"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ195",
+      "topic": "Background, Logistics & Screening",
+      "question": "Tell me about yourself / walk me through your background and experience.",
+      "reportedSessionCount": 22,
+      "sourceParagraphIndex": 404,
+      "relayedOrReconstructedWordingPresent": true,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ196",
+      "topic": "Background, Logistics & Screening",
+      "question": "Do you have any questions for us?",
+      "reportedSessionCount": 19,
+      "sourceParagraphIndex": 427,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ197",
+      "topic": "Background, Logistics & Screening",
+      "question": "Where are you located? Are you OK with on-site/hybrid days or relocating?",
+      "reportedSessionCount": 19,
+      "sourceParagraphIndex": 440,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ198",
+      "topic": "Background, Logistics & Screening",
+      "question": "What compensation/rate are you targeting? Does the posted range work for you?",
+      "reportedSessionCount": 12,
+      "sourceParagraphIndex": 463,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ199",
+      "topic": "Background, Logistics & Screening",
+      "question": "What is your current situation? Why are you looking, and has your last contract ended?",
+      "reportedSessionCount": 10,
+      "sourceParagraphIndex": 475,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ200",
+      "topic": "Background, Logistics & Screening",
+      "question": "Are you interviewing elsewhere or holding any offers? Where are you in those processes?",
+      "reportedSessionCount": 7,
+      "sourceParagraphIndex": 487,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ201",
+      "topic": "Background, Logistics & Screening",
+      "question": "Will you now or in the future require visa sponsorship to work in the US?",
+      "reportedSessionCount": 7,
+      "sourceParagraphIndex": 496,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ202",
+      "topic": "Background, Logistics & Screening",
+      "question": "Does this role sound interesting to you? Are you comfortable with the job description?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 503,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ203",
+      "topic": "Background, Logistics & Screening",
+      "question": "If you got an offer, how soon could you start?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 508,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ204",
+      "topic": "Background, Logistics & Screening",
+      "question": "Have you ever held a security clearance, and would you go through the process for one?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 513,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ205",
+      "topic": "Background, Logistics & Screening",
+      "question": "When are you available to interview?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 517,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ206",
+      "topic": "Background, Logistics & Screening",
+      "question": "How many years of experience do you have (overall and with Splunk)?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 521,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ207",
+      "topic": "Background, Logistics & Screening",
+      "question": "Why are you interested in this company? What do you know about what we do?",
+      "reportedSessionCount": 2,
+      "sourceParagraphIndex": 524,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ208",
+      "topic": "Background, Logistics & Screening",
+      "question": "Any concerns about the role or the contract before we dive in?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 527,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ209",
+      "topic": "Background, Logistics & Screening",
+      "question": "Are you comfortable with us recording this call for training purposes?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 528,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ210",
+      "topic": "Background, Logistics & Screening",
+      "question": "Are you currently working with another organization?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 529,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ211",
+      "topic": "Background, Logistics & Screening",
+      "question": "Are you looking for a cybersecurity-focused role, or are you open to an application administration opportunity?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 530,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ212",
+      "topic": "Background, Logistics & Screening",
+      "question": "Are you looking for a full-time staff position or a contract position?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 531,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ213",
+      "topic": "Background, Logistics & Screening",
+      "question": "Can you share your government-approved photo ID before we start?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 532,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ214",
+      "topic": "Background, Logistics & Screening",
+      "question": "Describe the professional domain you consider your strongest - which is your primary area of expertise?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 533,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ215",
+      "topic": "Background, Logistics & Screening",
+      "question": "Did you apply through a subcontractor or directly through the company website?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 534,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ216",
+      "topic": "Background, Logistics & Screening",
+      "question": "Have you been in the federal space before?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 535,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ217",
+      "topic": "Background, Logistics & Screening",
+      "question": "Have you worked for this company or any of its affiliates in the past?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 536,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ218",
+      "topic": "Background, Logistics & Screening",
+      "question": "How did you get into working on Splunk?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 537,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ219",
+      "topic": "Background, Logistics & Screening",
+      "question": "How many organizations have you worked with so far?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 538,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ220",
+      "topic": "Background, Logistics & Screening",
+      "question": "If given the option to be rebadged/converted to the client after some months, would you be okay with that?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 539,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ221",
+      "topic": "Background, Logistics & Screening",
+      "question": "Is this still a good time to conduct the interview?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 540,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ222",
+      "topic": "Background, Logistics & Screening",
+      "question": "Is this your first interview for this position?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 541,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ223",
+      "topic": "Background, Logistics & Screening",
+      "question": "Is your education (bachelor's degree) on your resume accurate, and are your Splunk certifications accurate and active?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 542,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ224",
+      "topic": "Background, Logistics & Screening",
+      "question": "The project requires mandatory unpaid time off (about five days each quarter) - are you okay with that?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 543,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ225",
+      "topic": "Background, Logistics & Screening",
+      "question": "What types of environments and platforms have you most recently supported?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 544,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ226",
+      "topic": "Background, Logistics & Screening",
+      "question": "What's the best way to reach you?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 545,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ227",
+      "topic": "Background, Logistics & Screening",
+      "question": "Would you be interested in moving to the next interview with additional committee members?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 546,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ228",
+      "topic": "Background, Logistics & Screening",
+      "question": "Would you share any feedback on this interview experience?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 547,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "answer-practice"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ229",
+      "topic": "Other Tech (Linux, Windows, AI/ML, misc.)",
+      "question": "What is your Linux experience (admin, CLI, reliability/security practices)?",
+      "reportedSessionCount": 4,
+      "sourceParagraphIndex": 549,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "linux-windows"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ230",
+      "topic": "Other Tech (Linux, Windows, AI/ML, misc.)",
+      "question": "What AI/ML experience do you have with Splunk (MLTK, AI in observability)?",
+      "reportedSessionCount": 3,
+      "sourceParagraphIndex": 554,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "later-specialist"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ231",
+      "topic": "Other Tech (Linux, Windows, AI/ML, misc.)",
+      "question": "Do you have Active Directory and ServiceNow integration experience?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 558,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "security"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ232",
+      "topic": "Other Tech (Linux, Windows, AI/ML, misc.)",
+      "question": "Do you have any relevant knowledge of POS (point-of-sale) systems?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 559,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "later-specialist"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ233",
+      "topic": "Other Tech (Linux, Windows, AI/ML, misc.)",
+      "question": "Have you ever worked with Apache, Tomcat, or other web servers/middleware?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 560,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "linux-windows"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ234",
+      "topic": "Other Tech (Linux, Windows, AI/ML, misc.)",
+      "question": "How many years of experience do you have with Endace (NDR platforms)?",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 561,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "later-specialist"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    },
+    {
+      "id": "IQ235",
+      "topic": "Other Tech (Linux, Windows, AI/ML, misc.)",
+      "question": "Tell me about your experience working with Windows.",
+      "reportedSessionCount": 1,
+      "sourceParagraphIndex": 562,
+      "relayedOrReconstructedWordingPresent": false,
+      "proposedWorkstreams": [
+        "linux-windows"
+      ],
+      "relatedExistingScenarioIds": [],
+      "mappingNote": "Related scenarios are starting points, not a claim of complete question coverage."
+    }
+  ]
+}

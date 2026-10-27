@@ -1,0 +1,19 @@
+{
+  "id": "G1",
+  "title": "Look around a repository",
+  "minutes": 10,
+  "level": 1,
+  "profile": "lab",
+  "instructions": "Goal: see what a Git repo is and read its history.\n1 . In the terminal, log in to the automation server: ssh svc_ansible@ansible01\n\n2. Go into the repo: cd ~/splunk-automation\n3. List the files: ls\n4. Ask Git what's going on: git status . It should say you're on branch main  with\nnothing to commit.\n5. See the history: git log --oneline . Each line is one commit: a short ID and a\nmessage.\n6. Open the Code app and find the same repo and the same commits in the browser.\nCheck yourself: who made the most recent commit, and what did it change? (Hint: git\nshow .)",
+  "checks": [
+    {
+      "kind": "command",
+      "pattern": "git status"
+    },
+    {
+      "kind": "command",
+      "pattern": "git log"
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}

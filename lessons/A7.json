@@ -1,0 +1,30 @@
+{
+  "id": "A7",
+  "title": "Rolling restart without an outage",
+  "minutes": 30,
+  "level": 3,
+  "profile": "apl",
+  "instructions": "Situation: playbooks/rolling_restart.yml  restarts every indexer at once. Last time it\ntook search down for 20 minutes. Fix it.\nRestart one indexer at a time with serial: 1 .\nPut the cluster in maintenance mode first, from the cluster manager ( splunk enable\nmaintenance-mode ), and turn it off at the end ( splunk disable maintenance-mode ).\nUse run_once  and delegate_to  for those tasks.\nWait for each peer to come back before moving on ( wait_for  on port 8089, or check\ncluster status).\nDry-run with --check , then run it.\nTrap: forgetting to disable maintenance mode afterwards, which leaves bucket fixup\npaused.\nDone when: every peer restarted, search stayed up, and the search and replication\nfactors are met.",
+  "checks": [
+    {
+      "kind": "run",
+      "check": true
+    },
+    {
+      "kind": "run",
+      "check": false,
+      "minHosts": 2
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks.",
+  "setup": [
+    {
+      "repo": "splunk-automation",
+      "branch": "fixture/unsafe-restart",
+      "path": "playbooks/rolling_restart.yml",
+      "title": "Unsafe restart batch to repair",
+      "text": "- hosts: indexers\n  become: true\n  tasks:\n    - name: Restart Splunk\n      service:\n        name: Splunkd\n        state: restarted\n",
+      "baseline": true
+    }
+  ]
+}

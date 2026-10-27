@@ -1,0 +1,3761 @@
+{
+  "installation": "/Applications/Splunk",
+  "version": "VERSION=9.2.2\nBUILD=d76edf6f0a15\nPRODUCT=splunk\nPLATFORM=Darwin-x86_64\n",
+  "apps": [
+    {
+      "app": "launcher",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/launcher/default/data/ui/nav/default.xml",
+          "xml": "<nav>\n\t<view name=\"home\" default=\"true\" />\n</nav>\n",
+          "views": [
+            {
+              "name": "home",
+              "default": "true"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": [
+        {
+          "id": "home",
+          "path": "/Applications/Splunk/etc/apps/launcher/default/data/ui/views/home.xml",
+          "root": "view",
+          "label": "Home",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "454fbd428d48b046c522973e08a568e077c89814bf2662f7c5599f0d311de7be"
+        }
+      ]
+    },
+    {
+      "app": "python_upgrade_readiness_app",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/python_upgrade_readiness_app/default/data/ui/nav/default.xml",
+          "xml": "<nav>\n    <view name=\"setting_scan\"/>\n    <view name=\"splunk9x_scan\" default=\"true\"/>\n    <view name=\"setting\" />\n    <view name=\"jquery_scan\"/>\n    <view name=\"python_scan\"/>\n</nav>\n",
+          "views": [
+            {
+              "name": "setting_scan"
+            },
+            {
+              "name": "splunk9x_scan",
+              "default": "true"
+            },
+            {
+              "name": "setting"
+            },
+            {
+              "name": "jquery_scan"
+            },
+            {
+              "name": "python_scan"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": [
+        {
+          "id": "jquery_scan",
+          "path": "/Applications/Splunk/etc/apps/python_upgrade_readiness_app/default/data/ui/views/jquery_scan.xml",
+          "root": "view",
+          "label": "jQuery Scan",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "8a137024fd288c6c731010f25b7fa6346ad2801dcea4029dc9890d8a92b35e81"
+        },
+        {
+          "id": "python_scan",
+          "path": "/Applications/Splunk/etc/apps/python_upgrade_readiness_app/default/data/ui/views/python_scan.xml",
+          "root": "view",
+          "label": "Python Scan",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "60c8d1d02aa625d3a48412df478852538643dbb294a64874cd14fdf0c15c0c25"
+        },
+        {
+          "id": "setting",
+          "path": "/Applications/Splunk/etc/apps/python_upgrade_readiness_app/default/data/ui/views/setting.xml",
+          "root": "view",
+          "label": "Python Version",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "8b0352099eb33578f47e6454620b271846dc93fc6d6f905837c92270703e69ad"
+        },
+        {
+          "id": "setting_scan",
+          "path": "/Applications/Splunk/etc/apps/python_upgrade_readiness_app/default/data/ui/views/setting_scan.xml",
+          "root": "view",
+          "label": "Setting Scan",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3e6034358822f00ed4cd4c7472edcc4d7485f0a582d39f7ba9e4ac9e6ed06654"
+        },
+        {
+          "id": "splunk9x_scan",
+          "path": "/Applications/Splunk/etc/apps/python_upgrade_readiness_app/default/data/ui/views/splunk9x_scan.xml",
+          "root": "view",
+          "label": "Splunk Platform Compatibility Scan",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "8173bf499fd4128903ea91f147d6fc0ceaa2d7ff1abefd4e476b717df6c63a90"
+        }
+      ]
+    },
+    {
+      "app": "search",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/nav/default.xml",
+          "xml": "<nav search_view=\"search\" color=\"#5CC05C\">\n  <view name=\"search\" default=\"true\" />\n  <view name=\"analytics_workspace\" />\n  <view name=\"datasets\" />\n  <view name=\"reports\" />\n  <view name=\"alerts\" />\n  <view name=\"dashboards\" />\n</nav>\n",
+          "views": [
+            {
+              "name": "search",
+              "default": "true"
+            },
+            {
+              "name": "analytics_workspace"
+            },
+            {
+              "name": "datasets"
+            },
+            {
+              "name": "reports"
+            },
+            {
+              "name": "alerts"
+            },
+            {
+              "name": "dashboards"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": [
+        {
+          "id": "alert",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/alert.xml",
+          "root": "view",
+          "label": "Alert",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a642206f1ffa8cfa4c57fa7592d2337b7dc45bf9fcd6f16b677b6209c394fb5b"
+        },
+        {
+          "id": "alerts",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/alerts.xml",
+          "root": "view",
+          "label": "Alerts",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20a964dd15c0ad5d9fdcc8e9ef59641d994dcffcbb8227441364b817941e0d88"
+        },
+        {
+          "id": "charting",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/charting.xml",
+          "root": "view",
+          "label": "Advanced Charting",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "84e2a6435c2f676a0c9ca2e6c66d63b1e83ad8a79a509912aba12f9445bac0e1"
+        },
+        {
+          "id": "dashboard_live",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/dashboard_live.xml",
+          "root": "view",
+          "label": "Summary",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "e73848400ddde1383cf28e9fe11987d68aeb02a9b11119ee19ecb53e048ae4be"
+        },
+        {
+          "id": "dashboards",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/dashboards.xml",
+          "root": "view",
+          "label": "Dashboards",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "76af1d8adf98be3448cc1643208d62adf6c41ad6d6385aab946e19a926409020"
+        },
+        {
+          "id": "data_model_editor",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/data_model_editor.xml",
+          "root": "view",
+          "label": "Data Model Editor",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "264c778bfd0ba7324ea23843110d364f2f6d5baf10bbc11edb4ca302da9dc8f3"
+        },
+        {
+          "id": "data_model_explorer",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/data_model_explorer.xml",
+          "root": "view",
+          "label": "Datasets",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "37218e8b0080992c0e388b4c6a3305d77c054d25821fcb004bf1a7232273e354"
+        },
+        {
+          "id": "data_model_manager",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/data_model_manager.xml",
+          "root": "view",
+          "label": "Data Model Manager",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "d16d0fdc6e487de167d6de11436e604838f5befaa166a0154cf40988f7d5a0c4"
+        },
+        {
+          "id": "data_models",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/data_models.xml",
+          "root": "view",
+          "label": "Datasets",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "37218e8b0080992c0e388b4c6a3305d77c054d25821fcb004bf1a7232273e354"
+        },
+        {
+          "id": "dataset",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/dataset.xml",
+          "root": "view",
+          "label": "Dataset",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "5d7dead32c7c3d38c46b324f76763877f74b95a5f10f1af56ce510e43db53a97"
+        },
+        {
+          "id": "datasets",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/datasets.xml",
+          "root": "view",
+          "label": "Datasets",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "33a892d6afa43c110e2907edd98dc12f6866b759439910ae58469213fc4fa9fe"
+        },
+        {
+          "id": "field_extractor",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/field_extractor.xml",
+          "root": "view",
+          "label": "Field Extractor",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "295b8f91666521ab59d99c1cb6d072c191ce38d7de87cb271c57aa7a11b74436"
+        },
+        {
+          "id": "flashtimeline",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/flashtimeline.xml",
+          "root": "view",
+          "label": "Search",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "b0aa00f29c4fb6a6d06e6aeb8cf4e93117814f9db427dc6b19bcd28e6bdf15e7"
+        },
+        {
+          "id": "integrity_check_of_installed_files",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/integrity_check_of_installed_files.xml",
+          "root": "form",
+          "label": "Integrity Check of Installed Files",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "10fb8f5944d68aab5a1a432f464963b4b1d7a881bbe63bd17d08e0e808177234"
+        },
+        {
+          "id": "job_details_dashboard",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/job_details_dashboard.xml",
+          "root": "form",
+          "label": "Job Details Dashboard",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "2cdc36ed6526f34a8fcf730d85562a131ad3edc1d47a58220983aaf16a477d5c"
+        },
+        {
+          "id": "job_manager",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/job_manager.xml",
+          "root": "view",
+          "label": "Job Manager",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "4af7b5ecf5555b2565c965a536a091f2ad4eed045ff23baa7ee0ee0a9066ee1a"
+        },
+        {
+          "id": "jquery_upgrade",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/jquery_upgrade.xml",
+          "root": "form",
+          "label": "jQuery Upgrade",
+          "description": "The following list of dashboards might be affected by a security update that requires jQuery 3.5 or higher. Version 1.0 Simple XML dashboards use jQuery 2.1 and need to be upgraded to jQuery 3.5 by using version 1.1 of Simple XML dashboards. HTML dashboards also depend on jQuery 2.1, but they cannot be upgraded. Instead, recreate them with Dashboard Studio.\n\nVersion 1.0 Simple XML dashboards and HTML dashboards will soon no longer be available in future versions of Splunk software.",
+          "dashboard_version": "1.1",
+          "sha256": "2d8588ebbc06417943b574822226de42fcaf7a49d111ab65a19013006f75152b"
+        },
+        {
+          "id": "licenseusage",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/licenseusage.xml",
+          "root": "view",
+          "label": "License Usage",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "fb0c871079482c97a58d88320682de578c0aff2f886c5b82fae969bf22e2612a"
+        },
+        {
+          "id": "live_tail",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/live_tail.xml",
+          "root": "view",
+          "label": "Live Tail",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c7a9c51919888c8d08b8ea294f5d9b74af67baf883fe9b920bb4a261b0880c9d"
+        },
+        {
+          "id": "mod_setup",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/mod_setup.xml",
+          "root": "view",
+          "label": "Mod Setup",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "7320ef717aa0a0fe518b681fb7d78a851019982256ed7512c920f7ee2cf52429"
+        },
+        {
+          "id": "orphaned_scheduled_searches",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/orphaned_scheduled_searches.xml",
+          "root": "dashboard",
+          "label": "Orphaned Scheduled Searches, Reports, and Alerts",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "a0b930654d28991345cab932ca0db8e32097c7525da14d7b056afb41d442dcef"
+        },
+        {
+          "id": "pivot",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/pivot.xml",
+          "root": "view",
+          "label": "Datasets",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c11f5711ae4d664d69153d76acf70630d535e46a5f1c1d11ec6d16c6c103f26a"
+        },
+        {
+          "id": "report",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/report.xml",
+          "root": "view",
+          "label": "Report",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "bb62bd6acb12d87e0cdc4f954d1d105fd634f53e6d41fe97ba1191fa6be4681c"
+        },
+        {
+          "id": "report_builder_define_data",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/report_builder_define_data.xml",
+          "root": "view",
+          "label": "Report Builder",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3ae7f0f73d6227d6bc94b9dc329263de13f1dc7ebc76c7d0f7c098821fdc2acc"
+        },
+        {
+          "id": "report_builder_display",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/report_builder_display.xml",
+          "root": "view",
+          "label": "Display Report",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a02eae83fdcde2b8cc2abfb1b191e549db08e4824b2b4381996d3b3e1d1ea1df"
+        },
+        {
+          "id": "report_builder_format_report",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/report_builder_format_report.xml",
+          "root": "view",
+          "label": "Report Builder",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "4503236782fa2ce8a7f9540562cd959aa9af0e5fc664eeb2d2d3b98efb70a32d"
+        },
+        {
+          "id": "report_builder_print",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/report_builder_print.xml",
+          "root": "view",
+          "label": "Display Report",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "056920070ea75f5de75cee2db190ca1ee9e295f123bfffc28519ddb23caad2fc"
+        },
+        {
+          "id": "reports",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/reports.xml",
+          "root": "view",
+          "label": "Reports",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0cded6b4ea9eebe57d8a9a081d03145623d40310430fbbb122454c377ac19b80"
+        },
+        {
+          "id": "search",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/search.xml",
+          "root": "view",
+          "label": "Search",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "1a2092ed69dd413f9c8b8d31dd157f1a24abd3cda9c088fdb478e89c3ec5ed13"
+        },
+        {
+          "id": "show_source.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/show_source.prod_lite.xml",
+          "root": "view",
+          "label": "Show Source",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "47f9f7d8b710e2d6b91c24a1431634d602f511d6809f4325c107114a3f4a358b"
+        },
+        {
+          "id": "show_source",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/show_source.xml",
+          "root": "view",
+          "label": "Show Source",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "47f9f7d8b710e2d6b91c24a1431634d602f511d6809f4325c107114a3f4a358b"
+        },
+        {
+          "id": "table",
+          "path": "/Applications/Splunk/etc/apps/search/default/data/ui/views/table.xml",
+          "root": "view",
+          "label": "Table",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3743958fe4f6bdd8c5bbd2751bb05a71a8e4a99b0e67f8839173fc0101132d44"
+        }
+      ]
+    },
+    {
+      "app": "splunk-dashboard-studio",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/nav/default.xml",
+          "xml": "<nav color=\"#5CC05C\">\n    <view name=\"example-hub-nav-visualizations\" default=\"true\"/>\n</nav>\n",
+          "views": [
+            {
+              "name": "example-hub-nav-visualizations",
+              "default": "true"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": [
+        {
+          "id": "dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/dashboard.xml",
+          "root": "view",
+          "label": "",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "d99d349e4aa64d2186cd218b86b1dba1f44567e4ce2dbb8d20197106a3ff088d"
+        },
+        {
+          "id": "example-hub-ad-hoc-data",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-ad-hoc-data.xml",
+          "root": "view",
+          "label": "Ad Hoc Data Source",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "55709597bb27bc9e6aa19b3e12510f6d6af958a5c9758192b0da1d80df463160"
+        },
+        {
+          "id": "example-hub-advanced-showhide",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-advanced-showhide.xml",
+          "root": "view",
+          "label": "Advanced Show/Hide",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "22baabb245bf73f2dd819a652c39df5e1c528348f693f7e74bc1c2ee75af7186"
+        },
+        {
+          "id": "example-hub-airport-kpis-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-airport-kpis-dashboard.xml",
+          "root": "view",
+          "label": "Airport KPIs",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0466004cea74eedf3df210a8bc1cb0929d9b3b35b74cf9949224d07de5b16d6d"
+        },
+        {
+          "id": "example-hub-area-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-area-chart-visualization.xml",
+          "root": "view",
+          "label": "Area",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "e742d92bb8baf077f5c5f5c5363906e894006ddf701931423cb40158c5d0466c"
+        },
+        {
+          "id": "example-hub-assembly-line-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-assembly-line-dashboard.xml",
+          "root": "view",
+          "label": "Assembly Line",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c5ab5ff2e6bfddcc8be5a7aa658534736ccb74cfefdb97f1acabbba6a0fba338"
+        },
+        {
+          "id": "example-hub-bar-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-bar-chart-visualization.xml",
+          "root": "view",
+          "label": "Bar",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "1911f9309df2617ff361c2caf2ce5c9d1c334ca2597ab6430c3a53fab31d9c54"
+        },
+        {
+          "id": "example-hub-base-chain-data",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-base-chain-data.xml",
+          "root": "view",
+          "label": "Base and Chain Data Sources",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "ecebbb3e9489bf7ebee7cd221f8d14ba17fc1ec91efbb2762ab1102831498e11"
+        },
+        {
+          "id": "example-hub-bubble-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-bubble-chart-visualization.xml",
+          "root": "view",
+          "label": "Bubble",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a1e2bc5bcfc5f1702f6efa9ee07fcd709144192973e468da8736b1bfe6d52df6"
+        },
+        {
+          "id": "example-hub-buttercup-games-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-buttercup-games-dashboard.xml",
+          "root": "view",
+          "label": "Buttercup Games",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "7cea8ffc666c48fbb67750f8f02f7ae14f0cd28f74d7655988c5b2a835aba260"
+        },
+        {
+          "id": "example-hub-cascading-inputs",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-cascading-inputs.xml",
+          "root": "view",
+          "label": "Cascading Inputs",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "6ee49da49a78dfe5c667b3a5e5365e33d64073f05409e61b1d8ebddc82f05732"
+        },
+        {
+          "id": "example-hub-chart-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-chart-coloring.xml",
+          "root": "view",
+          "label": "Chart Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "215f520a57762707c886a3eed3982818e16ddb9eecc1bb017ffcf24a7519fd35"
+        },
+        {
+          "id": "example-hub-chart-display",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-chart-display.xml",
+          "root": "view",
+          "label": "Display Axis, Labels, Legends",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c09f1039e4f86510cd0889c21faf5736c45316e7c19d6dd09898f1f94936de8c"
+        },
+        {
+          "id": "example-hub-chart-overlays",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-chart-overlays.xml",
+          "root": "view",
+          "label": "Chart Overlays",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "6f6f48910e5c8ae95233331012d62efac75b215ad6aead4928187b677c552ae5"
+        },
+        {
+          "id": "example-hub-chart-scaling",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-chart-scaling.xml",
+          "root": "view",
+          "label": "Chart Scaling",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "7c5f1674a102f3da1fdfe1552994502e9647aef7d4fed654a7000f4a72017ceb"
+        },
+        {
+          "id": "example-hub-choropleth-svg-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-choropleth-svg-visualization.xml",
+          "root": "view",
+          "label": "Choropleth SVG",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "e1c7425f491a7ab0471bdf4e1733a09bc962733faf0df560cf34dc384d035468"
+        },
+        {
+          "id": "example-hub-column-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-column-chart-visualization.xml",
+          "root": "view",
+          "label": "Column",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "1f1b4d0ef51c14502ca8026a7e0bf1fb4b61ff5ed2fd9854268ed4d32fe7373e"
+        },
+        {
+          "id": "example-hub-custom-url-drilldown",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-custom-url-drilldown.xml",
+          "root": "view",
+          "label": "Drilldown to Custom URL",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "55539c43fa5ec80d3773dd0c340506ce0f9e0982e443e7b05945ef1d83d54acb"
+        },
+        {
+          "id": "example-hub-customer-satisfaction-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-customer-satisfaction-dashboard.xml",
+          "root": "view",
+          "label": "Customer Satisfaction",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "59d37cec8780da14289da979e0753a6b22ab121a8e109905a1df61bb84c51d0d"
+        },
+        {
+          "id": "example-hub-data-command-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-data-command-dashboard.xml",
+          "root": "view",
+          "label": "Data Command and Control",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c899840bc0a7c36dca836ad9d430917350ff147c16c38c471c65e5bc9a7fd0f2"
+        },
+        {
+          "id": "example-hub-data-governance-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-data-governance-dashboard.xml",
+          "root": "view",
+          "label": "Data Governance",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "102c1a532adf55dbd71450c7385f175cfa60064d62ebfdd1d591d396e90a0acb"
+        },
+        {
+          "id": "example-hub-data-streaming-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-data-streaming-dashboard.xml",
+          "root": "view",
+          "label": "Data Streaming",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a1afe1c7a8faba358ed49c9240e3425966f440160453327c708d05a43d920d38"
+        },
+        {
+          "id": "example-hub-datacenter-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-datacenter-dashboard.xml",
+          "root": "view",
+          "label": "Datacenter Sensors",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a3a09d545422265a43515ad6763bb93aedc1df106238bb7618a8157708689d94"
+        },
+        {
+          "id": "example-hub-dropdown-input",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-dropdown-input.xml",
+          "root": "view",
+          "label": "Dropdown",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "44883404bcfe8c2a54fa5a67385e9d9c5efd6da895808992d70c498589811bce"
+        },
+        {
+          "id": "example-hub-ecommerce-monitoring-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-ecommerce-monitoring-dashboard.xml",
+          "root": "view",
+          "label": "E-Commerce Monitoring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c8362bd72c28e603375ba46d455b874b6d11c283b4f05d107a24597daf909b6f"
+        },
+        {
+          "id": "example-hub-emergency-department-care-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-emergency-department-care-dashboard.xml",
+          "root": "view",
+          "label": "Emergency Department Care",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "440efeadba4ba3008bf7898bf9c77ea2e784e0a594b89ed59f387be082b47c39"
+        },
+        {
+          "id": "example-hub-europe-telecom-network-hub-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-europe-telecom-network-hub-dashboard.xml",
+          "root": "view",
+          "label": "Europe Telecom Network Hub",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "dae9b8a2a43d0da27595b5e8fa93c896ff295a75014794283e083dc7031d41f8"
+        },
+        {
+          "id": "example-hub-event-annotations",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-event-annotations.xml",
+          "root": "view",
+          "label": "Chart Annotations",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c1bd5d96bfe9d8f431271a9f1c5d3d4df2899ae009217c09ea774e75e74d49ce"
+        },
+        {
+          "id": "example-hub-filler-gauge-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-filler-gauge-coloring.xml",
+          "root": "view",
+          "label": "Filler Gauge Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0da1a73a53d3008b2f4ab5f30967dd1c5e147d39d9a66207e389b29578b07f68"
+        },
+        {
+          "id": "example-hub-filler-gauge-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-filler-gauge-visualization.xml",
+          "root": "view",
+          "label": "Filler Gauge",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f8956bf32ad195e12be6cc2d215067b1d7bd7e61e07b12cb3a4f176775a784f5"
+        },
+        {
+          "id": "example-hub-healthcare-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-healthcare-dashboard.xml",
+          "root": "view",
+          "label": "Healthcare Dashboard",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "717069bc8ccbac3ca064f826882cc170fec9db7aae5c98396b9dd763102d6331"
+        },
+        {
+          "id": "example-hub-icon-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-icon-coloring.xml",
+          "root": "view",
+          "label": "Icon Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "ccf9ab2e7234007e0af335ed7100a85cc8d943dde78168171c2845922059be9f"
+        },
+        {
+          "id": "example-hub-icon-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-icon-visualization.xml",
+          "root": "view",
+          "label": "Icons",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0bac82d5e433315c3a28d3bd587bc5ff5476eae491dd4f3a99f39a029ea12e77"
+        },
+        {
+          "id": "example-hub-image-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-image-visualization.xml",
+          "root": "view",
+          "label": "Images",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "ac4904c8f8776b05796083e3f20113271206a2180181fb8e5491c5cae0b96788"
+        },
+        {
+          "id": "example-hub-line-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-line-chart-visualization.xml",
+          "root": "view",
+          "label": "Line",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "ed86990fe30e03e22e1e148819ec0cb327233db58f3f79b34ebe3a5c997dffcc"
+        },
+        {
+          "id": "example-hub-link-graph-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-link-graph-visualization.xml",
+          "root": "view",
+          "label": "Link Graph",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "d394306d11d75a2b01f0228e1795f354e4bc46208d850f6ea984492b9ff51ba2"
+        },
+        {
+          "id": "example-hub-map-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-map-visualization.xml",
+          "root": "view",
+          "label": "Map",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "b7f015a872d857370ff30658ff5982d7a790c85d26219d8f2e6c02e7a020ca1b"
+        },
+        {
+          "id": "example-hub-markdown-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-markdown-visualization.xml",
+          "root": "view",
+          "label": "Markdown",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "4adefc07f46a215ebe4ac16c98e4f2c7cd6d3654a4782e5ae94572288d783b62"
+        },
+        {
+          "id": "example-hub-marker-gauge-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-marker-gauge-coloring.xml",
+          "root": "view",
+          "label": "Marker Gauge Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "620ed6f560866a2cced6280f88fa5ebf4f4a0675ac27fbcd076e06deaccac0eb"
+        },
+        {
+          "id": "example-hub-marker-gauge-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-marker-gauge-visualization.xml",
+          "root": "view",
+          "label": "Marker Gauge",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "cdca02f164e4887d742e2d4dd1d7cc94c2094db978660580646995bd54d07035"
+        },
+        {
+          "id": "example-hub-moving-svg-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-moving-svg-visualization.xml",
+          "root": "view",
+          "label": "Moving SVGs",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "211dbd3ef71c17c91c61dde554ae76d5fcf6c8b7ef9459a996a3b17daa37c2e0"
+        },
+        {
+          "id": "example-hub-multiselect-input",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-multiselect-input.xml",
+          "root": "view",
+          "label": "Multiselect",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "e291bb1f48227e7d993da3dae74b83ef8cae6e9ceeef9315e402524c69f9b2be"
+        },
+        {
+          "id": "example-hub-nav-visualizations",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-nav-visualizations.xml",
+          "root": "view",
+          "label": "Home",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3b90610d91499297f37768483b1fc32c274cfff1e3051f331f238f2540c44bc4"
+        },
+        {
+          "id": "example-hub-number-input",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-number-input.xml",
+          "root": "view",
+          "label": "Number Input",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "9814813f1b88dd9350d81bea4081c0216b77e7ef6b9999b56c8e3a937e2c0f06"
+        },
+        {
+          "id": "example-hub-parallel-coordinates-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-parallel-coordinates-visualization.xml",
+          "root": "view",
+          "label": "Parallel Coordinates",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3640bec66586d273c89cddac6256053823bf7f144a1301fe0bd2f24ca0a1658d"
+        },
+        {
+          "id": "example-hub-pie-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-pie-chart-visualization.xml",
+          "root": "view",
+          "label": "Pie",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "da4d7391fc2af1d00fa4727a983811e7ae91d8db75d2b053d9ec7fe273546d25"
+        },
+        {
+          "id": "example-hub-progress-bar-defaults",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-progress-bar-defaults.xml",
+          "root": "view",
+          "label": "Progress Bar",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "422d038d5c6b9b517129c4646a3a48da6de9a5a3f0afbda433f090cff9f51727"
+        },
+        {
+          "id": "example-hub-punchcard-chart-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-punchcard-chart-coloring.xml",
+          "root": "view",
+          "label": "Punchcard Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c377f250b420bceba199f2e458cd8b9cc3c5bfaa2e9743ac65e19d4b4a7af89e"
+        },
+        {
+          "id": "example-hub-punchcard-chart-sizing",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-punchcard-chart-sizing.xml",
+          "root": "view",
+          "label": "Punchcard Sizing",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "b0cc4968f1237520422c9075327212ac5d5bc66de4921d0a8d24d581a20c2c2d"
+        },
+        {
+          "id": "example-hub-punchcard-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-punchcard-chart-visualization.xml",
+          "root": "view",
+          "label": "Punchcard",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "b0054f80086af7d6a79e9ec5dd70bc1c9deeabd3405e05ac500a0705a186c753"
+        },
+        {
+          "id": "example-hub-refresh-defaults",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-refresh-defaults.xml",
+          "root": "view",
+          "label": "Refresh",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3196713a96a56e709cff82c89012d0ca8af93e583d3a3387acc32bb45a861e9c"
+        },
+        {
+          "id": "example-hub-sankey-diagram-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-sankey-diagram-visualization.xml",
+          "root": "view",
+          "label": "Sankey Diagram",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "d6f37e2ead4246ae55aeae8259695a5574cab7734b2a1ae708f5f2619f083d8b"
+        },
+        {
+          "id": "example-hub-saved-data",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-saved-data.xml",
+          "root": "view",
+          "label": "Saved Search Data Source",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "33b17e986b52423d8474ebf241941a793793b6557407996242b15d49beb1dcf7"
+        },
+        {
+          "id": "example-hub-scatter-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-scatter-chart-visualization.xml",
+          "root": "view",
+          "label": "Scatter",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f94f199e5df44e778f7204a3b960f1e2e29ee1bae46c1abc56037a1d09baab76"
+        },
+        {
+          "id": "example-hub-search-tokens",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-search-tokens.xml",
+          "root": "view",
+          "label": "Evaluate Tokens Using Search",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "7f4450d4a03d9a11b613e3699d06a421b18f203cecb0c6684cf16fc82962dbce"
+        },
+        {
+          "id": "example-hub-security-devices-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-security-devices-dashboard.xml",
+          "root": "view",
+          "label": "Employee Device Security",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "12f3ecd9255b3ae2c5af8998b733cb063c5459f0420a06954b5b43eb5705e3d0"
+        },
+        {
+          "id": "example-hub-security-network-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-security-network-dashboard.xml",
+          "root": "view",
+          "label": "VPN Health by Region",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "017439c8990780ac849a106a125f8300ca3c9c35fa9cfd7c0c7085723052460a"
+        },
+        {
+          "id": "example-hub-security-summary-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-security-summary-dashboard.xml",
+          "root": "view",
+          "label": "VPN Health by Region",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "017439c8990780ac849a106a125f8300ca3c9c35fa9cfd7c0c7085723052460a"
+        },
+        {
+          "id": "example-hub-set-token-drilldown-default",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-set-token-drilldown-default.xml",
+          "root": "view",
+          "label": "Set a Token Default",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0efbd0bede669e1a8f79b35cc892d384a56f314e5c967ce3fb37151686d65b28"
+        },
+        {
+          "id": "example-hub-set-token-drilldown",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-set-token-drilldown.xml",
+          "root": "view",
+          "label": "Set Token Drilldown",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "ac5da988745c0d3204ac3841f3b428af4e82c06ba8c6ad9ebc5a05a25413385d"
+        },
+        {
+          "id": "example-hub-set-token-search",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-set-token-search.xml",
+          "root": "view",
+          "label": "Set Token from Search",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "98b6a94de2b45c56a02d1b12aa3f415080d6cc72b4e1123c7b07f5ed7ddf328e"
+        },
+        {
+          "id": "example-hub-shape-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-shape-visualization.xml",
+          "root": "view",
+          "label": "Shapes and Lines",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "9b5c899a893b25cdb0741154c8c1dc3d7065185b3d7ecde640bef2a7ba499306"
+        },
+        {
+          "id": "example-hub-single-value-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-single-value-coloring.xml",
+          "root": "view",
+          "label": "Single Value Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "6116d61a22dd4872d277056748b3c3f5ec6335a2a67be2df8d3664500436749d"
+        },
+        {
+          "id": "example-hub-single-value-emojis",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-single-value-emojis.xml",
+          "root": "view",
+          "label": "Single Value Emoji",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3ac89ec82d1bccf3b786c49dbaf2e83699f894ad556c147cccafb016d7875393"
+        },
+        {
+          "id": "example-hub-single-value-icon-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-single-value-icon-visualization.xml",
+          "root": "view",
+          "label": "Single Value Icon",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0abb27965d476a31a1393b62c325340eb1424444d4d73cb32a6ffed14fa77b95"
+        },
+        {
+          "id": "example-hub-single-value-radial-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-single-value-radial-coloring.xml",
+          "root": "view",
+          "label": "Radial Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0eac5dab1501354ffc4d9adf80c53fffb45793c83879d2a890e9f7bba04e2792"
+        },
+        {
+          "id": "example-hub-single-value-radial-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-single-value-radial-visualization.xml",
+          "root": "view",
+          "label": "Single Value Radial",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "4e280d0fc77c484194de91cf85e4373eb57d5b82950d022c6cf9c14b0afdc7b5"
+        },
+        {
+          "id": "example-hub-single-value-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-single-value-visualization.xml",
+          "root": "view",
+          "label": "Single Value",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "daf9bdbc377a56f26584cfff56f6c9da730fc1d9080c817afd604c9b29974f52"
+        },
+        {
+          "id": "example-hub-submit-button",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-submit-button.xml",
+          "root": "view",
+          "label": "Submit Button",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "7bb82b59b2a87f9636057f01260db4d41b8c476a12077d8712acd397744dee2a"
+        },
+        {
+          "id": "example-hub-table-chart-coloring",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-table-chart-coloring.xml",
+          "root": "view",
+          "label": "Table Coloring",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "4c5c2780f4cb1df0d6616c6c47356561d9c13cdec35e0573a9c2e61629e8381a"
+        },
+        {
+          "id": "example-hub-table-chart-formatting",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-table-chart-formatting.xml",
+          "root": "view",
+          "label": "Table Formatting",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "2de8ee8f42d5f8e4fd231161b700c1421f16f809357a08dc9cf939af8eabc883"
+        },
+        {
+          "id": "example-hub-table-chart-visualization",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-table-chart-visualization.xml",
+          "root": "view",
+          "label": "Table",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "3c4b588e969c350a7b40fefe4954931925a6bb5f9df51fa7c8c8a25a41a435e4"
+        },
+        {
+          "id": "example-hub-test-data",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-test-data.xml",
+          "root": "view",
+          "label": "Test Data Source",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "9d9089012ac3139ea0751746d754db5caa48383856806fba5495129df2640cd8"
+        },
+        {
+          "id": "example-hub-text-input",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-text-input.xml",
+          "root": "view",
+          "label": "Text Input",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "62e615f40d5a131cdd7f7d9d0b8bb93d950b66e0909c3e83e3fc1a5f1586a98a"
+        },
+        {
+          "id": "example-hub-timerange-input",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-timerange-input.xml",
+          "root": "view",
+          "label": "Time Range Input",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "fef6d3f4ff3c392fa3d6e7500c0d1c1e5e3f83208634020ba19a1d9e27fb22d4"
+        },
+        {
+          "id": "example-hub-trellis-layout",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-trellis-layout.xml",
+          "root": "view",
+          "label": "Trellis Layout",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "77ae36b71c12febabca79471eef9a5cd61d30c65af4e84eb31e2718c4ae3deab"
+        },
+        {
+          "id": "example-hub-vpn-health-by-region-dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-vpn-health-by-region-dashboard.xml",
+          "root": "view",
+          "label": "VPN Health by Region",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "017439c8990780ac849a106a125f8300ca3c9c35fa9cfd7c0c7085723052460a"
+        },
+        {
+          "id": "example-hub-workplace-readiness-detail",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-workplace-readiness-detail.xml",
+          "root": "view",
+          "label": "Workforce Readiness Detail",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "6cd9afa8dd726026adddab675281144bfc2b97d00aa4bbd624620304df8eb85a"
+        },
+        {
+          "id": "example-hub-workplace-readiness",
+          "path": "/Applications/Splunk/etc/apps/splunk-dashboard-studio/default/data/ui/views/example-hub-workplace-readiness.xml",
+          "root": "view",
+          "label": "Workforce Readiness",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a8b9af9dd2ea25cb6854c903539a2be85d8cc2ee57a55a8c91cf72128bd0ac0e"
+        }
+      ]
+    },
+    {
+      "app": "splunk_assist",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_assist/default/data/ui/nav/default.xml",
+          "xml": "<nav>\n    <view name=\"start\" default=\"true\"/>\n</nav>\n",
+          "views": [
+            {
+              "name": "start",
+              "default": "true"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": [
+        {
+          "id": "start",
+          "path": "/Applications/Splunk/etc/apps/splunk_assist/default/data/ui/views/start.xml",
+          "root": "view",
+          "label": "Start",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "68ed034181eecd4a5128f8d546cddb492cf05010064146639b43c29020d00a96"
+        }
+      ]
+    },
+    {
+      "app": "splunk_instrumentation",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_instrumentation/default/data/ui/nav/default.xml",
+          "xml": "<nav color=\"#65A637\">\n  <view name=\"search\" default=\"true\" />\n</nav>\n",
+          "views": [
+            {
+              "name": "search",
+              "default": "true"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": []
+    },
+    {
+      "app": "splunk_metrics_workspace",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_metrics_workspace/default/data/ui/nav/default.xml",
+          "xml": "<nav search_view=\"search\">\n    <view name=\"home\" default=\"true\"/>\n</nav>\n",
+          "views": [
+            {
+              "name": "home",
+              "default": "true"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": [
+        {
+          "id": "analysis_workspace",
+          "path": "/Applications/Splunk/etc/apps/splunk_metrics_workspace/default/data/ui/views/analysis_workspace.xml",
+          "root": "view",
+          "label": "Analytics",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "00be3e30426d940d39f7053ea8f71ff6dbfe72c15340ab2aa2936cae2429ad13"
+        },
+        {
+          "id": "analytics_workspace",
+          "path": "/Applications/Splunk/etc/apps/splunk_metrics_workspace/default/data/ui/views/analytics_workspace.xml",
+          "root": "view",
+          "label": "Analytics",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0f2957482a5b1d36acccd2262ba0062da88ad7953e442b230314df3ea87f1974"
+        },
+        {
+          "id": "home",
+          "path": "/Applications/Splunk/etc/apps/splunk_metrics_workspace/default/data/ui/views/home.xml",
+          "root": "view",
+          "label": "Home",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "620ed913c8fa1b18a1845dda3e982b7d9f396a1df91d3d4afb719a353416328a"
+        }
+      ]
+    },
+    {
+      "app": "splunk_monitoring_console",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/nav/default.distributed.xml",
+          "xml": "<nav color=\"#3C444D\">\n  <view name=\"monitoringconsole_overview\" default=\"true\" />\n  <view name=\"monitoringconsole_landing\" />\n  <view name=\"assist\" />\n  <view name=\"monitoringconsole_check\" />\n  <view name=\"monitoringconsole_instances\" />\n  <collection label=\"Indexing\">\n    <collection label=\"Performance\">\n      <view name=\"indexing_performance_instance\" />\n      <view name=\"indexing_performance_advanced\" />\n      <view name=\"indexing_performance_deployment\" />\n    </collection>\n    <collection label=\"Indexer Clustering\">\n        <!--<a href=\"Clustering\">Indexer Clustering: Status</a>-->\n      <view name=\"indexer_clustering_status\" />\n      <view name=\"indexer_clustering_service_activity\" />\n    </collection>\n    <collection label=\"Indexes and Volumes\">\n      <view name=\"indexes_and_volumes_instance\" />\n      <view name=\"indexes_and_volumes_deployment\" />\n      <view name=\"index_detail_instance\" />\n      <view name=\"index_detail_deployment\" />\n      <view name=\"volume_detail_instance\" />\n      <view name=\"volume_detail_deployment\" />\n    </collection>\n    <collection label=\"Inputs\">\n      <view name=\"http_event_collector_instance\" />\n      <view name=\"http_event_collector_deployment\" />\n      <view name=\"splunk_tcpin_performance_instance\" />\n      <view name=\"splunk_tcpin_performance_deployment\" />\n      <view name=\"data_quality\" />\n    </collection>\n    <collection label=\"License Usage\">\n      <view name=\"license_usage_today\" />\n      <view name=\"license_usage_historic\" />\n    </collection>\n    <collection label=\"SmartStore\">\n      <view name=\"smartstore_activity_instance\" />\n      <view name=\"smartstore_activity_deployment\" />\n      <view name=\"smartstore_cache_performance_instance\" />\n      <view name=\"smartstore_cache_performance_deployment\" />\n    </collection>\n  </collection>\n  <collection label=\"Search\">\n    <collection label=\"Activity\">\n      <view name=\"search_activity_instance\" />\n      <view name=\"search_activity_deployment\" />\n      <view name=\"search_usage_statistics_instance\" />\n      <view name=\"search_usage_statistics_deployment\" />\n    </collection>\n    <collection label=\"Distributed Search\">\n      <view name=\"distributed_search_instance\" />\n      <view name=\"distributed_search_deployment\" />\n    </collection>\n    <collection label=\"Search Head Clustering\">\n      <view name=\"shc_status_and_conf\" />\n      <view name=\"shc_conf_rep\" />\n      <view name=\"shc_artifact_replication\" />\n      <view name=\"shc_scheduler_delegation_statistics\" />\n      <view name=\"shc_app_deployment\" />\n    </collection>\n    <collection label=\"Scheduler Activity\">\n      <view name=\"scheduler_activity_instance\" />\n      <view name=\"scheduler_activity_deployment\" />\n    </collection>\n    <collection label=\"KV Store\">\n      <view name=\"kv_store_instance\" />\n      <view name=\"kv_store_deployment\" />\n    </collection>\n    <collection label=\"Knowledge Bundle Replication\">\n      <view name=\"bundle_replication\" />\n      <view name=\"cascading_replication\" />\n    </collection>\n  </collection>\n  <collection label=\"Resource Usage\">\n    <view name=\"resource_usage_instance\" />\n    <view name=\"resource_usage_machine\" />\n    <view name=\"resource_usage_deployment\" />\n    <view name=\"resource_usage_cpu_instance\" />\n    <view name=\"resource_usage_cpu_deployment\" />\n    <collection label=\"Workload Management\">\n      <view name=\"workload_management\" />\n      <view name=\"workload_management_per_pool_instance\" />\n      <view name=\"workload_management_per_pool_deployment\" />\n      <view name=\"workload_management_monitoring_distributed\" />\n      <view name=\"admission_control_monitoring_instance\" />\n      <view name=\"admission_control_monitoring_distributed\" />\n    </collection>\n  </collection>\n  <collection label=\"Forwarders\">\n    <view name=\"forwarder_instance\" />\n    <view name=\"forwarder_deployment\" />\n  </collection>\n  <collection label=\"Settings\">\n    <view name=\"monitoringconsole_configure\" />\n    <view name=\"monitoringconsole_forwarder_setup\" />\n    <view name=\"monitoringconsole_alerts_setup\" />\n    <view name=\"monitoringconsole_overview_preferences\"/>\n    <view name=\"monitoringconsole_check_list\" />\n  </collection>\n  <a href=\"search\">Run a Search</a>\n</nav>\n",
+          "views": [
+            {
+              "name": "monitoringconsole_overview",
+              "default": "true"
+            },
+            {
+              "name": "monitoringconsole_landing"
+            },
+            {
+              "name": "assist"
+            },
+            {
+              "name": "monitoringconsole_check"
+            },
+            {
+              "name": "monitoringconsole_instances"
+            },
+            {
+              "name": "indexing_performance_instance"
+            },
+            {
+              "name": "indexing_performance_advanced"
+            },
+            {
+              "name": "indexing_performance_deployment"
+            },
+            {
+              "name": "indexer_clustering_status"
+            },
+            {
+              "name": "indexer_clustering_service_activity"
+            },
+            {
+              "name": "indexes_and_volumes_instance"
+            },
+            {
+              "name": "indexes_and_volumes_deployment"
+            },
+            {
+              "name": "index_detail_instance"
+            },
+            {
+              "name": "index_detail_deployment"
+            },
+            {
+              "name": "volume_detail_instance"
+            },
+            {
+              "name": "volume_detail_deployment"
+            },
+            {
+              "name": "http_event_collector_instance"
+            },
+            {
+              "name": "http_event_collector_deployment"
+            },
+            {
+              "name": "splunk_tcpin_performance_instance"
+            },
+            {
+              "name": "splunk_tcpin_performance_deployment"
+            },
+            {
+              "name": "data_quality"
+            },
+            {
+              "name": "license_usage_today"
+            },
+            {
+              "name": "license_usage_historic"
+            },
+            {
+              "name": "smartstore_activity_instance"
+            },
+            {
+              "name": "smartstore_activity_deployment"
+            },
+            {
+              "name": "smartstore_cache_performance_instance"
+            },
+            {
+              "name": "smartstore_cache_performance_deployment"
+            },
+            {
+              "name": "search_activity_instance"
+            },
+            {
+              "name": "search_activity_deployment"
+            },
+            {
+              "name": "search_usage_statistics_instance"
+            },
+            {
+              "name": "search_usage_statistics_deployment"
+            },
+            {
+              "name": "distributed_search_instance"
+            },
+            {
+              "name": "distributed_search_deployment"
+            },
+            {
+              "name": "shc_status_and_conf"
+            },
+            {
+              "name": "shc_conf_rep"
+            },
+            {
+              "name": "shc_artifact_replication"
+            },
+            {
+              "name": "shc_scheduler_delegation_statistics"
+            },
+            {
+              "name": "shc_app_deployment"
+            },
+            {
+              "name": "scheduler_activity_instance"
+            },
+            {
+              "name": "scheduler_activity_deployment"
+            },
+            {
+              "name": "kv_store_instance"
+            },
+            {
+              "name": "kv_store_deployment"
+            },
+            {
+              "name": "bundle_replication"
+            },
+            {
+              "name": "cascading_replication"
+            },
+            {
+              "name": "resource_usage_instance"
+            },
+            {
+              "name": "resource_usage_machine"
+            },
+            {
+              "name": "resource_usage_deployment"
+            },
+            {
+              "name": "resource_usage_cpu_instance"
+            },
+            {
+              "name": "resource_usage_cpu_deployment"
+            },
+            {
+              "name": "workload_management"
+            },
+            {
+              "name": "workload_management_per_pool_instance"
+            },
+            {
+              "name": "workload_management_per_pool_deployment"
+            },
+            {
+              "name": "workload_management_monitoring_distributed"
+            },
+            {
+              "name": "admission_control_monitoring_instance"
+            },
+            {
+              "name": "admission_control_monitoring_distributed"
+            },
+            {
+              "name": "forwarder_instance"
+            },
+            {
+              "name": "forwarder_deployment"
+            },
+            {
+              "name": "monitoringconsole_configure"
+            },
+            {
+              "name": "monitoringconsole_forwarder_setup"
+            },
+            {
+              "name": "monitoringconsole_alerts_setup"
+            },
+            {
+              "name": "monitoringconsole_overview_preferences"
+            },
+            {
+              "name": "monitoringconsole_check_list"
+            }
+          ],
+          "links": [
+            {
+              "label": "Run a Search",
+              "href": "search"
+            }
+          ]
+        },
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/nav/default.env_cloud.xml",
+          "xml": "<nav color=\"#3C444D\">\n  <view name=\"monitoringconsole_overview\" default=\"true\" />\n  <view name=\"assist\" />\n  <view name=\"search_usage_statistics_instance\" />\n  <view name=\"scheduler_activity_instance\" />\n  <view name=\"http_event_collector_instance\" />\n  <view name=\"data_quality\" />\n  <collection label=\"Forwarders\">\n    <view name=\"forwarder_instance\" />\n    <view name=\"forwarder_deployment\" />\n  </collection>\n  <collection label=\"Settings\">\n    <view name=\"monitoringconsole_forwarder_setup\" />\n    <view name=\"monitoringconsole_alerts_setup\" />\n  </collection>\n  <a href=\"search\">Run a Search</a>\n</nav>\n",
+          "views": [
+            {
+              "name": "monitoringconsole_overview",
+              "default": "true"
+            },
+            {
+              "name": "assist"
+            },
+            {
+              "name": "search_usage_statistics_instance"
+            },
+            {
+              "name": "scheduler_activity_instance"
+            },
+            {
+              "name": "http_event_collector_instance"
+            },
+            {
+              "name": "data_quality"
+            },
+            {
+              "name": "forwarder_instance"
+            },
+            {
+              "name": "forwarder_deployment"
+            },
+            {
+              "name": "monitoringconsole_forwarder_setup"
+            },
+            {
+              "name": "monitoringconsole_alerts_setup"
+            }
+          ],
+          "links": [
+            {
+              "label": "Run a Search",
+              "href": "search"
+            }
+          ]
+        },
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/nav/default.prod_lite.xml",
+          "xml": "<nav search_view=\"search\" color=\"#3C444D\">\n  <view name=\"search\" default=\"true\" />\n  <view name=\"assist\" />\n  <view name=\"datasets\" />\n  <view name=\"reports\" />\n  <view name=\"alerts\" />\n  <view name=\"dashboards\" />\n</nav>\n",
+          "views": [
+            {
+              "name": "search",
+              "default": "true"
+            },
+            {
+              "name": "assist"
+            },
+            {
+              "name": "datasets"
+            },
+            {
+              "name": "reports"
+            },
+            {
+              "name": "alerts"
+            },
+            {
+              "name": "dashboards"
+            }
+          ],
+          "links": []
+        },
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/nav/default.single.xml",
+          "xml": "<nav color=\"#3C444D\">\n  <view name=\"monitoringconsole_overview\" default=\"true\" />\n  <view name=\"monitoringconsole_landing\" />\n  <view name=\"assist\" />\n  <view name=\"monitoringconsole_check\" />\n  <collection label=\"Indexing\">\n    <collection label=\"Performance\">\n      <view name=\"indexing_performance_instance\" />\n      <view name=\"indexing_performance_advanced\" />\n    </collection>\n    <collection label=\"Indexes and Volumes\">\n      <view name=\"indexes_and_volumes_instance\" />\n      <view name=\"index_detail_instance\" />\n      <view name=\"volume_detail_instance\" />\n    </collection>\n    <collection label=\"Inputs\">\n      <view name=\"http_event_collector_instance\" />\n      <view name=\"splunk_tcpin_performance_instance\" />\n      <view name=\"data_quality\" />\n    </collection>\n    <collection label=\"License Usage\">\n      <view name=\"license_usage_today\" />\n      <view name=\"license_usage_historic\" />\n    </collection>\n    <collection label=\"SmartStore\">\n      <view name=\"smartstore_activity_instance\" />\n      <view name=\"smartstore_cache_performance_instance\" />\n    </collection>\n  </collection>\n  <collection label=\"Search\">\n    <view name=\"search_activity_instance\" />\n    <view name=\"search_usage_statistics_instance\" />\n    <view name=\"kv_store_instance\" />\n    <view name=\"scheduler_activity_instance\" />\n  </collection>\n  <collection label=\"Resource Usage\">\n    <view name=\"resource_usage_instance\" />\n    <view name=\"resource_usage_machine\" />\n    <view name=\"resource_usage_cpu_instance\" />\n    <collection label=\"Workload Management\">\n      <view name=\"workload_management\" />\n      <view name=\"workload_management_per_pool_instance\" />\n      <view name=\"workload_management_monitoring_instance\" />\n      <view name=\"admission_control_monitoring_instance\" />\n    </collection>\n  </collection>\n  <collection label=\"Forwarders\">\n    <view name=\"forwarder_instance\" />\n    <view name=\"forwarder_deployment\" />\n  </collection>\n  <collection label=\"Settings\">\n    <view name=\"monitoringconsole_configure\" />\n    <view name=\"monitoringconsole_forwarder_setup\" />\n    <view name=\"monitoringconsole_alerts_setup\" />\n    <view name=\"monitoringconsole_overview_preferences\"/>\n    <view name=\"monitoringconsole_check_list\" />\n  </collection>\n  <a href=\"search\">Run a Search</a>\n</nav>\n",
+          "views": [
+            {
+              "name": "monitoringconsole_overview",
+              "default": "true"
+            },
+            {
+              "name": "monitoringconsole_landing"
+            },
+            {
+              "name": "assist"
+            },
+            {
+              "name": "monitoringconsole_check"
+            },
+            {
+              "name": "indexing_performance_instance"
+            },
+            {
+              "name": "indexing_performance_advanced"
+            },
+            {
+              "name": "indexes_and_volumes_instance"
+            },
+            {
+              "name": "index_detail_instance"
+            },
+            {
+              "name": "volume_detail_instance"
+            },
+            {
+              "name": "http_event_collector_instance"
+            },
+            {
+              "name": "splunk_tcpin_performance_instance"
+            },
+            {
+              "name": "data_quality"
+            },
+            {
+              "name": "license_usage_today"
+            },
+            {
+              "name": "license_usage_historic"
+            },
+            {
+              "name": "smartstore_activity_instance"
+            },
+            {
+              "name": "smartstore_cache_performance_instance"
+            },
+            {
+              "name": "search_activity_instance"
+            },
+            {
+              "name": "search_usage_statistics_instance"
+            },
+            {
+              "name": "kv_store_instance"
+            },
+            {
+              "name": "scheduler_activity_instance"
+            },
+            {
+              "name": "resource_usage_instance"
+            },
+            {
+              "name": "resource_usage_machine"
+            },
+            {
+              "name": "resource_usage_cpu_instance"
+            },
+            {
+              "name": "workload_management"
+            },
+            {
+              "name": "workload_management_per_pool_instance"
+            },
+            {
+              "name": "workload_management_monitoring_instance"
+            },
+            {
+              "name": "admission_control_monitoring_instance"
+            },
+            {
+              "name": "forwarder_instance"
+            },
+            {
+              "name": "forwarder_deployment"
+            },
+            {
+              "name": "monitoringconsole_configure"
+            },
+            {
+              "name": "monitoringconsole_forwarder_setup"
+            },
+            {
+              "name": "monitoringconsole_alerts_setup"
+            },
+            {
+              "name": "monitoringconsole_overview_preferences"
+            },
+            {
+              "name": "monitoringconsole_check_list"
+            }
+          ],
+          "links": [
+            {
+              "label": "Run a Search",
+              "href": "search"
+            }
+          ]
+        },
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/nav/default.xml",
+          "xml": "<nav color=\"#3C444D\">\n  <view name=\"monitoringconsole_overview\" default=\"true\" />\n  <view name=\"monitoringconsole_landing\" />\n  <view name=\"assist\" />\n  <view name=\"monitoringconsole_check\" />\n  <collection label=\"Indexing\">\n    <collection label=\"Performance\">\n      <view name=\"indexing_performance_instance\" />\n      <view name=\"indexing_performance_advanced\" />\n    </collection>\n    <collection label=\"Indexes and Volumes\">\n      <view name=\"indexes_and_volumes_instance\" />\n      <view name=\"index_detail_instance\" />\n      <view name=\"volume_detail_instance\" />\n    </collection>\n    <collection label=\"Inputs\">\n      <view name=\"http_event_collector_instance\" />\n      <view name=\"splunk_tcpin_performance_instance\" />\n      <view name=\"data_quality\" />\n    </collection>\n    <collection label=\"License Usage\">\n      <view name=\"license_usage_today\" />\n      <view name=\"license_usage_historic\" />\n    </collection>\n    <collection label=\"SmartStore\">\n      <view name=\"smartstore_activity_instance\" />\n      <view name=\"smartstore_cache_performance_instance\" />\n    </collection>\n  </collection>\n  <collection label=\"Search\">\n    <view name=\"search_activity_instance\" />\n    <view name=\"search_usage_statistics_instance\" />\n    <view name=\"kv_store_instance\" />\n    <view name=\"scheduler_activity_instance\" />\n  </collection>\n  <collection label=\"Resource Usage\">\n    <view name=\"resource_usage_instance\" />\n    <view name=\"resource_usage_machine\" />\n    <view name=\"resource_usage_cpu_instance\" />\n    <collection label=\"Workload Management\">\n      <view name=\"workload_management\" />\n      <view name=\"workload_management_per_pool_instance\" />\n      <view name=\"workload_management_per_pool_deployment\" />\n      <view name=\"workload_management_monitoring_instance\" />\n      <view name=\"admission_control_monitoring_instance\" />\n    </collection>\n  </collection>\n  <collection label=\"Forwarders\">\n    <view name=\"forwarder_instance\" />\n    <view name=\"forwarder_deployment\" />\n  </collection>\n  <collection label=\"Settings\">\n    <view name=\"monitoringconsole_configure\" />\n    <view name=\"monitoringconsole_forwarder_setup\" />\n    <view name=\"monitoringconsole_alerts_setup\" />\n    <view name=\"monitoringconsole_overview_preferences\"/>\n    <view name=\"monitoringconsole_check_list\" />\n  </collection>\n  <a href=\"search\">Run a Search</a>\n</nav>\n",
+          "views": [
+            {
+              "name": "monitoringconsole_overview",
+              "default": "true"
+            },
+            {
+              "name": "monitoringconsole_landing"
+            },
+            {
+              "name": "assist"
+            },
+            {
+              "name": "monitoringconsole_check"
+            },
+            {
+              "name": "indexing_performance_instance"
+            },
+            {
+              "name": "indexing_performance_advanced"
+            },
+            {
+              "name": "indexes_and_volumes_instance"
+            },
+            {
+              "name": "index_detail_instance"
+            },
+            {
+              "name": "volume_detail_instance"
+            },
+            {
+              "name": "http_event_collector_instance"
+            },
+            {
+              "name": "splunk_tcpin_performance_instance"
+            },
+            {
+              "name": "data_quality"
+            },
+            {
+              "name": "license_usage_today"
+            },
+            {
+              "name": "license_usage_historic"
+            },
+            {
+              "name": "smartstore_activity_instance"
+            },
+            {
+              "name": "smartstore_cache_performance_instance"
+            },
+            {
+              "name": "search_activity_instance"
+            },
+            {
+              "name": "search_usage_statistics_instance"
+            },
+            {
+              "name": "kv_store_instance"
+            },
+            {
+              "name": "scheduler_activity_instance"
+            },
+            {
+              "name": "resource_usage_instance"
+            },
+            {
+              "name": "resource_usage_machine"
+            },
+            {
+              "name": "resource_usage_cpu_instance"
+            },
+            {
+              "name": "workload_management"
+            },
+            {
+              "name": "workload_management_per_pool_instance"
+            },
+            {
+              "name": "workload_management_per_pool_deployment"
+            },
+            {
+              "name": "workload_management_monitoring_instance"
+            },
+            {
+              "name": "admission_control_monitoring_instance"
+            },
+            {
+              "name": "forwarder_instance"
+            },
+            {
+              "name": "forwarder_deployment"
+            },
+            {
+              "name": "monitoringconsole_configure"
+            },
+            {
+              "name": "monitoringconsole_forwarder_setup"
+            },
+            {
+              "name": "monitoringconsole_alerts_setup"
+            },
+            {
+              "name": "monitoringconsole_overview_preferences"
+            },
+            {
+              "name": "monitoringconsole_check_list"
+            }
+          ],
+          "links": [
+            {
+              "label": "Run a Search",
+              "href": "search"
+            }
+          ]
+        }
+      ],
+      "views": [
+        {
+          "id": "admission_control_monitoring_distributed",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/admission_control_monitoring_distributed.xml",
+          "root": "form",
+          "label": "Workload Management Admission Control: Distributed",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "7a4ecca9ef77301d5da563fe35689a51d82d55f2110a6c1d20b99e5983bbf456"
+        },
+        {
+          "id": "admission_control_monitoring_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/admission_control_monitoring_instance.xml",
+          "root": "form",
+          "label": "Workload Management Admission Control: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "ebe50eee9937bf6c5ee4ec1d407b63b16215f0043ea3989184b5a8ec42c9067d"
+        },
+        {
+          "id": "alerts.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/alerts.prod_lite.xml",
+          "root": "view",
+          "label": "Alerts",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "97e52e043d75a6b18f4748f613a76d6e9e5d5d03c02fd0df8cc6e7e14556fa7a"
+        },
+        {
+          "id": "alerts",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/alerts.xml",
+          "root": "view",
+          "label": "Alerts",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20a964dd15c0ad5d9fdcc8e9ef59641d994dcffcbb8227441364b817941e0d88"
+        },
+        {
+          "id": "assist",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/assist.xml",
+          "root": "view",
+          "label": "Assist",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0f26989ed3097e676c280fc5601d0f9ba025f247f19563beeca082cc965baa1a"
+        },
+        {
+          "id": "bundle_replication",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/bundle_replication.xml",
+          "root": "form",
+          "label": "Knowledge Bundle Replication",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "7665b0cb2d3f09db44d9f8ddacce846a0031c2f8ed51bcbeb015b7e3cd71bac3"
+        },
+        {
+          "id": "cascading_replication",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/cascading_replication.xml",
+          "root": "form",
+          "label": "Cascading Replication",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "a900ed73ef31997d3b931c4f6d62a5ee2b5ea301a828f502c111b8222f5ac26d"
+        },
+        {
+          "id": "dashboards.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/dashboards.prod_lite.xml",
+          "root": "view",
+          "label": "Dashboards",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f77888b6d16a2c2030477c49d49312018e72d16b7f0892131f51d756797adcfc"
+        },
+        {
+          "id": "dashboards",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/dashboards.xml",
+          "root": "view",
+          "label": "Dashboards",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "76af1d8adf98be3448cc1643208d62adf6c41ad6d6385aab946e19a926409020"
+        },
+        {
+          "id": "data_quality.env_cloud",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/data_quality.env_cloud.xml",
+          "root": "dashboard",
+          "label": "Data Quality",
+          "description": "This dashboard helps you assess the quality of your incoming data by revealing issues that\n      occur when the data is being indexed. These issues appear as warnings and errors in your splunkd.log.",
+          "dashboard_version": "1.1",
+          "sha256": "deecf76a2e06a100ccf1c0c66f118970097d3d02ce23c50ec83a1c964536267d"
+        },
+        {
+          "id": "data_quality",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/data_quality.xml",
+          "root": "dashboard",
+          "label": "Data Quality",
+          "description": "This dashboard helps you assess the quality of your incoming data by revealing issues that\n      occur when the data is being indexed. These issues appear as warnings and errors in your splunkd.log.",
+          "dashboard_version": "1.1",
+          "sha256": "1e07b294d55987f2031c9a388e90ed2888ee84e757ddcd99c0fcd04a40d13812"
+        },
+        {
+          "id": "disk_usage_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/disk_usage_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "distributed_search_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/distributed_search_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "distributed_search_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/distributed_search_deployment.xml",
+          "root": "form",
+          "label": "Distributed Search: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "e505ce5f331c787698ce80409b1c01f5695896563db2910669f97578458b71fa"
+        },
+        {
+          "id": "distributed_search_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/distributed_search_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "distributed_search_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/distributed_search_instance.xml",
+          "root": "form",
+          "label": "Distributed Search: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "c395296ec86acad573dbf197f9e74787a28cfd99bf569c75769c5e3116d5839a"
+        },
+        {
+          "id": "forwarder_deployment.env_cloud",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_deployment.env_cloud.xml",
+          "root": "form",
+          "label": "Forwarders: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "46b410ab91d77452daf703e1f7c95a27bc1873e25c08cada73833c6e085fcf5e"
+        },
+        {
+          "id": "forwarder_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "forwarder_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_deployment.xml",
+          "root": "form",
+          "label": "Forwarders: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "1a5c4a2e5f28630d60967107b2f7e59b31817fc96b055ae6f6e5aa2cf00e8335"
+        },
+        {
+          "id": "forwarder_instance.env_cloud",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_instance.env_cloud.xml",
+          "root": "form",
+          "label": "Forwarders: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "982ebf0bca516068c9c0a2b891a341ef1970a2b543454872b471a83fb5458db1"
+        },
+        {
+          "id": "forwarder_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "forwarder_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_instance.xml",
+          "root": "form",
+          "label": "Forwarders: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "40fa3534405574423f6fe6f683694b2c8ea25e45240067a902f7c5f8c2660e63"
+        },
+        {
+          "id": "forwarder_overview.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_overview.prod_lite.xml",
+          "root": "form",
+          "label": "Forwarder Monitoring",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "92209eef28813774a75579eeea9b37dcc67ca133fbe5fdf0d594b2f8d18eea96"
+        },
+        {
+          "id": "forwarder_overview",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/forwarder_overview.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "http_event_collector_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/http_event_collector_deployment.xml",
+          "root": "form",
+          "label": "HTTP Event Collector: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "c3ec888a491715ba08f31dc48269da5f6999e47e6827e112a088723e9b8368ae"
+        },
+        {
+          "id": "http_event_collector_instance.env_cloud",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/http_event_collector_instance.env_cloud.xml",
+          "root": "form",
+          "label": "HTTP Event Collector",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "80e295f724baf9a10cec4cf109265e0de8d862e0f1358948f25e482d1110afc8"
+        },
+        {
+          "id": "http_event_collector_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/http_event_collector_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "http_event_collector_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/http_event_collector_instance.xml",
+          "root": "form",
+          "label": "HTTP Event Collector: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "b35a8aaa1787405edfc52f4c8555650d9b9a83d9ea9ae3efcb500253f2f83cbb"
+        },
+        {
+          "id": "index_detail_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/index_detail_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "index_detail_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/index_detail_deployment.xml",
+          "root": "form",
+          "label": "Index Detail: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "c6b24685a15cc7b1fdfca67e6f862f61d33439881d0fe21b1aaf5875cddf0731"
+        },
+        {
+          "id": "index_detail_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/index_detail_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "index_detail_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/index_detail_instance.xml",
+          "root": "form",
+          "label": "Index Detail: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "3669226e04348033d96c2c0146ffb31e40fdf96570bdadb3b749902fb2d44fdf"
+        },
+        {
+          "id": "indexer_clustering_service_activity.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexer_clustering_service_activity.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "indexer_clustering_service_activity",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexer_clustering_service_activity.xml",
+          "root": "form",
+          "label": "Indexer Clustering: Service Activity",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "c1d6f9d0d0f1b05ce36dc0b083b952ffe82322c03eedf8fa6348ff1f3cbb0e31"
+        },
+        {
+          "id": "indexer_clustering_status.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexer_clustering_status.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "indexer_clustering_status",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexer_clustering_status.xml",
+          "root": "form",
+          "label": "Indexer Clustering: Status",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "fc29a260f674dd43a2b4bc277f1be997b70c12f97d1b9fcd0565efc42c3992ab"
+        },
+        {
+          "id": "indexes_and_volumes_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexes_and_volumes_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "indexes_and_volumes_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexes_and_volumes_deployment.xml",
+          "root": "form",
+          "label": "Indexes and Volumes: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "ee61dccf26b2430e2fa2351dff04ec45e3683b697f19f9fa798895091845b92e"
+        },
+        {
+          "id": "indexes_and_volumes_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexes_and_volumes_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "indexes_and_volumes_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexes_and_volumes_instance.xml",
+          "root": "form",
+          "label": "Indexes and Volumes: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "be98febbc50e193991e0cb98b29c0028cbc38bda97cf95e5bc1cb48a3cc97b2d"
+        },
+        {
+          "id": "indexing_performance_advanced.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexing_performance_advanced.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "indexing_performance_advanced",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexing_performance_advanced.xml",
+          "root": "form",
+          "label": "Indexing Performance: Advanced",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "4575eca50fb32eb28609edc2a6e9b4ab9d78cb9473af4eed316c08218b6516b6"
+        },
+        {
+          "id": "indexing_performance_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexing_performance_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "indexing_performance_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexing_performance_deployment.xml",
+          "root": "form",
+          "label": "Indexing Performance: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "be0ad89d3213d2e86c7aa50f38d14d80e6a37597c9018145c73326a3c8f499b9"
+        },
+        {
+          "id": "indexing_performance_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexing_performance_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "indexing_performance_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/indexing_performance_instance.xml",
+          "root": "form",
+          "label": "Indexing Performance: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "4af6dc9a3e0e5a1703b07a809b92f28c619c6a96a80aba9feab1656f52fe2d41"
+        },
+        {
+          "id": "kv_store_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/kv_store_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "kv_store_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/kv_store_deployment.xml",
+          "root": "form",
+          "label": "KV Store: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "093d393a77605e95869d8f077829ac0653d6abd70fa3f0e25cd044abc3fd4bf7"
+        },
+        {
+          "id": "kv_store_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/kv_store_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "kv_store_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/kv_store_instance.xml",
+          "root": "form",
+          "label": "KV Store: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "21575f0ef578efd69e6d852f6fa0d7c871ca3c143c499d91ed5cf08ae0e2dd5a"
+        },
+        {
+          "id": "license_usage_30days.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/license_usage_30days.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "license_usage_historic",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/license_usage_historic.xml",
+          "root": "form",
+          "label": "Historic License Usage",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "8c5237f2903b2eda7b4b1889867fc545948f2ec32645141da1203cf6e7709f0d"
+        },
+        {
+          "id": "license_usage_today.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/license_usage_today.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "license_usage_today",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/license_usage_today.xml",
+          "root": "form",
+          "label": "License Usage - Today",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "06af6fd5c13e9112de7467d2dd4b3d3d022e0ee3f39b387cc2d15e47fb048b62"
+        },
+        {
+          "id": "monitoringconsole_alerts_setup.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_alerts_setup.prod_lite.xml",
+          "root": "view",
+          "label": "Platform Alerts Setup",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "2837df490fb19bcd2c4c92512aae55b94de0d12f480d1f2aa4747a7af9412bed"
+        },
+        {
+          "id": "monitoringconsole_alerts_setup",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_alerts_setup.xml",
+          "root": "view",
+          "label": "Alerts Setup",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "537e251c1bdfeac79d33e238b8c3a814655f9deabb7524d71f900d33fe7d67d3"
+        },
+        {
+          "id": "monitoringconsole_check.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_check.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "monitoringconsole_check",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_check.xml",
+          "root": "view",
+          "label": "Health Check",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "7efe8c751c7dab46637f6cc1b961c03e1c195e3bb2ff12c9a0e2ecb3a5dbb849"
+        },
+        {
+          "id": "monitoringconsole_check_list.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_check_list.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "monitoringconsole_check_list",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_check_list.xml",
+          "root": "view",
+          "label": "Health Check Items",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "35239a2324bc42ee3e7b2e01065252c4d603b2a1befa4cfff31538195b54c016"
+        },
+        {
+          "id": "monitoringconsole_configure.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_configure.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "monitoringconsole_configure",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_configure.xml",
+          "root": "view",
+          "label": "General Setup",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a34e348fc94727be172978a68d196364d10ad33c49db491de66882880ed23de7"
+        },
+        {
+          "id": "monitoringconsole_forwarder_setup",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_forwarder_setup.xml",
+          "root": "view",
+          "label": "Forwarder Monitoring Setup",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "8746032dcd307637cae8a01d61d79ab394b9165c2e03e130ade4515ba0c16098"
+        },
+        {
+          "id": "monitoringconsole_instances.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_instances.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "monitoringconsole_instances",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_instances.xml",
+          "root": "view",
+          "label": "Instances",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "4cbb183ca46669094cfb13bae7dc0e44efcdc3f88246a6048f5e55387e6d8891"
+        },
+        {
+          "id": "monitoringconsole_landing.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_landing.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "monitoringconsole_landing",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_landing.xml",
+          "root": "view",
+          "label": "Summary",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a7d85d53c0b16ffc3b710b8946b4d0466d5e5d7dd3aed5f809222d164c26f31d"
+        },
+        {
+          "id": "monitoringconsole_overview.env_cloud",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_overview.env_cloud.xml",
+          "root": "form",
+          "label": "Overview",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "a19a16d665f3fd03d24bc77536dfdca262ec62b4826d02720a853988e6309105"
+        },
+        {
+          "id": "monitoringconsole_overview.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_overview.prod_lite.xml",
+          "root": "form",
+          "label": "Resource Usage",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "8a7e130762cecdc7baef96b0034208441558e92f288fa4c85e49bafcd1ecf12e"
+        },
+        {
+          "id": "monitoringconsole_overview",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_overview.xml",
+          "root": "view",
+          "label": "Overview",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "c97fea4852ab47b2caffed5720c20c0300e8db5f0adc5d963a48716ffaa26787"
+        },
+        {
+          "id": "monitoringconsole_overview_preferences.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_overview_preferences.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "monitoringconsole_overview_preferences",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/monitoringconsole_overview_preferences.xml",
+          "root": "view",
+          "label": "Overview Preferences",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "b452db76b18d8f0be874d5e7a586fa4f265333bcf417a354cd2ad65c0e2f081f"
+        },
+        {
+          "id": "reports.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/reports.prod_lite.xml",
+          "root": "view",
+          "label": "Reports",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "68f80cf680d9d101ba19758bf4ee1de30dc18347d9147e44f4424d6f0103ae40"
+        },
+        {
+          "id": "reports",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/reports.xml",
+          "root": "view",
+          "label": "Reports",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "0cded6b4ea9eebe57d8a9a081d03145623d40310430fbbb122454c377ac19b80"
+        },
+        {
+          "id": "resource_usage_cpu_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_cpu_deployment.xml",
+          "root": "form",
+          "label": "CPU Usage: Deployment",
+          "description": "This dashboard consolidates panels from other Monitoring Console dashboards to help you assess the CPU usage of your Splunk deployment.",
+          "dashboard_version": "1.1",
+          "sha256": "4282d8cb5121c6f43cb3738df30afba5b1edd5302f8062fd686e332821e90ef9"
+        },
+        {
+          "id": "resource_usage_cpu_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_cpu_instance.xml",
+          "root": "form",
+          "label": "CPU Usage: Instance",
+          "description": "This dashboard consolidates panels from other Monitoring Console dashboards to help you assess the CPU usage of a Splunk instance.",
+          "dashboard_version": "1.1",
+          "sha256": "489e0c216c76ad1696d136b154ed67371d7d80b8f5314466c707718c773d44d5"
+        },
+        {
+          "id": "resource_usage_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "resource_usage_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_deployment.xml",
+          "root": "form",
+          "label": "Resource Usage: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "f8a137211346314548e4210b1f22953d02c0de46ecab27cd84c3dadf684b97d0"
+        },
+        {
+          "id": "resource_usage_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "resource_usage_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_instance.xml",
+          "root": "form",
+          "label": "Resource Usage: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "d9c0eb10a149a48e809e56637abc064af3a9d1adb27fbaeedcfc6dfee31ec71c"
+        },
+        {
+          "id": "resource_usage_machine.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_machine.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "resource_usage_machine",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/resource_usage_machine.xml",
+          "root": "form",
+          "label": "Resource Usage: Machine",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "f4f40bfce90225f4757604d6d38c56aabbd7640ca9c6f6607f76dda7c4e18d23"
+        },
+        {
+          "id": "scheduler_activity_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/scheduler_activity_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "scheduler_activity_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/scheduler_activity_deployment.xml",
+          "root": "form",
+          "label": "Scheduler Activity: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "8bcbb90d4efeb46b27473389786e10e07ee2c1194ea70a3a8dc1b7320eaf694b"
+        },
+        {
+          "id": "scheduler_activity_instance.env_cloud",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/scheduler_activity_instance.env_cloud.xml",
+          "root": "form",
+          "label": "Scheduler Activity",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "e9a2e0c2ee153a836b4ee6259090e8510a949480a598c3a228b7d05801bd83dd"
+        },
+        {
+          "id": "scheduler_activity_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/scheduler_activity_instance.prod_lite.xml",
+          "root": "form",
+          "label": "System activity",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "4aa0a2cb49cec661fd26e6102a1bf9922467acc8062d7b6565ec167d4d7b8c5b"
+        },
+        {
+          "id": "scheduler_activity_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/scheduler_activity_instance.xml",
+          "root": "form",
+          "label": "Scheduler Activity: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "023d4c92403f1032e6a1f52b7fd971b38b3a62f327175ed13cc22366eaa12560"
+        },
+        {
+          "id": "scheduler_assistant.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/scheduler_assistant.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "search_activity_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_activity_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "search_activity_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_activity_deployment.xml",
+          "root": "form",
+          "label": "Search Activity: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "545d36854de46030251a8f9ab6bd71840e4076e0b9090e10f019db0d25cb5a48"
+        },
+        {
+          "id": "search_activity_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_activity_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "search_activity_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_activity_instance.xml",
+          "root": "form",
+          "label": "Search Activity: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "2f9a005baf204864643354a6f5571ac5e1d02cfe349dbc1316486c4a1c3eb4df"
+        },
+        {
+          "id": "search_usage_statistics_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_usage_statistics_deployment.xml",
+          "root": "form",
+          "label": "Search Usage Statistics: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "d28972b8dd9c235486032c21d267a14431138e451dbcaad972887da3b196f400"
+        },
+        {
+          "id": "search_usage_statistics_instance.env_cloud",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_usage_statistics_instance.env_cloud.xml",
+          "root": "form",
+          "label": "Search Usage Statistics",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "e17158aaf28895f7823d595e533edde01dd24ea3fe44659eb17d4fa3f5a974af"
+        },
+        {
+          "id": "search_usage_statistics_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_usage_statistics_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "search_usage_statistics_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/search_usage_statistics_instance.xml",
+          "root": "form",
+          "label": "Search Usage Statistics: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "0076a8332869ac41d2b4580a0099f711ea0b4220f05e27373afdaeccd159fe01"
+        },
+        {
+          "id": "shc_app_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_app_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "shc_app_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_app_deployment.xml",
+          "root": "form",
+          "label": "Search Head Clustering: App Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "6e46ffd504b0f7e10ff93659ad88082de7747b8e25aef09f84ff79346ac1df0c"
+        },
+        {
+          "id": "shc_artifact_replication.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_artifact_replication.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "shc_artifact_replication",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_artifact_replication.xml",
+          "root": "form",
+          "label": "Search Head Clustering: Artifact Replication",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "ea7fde0000a9961649d1ff8c39c440379defe220e0fb175930b2c266a8616b8c"
+        },
+        {
+          "id": "shc_conf_rep.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_conf_rep.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "shc_conf_rep",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_conf_rep.xml",
+          "root": "form",
+          "label": "Search Head Clustering: Configuration Replication",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "5ee69ca234a2932f02c74a41a1b6d97dbbccb8c9c6a8b14b035db7a8b2faf570"
+        },
+        {
+          "id": "shc_scheduler_delegation_statistics.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_scheduler_delegation_statistics.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "shc_scheduler_delegation_statistics",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_scheduler_delegation_statistics.xml",
+          "root": "form",
+          "label": "Search Head Clustering: Scheduler Delegation",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "e6225475008965b72787c1397c184695c016512bc3f586604146cd6472a4de92"
+        },
+        {
+          "id": "shc_status_and_conf.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_status_and_conf.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "shc_status_and_conf",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/shc_status_and_conf.xml",
+          "root": "form",
+          "label": "Search Head Clustering: Status and Configuration",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "2f3a8e5b228c7645a743b63cddcfa51c297af44d3a3bf02987705a179745e92b"
+        },
+        {
+          "id": "smartstore_activity_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/smartstore_activity_deployment.xml",
+          "root": "form",
+          "label": "SmartStore Activity: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "5ac0d63cc8e250e2cd2e655b54bd3cf37c92e4a4d05a28579768c7223c8d6917"
+        },
+        {
+          "id": "smartstore_activity_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/smartstore_activity_instance.xml",
+          "root": "form",
+          "label": "SmartStore Activity: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "b442e6ad8c8a5b8bbb4845aa6521d5a6f559d2c9013e1d2c6a031d99ca4c3c52"
+        },
+        {
+          "id": "smartstore_cache_performance_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/smartstore_cache_performance_deployment.xml",
+          "root": "form",
+          "label": "SmartStore Cache Performance: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "b7eb78d305bee0f7e159c78e2cf4f06dd87d6bc1881d03d92e3370a8c496001d"
+        },
+        {
+          "id": "smartstore_cache_performance_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/smartstore_cache_performance_instance.xml",
+          "root": "form",
+          "label": "SmartStore Cache Performance: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "c003b62b139a05c0f386373d760827922f009a381c0e6df3efa1fed5c557d756"
+        },
+        {
+          "id": "splunk_tcpin_performance_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/splunk_tcpin_performance_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "splunk_tcpin_performance_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/splunk_tcpin_performance_deployment.xml",
+          "root": "form",
+          "label": "Splunk TCP Input Performance: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "e1913add0531bdc0ffd5effd230b36bcc4f02fe1b6b98206f7499739f13886d1"
+        },
+        {
+          "id": "splunk_tcpin_performance_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/splunk_tcpin_performance_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "f327d207f839f0e24987b8bfc8c33d4b9cbd671db3405fa36c002e6f0cc27d40"
+        },
+        {
+          "id": "splunk_tcpin_performance_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/splunk_tcpin_performance_instance.xml",
+          "root": "form",
+          "label": "Splunk TCP Input Performance: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "fc88dcb04e4fe8233de6008efdf39e8bfbdb7c07f8a39e8fbbcc504a80d42d63"
+        },
+        {
+          "id": "standalone.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/standalone.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "standalone",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/standalone.xml",
+          "root": "form",
+          "label": "Not available in standalone mode",
+          "description": "The page you have requested is not available in standalone mode.",
+          "dashboard_version": "1.1",
+          "sha256": "60004583d98d00104d3f3ee8d677fc52bc7433c2280d0168b95c98edce02b333"
+        },
+        {
+          "id": "volume_detail_deployment.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/volume_detail_deployment.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "volume_detail_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/volume_detail_deployment.xml",
+          "root": "form",
+          "label": "Volume Detail: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "470a3412f0801f91fc8248817af0119191e9ebc5d053eb74835c19dbd1b8f307"
+        },
+        {
+          "id": "volume_detail_instance.prod_lite",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/volume_detail_instance.prod_lite.xml",
+          "root": "view",
+          "label": "Error",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "20be046579846edf9162d4ac081cc995919d72195076e724516521f3b2eefe30"
+        },
+        {
+          "id": "volume_detail_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/volume_detail_instance.xml",
+          "root": "form",
+          "label": "Volume Detail: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "36a78698e7ca94e97426ba7088352066cd1656dac3fb3482be1af0fdab78baab"
+        },
+        {
+          "id": "workload_management",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/workload_management.xml",
+          "root": "form",
+          "label": "Workload Management Overview",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "803b788cddb812c1fc564f44dd6b1ff598335badd2e32f90c1bcdda341ea96fe"
+        },
+        {
+          "id": "workload_management_monitoring_distributed",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/workload_management_monitoring_distributed.xml",
+          "root": "form",
+          "label": "Workload Management Monitoring: Distributed",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "0066e763742d85adf7928cc806748cf9e3ee21bb3d8d9ae46b89fc46647115b5"
+        },
+        {
+          "id": "workload_management_monitoring_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/workload_management_monitoring_instance.xml",
+          "root": "form",
+          "label": "Workload Management Monitoring: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "a59fa68041372c57a130f419a2d4a4f226d1d0a78a1ca01f28cff415bfc3f0d1"
+        },
+        {
+          "id": "workload_management_per_pool_deployment",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/workload_management_per_pool_deployment.xml",
+          "root": "form",
+          "label": "Workload Management Activity: Deployment",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "d533f13f1128885acf34b7fa549f1230a49bc9d1fa26cd9bbf2728689fb85e7c"
+        },
+        {
+          "id": "workload_management_per_pool_instance",
+          "path": "/Applications/Splunk/etc/apps/splunk_monitoring_console/default/data/ui/views/workload_management_per_pool_instance.xml",
+          "root": "form",
+          "label": "Workload Management Activity: Instance",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "b0c8a268561069ecfed48818de1f4cd87af31c63d4e323a4156eedc4e576cce9"
+        }
+      ]
+    },
+    {
+      "app": "splunk_secure_gateway",
+      "navigation": [
+        {
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/nav/default.xml",
+          "xml": "<nav>\n    <view name=\"home\" default=\"true\"/>\n    <view name=\"administration\" />\n    <collection label=\"Dashboards\">\n        <view name=\"secure_gateway_status_dashboard\" />\n        <view name=\"recent_ssg_dashboard_activity\"/>\n        <collection label=\"Troubleshooting Dashboards\">\n            <view name=\"request_tracing_dashboard\"/>\n            <view name=\"subscription_tracing_dashboard\"/>\n            <view name=\"test_dashboard_single_value\"/>\n            <view name=\"ssg_e2e_wss_test\"/>\n            <view name=\"kvstore_dashboard_client\"/>\n            <view name=\"subscription_search_inspector\"/>\n            <view name=\"saml_troubleshooting_dashboard\"/>\n        </collection>\n    </collection>\n</nav>\n",
+          "views": [
+            {
+              "name": "home",
+              "default": "true"
+            },
+            {
+              "name": "administration"
+            },
+            {
+              "name": "secure_gateway_status_dashboard"
+            },
+            {
+              "name": "recent_ssg_dashboard_activity"
+            },
+            {
+              "name": "request_tracing_dashboard"
+            },
+            {
+              "name": "subscription_tracing_dashboard"
+            },
+            {
+              "name": "test_dashboard_single_value"
+            },
+            {
+              "name": "ssg_e2e_wss_test"
+            },
+            {
+              "name": "kvstore_dashboard_client"
+            },
+            {
+              "name": "subscription_search_inspector"
+            },
+            {
+              "name": "saml_troubleshooting_dashboard"
+            }
+          ],
+          "links": []
+        }
+      ],
+      "views": [
+        {
+          "id": "administration",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/administration.xml",
+          "root": "view",
+          "label": "Administration",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "6d22262678dffd1154dd224fa51526a7585637ba01a186b88aad2bdd91419f1a"
+        },
+        {
+          "id": "home",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/home.xml",
+          "root": "view",
+          "label": "Home",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "336f6b0667810d068f4d8686ad9b6c40367145c8f2f90ffa8aca3ade45a8d300"
+        },
+        {
+          "id": "kvstore_dashboard_client",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/kvstore_dashboard_client.xml",
+          "root": "form",
+          "label": "KV Store Collections Status",
+          "description": "If you\u2019re running into issues with the Connected Experiences apps, Splunk Support might ask you to use this dashboard to check the KV Store status.",
+          "dashboard_version": "1.1",
+          "sha256": "f313d46c20fb82e06576748be24d7fde5e5231db9f606fef4bdffb935da5103f"
+        },
+        {
+          "id": "mdm_saml",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/mdm_saml.xml",
+          "root": "view",
+          "label": "MDM with SAML",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a7a618ddf10dea2fc68e8137838806fb0199e20b712c021d2405f472bfe6e284"
+        },
+        {
+          "id": "opt_in",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/opt_in.xml",
+          "root": "view",
+          "label": "SOC2 Compliance Opt In Page",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "a2c0ac4027db758c6daf6373041c1bec6ebeaef8507eb186b3392606723b0a6e"
+        },
+        {
+          "id": "recent_ssg_dashboard_activity",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/recent_ssg_dashboard_activity.xml",
+          "root": "form",
+          "label": "Recent SSG Dashboard Activity",
+          "description": "Use this dashboard to troubleshoot a Dashboard that isn\u2019t loading. Select a time range to get a list of most recently viewed Dashboards.",
+          "dashboard_version": "1.1",
+          "sha256": "721137cabc4341e6a9691e131526a605fc8dc4aabbbcfc6655a067bdb55f8f47"
+        },
+        {
+          "id": "request_tracing_dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/request_tracing_dashboard.xml",
+          "root": "form",
+          "label": "Request Tracing",
+          "description": "Troubleshoot and trace a particular request. Select a time range and a request ID to get troubleshooting logs and a stack trace.",
+          "dashboard_version": "1.1",
+          "sha256": "9638c24bb300f15d28c313514520f3198efb7e484bf045bf631bc505e67df6c8"
+        },
+        {
+          "id": "saml_troubleshooting_dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/saml_troubleshooting_dashboard.xml",
+          "root": "dashboard",
+          "label": "SAML Troubleshooting Dashboard",
+          "description": "Dashboard to help troubleshoot SAML setup issues with Splunk Secure Gateway",
+          "dashboard_version": "1.1",
+          "sha256": "b029462eef4af6accec861340eddd64fdf86738104ab4fc1cf39fe7c1163e2f8"
+        },
+        {
+          "id": "secure_gateway_status_dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/secure_gateway_status_dashboard.xml",
+          "root": "form",
+          "label": "Secure Gateway Status Dashboard",
+          "description": "",
+          "dashboard_version": "1.1",
+          "sha256": "6cff44810c220e4532e021aba65234bf2b1de83e53e03c694a96596c57e2d50c"
+        },
+        {
+          "id": "self_register",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/self_register.xml",
+          "root": "view",
+          "label": "Self Register",
+          "description": "",
+          "dashboard_version": null,
+          "sha256": "2ed5c281897e5368b58105e3f90e4c9f595a2ebc3058b3af8233af5dd268ae9c"
+        },
+        {
+          "id": "ssg_e2e_wss_test",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/ssg_e2e_wss_test.xml",
+          "root": "form",
+          "label": "End-to-End Websocket Test",
+          "description": "Initiate a sample request to run an end-to-end websocket test for Splunk Secure Gateway, device authentication, and Spacebridge messaging. This dashboard requires JSON Web Tokens (JWT) to be enabled.",
+          "dashboard_version": "1.1",
+          "sha256": "dc8b2ce295c4c2d006d3a4b90cdd72ffb8166fbbcb421bf35752fb604470e7a2"
+        },
+        {
+          "id": "subscription_search_inspector",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/subscription_search_inspector.xml",
+          "root": "form",
+          "label": "Secure Gateway Subscription Inspector",
+          "description": "This dashboard is intended to help troubleshoot issues with search processing logic within Splunk Secure Gateway. To get started click on one of the subscription iterations.",
+          "dashboard_version": "1.1",
+          "sha256": "d7d7412e608b1597e5d69b472eccb24701a1270308cb9cb34cde42594f73d531"
+        },
+        {
+          "id": "subscription_tracing_dashboard",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/subscription_tracing_dashboard.xml",
+          "root": "form",
+          "label": "Subscription Tracing",
+          "description": "Use this dashboard to troubleshoot a panel that isn\u2019t loading. Select a time range and a panel ID to get troubleshooting logs and a stack trace.",
+          "dashboard_version": "1.1",
+          "sha256": "2f0355cba256a477319ef9951157675215e4785ffaff00d05b37266ceff3fb17"
+        },
+        {
+          "id": "test_dashboard_single_value",
+          "path": "/Applications/Splunk/etc/apps/splunk_secure_gateway/default/data/ui/views/test_dashboard_single_value.xml",
+          "root": "dashboard",
+          "label": "Single Value Test",
+          "description": "This single-value panel is a test to check if a simple dashboard loads in Splunk Secure Gateway. It helps identify possible causes for issues during troubleshooting.",
+          "dashboard_version": "1.1",
+          "sha256": "ffec283d4ee3a9068241c10a88f0e0f5afa96f6e66d3dd3588a657ad3dc4be4c"
+        }
+      ]
+    }
+  ],
+  "enterprise_page_bundles": [
+    {
+      "id": "79",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/79.js",
+      "bytes": 157086
+    },
+    {
+      "id": "80",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/80.js",
+      "bytes": 240417
+    },
+    {
+      "id": "81",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/81.js",
+      "bytes": 39653
+    },
+    {
+      "id": "82",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/82.js",
+      "bytes": 10980
+    },
+    {
+      "id": "83",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/83.js",
+      "bytes": 15670
+    },
+    {
+      "id": "84",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/84.js",
+      "bytes": 200888
+    },
+    {
+      "id": "85",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/85.js",
+      "bytes": 2206
+    },
+    {
+      "id": "86",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/86.js",
+      "bytes": 6759
+    },
+    {
+      "id": "account",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/account.js",
+      "bytes": 224976
+    },
+    {
+      "id": "accountstatus",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/accountstatus.js",
+      "bytes": 189354
+    },
+    {
+      "id": "adddatamethods",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/adddatamethods.js",
+      "bytes": 463471
+    },
+    {
+      "id": "alert",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/alert.js",
+      "bytes": 29402
+    },
+    {
+      "id": "alert_actions",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/alert_actions.js",
+      "bytes": 23751
+    },
+    {
+      "id": "alerts",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/alerts.js",
+      "bytes": 55135
+    },
+    {
+      "id": "apps_local",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/apps_local.js",
+      "bytes": 53168
+    },
+    {
+      "id": "apps_uploaded_apps",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/apps_uploaded_apps.js",
+      "bytes": 11785
+    },
+    {
+      "id": "appsremote",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/appsremote.js",
+      "bytes": 49857
+    },
+    {
+      "id": "archive_management",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/archive_management.js",
+      "bytes": 22370
+    },
+    {
+      "id": "archive_new",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/archive_new.js",
+      "bytes": 16893
+    },
+    {
+      "id": "archives",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/archives.js",
+      "bytes": 41546
+    },
+    {
+      "id": "auth_view_capabilities",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/auth_view_capabilities.js",
+      "bytes": 27424
+    },
+    {
+      "id": "auth_view_indexes",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/auth_view_indexes.js",
+      "bytes": 30250
+    },
+    {
+      "id": "authentication_changepassword",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/authentication_changepassword.js",
+      "bytes": 15101
+    },
+    {
+      "id": "authentication_users",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/authentication_users.js",
+      "bytes": 64156
+    },
+    {
+      "id": "authorization_roles",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/authorization_roles.js",
+      "bytes": 166034
+    },
+    {
+      "id": "authorization_tokens",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/authorization_tokens.js",
+      "bytes": 170828
+    },
+    {
+      "id": "bulkreassign",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/bulkreassign.js",
+      "bytes": 26822
+    },
+    {
+      "id": "clustering",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/clustering.js",
+      "bytes": 189997
+    },
+    {
+      "id": "clustering_bucket_details",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/clustering_bucket_details.js",
+      "bytes": 70889
+    },
+    {
+      "id": "clustering_push",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/clustering_push.js",
+      "bytes": 46689
+    },
+    {
+      "id": "common",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/common.js",
+      "bytes": 14652229
+    },
+    {
+      "id": "dashboard_1.1",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/dashboard_1.1.js",
+      "bytes": 1258901
+    },
+    {
+      "id": "dashboards",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/dashboards.js",
+      "bytes": 627733
+    },
+    {
+      "id": "data_indexes",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/data_indexes.js",
+      "bytes": 91136
+    },
+    {
+      "id": "data_indexes_cloud",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/data_indexes_cloud.js",
+      "bytes": 22252
+    },
+    {
+      "id": "data_indexes_cloud_light",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/data_indexes_cloud_light.js",
+      "bytes": 11644
+    },
+    {
+      "id": "data_model_editor",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/data_model_editor.js",
+      "bytes": 285536
+    },
+    {
+      "id": "data_model_manager",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/data_model_manager.js",
+      "bytes": 81760
+    },
+    {
+      "id": "data_ui_panels",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/data_ui_panels.js",
+      "bytes": 39631
+    },
+    {
+      "id": "dataset",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/dataset.js",
+      "bytes": 199889
+    },
+    {
+      "id": "datasets",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/datasets.js",
+      "bytes": 58193
+    },
+    {
+      "id": "deploymentserver",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/deploymentserver.js",
+      "bytes": 52565
+    },
+    {
+      "id": "deploymentserver_add_apps",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/deploymentserver_add_apps.js",
+      "bytes": 20863
+    },
+    {
+      "id": "deploymentserver_add_clients",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/deploymentserver_add_clients.js",
+      "bytes": 35677
+    },
+    {
+      "id": "deploymentserver_apps_detail",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/deploymentserver_apps_detail.js",
+      "bytes": 15679
+    },
+    {
+      "id": "deploymentserver_edit_app",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/deploymentserver_edit_app.js",
+      "bytes": 25650
+    },
+    {
+      "id": "deploymentserveredit",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/deploymentserveredit.js",
+      "bytes": 39312
+    },
+    {
+      "id": "embed",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/embed.js",
+      "bytes": 14603
+    },
+    {
+      "id": "error",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/error.js",
+      "bytes": 4963
+    },
+    {
+      "id": "explore_data",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/explore_data.js",
+      "bytes": 119627
+    },
+    {
+      "id": "federated_search",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/federated_search.js",
+      "bytes": 158766
+    },
+    {
+      "id": "field_extractor",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/field_extractor.js",
+      "bytes": 202862
+    },
+    {
+      "id": "global_banner",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/global_banner.js",
+      "bytes": 14321
+    },
+    {
+      "id": "health_manager",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/health_manager.js",
+      "bytes": 185452
+    },
+    {
+      "id": "home",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/home.js",
+      "bytes": 78735
+    },
+    {
+      "id": "html_dashboard_error",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/html_dashboard_error.js",
+      "bytes": 11025
+    },
+    {
+      "id": "http-eventcollector",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/http-eventcollector.js",
+      "bytes": 82702
+    },
+    {
+      "id": "ingest_rulesets",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/ingest_rulesets.js",
+      "bytes": 779708
+    },
+    {
+      "id": "internal_library_settings",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/internal_library_settings.js",
+      "bytes": 30148
+    },
+    {
+      "id": "job_inspector",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/job_inspector.js",
+      "bytes": 38028
+    },
+    {
+      "id": "job_manager",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/job_manager.js",
+      "bytes": 41770
+    },
+    {
+      "id": "licenseusage",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/licenseusage.js",
+      "bytes": 644078
+    },
+    {
+      "id": "licensing",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/licensing.js",
+      "bytes": 65923
+    },
+    {
+      "id": "licensing_notes",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/licensing_notes.js",
+      "bytes": 10425
+    },
+    {
+      "id": "live_tail",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/live_tail.js",
+      "bytes": 61127
+    },
+    {
+      "id": "login_page_settings",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/login_page_settings.js",
+      "bytes": 235438
+    },
+    {
+      "id": "lookup_geoip",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/lookup_geoip.js",
+      "bytes": 10956
+    },
+    {
+      "id": "manage_system_config",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/manage_system_config.js",
+      "bytes": 11858
+    },
+    {
+      "id": "mod_setup",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/mod_setup.js",
+      "bytes": 51779
+    },
+    {
+      "id": "password_management",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/password_management.js",
+      "bytes": 18113
+    },
+    {
+      "id": "pivot",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/pivot.js",
+      "bytes": 315163
+    },
+    {
+      "id": "report",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/report.js",
+      "bytes": 80458
+    },
+    {
+      "id": "reports",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/reports.js",
+      "bytes": 47590
+    },
+    {
+      "id": "saml",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/saml.js",
+      "bytes": 65667
+    },
+    {
+      "id": "saved_searches",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/saved_searches.js",
+      "bytes": 57652
+    },
+    {
+      "id": "saved_searches_advancededit",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/saved_searches_advancededit.js",
+      "bytes": 14468
+    },
+    {
+      "id": "search-0",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-0.js",
+      "bytes": 242763
+    },
+    {
+      "id": "search-2",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-2.js",
+      "bytes": 157085
+    },
+    {
+      "id": "search-3",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-3.js",
+      "bytes": 247650
+    },
+    {
+      "id": "search-4",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-4.js",
+      "bytes": 47046
+    },
+    {
+      "id": "search-5",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-5.js",
+      "bytes": 13557
+    },
+    {
+      "id": "search-6",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-6.js",
+      "bytes": 15669
+    },
+    {
+      "id": "search-7",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-7.js",
+      "bytes": 200887
+    },
+    {
+      "id": "search-8",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search-8.js",
+      "bytes": 6758
+    },
+    {
+      "id": "search",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search.js",
+      "bytes": 13868983
+    },
+    {
+      "id": "search_head_clustering",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/search_head_clustering.js",
+      "bytes": 42487
+    },
+    {
+      "id": "searchprefs",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/searchprefs.js",
+      "bytes": 20754
+    },
+    {
+      "id": "show_source",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/show_source.js",
+      "bytes": 12576
+    },
+    {
+      "id": "sourcetypes",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/sourcetypes.js",
+      "bytes": 31902
+    },
+    {
+      "id": "style_guide",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/style_guide.js",
+      "bytes": 119108
+    },
+    {
+      "id": "table",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/table.js",
+      "bytes": 539636
+    },
+    {
+      "id": "triggered_alerts",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/triggered_alerts.js",
+      "bytes": 42076
+    },
+    {
+      "id": "virtual_indexes",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/virtual_indexes.js",
+      "bytes": 75544
+    },
+    {
+      "id": "vix_index_new",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/vix_index_new.js",
+      "bytes": 25343
+    },
+    {
+      "id": "vix_provider_new",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/vix_provider_new.js",
+      "bytes": 39514
+    },
+    {
+      "id": "workload_management",
+      "path": "/Applications/Splunk/share/splunk/search_mrsparkle/exposed/build/pages/enterprise/workload_management.js",
+      "bytes": 157837
+    }
+  ],
+  "web_templates": [
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/account/sso_error.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/402.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/403.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/_helpers.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/advancedsearch.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/already-installed.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/app-not-found.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/enable-required.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/no-internet.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/ready-to-install.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/restart-required.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/sb-login.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/setup-required.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/upgrade-available.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/appinstall/upload-app.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/authoverview.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/control.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/datainputstats.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/distsearch.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/edit.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/element.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/error.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/fields.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/forwardreceive.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/index.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/list.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/lookups.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/notavailable.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/permissions.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/systemsettings.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/tags.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/ui.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/accumulator.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/checkbox.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/expando_textarea.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/fieldmapping.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/fieldset.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/fileupload.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/header.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/helpstring.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/hidden.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/multiselect.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/password.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/radio.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/repeatable.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/savedsearchredirectlink.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/select.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/simplepassword.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/textarea.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/admin/widgets/textfield.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizard/_steps.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizard/step1_edit.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizard/step1_new.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizard/step2.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizard/step3.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizard/success.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizardv2/_step1.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizardv2/_steps.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizardv2/step1_edit.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizardv2/step1_new.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizardv2/step2.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizardv2/step3.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/alertswizardv2/success.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/contexts/eventhandler.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/contexts/postsearch.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/contexts/saved.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/contexts/string.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/contexts/template.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/dashboard.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Chart.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/CheckboxGroupInput.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/DropdownInput.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Event.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Html.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Html.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/LinkInput.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/List.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/List.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Map.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/MultiSelectInput.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/RadioInput.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Single.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Table.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Table.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/TextInput.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/TimeInput.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/Viz.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/drilldown/drilldown.js",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboards/elements/drilldown/inputchange.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboardshare/new.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/dashboardshare/success.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/debug/echo.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/debug/pdf.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/debug/reset.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/errors/missing_job.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/etb/index.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/field/summary.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/formset.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/hadoop/base.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/README",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/admin.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/admin_lite.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/admin_lite_dialog.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/base.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/message.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/view.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/layout/wizard.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/lib.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/expired.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/licenses/add.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/licenses/delete.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/licenses/details.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/licenses/list.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/messages/list.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/overview.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/pools/add.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/pools/delete.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/self.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/slave.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/slaves/list.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/switch.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/licensing/usage.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/lists/_helpers.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/lists/json.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/lists/li.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/lists/options.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/lists/table.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/module/_helpers.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/app.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/base.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/base_v2.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/blank.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/dashboard_1.1.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/error.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/page.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/page_with_flag.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/search.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/static.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/pages/system.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/paneleditor/edit.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/paneleditor/searchedit.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/prototype/form1.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/prototype/new_layout.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/prototype/scroll_performance.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/prototype/sparklines.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/recipe/index.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/savesearchwizard/new.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/savesearchwizard/success.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/_step1.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/_step1_js.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/_steps.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/step1_edit.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/step1_new.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/step2.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/step3.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledigestwizard/success.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledview/edit.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/scheduledview/success.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/searchhelper/creditframe.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/searchhelper/index.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/searchhelper/rawhtml.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/searchhelper/snippet.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/summarization/dashboard.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/summarization/summary_details.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/summarization/verification_result.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/summarization/verification_success.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/summarization/verify_step1.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/tags/get_field_tags.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/top/help.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/top/info.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/top/modules.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/404_app.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/_helpers.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/app_setup.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/builder.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/dashboard.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/dashboard_escaped_render.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/html_dashboards_removed.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/jobs.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/jsonDefine.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/search.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/view/tree.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/viewmaster/create_dashboard.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/viewmaster/edit_dashboard.html",
+    "/Applications/Splunk/share/splunk/search_mrsparkle/templates/viewmaster/edit_panel.html"
+  ],
+  "controllers": [
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/__init__.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/account.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/admin.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/alerts.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/appinstall.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/appnav.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/config.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/custom.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/dashboardshare.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/datamodel.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/debug.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/embed.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/error.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/etb.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/field.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/i18n_catalog.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/ifx.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/licensing.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/lists.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/messages.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/module.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/parser.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/proxy.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/savedsearchredirect.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/savesearchwizard.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/scheduledigestwizard.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/scheduledviews.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/search.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/summarization.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/tags.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/top.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/tree.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/utility.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/view.py",
+    "/Applications/Splunk/lib/python3.7/site-packages/splunk/appserver/mrsparkle/controllers/viewmaster.py"
+  ],
+  "coverage": "Filesystem inventory and XML declarations; availability after login and permissions are unverified."
+}

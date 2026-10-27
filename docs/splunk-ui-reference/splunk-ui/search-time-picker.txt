@@ -1,0 +1,130 @@
+Browser tab: 2136985550, Title: "Search | Splunk 9.2.2", URL: "http://localhost:8000/en-US/app/search/search".
+1 AXWebArea Search | Splunk 9.2.2, URL: localhost:8000/en-US/app/search/search
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/app/search/search#navSkip
+	3 container
+		4 container
+			5 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+			6 pop up button Apps ▾
+				7 text Apps
+				8 text ▾
+			75 button Description: View health report with status green, Help: Health: green
+				76 text 
+			10 pop up button Administrator ▾, Help: User
+				11 text Administrator
+				12 text ▾
+			13 pop up button 2 Messages ▾, Help: Messages
+				14 text 2
+				15 text Messages
+				16 text ▾
+			17 pop up button Settings ▾
+				18 text Settings
+				19 text ▾
+			20 pop up button Activity ▾
+				21 text Activity
+				22 text ▾
+			23 pop up button Help ▾
+				24 text Help
+				25 text ▾
+			26 container
+				27 text 
+				28 text field (settable) Description: Find, ID: control-view10098
+		29 container
+			30 link Description: Search, Value: localhost:8000/en-US/app/search/search
+			31 link Description: Analytics, Value: localhost:8000/en-US/app/search/analytics_workspace
+			32 link Description: Datasets, Value: localhost:8000/en-US/app/search/datasets
+			33 link Description: Reports, Value: localhost:8000/en-US/app/search/reports
+			34 link Description: Alerts, Value: localhost:8000/en-US/app/search/alerts
+			35 link Description: Dashboards, Value: localhost:8000/en-US/app/search/dashboards
+		36 link Description: App icon Search & Reporting, Value: localhost:8000/en-US/app/search/
+	37 container
+		38 heading Search, Value: 1
+			39 text Search
+		40 container
+			41 container  enter search here...
+				42 container
+					43 text entry area (settable) Description: Search, Value: 
+					44 text enter search here...
+			45 container Last 24 hours
+				46 link (expanded) Description: Last 24 hours, Value: localhost:8000/en-US/app/search/search#, Secondary Actions: Collapse
+			47 container Search Button
+				48 link Description: Search Button, Value: localhost:8000/en-US/app/search/search#
+		49 container
+			50 link Description: No Event Sampling, Value: localhost:8000/en-US/app/search/search#
+			51 link Description:  Smart Mode, Value: localhost:8000/en-US/app/search/search#
+		52 container
+			53 link Description: › Search History, Value: localhost:8000/en-US/app/search/search#
+			54 button More info
+			55 container aria-id-d717a3b3-5145-4251-b129-e85f89ecad6e
+				56 text You can toggle through past searches in the search bar
+				57 text Previous: CTRL + P
+				58 text Next: CTRL + N
+		59 container
+			60 heading How to Search, Value: 2
+				61 text How to Search
+			62 text If you are not familiar with the search features, or want to learn more, or see your available data, see one of the following resources.
+			63 link Description: Documentation link Open externally, Help: Splunk help, Value: localhost:8000/en-US/help?location=splunkcore.homepage.docs, ID: initial-help-documentation
+			64 link Description: Tutorial link Open externally, Help: Splunk help, Value: localhost:8000/en-US/help?location=search_app.tutorial, ID: initial-help-tutorial
+			130 link Description: Data Summary, Help: View sources, source types and hosts., Value: localhost:8000/en-US/app/search/search#
+		66 container
+			67 heading Analyze Your Data with Table Views, Value: 2
+				68 text Analyze Your Data with Table Views
+			69 text Table Views 
+			70 text let you prepare data without using SPL. First, use a point-and-click interface to select data. Then, clean and transform it for analysis in Analytics Workspace, Search, or Pivot!
+			71 link Description: Learn more Open externally, Value: localhost:8000/en-US/help?location=learnmore.datasets.listing
+			72 text  about Table Views, or view and manage your Table Views with the 
+			73 link Description: Datasets listing page., Value: localhost:8000/en-US/app/search/datasets
+			74 link Description: Create Table View, Value: localhost:8000/en-US/app/search/table
+	78 container dialog-view30117
+		79 container
+			80 container presets_view9311
+				81 button (expanded) ˅ Presets, Secondary Actions: Collapse
+					82 text ˅
+					83 text Presets
+				84 container
+					85 content list
+						86 text REAL-TIME
+						87 link Description: Real-time 30 second window, Value: localhost:8000/en-US/app/search/search#
+						88 link Description: Real-time 1 minute window, Value: localhost:8000/en-US/app/search/search#
+						89 link Description: Real-time 5 minute window, Value: localhost:8000/en-US/app/search/search#
+						90 link Description: Real-time 30 minute window, Value: localhost:8000/en-US/app/search/search#
+						91 link Description: Real-time 1 hour window, Value: localhost:8000/en-US/app/search/search#
+						92 link Description: Real-time All time (real-time), Value: localhost:8000/en-US/app/search/search#
+					93 content list
+						94 text RELATIVE
+						95 link Description: Relative Today, Value: localhost:8000/en-US/app/search/search#
+						96 link Description: Relative Week to date, Value: localhost:8000/en-US/app/search/search#
+						97 link Description: Relative Business week to date, Value: localhost:8000/en-US/app/search/search#
+						98 link Description: Relative Month to date, Value: localhost:8000/en-US/app/search/search#
+						99 link Description: Relative Year to date, Value: localhost:8000/en-US/app/search/search#
+						100 link Description: Relative Yesterday, Value: localhost:8000/en-US/app/search/search#
+						101 link Description: Relative Previous week, Value: localhost:8000/en-US/app/search/search#
+						102 link Description: Relative Previous business week, Value: localhost:8000/en-US/app/search/search#
+						103 link Description: Relative Previous month, Value: localhost:8000/en-US/app/search/search#
+						104 link Description: Relative Previous year, Value: localhost:8000/en-US/app/search/search#
+					105 content list
+						106 link Description: Relative Last 15 minutes, Value: localhost:8000/en-US/app/search/search#
+						107 link Description: Relative Last 60 minutes, Value: localhost:8000/en-US/app/search/search#
+						108 link Description: Relative Last 4 hours, Value: localhost:8000/en-US/app/search/search#
+						109 link Description: Relative Last 24 hours, Value: localhost:8000/en-US/app/search/search#
+						110 link Description: Relative Last 7 days, Value: localhost:8000/en-US/app/search/search#
+						111 link Description: Relative Last 30 days, Value: localhost:8000/en-US/app/search/search#
+					112 content list
+						113 text OTHER
+						114 link Description: Other All time, Value: localhost:8000/en-US/app/search/search#
+			115 button (collapsed) › Relative, Secondary Actions: Expand
+				116 text ›
+				117 text Relative
+			118 button (collapsed) › Real-time, Secondary Actions: Expand
+				119 text ›
+				120 text Real-time
+			121 button (collapsed) › Date Range, Secondary Actions: Expand
+				122 text ›
+				123 text Date Range
+			124 button (collapsed) › Date & Time Range, Secondary Actions: Expand
+				125 text ›
+				126 text Date & Time Range
+			127 button (collapsed) › Advanced, Secondary Actions: Expand
+				128 text ›
+				129 text Advanced
+
+The focused UI element is 81 button (expanded) ˅ Presets, Secondary Actions: Collapse

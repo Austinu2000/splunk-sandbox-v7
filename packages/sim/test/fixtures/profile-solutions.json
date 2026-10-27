@@ -1,0 +1,136 @@
+{
+  "erie-phonehome-storm": {
+    "fixes": [
+      {
+        "phoneHomeIntervalInSecs": "60"
+      }
+    ],
+    "action": null
+  },
+  "erie-uf-upgrade-drift": {
+    "fixes": [
+      {
+        "sslVersions": "tls1.2,tls1.3"
+      }
+    ],
+    "action": null
+  },
+  "erie-wineventlog-volume": {
+    "fixes": [
+      {
+        "blacklist": "4662,5156"
+      }
+    ],
+    "action": null
+  },
+  "erie-peer-disk-full": {
+    "fixes": [
+      {
+        "maxVolumeDataSizeMB": "500000"
+      }
+    ],
+    "action": null
+  },
+  "erie-retention-capacity": {
+    "fixes": [
+      {
+        "maxTotalDataSizeMB": "1000000000"
+      }
+    ],
+    "action": null
+  },
+  "apl-fortigate-timezone": {
+    "fixes": [
+      {
+        "TZ": "UTC"
+      }
+    ],
+    "action": null
+  },
+  "apl-fortigate-sourcetype": {
+    "fixes": [
+      {
+        "enabled": "true"
+      }
+    ],
+    "action": null
+  },
+  "apl-aws-flowlogs-stalled": {
+    "fixes": [
+      {
+        "credential": "simulated-current"
+      }
+    ],
+    "action": null
+  },
+  "apl-ot-udp-drops": {
+    "fixes": [
+      {
+        "receiveBufferSize": "8388608"
+      }
+    ],
+    "action": null
+  },
+  "apl-cribl-route": {
+    "fixes": [
+      {
+        "deny_sample_rate": "0.1"
+      }
+    ],
+    "action": null
+  },
+  "apl-sep-cim": {
+    "fixes": [
+      {
+        "search": "sourcetype=symantec:ep:*"
+      }
+    ],
+    "action": null
+  },
+  "apl-es-dm-acceleration": {
+    "fixes": [
+      {
+        "auto_summary_perc": "50"
+      }
+    ],
+    "action": null
+  },
+  "apl-saml-role-mapping": {
+    "fixes": [
+      {
+        "stanza": "roleMap_saml",
+        "set": {
+          "APL-SOC-Analysts-v2": "ess_analyst;user"
+        }
+      }
+    ],
+    "action": null
+  },
+  "apl-shc-bundle-push": {
+    "fixes": [
+      {
+        "cron_schedule": "*/10 * * * *"
+      }
+    ],
+    "action": "shc"
+  },
+  "apl-idx-rolling-restart": {
+    "fixes": [
+      {
+        "maintenance_mode": "false"
+      },
+      {
+        "disabled": "0"
+      }
+    ],
+    "action": null
+  },
+  "apl-soar-servicenow": {
+    "fixes": [
+      {
+        "credential": "simulated-current"
+      }
+    ],
+    "action": "soar"
+  }
+}

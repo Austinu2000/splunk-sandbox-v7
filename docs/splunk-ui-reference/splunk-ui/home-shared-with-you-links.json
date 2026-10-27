@@ -1,0 +1,134 @@
+[
+  {
+    "href": "#navSkip",
+    "text": "Skip Navigation >"
+  },
+  {
+    "href": "/en-US",
+    "text": "splunk logo home"
+  },
+  {
+    "href": "#",
+    "text": "Apps"
+  },
+  {
+    "href": "#",
+    "text": "Administrator"
+  },
+  {
+    "href": "#",
+    "text": "2Messages"
+  },
+  {
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "href": "#",
+    "text": "Activity"
+  },
+  {
+    "href": "#",
+    "text": "Help"
+  },
+  {
+    "href": "/en-US/manager/launcher/apps/local",
+    "text": "Manage"
+  },
+  {
+    "href": "/en-US/app/search",
+    "text": "Search & Reporting"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway",
+    "text": "Splunk Secure Gateway"
+  },
+  {
+    "href": "/en-US/app/python_upgrade_readiness_app",
+    "text": "Upgrade Readiness App"
+  },
+  {
+    "href": "/en-US/manager/launcher/appsremote",
+    "text": "Find more apps"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway/opt_in",
+    "text": "SOC2 Compliance Opt In Page"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-ad-hoc-data",
+    "text": "Ad Hoc Data Source"
+  },
+  {
+    "href": "/en-US/app/splunk_secure_gateway/administration",
+    "text": "Administration"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-advanced-showhide",
+    "text": "Advanced Show/Hide"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-airport-kpis-dashboard",
+    "text": "Airport KPIs"
+  },
+  {
+    "href": "/en-US/app/splunk_monitoring_console/monitoringconsole_alerts_setup",
+    "text": "Alerts Setup"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-area-chart-visualization",
+    "text": "Area"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-assembly-line-dashboard",
+    "text": "Assembly Line"
+  },
+  {
+    "href": "/en-US/app/splunk_monitoring_console/assist",
+    "text": "Assist"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-bar-chart-visualization",
+    "text": "Bar"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-base-chain-data",
+    "text": "Base and Chain Data Sources"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-bubble-chart-visualization",
+    "text": "Bubble"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-buttercup-games-dashboard",
+    "text": "Buttercup Games"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-cascading-inputs",
+    "text": "Cascading Inputs"
+  },
+  {
+    "href": "/en-US/app/splunk_monitoring_console/cascading_replication",
+    "text": "Cascading Replication"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-event-annotations",
+    "text": "Chart Annotations"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-chart-coloring",
+    "text": "Chart Coloring"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-chart-overlays",
+    "text": "Chart Overlays"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-chart-scaling",
+    "text": "Chart Scaling"
+  },
+  {
+    "href": "/en-US/app/splunk-dashboard-studio/example-hub-choropleth-svg-visualization",
+    "text": "Choropleth SVG"
+  }
+]

@@ -1,0 +1,97 @@
+Browser tab: 2136985550, Title: "Roles | Splunk", URL: "http://localhost:8000/en-US/manager/search/authorization/roles".
+1 AXWebArea Roles | Splunk, URL: localhost:8000/en-US/manager/search/authorization/roles
+	2 link Description: Click here to skip the navigation bar, Value: localhost:8000/en-US/manager/search/authorization/roles#navSkip
+	3 container
+		4 link Description: splunk logo home, Help: splunk > listen to your data, Value: localhost:8000/en-US
+		5 pop up button Apps ▾
+			6 text Apps
+			7 text ▾
+		8 button View health report with status green
+		9 pop up button Administrator ▾, Help: User
+			10 text Administrator
+			11 text ▾
+		12 pop up button 2 Messages ▾, Help: Messages
+			13 text 2
+			14 text Messages
+			15 text ▾
+		16 pop up button Settings ▾
+			17 text Settings
+			18 text ▾
+		19 pop up button Activity ▾
+			20 text Activity
+			21 text ▾
+		22 pop up button Help ▾
+			23 text Help
+			24 text ▾
+		25 container
+			26 text 
+			27 text field (settable) Description: Find, ID: control-view3107
+	28 container
+		29 heading Roles, Value: 1
+			30 text Roles
+		31 button New Role
+		32 text field (settable) Value input
+		33 text 5 Roles
+		34 table
+			35 row
+				36 cell
+					37 container
+						38 text Name
+						39 image Press to sort descending
+				40 cell
+					41 text Actions
+				42 cell
+					43 text Native Capabilities
+				44 cell
+					45 text Inherited Capabilities
+				46 cell
+					47 container
+						48 text Default App
+						49 image Click to sort
+			50 row
+				51 cell
+					52 text admin
+				53 cell
+					54 pop up button (collapsed) Edit, ID: toggle-5816d267-2786-468c-869a-dc81fcfde5e7, Secondary Actions: Expand
+				55 cell
+					56 text 111
+				57 cell
+					58 text 39
+			59 row
+				60 cell
+					61 text can_delete
+				62 cell
+					63 pop up button (collapsed) Edit, ID: toggle-2930a5cf-714e-4ed0-a0ce-344905b8e15d, Secondary Actions: Expand
+				64 cell
+					65 text 6
+				66 cell
+					67 text 0
+			68 row
+				69 cell
+					70 text power
+				71 cell
+					72 pop up button (collapsed) Edit, ID: toggle-5190a12b-0b38-4ce8-aa7f-690bd404082a, Secondary Actions: Expand
+				73 cell
+					74 text 11
+				75 cell
+					76 text 28
+			77 row
+				78 cell
+					79 text splunk-system-role
+				80 cell
+					81 pop up button (collapsed) Edit, ID: toggle-10d81754-7c2c-4a35-92d0-565f976fa213, Secondary Actions: Expand
+				82 cell
+					83 text 0
+				84 cell
+					85 text 150
+			86 row
+				87 cell
+					88 text user
+				89 cell
+					90 pop up button (collapsed) Edit, ID: toggle-f63328f9-c5c4-4c39-95e5-b5efdcf5cce2, Secondary Actions: Expand
+				91 cell
+					92 text 28
+				93 cell
+					94 text 0
+
+The focused UI element is 1 AXWebArea Roles | Splunk, URL: localhost:8000/en-US/manager/search/authorization/roles

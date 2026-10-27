@@ -1,0 +1,19 @@
+{
+  "id": "A8",
+  "title": "Secrets with Ansible Vault",
+  "minutes": 20,
+  "level": 3,
+  "profile": "apl",
+  "instructions": "Situation: the forwarder certificate password is changing.\n\nSee encrypted secrets: ansible-vault view group_vars/all/vault.yml --vault-\npassword-file ~/.vault_pass\nEdit with ansible-vault edit  (same options) and update the password.\nFind every place the old secret is referenced: grep -r vault_ group_vars/\nhost_vars/\nRun playbooks/cert_rotate.yml  on a canary forwarder, then the rest.\nTrap: a second copy of the secret in a host-specific vars file keeps the old value.\nDone when: all forwarders reconnect over TLS and no plaintext secret was committed.",
+  "checks": [
+    {
+      "kind": "command",
+      "pattern": "ansible-vault"
+    },
+    {
+      "kind": "run",
+      "check": false
+    }
+  ],
+  "completionScope": "Engine checks establish workflow milestones; review the manual success criteria and debrief for outcomes beyond these checks."
+}
