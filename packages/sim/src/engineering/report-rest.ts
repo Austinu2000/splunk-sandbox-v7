@@ -1,3 +1,4 @@
+import { alertConfiguration } from './alerts';
 import type { PracticePrincipal } from '@sandbox/shared';
 import type { World } from '../world';
 import { listReports, saveReport, executeReport } from './reports';
@@ -46,6 +47,21 @@ export function reportRest(
           'dispatch.latest_time': r.latest,
           'action.summary_index': r.summaryIndex ? '1' : '0',
           'action.summary_index._name': r.summaryIndex ?? '',
+          ...(r.alert
+            ? {
+                alert_type: r.alert.type,
+                alert_comparator: r.alert.relation,
+                alert_threshold: String(r.alert.threshold),
+                alert_condition: r.alert.condition,
+                'alert.digest_mode': r.alert.digest ? '1' : '0',
+                'alert.suppress': r.alert.suppress ? '1' : '0',
+                'alert.suppress.period': r.alert.period,
+                'alert.suppress.fields': r.alert.fields.join(','),
+                'alert.track': r.alert.track ? '1' : '0',
+                'alert.severity': String(r.alert.severity),
+                actions: r.alert.actions.join(','),
+              }
+            : {}),
           sourcePath: r.sourcePath,
           revision: r.revision,
           'eai:acl': { owner: r.owner, app: r.app, sharing: r.sharing.toLowerCase() },
@@ -92,14 +108,43 @@ export function reportRest(
       'action.summary_index',
       'action.summary_index._name',
       'output_mode',
+      'alert_type',
+      'alert_comparator',
+      'alert_threshold',
+      'alert_condition',
+      'alert.digest_mode',
+      'alert.suppress',
+      'alert.suppress.period',
+      'alert.suppress.fields',
+      'alert.track',
+      'alert.severity',
+      'actions',
     ]);
   for (const key of Object.keys(values))
     if (!allowed.has(key)) throw new OperationsError('Unsupported saved-report REST field: ' + key);
   const get = (key: string, fallback: string) => (values[key] === undefined ? fallback : String(values[key]));
   const summaryEnabled = confBool(get('action.summary_index', existing?.summaryIndex ? '1' : '0'));
+  const old = existing?.alert,
+    alertValues: Record<string, string> = old
+      ? {
+          alert_type: old.type,
+          alert_comparator: old.relation,
+          alert_threshold: String(old.threshold),
+          alert_condition: old.condition,
+          'alert.digest_mode': old.digest ? '1' : '0',
+          'alert.suppress': old.suppress ? '1' : '0',
+          'alert.suppress.period': old.period,
+          'alert.suppress.fields': old.fields.join(','),
+          'alert.track': old.track ? '1' : '0',
+          'alert.severity': String(old.severity),
+          actions: old.actions.join(','),
+        }
+      : {};
+  const alert = alertConfiguration((key, fallback) => get(key, alertValues[key] ?? fallback));
   return saveReport(
     world,
     {
+      alert,
       host,
       app,
       owner: existing?.owner ?? owner,

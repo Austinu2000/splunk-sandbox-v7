@@ -544,10 +544,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-048",
@@ -555,10 +555,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-049",
@@ -566,10 +566,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-050",
@@ -577,10 +577,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-051",
@@ -588,10 +588,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-052",
@@ -599,10 +599,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-053",
@@ -610,10 +610,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-054",
@@ -621,10 +621,10 @@
       "track": "Dashboards, Alerts, and Knowledge Objects",
       "trackNumber": 6,
       "milestone": 6,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-055",

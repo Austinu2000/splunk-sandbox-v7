@@ -36,6 +36,7 @@ export interface WorldClock {
 export interface World {
   forwarders?: import('@sandbox/shared').ForwarderRuntime;
   searchEvidence?: import('@sandbox/shared').SearchEvidence[];
+  dashboards?: import('@sandbox/shared').DashboardRuntime;
   reports?: import('@sandbox/shared').ReportRuntime;
   ingestion?: import('@sandbox/shared').IngestionState;
   kvstore?: import('@sandbox/shared').KvState;

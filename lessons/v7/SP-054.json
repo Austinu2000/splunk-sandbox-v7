@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-054",
+  "version": 1,
+  "title": "Configure Knowledge Object Permissions and Sharing",
+  "track": "Dashboards, alerts and knowledge objects",
+  "objectives": [
+    "Configure Knowledge Object Permissions and Sharing",
+    "Verify shared configuration, actual results and retained execution evidence."
+  ],
+  "environments": ["lab"],
+  "level": 2,
+  "prerequisites": ["SP-035"],
+  "requiredCapabilities": ["search.execute", "dashboard.execute"],
+  "fixture": {
+    "id": "sp-054-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture supplies three explicit source_logs events and pauses the clock. Keep it paused while configuring; advance deliberately for scheduled work.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-2",
+      "instruction": "The supplied shared_http dashboard is private to admin. Confirm it is not visible when viewing Dashboards as analyst.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-3",
+      "instruction": "As admin, edit its sharing to App, keep app search and owner admin. This moves the native view into the app namespace and preserves the panel. A separate role configuration in this fixture grants analyst access to source_logs; sharing a dashboard alone does not grant index access.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-4",
+      "instruction": "Switch the viewing principal to analyst and run the dashboard. Verify count=2. Inspect the single app-level view and metadata; analyst still cannot edit another owner\u2019s shared view.",
+      "paths": ["web", "cli", "config", "rest"]
+    }
+  ],
+  "hints": [
+    "Inspect native configuration and the selected namespace. File edits need activation.",
+    "Check search results before diagnosing alert conditions or dashboard rendering."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/create-dashboards-and-reports/simple-xml-dashboards/9.4/simple-xml-reference/simple-xml-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Classic dashboard panels, searches and tokens"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/create-dashboards-and-reports/dashboard-studio/9.4/source-code-editor/what-is-a-dashboard-definition",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Studio definitions, data sources, visualizations and inputs"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/splunk-enterprise-admin-manual/9.4/configuration-file-reference/9.4.1-configuration-file-reference/savedsearches.conf",
+      "vendorVersion": "Splunk Enterprise 9.4.1",
+      "purpose": "Alert conditions, scheduled execution and suppression"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "dashboard-state",
+      "label": "Active dashboard configuration",
+      "host": "sh01",
+      "name": "shared_http",
+      "sharing": "App",
+      "owner": "admin"
+    },
+    {
+      "kind": "dashboard-render",
+      "label": "Actual panel results and provenance",
+      "host": "sh01",
+      "name": "shared_http",
+      "cells": {
+        "count": 2
+      },
+      "principal": "analyst"
+    },
+    {
+      "kind": "access",
+      "label": "Separate index permission is effective",
+      "host": "sh01",
+      "principal": "analyst",
+      "index": "source_logs",
+      "allowed": true
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer",
+      "id": "evidence",
+      "expected": "2"
+    }
+  ],
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "How many error events are represented by the repaired or selected results?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[clustering]\nmode=disabled\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/indexes.conf",
+      "text": "[source_logs]\nhomePath=$SPLUNK_DB/source_logs/db\ncoldPath=$SPLUNK_DB/source_logs/colddb\nthawedPath=$SPLUNK_DB/source_logs/thaweddb\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/reports.log",
+      "text": "status=500 service=checkout latency=400\nstatus=200 service=auth latency=25\nstatus=500 service=checkout latency=300\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/reports.log]\nindex=source_logs\nsourcetype=app_log\ndisabled=0\n",
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "file",
+      "host": "sh01",
+      "path": "/opt/splunk/etc/users/admin/search/local/data/ui/views/shared_http.xml",
+      "text": "<dashboard version=\"1.1\"><label>Shared HTTP</label><row><panel><title>HTTP errors</title><single><search><query>index=source_logs status=500 | stats count</query><earliest>-15m</earliest><latest>now</latest></search></single></panel></row></dashboard>",
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "sh01",
+      "path": "/opt/splunk/etc/system/local/authorize.conf",
+      "text": "[role_user]\nsrchIndexesAllowed=source_logs\n",
+      "owner": "splunk",
+      "apply": true
+    }
+  ],
+  "feedback": {
+    "success": "Active source, actual result receipts and evidence satisfy the task.",
+    "incomplete": "Inspect the missing outcome. Saving a definition alone does not execute its search."
+  },
+  "minutes": 25,
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-dashboards:SP-054:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-dashboards:SP-054:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-dashboards:SP-054:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-dashboards:SP-054:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-dashboards:SP-054:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-dashboards:SP-054:isolation"
+    }
+  ]
+}

@@ -14,6 +14,7 @@ import { canSearchIndex, requireCapability } from './access';
 import { runSearch } from '../spl/run';
 import { indexBuckets } from './lifecycle';
 import { listReports } from './reports';
+import { listDashboards } from './dashboards';
 import { tickWorld, setClock } from '../world';
 import { V7_STARTER_FILES } from '../ansible/starters';
 import { setupLesson, seedRepositoryFiles } from '../training/lesson-setup';
@@ -24,6 +25,54 @@ import { journal } from '../journal';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | {
+      kind: 'dashboard-state';
+      label: string;
+      host: string;
+      name: string;
+      format?: 'classic' | 'studio';
+      sharing?: string;
+      owner?: string;
+      minimumPanels?: number;
+      report?: string;
+      search?: string;
+      token?: string;
+    }
+  | {
+      kind: 'dashboard-render';
+      label: string;
+      host: string;
+      name: string;
+      principal?: PracticePrincipal;
+      tokens?: Record<string, string>;
+      cells: Record<string, string | number>;
+    }
+  | {
+      kind: 'alert-state';
+      label: string;
+      host: string;
+      title: string;
+      condition?: string;
+      threshold?: number;
+      suppress?: boolean;
+      period?: string;
+      digest?: boolean;
+      track?: boolean;
+      action?: string;
+      fields?: string[];
+      type?: string;
+    }
+  | {
+      kind: 'alert-run';
+      label: string;
+      host: string;
+      title: string;
+      minimumTriggers?: number;
+      minimumSuppressed?: number;
+      scheduled?: boolean;
+      priorFailure?: boolean;
+      priorUnmatched?: boolean;
+    }
   | {
       kind: 'forwarder';
       label: string;
@@ -439,6 +488,87 @@ export function foundationCheck(world: World, check: FoundationCheck): boolean {
       return true;
     }
 
+    case 'dashboard-state':
+      return listDashboards(world, check.host).some(
+        (d) =>
+          d.name === check.name &&
+          !d.issues.length &&
+          (!check.format || d.format === check.format) &&
+          (!check.sharing || d.sharing === check.sharing) &&
+          (!check.owner || d.owner === check.owner) &&
+          d.panels.length >= (check.minimumPanels ?? 1) &&
+          (!check.report || d.panels.some((p) => p.report === check.report)) &&
+          (!check.search || d.panels.some((p) => p.search?.includes(check.search!))) &&
+          (!check.token || d.inputs.some((i) => i.token === check.token)),
+      );
+    case 'dashboard-render': {
+      const d = listDashboards(world, check.host, check.principal ?? 'admin').find(
+        (d) => d.name === check.name,
+      );
+      return (
+        !!d &&
+        (world.dashboards?.renders ?? []).some(
+          (r) =>
+            r.dashboardId === d.id &&
+            r.revision === d.revision &&
+            r.principal === (check.principal ?? 'admin') &&
+            Object.entries(check.tokens ?? {}).every(([k, v]) => r.tokens[k] === v) &&
+            r.panels.some(
+              (p) =>
+                p.status === 'done' &&
+                p.rows.some((row) =>
+                  Object.entries(check.cells).every(([k, v]) => String(row[k]) === String(v)),
+                ),
+            ),
+        )
+      );
+    }
+    case 'alert-state':
+      return listReports(world, check.host).some(
+        (r) =>
+          r.title === check.title &&
+          !r.issues.length &&
+          r.enabled &&
+          r.scheduled &&
+          r.managed &&
+          r.alert &&
+          (['condition', 'threshold', 'suppress', 'period', 'digest', 'track'] as const).every(
+            (k) => check[k] === undefined || r.alert![k] === check[k],
+          ) &&
+          (!check.type || r.alert.type === check.type) &&
+          (!check.fields || JSON.stringify(r.alert.fields) === JSON.stringify(check.fields)) &&
+          (!check.action || r.alert.actions.includes(check.action)),
+      );
+    case 'alert-run': {
+      const report = listReports(world, check.host).find(
+        (r) => r.title === check.title && r.alert && !r.issues.length,
+      );
+      if (!report) return false;
+      const runs = (world.reports?.runs ?? []).filter(
+        (r) =>
+          r.reportId === report.id &&
+          r.revision === report.revision &&
+          r.status === 'succeeded' &&
+          (check.scheduled === undefined || (r.scheduledTime !== undefined) === check.scheduled),
+      );
+      return (
+        runs.length > 0 &&
+        runs.reduce((n, r) => n + (r.alert?.triggered ?? 0), 0) >= (check.minimumTriggers ?? 0) &&
+        runs.reduce((n, r) => n + (r.alert?.suppressed ?? 0), 0) >= (check.minimumSuppressed ?? 0) &&
+        (!check.priorFailure ||
+          (world.reports?.runs ?? []).some(
+            (r) => r.reportId === report.id && r.status === 'failed' && r.tick < runs.at(-1)!.tick,
+          )) &&
+        (!check.priorUnmatched ||
+          (world.reports?.runs ?? []).some(
+            (r) =>
+              r.reportId === report.id &&
+              r.status === 'succeeded' &&
+              r.alert?.matched === false &&
+              r.tick < runs.at(-1)!.tick,
+          ))
+      );
+    }
     case 'report-state':
       return listReports(world, check.host).some(
         (r) =>

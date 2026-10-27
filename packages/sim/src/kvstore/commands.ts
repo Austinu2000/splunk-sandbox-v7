@@ -1,3 +1,4 @@
+import { dashboardRest } from '../engineering/dashboard-rest';
 import { fixturePrincipal, indexRest } from '../engineering/index-commands';
 import { receiveHec } from '../engineering/hec';
 import { reportRest } from '../engineering/report-rest';
@@ -18,7 +19,23 @@ export const kvCurl: CommandFn = ({ world, sh, argv }) => {
       const a = argv[i]!;
       if (['-X', '--request'].includes(a)) method = argv[++i]!;
       else if (['-d', '--data', '--data-raw', '--data-urlencode'].includes(a)) {
-        const v = argv[++i] ?? '';
+        let v = argv[++i] ?? '';
+        if (a === '--data-urlencode') {
+          const equals = v.indexOf('='),
+            at = v.indexOf('@');
+          if (equals >= 0)
+            v = encodeURIComponent(v.slice(0, equals)) + '=' + encodeURIComponent(v.slice(equals + 1));
+          else if (at >= 0) {
+            const path = v.slice(at + 1);
+            const content = sh.fs.readFile(path.startsWith('/') ? path : sh.cwd + '/' + path, sh.cred);
+            if (content.length > 100000) throw new KvError('Form source limit: 100 KB');
+            v = encodeURIComponent(v.slice(0, at)) + '=' + encodeURIComponent(content);
+          } else v = encodeURIComponent(v);
+        } else if (v.startsWith('@')) {
+          const path = v.slice(1);
+          v = sh.fs.readFile(path.startsWith('/') ? path : sh.cwd + '/' + path, sh.cred);
+          if (v.length > 100000) throw new KvError('Form source limit: 100 KB');
+        }
         raw += raw ? '&' + v : v;
         data = true;
       } else if (['-u', '--user'].includes(a)) auth = argv[++i] ?? '';
@@ -58,6 +75,14 @@ export const kvCurl: CommandFn = ({ world, sh, argv }) => {
       return ok(
         JSON.stringify(
           indexRest(world, host, method, target.pathname + target.search, body, fixturePrincipal(auth)),
+          null,
+          2,
+        ) + '\n',
+      );
+    if (/^\/servicesNS\/[^/]+\/[^/]+\/data\/ui\/views/.test(target.pathname))
+      return ok(
+        JSON.stringify(
+          dashboardRest(world, host, method, target.pathname + target.search, body, fixturePrincipal(auth)),
           null,
           2,
         ) + '\n',

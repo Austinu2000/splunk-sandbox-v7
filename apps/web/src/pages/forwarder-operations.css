@@ -50,3 +50,20 @@
   overflow: auto;
   max-height: 360px;
 }
+.v7-dashboard-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+}
+.v7-dashboard-panels pre {
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+.v7-dashboard-panels .kn-single {
+  min-height: 160px;
+  color: #247f93;
+}
+.v7-dashboard-panels .kn-single small {
+  color: #52636c;
+}

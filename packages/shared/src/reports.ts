@@ -1,5 +1,30 @@
 import type { PracticePrincipal, ResultValue } from './index';
+export interface AlertConfiguration {
+  type: 'number of events' | 'number of hosts' | 'number of sources' | 'custom' | 'always';
+  relation: 'greater than' | 'less than' | 'equal to' | 'not equal to';
+  threshold: number;
+  condition: string;
+  digest: boolean;
+  suppress: boolean;
+  period: string;
+  fields: string[];
+  track: boolean;
+  severity: number;
+  actions: string[];
+}
+export interface AlertNotification {
+  id: string;
+  reportId: string;
+  runId: string;
+  title: string;
+  time: number;
+  severity: number;
+  actions: string[];
+  resultCount: number;
+  tracked: boolean;
+}
 export interface SavedReport {
+  alert?: AlertConfiguration;
   id: string;
   host: string;
   app: string;
@@ -20,6 +45,7 @@ export interface SavedReport {
   issues: string[];
 }
 export interface ReportRun {
+  alert?: { matched: boolean; triggered: number; suppressed: number; notificationIds: string[] };
   id: string;
   reportId: string;
   revision: string;
@@ -39,6 +65,8 @@ export interface ReportRun {
   workUnits: number;
 }
 export interface ReportRuntime {
+  nextRun?: number;
+  alerts?: { notifications: AlertNotification[]; suppression: Record<string, number> };
   version: 1;
   runs: ReportRun[];
   imports: Record<string, { reportId: string; sourceKey: string; archive: string; tick: number }>;

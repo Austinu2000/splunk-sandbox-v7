@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-049",
+  "version": 1,
+  "title": "Inspect and Edit Supported Dashboard Source",
+  "track": "Dashboards, alerts and knowledge objects",
+  "objectives": [
+    "Inspect and Edit Supported Dashboard Source",
+    "Verify shared configuration, actual results and retained execution evidence."
+  ],
+  "environments": ["lab"],
+  "level": 2,
+  "prerequisites": ["SP-035"],
+  "requiredCapabilities": ["search.execute", "dashboard.execute"],
+  "fixture": {
+    "id": "sp-049-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture supplies three explicit source_logs events and pauses the clock. Keep it paused while configuring; advance deliberately for scheduled work.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-2",
+      "instruction": "The Classic source_repair view points to a missing index. Open it, run its search and inspect the failing/empty panel evidence.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Edit /opt/splunk/etc/users/admin/search/local/data/ui/views/source_repair.xml or use Edit source. Replace the query with index=source_logs status=500 | stats count. Keep the view ID and single-value panel. File edits require view reload or a search-head restart.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-4",
+      "instruction": "Run the repaired dashboard; count must be 2. Verify the same query independently in Search. Unsupported XML/Studio elements are reported rather than silently ignored.",
+      "paths": ["web", "cli", "config", "rest"]
+    }
+  ],
+  "hints": [
+    "Inspect native configuration and the selected namespace. File edits need activation.",
+    "Check search results before diagnosing alert conditions or dashboard rendering."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/create-dashboards-and-reports/simple-xml-dashboards/9.4/simple-xml-reference/simple-xml-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Classic dashboard panels, searches and tokens"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/create-dashboards-and-reports/dashboard-studio/9.4/source-code-editor/what-is-a-dashboard-definition",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Studio definitions, data sources, visualizations and inputs"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/splunk-enterprise-admin-manual/9.4/configuration-file-reference/9.4.1-configuration-file-reference/savedsearches.conf",
+      "vendorVersion": "Splunk Enterprise 9.4.1",
+      "purpose": "Alert conditions, scheduled execution and suppression"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "dashboard-state",
+      "label": "Active dashboard configuration",
+      "host": "sh01",
+      "name": "source_repair",
+      "format": "classic",
+      "search": "index=source_logs status=500"
+    },
+    {
+      "kind": "dashboard-render",
+      "label": "Actual panel results and provenance",
+      "host": "sh01",
+      "name": "source_repair",
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer",
+      "id": "evidence",
+      "expected": "2"
+    }
+  ],
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "How many error events are represented by the repaired or selected results?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[clustering]\nmode=disabled\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/indexes.conf",
+      "text": "[source_logs]\nhomePath=$SPLUNK_DB/source_logs/db\ncoldPath=$SPLUNK_DB/source_logs/colddb\nthawedPath=$SPLUNK_DB/source_logs/thaweddb\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/reports.log",
+      "text": "status=500 service=checkout latency=400\nstatus=200 service=auth latency=25\nstatus=500 service=checkout latency=300\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/reports.log]\nindex=source_logs\nsourcetype=app_log\ndisabled=0\n",
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "file",
+      "host": "sh01",
+      "path": "/opt/splunk/etc/users/admin/search/local/data/ui/views/source_repair.xml",
+      "text": "<dashboard version=\"1.1\"><label>Source repair</label><row><panel><title>HTTP errors</title><single><search><query>index=wrong_index | stats count</query><earliest>-15m</earliest><latest>now</latest></search></single></panel></row></dashboard>",
+      "owner": "splunk",
+      "apply": true
+    }
+  ],
+  "feedback": {
+    "success": "Active source, actual result receipts and evidence satisfy the task.",
+    "incomplete": "Inspect the missing outcome. Saving a definition alone does not execute its search."
+  },
+  "minutes": 25,
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-dashboards:SP-049:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-dashboards:SP-049:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-dashboards:SP-049:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-dashboards:SP-049:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-dashboards:SP-049:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-dashboards:SP-049:isolation"
+    }
+  ]
+}

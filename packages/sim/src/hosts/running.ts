@@ -1,4 +1,8 @@
-import { deliverySignature, enableForwarderOperations, validateForwarderStart } from '../engineering/forwarders';
+import {
+  deliverySignature,
+  enableForwarderOperations,
+  validateForwarderStart,
+} from '../engineering/forwarders';
 import { infraName } from '../infra';
 import { op } from '../journal';
 import { loadConf, type ConfReader, type MergedConf } from '../conf/merge';
@@ -86,6 +90,17 @@ export function runningConf(world: World, p: HostProfile, conf: string): MergedC
     cache.set(conf, merged);
   }
   return merged;
+}
+
+export function activateDashboardConf(world: World, p: HostProfile): void {
+  op(world, { k: 'dashboards.activate', host: p.hostname }, () => {
+    ensureFs(world, p);
+    snapshotOverlay(
+      world,
+      p.hostname,
+      (path) => /\/data\/ui\/views\/[^/]+\.xml$/.test(path) || path.endsWith('/metadata/local.meta'),
+    );
+  });
 }
 
 export function serviceState(world: World, host: string): ServiceState | undefined {

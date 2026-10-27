@@ -1,3 +1,4 @@
+import { alertConfiguration, validateAlert, evaluateAlert } from './alerts';
 import type { SavedReport, ReportRun, ReportRuntime, PracticePrincipal } from '@sandbox/shared';
 import type { World } from '../world';
 import { resolveHost, splunkdRunning } from '../hosts/profile';
@@ -18,6 +19,7 @@ import { journal } from '../journal';
 import { planLegacyImport, LEGACY_KNOWLEDGE_KEY } from './migration';
 
 export interface ReportInput {
+  alert?: import('@sandbox/shared').AlertConfiguration | null;
   host: string;
   app: string;
   owner: string;
@@ -72,8 +74,7 @@ export function reportRevision(world: World, hostName: string) {
   return checksum(filesUnder(hostFs(world, host), host.splunk!.home + '/etc'));
 }
 const reportCache = new WeakMap<World, Map<string, { revision: number; reports: SavedReport[] }>>();
-const copyReports = (reports: SavedReport[]) =>
-  reports.map((report) => ({ ...report, issues: [...report.issues] }));
+const copyReports = (reports: SavedReport[]) => structuredClone(reports);
 export function listReports(
   world: World,
   hostName: string,
@@ -155,6 +156,16 @@ export function listReports(
         );
       if (confBool(get('action.summary_index', '0')) && !get('action.summary_index._name', ''))
         issues.push('Summary destination index is missing from the report settings');
+      const alert = alertConfiguration(get);
+      if (alert && confBool(get('action.summary_index', '0')))
+        issues.push('Use separate saved searches for alerts and summary writes in this executor');
+      if (alert) {
+        try {
+          validateAlert(alert);
+        } catch (e) {
+          issues.push((e as Error).message);
+        }
+      }
       const sourcePath = stanza.settings.get('search')?.path ?? stanza.path;
       const managed = paths.some((path) => {
         const entry = world.hosts.restartSnapshot.get(hostName)?.get(path);
@@ -197,6 +208,7 @@ export function listReports(
           ),
         ),
         managed,
+        alert,
         issues,
       });
     }
@@ -207,6 +219,9 @@ export function listReports(
 }
 function validate(world: World, input: ReportInput, principal: PracticePrincipal) {
   hostFor(world, input.host);
+  if (input.alert) validateAlert(input.alert);
+  if (input.alert && input.summaryIndex)
+    throw new OperationsError('Use separate saved searches for alerts and summary writes in this executor');
   if (
     !safeName(input.app) ||
     !['admin', 'analyst', 'operator', 'nobody'].includes(input.owner) ||
@@ -237,18 +252,25 @@ function validate(world: World, input: ReportInput, principal: PracticePrincipal
 export function saveReport(
   world: World,
   input: ReportInput,
-  options: { principal?: PracticePrincipal; revision?: string; create?: boolean } = {},
+  options: { principal?: PracticePrincipal; revision?: string; create?: boolean; id?: string } = {},
 ) {
   const principal = options.principal ?? 'admin';
   validate(world, input, principal);
   const all = listReports(world, input.host, 'admin', true),
-    existing = all.find(
-      (r) =>
-        r.app === input.app &&
-        r.title === input.title &&
-        (r.sharing === 'Private') === (input.sharing === 'Private') &&
-        (r.sharing !== 'Private' || r.owner === input.owner),
-    );
+    existing = options.id
+      ? all.find((r) => r.id === options.id)
+      : all.find(
+          (r) =>
+            r.app === input.app &&
+            r.title === input.title &&
+            (r.sharing === 'Private') === (input.sharing === 'Private') &&
+            (r.sharing !== 'Private' || r.owner === input.owner),
+        );
+  if (options.id && !existing) throw new OperationsError('Report no longer exists in the reviewed namespace');
+  if (existing && options.id && existing.title !== input.title)
+    throw new OperationsError('Create a copy to change the report title');
+  if (existing && principal !== 'admin' && (existing.owner !== principal || existing.sharing !== 'Private'))
+    throw new OperationsError('Permission denied for this report');
   if (options.create && existing)
     throw new OperationsError('A report with this title already exists in that namespace');
   if (options.revision && (!existing || existing.revision !== options.revision))
@@ -261,6 +283,21 @@ export function saveReport(
         ? '/etc/users/' + input.owner + '/' + input.app
         : '/etc/apps/' + input.app);
   const path = dir + '/local/savedsearches.conf';
+  if (existing && existing.sourcePath !== path) {
+    if (existing.sourcePath.includes('/default/'))
+      throw new OperationsError('Adopt the inherited report in its existing scope before moving it');
+    if (
+      all.some(
+        (r) =>
+          r.id !== existing.id &&
+          r.app === input.app &&
+          r.title === input.title &&
+          (r.sharing === 'Private') === (input.sharing === 'Private') &&
+          (r.sharing !== 'Private' || r.owner === input.owner),
+      )
+    )
+      throw new OperationsError('Target report namespace already exists');
+  }
   fs.mkdir(dir + '/local', ROOT, { parents: true });
   fs.mkdir(dir + '/metadata', ROOT, { parents: true });
   const values = {
@@ -275,7 +312,28 @@ export function saveReport(
     'action.summary_index._name': input.summaryIndex ?? '',
     auto_summarize: '0',
   };
-  fs.writeFile(path, patchConf(fs.exists(path) ? fs.readFile(path, ROOT) : '', input.title, values), ROOT);
+  const alertValues: Record<string, string> = {};
+  if (input.alert !== undefined) {
+    const a = input.alert;
+    Object.assign(alertValues, {
+      counttype: a?.type === 'custom' ? '' : (a?.type ?? ''),
+      relation: a?.type === 'custom' ? '' : (a?.relation ?? ''),
+      quantity: a?.type === 'custom' ? '' : String(a?.threshold ?? 0),
+      alert_condition: a?.condition ?? '',
+      'alert.digest_mode': a?.digest === false ? '0' : '1',
+      'alert.suppress': a?.suppress ? '1' : '0',
+      'alert.suppress.period': a?.period ?? '0',
+      'alert.suppress.fields': a?.fields.join(',') ?? '',
+      'alert.track': a?.track ? '1' : '0',
+      'alert.severity': String(a?.severity ?? 3),
+      actions: a?.actions.join(',') ?? '',
+    });
+  }
+  fs.writeFile(
+    path,
+    patchConf(fs.exists(path) ? fs.readFile(path, ROOT) : '', input.title, { ...values, ...alertValues }),
+    ROOT,
+  );
   fs.setMeta(path, { owner: 'splunk', group: 'splunk', mode: 0o640 }, ROOT);
   const metadata = dir + '/metadata/local.meta';
   fs.writeFile(
@@ -286,6 +344,13 @@ export function saveReport(
     }),
     ROOT,
   );
+  if (existing && existing.sourcePath !== path) {
+    fs.writeFile(
+      existing.sourcePath,
+      removeReportStanza(fs.readFile(existing.sourcePath, ROOT), existing.title),
+      ROOT,
+    );
+  }
   activateReportConf(world, host);
   return listReports(world, input.host, principal).find(
     (r) =>
@@ -316,8 +381,10 @@ export function executeReport(
     at = options.scheduledTime ?? world.clock.now;
   const earliest = parseTime(report.earliest, at),
     latest = parseTime(report.latest, at);
+  const sequence = state.nextRun ?? state.runs.length;
+  state.nextRun = sequence + 1;
   const run: ReportRun = {
-    id: `report-run-${world.clock.tick}-${state.runs.length}-${report.id}`,
+    id: `report-run-${world.clock.tick}-${sequence}-${report.id}`,
     reportId: id,
     revision: report.revision,
     host: report.host,
@@ -376,6 +443,7 @@ export function executeReport(
         writer: report.id,
         source: report.title,
       });
+    if (report.alert && options.triggerActions !== false) evaluateAlert(world, report, run);
     run.status = 'succeeded';
   } catch (error) {
     run.error = (error as Error).message;
@@ -451,7 +519,9 @@ export function importLegacyReport(
   scope: { host: string; app: string; owner: string; sharing: SavedReport['sharing'] },
 ) {
   const plan = legacyReports(world),
-    candidate = plan.knowledge.find((item) => item.object.id === sourceId && item.object.kind === 'report');
+    candidate = plan.knowledge.find(
+      (item) => item.object.id === sourceId && ['report', 'alert'].includes(item.object.kind),
+    );
   if (!candidate || candidate.status === 'conflict')
     throw new OperationsError('Legacy report is missing or conflicted; review the import preview');
   const receiptKey = legacyReceiptKey(candidate);
@@ -462,6 +532,22 @@ export function importLegacyReport(
     world,
     {
       ...scope,
+      alert:
+        old.kind === 'alert'
+          ? {
+              type: 'number of events',
+              relation: 'greater than',
+              threshold: 0,
+              condition: '',
+              digest: true,
+              suppress: false,
+              period: '0',
+              fields: [],
+              track: true,
+              severity: 3,
+              actions: [],
+            }
+          : undefined,
       title: old.title,
       description: old.description,
       search: old.search,
@@ -483,4 +569,16 @@ export function importLegacyReport(
   };
   persistReports(world);
   return { reportId: report.id, alreadyImported: false };
+}
+
+function removeReportStanza(source: string, title: string) {
+  let removing = false;
+  return source
+    .split('\n')
+    .filter((line) => {
+      const m = /^\s*\[([^\]]+)\]/.exec(line);
+      if (m) removing = m[1] === title;
+      return !removing;
+    })
+    .join('\n');
 }

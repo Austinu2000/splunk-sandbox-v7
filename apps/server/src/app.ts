@@ -95,6 +95,7 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerIndexes(app, live, () => store?.checkpoint(live.world));
   registerInputs(app, live, () => store?.checkpoint(live.world));
   registerReports(app, live, store);
+  registerDashboards(app, live, store);
 
   app.setErrorHandler((err: Error & { validation?: unknown }, _req, reply) => {
     if (
@@ -173,3 +174,5 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   return { app, live, onTick: () => terminals.tickAll() };
 }
 import { registerReports } from './reports';
+
+import { registerDashboards } from './dashboards';

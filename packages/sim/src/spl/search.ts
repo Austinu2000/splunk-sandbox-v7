@@ -100,6 +100,22 @@ export function parseSearch(text: string): SearchNode {
     }
     if (t.t === 'rp') throw new SplError('Unbalanced parentheses.', 'search');
     i++;
+    const next = toks[i];
+    if (next?.t === 'word' && /^[A-Za-z_][A-Za-z0-9_.:]*$/.test(t.text) && !t.quoted) {
+      const op = /^(==|!=|<=|>=|=|<|>)(.*)$/.exec(next.text);
+      if (op) {
+        i++;
+        if (op[2]) return classify({ text: t.text + next.text });
+        const value = toks[i];
+        if (value?.t !== 'word') throw new SplError('Missing comparison value.', 'search');
+        i++;
+        return classify({ text: t.text + op[1] + value.text });
+      }
+    }
+    if (/^[A-Za-z_][A-Za-z0-9_.:]*(?:!=|<=|>=|=|<|>)$/.test(t.text) && next?.t === 'word') {
+      i++;
+      return classify({ text: t.text + next.text });
+    }
     return classify(t);
   };
   const not = (): SearchNode => {

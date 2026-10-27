@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 6 and subsequent gates
+## Current work: Milestone 7 and subsequent gates
 
 Implemented:
 
@@ -54,8 +54,8 @@ implemented work is listed below. The full expansion remains incomplete.
 | 3 | Implemented within documented scope | Reports/searches/summary indexing; SP-035–046 |
 | 4 | Implemented within documented scope | Playbooks/Git; AU-15–27 |
 | 5 | Implemented within documented scope | Forwarders/DS; AU-28–35 and SP-026–034 |
-| 6 | In progress | Dashboards/alerts; SP-047–054 |
-| 7 | Planned | Clustering/KV; AU-36–43 and SP-055–068 |
+| 6 | Implemented within documented scope | Dashboards/alerts; SP-047–054 |
+| 7 | In progress | Clustering/KV; AU-36–43 and SP-055–068 |
 | 8 | Planned | Monitoring/security/integrations; SP-069–088 |
 | 9 | Planned | Upgrades/recovery; AU-44–50 and SP-089–092 |
 | 10 | Planned | APL/Erie capstones; SP-093–100 |
@@ -170,3 +170,19 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
 - A failed oversized catalog is rejected before a restart stops the healthy DS.
 - Continuing directly into canonical dashboard views and result-driven alerts.
   The complete V7 expansion remains unfinished.
+
+## Dashboards and alerts implementation
+
+- SP-047–SP-054 are executable: **89 new / 116 total lessons**. Canonical Classic
+  and Studio views, actual panel searches/input filtering, metadata sharing and
+  saved-search alert execution now share active configuration and persistence.
+- Scheduled failures, unmatched conditions, triggers and suppression have distinct
+  actual receipts. Actions create local simulation notifications/audit only.
+- Full regression: **880 tests / 52 files pass**, including 48 lesson outcome
+  cases and 10 engine/API checks. The browser completed Studio SP-048 with two
+  filtered results and correct evidence. SP-051 also completed through Web alert
+  creation, two scheduled windows, two triggers and two suppressed repeats.
+- TypeScript, ESLint and the production web build pass; the existing bundle-size
+  advisory remains. [Scope and limits](V7-DASHBOARDS-AND-ALERTS.md).
+- Continuing directly into clustering/KV Store and automation; the full expansion
+  remains unfinished.

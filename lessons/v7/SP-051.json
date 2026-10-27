@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-051",
+  "version": 1,
+  "title": "Configure Trigger Conditions, Actions, and Throttling",
+  "track": "Dashboards, alerts and knowledge objects",
+  "objectives": [
+    "Configure Trigger Conditions, Actions, and Throttling",
+    "Verify shared configuration, actual results and retained execution evidence."
+  ],
+  "environments": ["lab"],
+  "level": 2,
+  "prerequisites": ["SP-035"],
+  "requiredCapabilities": ["search.execute", "alert.evaluate"],
+  "fixture": {
+    "id": "sp-051-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture supplies three explicit source_logs events and pauses the clock. Keep it paused while configuring; advance deliberately for scheduled work.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Create HTTP throttled alert in search, owner admin, Private. Search index=source_logs | stats count by status over -15m to now. Schedule every minute.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Set number of events > 0, trigger for each result, suppression on for 5m with status as the suppression field, tracking on and a local notification action.",
+      "paths": ["web", "cli", "config", "rest"]
+    },
+    {
+      "id": "task-4",
+      "instruction": "Advance twice across minute boundaries. Two different status results must trigger once each; both repeats must be suppressed. Inspect run provenance and Triggered Alerts. No real email or network action is sent.",
+      "paths": ["web", "cli", "config", "rest"]
+    }
+  ],
+  "hints": [
+    "Inspect native configuration and the selected namespace. File edits need activation.",
+    "Check search results before diagnosing alert conditions or dashboard rendering."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/create-dashboards-and-reports/simple-xml-dashboards/9.4/simple-xml-reference/simple-xml-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Classic dashboard panels, searches and tokens"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/create-dashboards-and-reports/dashboard-studio/9.4/source-code-editor/what-is-a-dashboard-definition",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Studio definitions, data sources, visualizations and inputs"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/splunk-enterprise-admin-manual/9.4/configuration-file-reference/9.4.1-configuration-file-reference/savedsearches.conf",
+      "vendorVersion": "Splunk Enterprise 9.4.1",
+      "purpose": "Alert conditions, scheduled execution and suppression"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "alert-state",
+      "label": "Active scheduled alert configuration",
+      "host": "sh01",
+      "title": "HTTP throttled alert",
+      "threshold": 0,
+      "suppress": true,
+      "period": "5m",
+      "digest": false,
+      "track": true,
+      "action": "notification",
+      "fields": ["status"],
+      "type": "number of events"
+    },
+    {
+      "kind": "alert-run",
+      "label": "Actual trigger, suppression and scheduler evidence",
+      "host": "sh01",
+      "title": "HTTP throttled alert",
+      "scheduled": true,
+      "minimumTriggers": 2,
+      "minimumSuppressed": 2
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer",
+      "id": "evidence",
+      "expected": "status"
+    }
+  ],
+  "questions": [
+    {
+      "id": "evidence",
+      "prompt": "Which suppression field groups repeated status results?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[clustering]\nmode=disabled\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/indexes.conf",
+      "text": "[source_logs]\nhomePath=$SPLUNK_DB/source_logs/db\ncoldPath=$SPLUNK_DB/source_logs/colddb\nthawedPath=$SPLUNK_DB/source_logs/thaweddb\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/reports.log",
+      "text": "status=500 service=checkout latency=400\nstatus=200 service=auth latency=25\nstatus=500 service=checkout latency=300\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/reports.log]\nindex=source_logs\nsourcetype=app_log\ndisabled=0\n",
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    }
+  ],
+  "feedback": {
+    "success": "Active source, actual result receipts and evidence satisfy the task.",
+    "incomplete": "Inspect the missing outcome. Saving a definition alone does not execute its search."
+  },
+  "minutes": 25,
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-dashboards:SP-051:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-dashboards:SP-051:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-dashboards:SP-051:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-dashboards:SP-051:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-dashboards:SP-051:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-dashboards:SP-051:isolation"
+    }
+  ]
+}

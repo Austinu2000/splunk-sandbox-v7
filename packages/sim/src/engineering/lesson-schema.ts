@@ -80,6 +80,62 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('dashboard-state'),
+      label: text,
+      host: text,
+      name: text,
+      format: z.enum(['classic', 'studio']).optional(),
+      sharing: text.optional(),
+      owner: text.optional(),
+      minimumPanels: z.number().int().min(1).max(8).optional(),
+      report: text.optional(),
+      search: text.optional(),
+      token: text.optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('dashboard-render'),
+      label: text,
+      host: text,
+      name: text,
+      principal: z.enum(['admin', 'analyst', 'operator']).optional(),
+      tokens: z.record(z.string()).optional(),
+      cells: z.record(z.union([z.string(), z.number()])),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('alert-state'),
+      label: text,
+      host: text,
+      title: text,
+      condition: z.string().optional(),
+      threshold: z.number().optional(),
+      suppress: z.boolean().optional(),
+      period: text.optional(),
+      digest: z.boolean().optional(),
+      track: z.boolean().optional(),
+      action: text.optional(),
+      fields: z.array(text).max(8).optional(),
+      type: text.optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('alert-run'),
+      label: text,
+      host: text,
+      title: text,
+      minimumTriggers: z.number().int().min(0).optional(),
+      minimumSuppressed: z.number().int().min(0).optional(),
+      scheduled: z.boolean().optional(),
+      priorFailure: z.boolean().optional(),
+      priorUnmatched: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
       kind: z.literal('forwarder'),
       label: text,
       host: text,

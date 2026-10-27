@@ -11,6 +11,7 @@ import {
   activateIndexConf,
   activateInputConf,
   activateReportConf,
+  activateDashboardConf,
   reloadAppConf,
   reloadDeployServer,
   restartSplunk,
@@ -43,10 +44,10 @@ import { createWorld, setClock, tickWorld, type World } from './world';
  * of user changes; loading creates a fresh world from the seed and replays the journal tick by
  * tick, so the result is the same world, not an approximation of it.
  */
-export const SAVE_VERSION = 7;
+export const SAVE_VERSION = 8;
 
 export interface SavedWorld {
-  version: 1 | 2 | 3 | 4 | 5 | 6 | typeof SAVE_VERSION;
+  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | typeof SAVE_VERSION;
   lesson?: World['lesson'];
   profileId?: string;
   config?: WorldConfig;
@@ -93,6 +94,12 @@ function apply(world: World, m: Mutation): void {
       return;
     case 'reports.activate':
       activateReportConf(world, host(world, m.host));
+      return;
+    case 'dashboards.activate':
+      activateDashboardConf(world, host(world, m.host));
+      return;
+    case 'dashboards.state':
+      world.dashboards = structuredClone(m.state);
       return;
     case 'reports.state':
       world.reports = structuredClone(m.state);
@@ -189,6 +196,7 @@ export function loadWorld(
     saved.version !== 4 &&
     saved.version !== 5 &&
     saved.version !== 6 &&
+    saved.version !== 7 &&
     saved.version !== SAVE_VERSION
   )
     throw new SaveError(`Unsupported save version ${saved.version}`);

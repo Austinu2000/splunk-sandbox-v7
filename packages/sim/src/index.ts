@@ -123,3 +123,8 @@ export * from './engineering/deployment-admin';
 export * from './ansible/forwarder-starters';
 
 export * from './engineering/forwarder-tls';
+
+export * from './engineering/dashboards';
+export * from './engineering/dashboard-source';
+
+export { activateDashboardConf } from './hosts/running';

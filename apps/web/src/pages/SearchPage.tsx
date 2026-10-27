@@ -1,3 +1,4 @@
+import { classicSource } from '@sandbox/shared';
 import { SplEditor } from '../components/SplEditor';
 import { profileStorage } from '../environment';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
@@ -13,7 +14,7 @@ import {
 } from '../components/SearchResults';
 import { fmtEventTime, fmtInt } from '../format';
 import { searchHash } from '../links';
-import { addKnowledgeObject, recordSearchJob } from '../replica/knowledgeStore';
+import { recordSearchJob } from '../replica/knowledgeStore';
 import { request } from './TrainingPage';
 import '../replica/search.css';
 
@@ -534,7 +535,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
   useEffect(() => {
     let active = true;
     setReportScope(null);
-    if (saveType === 'report')
+    if (saveType)
       void request<{ context: string; host: string }>('reports')
         .then((scope) => {
           if (active) setReportScope(scope);
@@ -699,10 +700,35 @@ export function SearchPage({ visible }: { visible: boolean }) {
   };
   const save = async () => {
     if (!saveType || !saveTitle.trim()) return;
-    if (saveType === 'report') {
-      if (!reportScope) return;
-      setSaving(true);
-      try {
+    if (!reportScope) return;
+    setSaving(true);
+    try {
+      if (saveType === 'dashboard') {
+        await request('dashboards', {
+          ...reportScope,
+          app: 'search',
+          owner: 'admin',
+          sharing: saveSharing,
+          name: 'dashboard_' + Date.now().toString(36),
+          format: 'classic',
+          source: classicSource(
+            saveTitle.trim(),
+            saveDescription,
+            [],
+            [
+              {
+                id: 'search_panel',
+                title: saveTitle.trim(),
+                search: query,
+                type: tab === 'visualization' ? 'column' : 'table',
+                earliest: range.earliest,
+                latest: range.latest,
+              },
+            ],
+          ),
+          create: true,
+        });
+      } else {
         await request('reports', {
           ...reportScope,
           app: 'search',
@@ -716,44 +742,36 @@ export function SearchPage({ visible }: { visible: boolean }) {
           enabled: true,
           scheduled: false,
           create: true,
+          ...(saveType === 'alert'
+            ? {
+                alert: {
+                  type: 'number of events',
+                  relation: 'greater than',
+                  threshold: 0,
+                  condition: '',
+                  digest: true,
+                  suppress: false,
+                  period: '5m',
+                  fields: [],
+                  track: true,
+                  severity: 3,
+                  actions: ['notification'],
+                },
+              }
+            : {}),
         });
-        setSaveType(null);
-        setSaveNotice(
-          `${saveTitle.trim()} saved on ${reportScope.host} in the search app. View it in Reports.`,
-        );
-      } catch (e) {
-        setError(String(e));
-      } finally {
-        setSaving(false);
       }
-      return;
+      setSaveType(null);
+      setSaveNotice(
+        `${saveTitle.trim()} saved on ${reportScope.host}, app search. Open ${saveType === 'dashboard' ? 'Dashboards' : saveType === 'alert' ? 'Alerts' : 'Reports'} to configure and verify it.`,
+      );
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setSaving(false);
     }
-    const item = addKnowledgeObject({
-      kind: saveType,
-      title: saveTitle.trim(),
-      description: saveDescription,
-      sharing: saveSharing,
-      search: query,
-      earliest: range.earliest,
-      latest: range.latest,
-      ...(saveType === 'dashboard'
-        ? {
-            panels: [
-              {
-                id: 'search_panel',
-                title: saveTitle.trim(),
-                search: query,
-                type: tab === 'visualization' ? 'column' : 'table',
-              },
-            ],
-          }
-        : {}),
-    });
-    setSaveType(null);
-    setSaveNotice(
-      `${item.title} saved. View it in ${saveType === 'dashboard' ? 'Dashboards' : saveType === 'alert' ? 'Alerts' : 'Reports'}.`,
-    );
   };
+
   async function exportResults(format: 'csv' | 'json') {
     if (!job) return;
     setExporting(true);
@@ -1316,22 +1334,16 @@ export function SearchPage({ visible }: { visible: boolean }) {
               </select>
             </label>
             <p className="search-muted">
-              {saveType === 'report'
-                ? `Saved in this environment on ${reportScope?.host ?? 'the selected search head'}, app search, owner admin. Scheduling starts off.`
-                : 'Saved with this environment.'}{' '}
+              {`Saved in this environment on ${reportScope?.host ?? 'the selected search head'}, app search, owner admin. Scheduling starts off.`}{' '}
               {saveType === 'alert'
-                ? 'Alert definitions can be opened and run manually; scheduled evaluation and delivery are not simulated.'
+                ? 'Configure its schedule and condition in Alerts. Actions create local simulation notifications.'
                 : ''}
             </p>
             <div className="search-modal-actions">
               <button type="button" onClick={() => setSaveType(null)}>
                 Cancel
               </button>
-              <button
-                className="primary"
-                type="submit"
-                disabled={saving || (saveType === 'report' && !reportScope)}
-              >
+              <button className="primary" type="submit" disabled={saving || !reportScope}>
                 {saving ? 'Saving…' : 'Save'}
               </button>
             </div>

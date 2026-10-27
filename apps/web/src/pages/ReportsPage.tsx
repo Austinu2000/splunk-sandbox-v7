@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import type { SavedReport, ReportRun, PracticePrincipal } from '@sandbox/shared';
+import type {
+  SavedReport,
+  ReportRun,
+  PracticePrincipal,
+  AlertConfiguration,
+  AlertNotification,
+} from '@sandbox/shared';
 import { usePoll } from '../usePoll';
 import { request } from './TrainingPage';
 import { Modal } from '../replica/Modal';
@@ -12,11 +18,13 @@ interface ReportView {
   reports: SavedReport[];
   declared: SavedReport[];
   runs: ReportRun[];
+  notifications: AlertNotification[];
 }
 interface LegacyView {
   context: string;
   reports: {
     sourceId: string;
+    kind: string;
     title: string;
     app: string;
     owner: string;
@@ -42,8 +50,10 @@ type Draft = Pick<
   | 'scheduled'
   | 'cron'
   | 'summaryIndex'
-> & { context: string; revision?: string; create: boolean; sourceId?: string };
-export function ReportsPage() {
+  | 'alert'
+> & { context: string; revision?: string; create: boolean; sourceId?: string; id?: string };
+export function ReportsPage({ mode = 'reports' }: { mode?: 'reports' | 'alerts' | 'triggered' }) {
+  const label = mode === 'reports' ? 'Report' : 'Alert';
   const [filter, setFilter] = useState('');
   const [host, setHost] = useState(''),
     [principal, setPrincipal] = useState<PracticePrincipal>('admin'),
@@ -86,10 +96,13 @@ export function ReportsPage() {
     scheduled: false,
     cron: '*/5 * * * *',
     create: true,
+    alert: mode === 'reports' ? undefined : defaultAlert(),
   });
   const fromReport = (report: SavedReport): Draft => ({ ...report, context: view!.context, create: false });
   const payload = (d: Draft) => ({
     context: d.context,
+    id: d.id,
+    alert: d.alert,
     host: d.host,
     app: d.app,
     owner: d.owner,
@@ -112,7 +125,7 @@ export function ReportsPage() {
       <header className="v5-heading">
         <div>
           <span className="v5-eyebrow">SEARCH & REPORTING</span>
-          <h1>Reports</h1>
+          <h1>{mode === 'triggered' ? 'Triggered Alerts' : mode === 'alerts' ? 'Alerts' : 'Reports'}</h1>
           <p>Saved searches, schedules and traceable results from the active environment.</p>
         </div>
         <a href="#/search">Open Search →</a>
@@ -153,7 +166,7 @@ export function ReportsPage() {
           </select>
         </label>
         <button disabled={!view || busy} onClick={() => setDraft(blank())}>
-          New Report
+          New {label}
         </button>
         <button
           disabled={!view || busy || principal !== 'admin'}
@@ -201,6 +214,7 @@ export function ReportsPage() {
           </thead>
           <tbody>
             {view?.reports
+              .filter((r) => (mode === 'reports' ? !r.alert : !!r.alert))
               .filter((r) =>
                 [r.title, r.app, r.owner].some((value) => value.toLowerCase().includes(filter.toLowerCase())),
               )
@@ -216,6 +230,17 @@ export function ReportsPage() {
                     {r.owner} · {r.sharing}
                   </td>
                   <td>
+                    {r.alert && (
+                      <p>
+                        {r.alert.type}{' '}
+                        {r.alert.type === 'custom'
+                          ? r.alert.condition
+                          : r.alert.relation + ' ' + r.alert.threshold}
+                        <br />
+                        {r.alert.suppress ? 'Suppress for ' + r.alert.period : 'Suppression off'} ·{' '}
+                        {r.alert.actions.join(', ') || 'Track only'}
+                      </p>
+                    )}
                     {r.enabled ? 'Enabled' : 'Disabled'}
                     <br />
                     {r.scheduled ? r.cron + ' UTC' : 'On demand'}
@@ -258,13 +283,14 @@ export function ReportsPage() {
                           });
                           setNotice(
                             run.status === 'succeeded'
-                              ? `Report ran successfully: ${run.resultCount} rows; ${run.summaryEventIds.length} summary events written.`
+                              ? `Search ran successfully: ${run.resultCount} rows; ${run.alert ? `${run.alert.triggered} triggers, ${run.alert.suppressed} suppressed` : `${run.summaryEventIds.length} summary events written`}.`
                               : `Report ${run.status}: ${run.error}`,
                           );
                         })
                       }
                     >
-                      Run once{r.summaryIndex ? ' and collect summary' : ''}
+                      {r.alert ? 'Test alert and local actions' : 'Run once'}
+                      {r.summaryIndex ? ' and collect summary' : ''}
                     </button>
                     <button disabled={busy} onClick={() => setDraft(fromReport(r))}>
                       Edit
@@ -281,6 +307,44 @@ export function ReportsPage() {
         <p className="v5-banner">
           Disk definitions differ from active reports. Review the files and reload to activate changes.
         </p>
+      )}
+      {mode !== 'reports' && (
+        <section className="v5-card">
+          <h2>Triggered alerts</h2>
+          <p>These are local simulation notifications. No email or webhook is sent.</p>
+          <div className="v5-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Alert</th>
+                  <th>Time</th>
+                  <th>Severity</th>
+                  <th>Results / actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {view?.notifications
+                  .slice()
+                  .reverse()
+                  .map((n) => (
+                    <tr key={n.id}>
+                      <td>{n.title}</td>
+                      <td>{new Date(n.time).toISOString()}</td>
+                      <td>{n.severity}</td>
+                      <td>
+                        {n.resultCount} · {n.actions.join(', ') || 'Tracked'}
+                        <details>
+                          <summary>Provenance</summary>
+                          <p>Run {n.runId}</p>
+                        </details>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          {!view?.notifications.length && <p>No tracked alerts have fired in this environment.</p>}
+        </section>
       )}
       <section className="v5-card">
         <h2>Execution history</h2>
@@ -331,6 +395,7 @@ export function ReportsPage() {
                               revision: run.revision,
                               sourcePath: run.sourcePath,
                               principal: run.principal,
+                              alert: run.alert,
                               summaryEventIds: run.summaryEventIds,
                               rows: run.rows,
                             },
@@ -350,7 +415,7 @@ export function ReportsPage() {
         )}
       </section>
       <section className="v5-card">
-        <h2>Legacy report drafts</h2>
+        <h2>Legacy {label.toLowerCase()} drafts</h2>
         <p>
           Original V6 records remain recoverable. Review the target scope before importing a report. Imported
           schedules start off; enable them after checking the query and destination.
@@ -358,32 +423,36 @@ export function ReportsPage() {
         {[...new Set(legacy.data?.issues.map((issue) => issue.message) ?? [])].map((message) => (
           <p key={message}>{message}</p>
         ))}
-        {legacy.data?.reports.map((old) => (
-          <p key={old.sourceId}>
-            {old.title} · {old.app} · {old.owner}{' '}
-            <button
-              disabled={busy || !view || old.imported || old.status === 'conflict' || principal !== 'admin'}
-              onClick={() =>
-                setDraft({
-                  ...blank(),
-                  sourceId: old.sourceId,
-                  title: old.title,
-                  app: old.app,
-                  owner: ['admin', 'analyst', 'operator', 'nobody'].includes(old.owner) ? old.owner : 'admin',
-                  sharing: old.sharing,
-                  search: old.search,
-                })
-              }
-            >
-              {old.imported ? 'Imported' : old.status === 'conflict' ? 'Resolve conflict' : 'Review import'}
-            </button>
-          </p>
-        ))}
+        {legacy.data?.reports
+          .filter((old) => (mode === 'reports' ? old.kind === 'report' : old.kind === 'alert'))
+          .map((old) => (
+            <p key={old.sourceId}>
+              {old.title} · {old.app} · {old.owner}{' '}
+              <button
+                disabled={busy || !view || old.imported || old.status === 'conflict' || principal !== 'admin'}
+                onClick={() =>
+                  setDraft({
+                    ...blank(),
+                    sourceId: old.sourceId,
+                    title: old.title,
+                    app: old.app,
+                    owner: ['admin', 'analyst', 'operator', 'nobody'].includes(old.owner)
+                      ? old.owner
+                      : 'admin',
+                    sharing: old.sharing,
+                    search: old.search,
+                  })
+                }
+              >
+                {old.imported ? 'Imported' : old.status === 'conflict' ? 'Resolve conflict' : 'Review import'}
+              </button>
+            </p>
+          ))}
         {!legacy.data?.reports.length && <p>No saved legacy report candidates.</p>}
       </section>
       {draft && (
         <Modal
-          title={draft.sourceId ? 'Review report import' : draft.create ? 'New Report' : 'Edit Report'}
+          title={draft.sourceId ? 'Review report import' : draft.create ? 'New ' + label : 'Edit ' + label}
           onClose={() => setDraft(null)}
         >
           <form
@@ -439,11 +508,7 @@ export function ReportsPage() {
               </label>
               <label>
                 Owner
-                <select
-                  disabled={!draft.create}
-                  value={draft.owner}
-                  onChange={(e) => setDraft({ ...draft, owner: e.target.value })}
-                >
+                <select value={draft.owner} onChange={(e) => setDraft({ ...draft, owner: e.target.value })}>
                   <option>admin</option>
                   <option>analyst</option>
                   <option>operator</option>
@@ -453,7 +518,6 @@ export function ReportsPage() {
               <label>
                 Sharing
                 <select
-                  disabled={!draft.create}
                   value={draft.sharing}
                   onChange={(e) => setDraft({ ...draft, sharing: e.target.value as SavedReport['sharing'] })}
                 >
@@ -474,6 +538,9 @@ export function ReportsPage() {
             </label>
             {!draft.sourceId && (
               <>
+                {draft.alert && (
+                  <AlertFields value={draft.alert} onChange={(alert) => setDraft({ ...draft, alert })} />
+                )}
                 <label>
                   Description
                   <input
@@ -533,8 +600,14 @@ export function ReportsPage() {
                 </p>
               </>
             )}
+            {draft.sourceId && mode !== 'reports' && (
+              <p>
+                Imported alerts start with scheduling off, a count &gt; 0 condition and no actions. Review and
+                configure them before enabling. Original conditions are retained in the archive.
+              </p>
+            )}
             <button type="submit" disabled={busy}>
-              {busy ? 'Saving…' : draft.sourceId ? 'Import reviewed report' : 'Save Report'}
+              {busy ? 'Saving…' : draft.sourceId ? 'Import reviewed ' + label.toLowerCase() : 'Save ' + label}
             </button>
             <button type="button" onClick={() => setDraft(null)}>
               Cancel
@@ -543,5 +616,159 @@ export function ReportsPage() {
         </Modal>
       )}
     </main>
+  );
+}
+
+function defaultAlert(): AlertConfiguration {
+  return {
+    type: 'number of events',
+    relation: 'greater than',
+    threshold: 0,
+    condition: '',
+    digest: true,
+    suppress: false,
+    period: '5m',
+    fields: [],
+    track: true,
+    severity: 3,
+    actions: ['notification'],
+  };
+}
+function AlertFields({
+  value: a,
+  onChange,
+}: {
+  value: AlertConfiguration;
+  onChange: (a: AlertConfiguration) => void;
+}) {
+  return (
+    <fieldset>
+      <legend>Alert trigger and actions</legend>
+      <div className="v5-fields">
+        <label>
+          Trigger type
+          <select
+            value={a.type}
+            onChange={(e) =>
+              onChange({
+                ...a,
+                type: e.target.value as AlertConfiguration['type'],
+                condition: e.target.value === 'custom' ? 'search count > 0' : '',
+              })
+            }
+          >
+            {['number of events', 'number of hosts', 'number of sources', 'custom', 'always'].map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </label>
+        {a.type !== 'custom' && a.type !== 'always' && (
+          <>
+            <label>
+              Comparator
+              <select
+                value={a.relation}
+                onChange={(e) =>
+                  onChange({ ...a, relation: e.target.value as AlertConfiguration['relation'] })
+                }
+              >
+                {['greater than', 'less than', 'equal to', 'not equal to'].map((r) => (
+                  <option key={r}>{r}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Threshold
+              <input
+                type="number"
+                min="0"
+                value={a.threshold}
+                onChange={(e) => onChange({ ...a, threshold: Number(e.target.value) })}
+              />
+            </label>
+          </>
+        )}
+        {a.type === 'custom' && (
+          <label>
+            Result condition
+            <input value={a.condition} onChange={(e) => onChange({ ...a, condition: e.target.value })} />
+          </label>
+        )}
+        <label>
+          Trigger mode
+          <select
+            value={a.digest ? 'digest' : 'result'}
+            onChange={(e) => onChange({ ...a, digest: e.target.value === 'digest' })}
+          >
+            <option value="digest">Once per search</option>
+            <option value="result">For each result</option>
+          </select>
+        </label>
+        <label>
+          Suppression period
+          <input value={a.period} onChange={(e) => onChange({ ...a, period: e.target.value })} />
+        </label>
+        <label>
+          Suppression fields (comma separated)
+          <input
+            value={a.fields.join(',')}
+            onChange={(e) =>
+              onChange({
+                ...a,
+                fields: e.target.value
+                  .split(',')
+                  .map((s) => s.trim())
+                  .filter(Boolean),
+              })
+            }
+          />
+        </label>
+        <label>
+          Severity
+          <input
+            type="number"
+            min="1"
+            max="6"
+            value={a.severity}
+            onChange={(e) => onChange({ ...a, severity: Number(e.target.value) })}
+          />
+        </label>
+      </div>
+      <label>
+        <input
+          type="checkbox"
+          checked={a.suppress}
+          onChange={(e) => onChange({ ...a, suppress: e.target.checked })}
+        />{' '}
+        Suppress repeated triggers
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={a.track}
+          onChange={(e) => onChange({ ...a, track: e.target.checked })}
+        />{' '}
+        List in Triggered Alerts
+      </label>
+      {['notification', 'audit'].map((action) => (
+        <label key={action}>
+          <input
+            type="checkbox"
+            checked={a.actions.includes(action)}
+            onChange={(e) =>
+              onChange({
+                ...a,
+                actions: e.target.checked ? [...a.actions, action] : a.actions.filter((s) => s !== action),
+              })
+            }
+          />{' '}
+          Local {action}
+        </label>
+      ))}
+      <p>
+        Scheduled searches use UTC simulation time. Custom conditions filter the completed results with a
+        single search predicate. Real-time continuous scheduling is a concept only here.
+      </p>
+    </fieldset>
   );
 }

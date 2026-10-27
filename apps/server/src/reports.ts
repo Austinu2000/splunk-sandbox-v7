@@ -17,7 +17,41 @@ import { activateReportConf } from '@sandbox/sim';
 import type { LiveWorld } from './live';
 import type { SessionStore } from './store';
 const text = { type: 'string', maxLength: 300 };
+const alertSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'type',
+    'relation',
+    'threshold',
+    'condition',
+    'digest',
+    'suppress',
+    'period',
+    'fields',
+    'track',
+    'severity',
+    'actions',
+  ],
+  properties: {
+    type: {
+      type: 'string',
+      enum: ['number of events', 'number of hosts', 'number of sources', 'custom', 'always'],
+    },
+    relation: { type: 'string', enum: ['greater than', 'less than', 'equal to', 'not equal to'] },
+    threshold: { type: 'number', minimum: 0, maximum: 1000000000 },
+    condition: { type: 'string', maxLength: 2000 },
+    digest: { type: 'boolean' },
+    suppress: { type: 'boolean' },
+    period: { type: 'string', maxLength: 20 },
+    fields: { type: 'array', maxItems: 8, items: { type: 'string', maxLength: 64 } },
+    track: { type: 'boolean' },
+    severity: { type: 'integer', minimum: 1, maximum: 6 },
+    actions: { type: 'array', maxItems: 2, items: { type: 'string', enum: ['notification', 'audit'] } },
+  },
+};
 const properties = {
+  alert: { anyOf: [alertSchema, { type: 'null' }] },
   host: text,
   app: text,
   owner: text,
@@ -54,6 +88,8 @@ export function registerReports(app: FastifyInstance, live: LiveWorld, store: Se
       principal: p,
       revision: reportRevision(live.world, host),
       reports,
+      notifications:
+        live.world.reports?.alerts?.notifications.filter((n) => visibleIds.has(n.reportId)) ?? [],
       declared: listReports(live.world, host, p, true),
       runs: live.world.reports?.runs.filter((r) => r.host === host && visibleIds.has(r.reportId)) ?? [],
     };
@@ -78,7 +114,13 @@ export function registerReports(app: FastifyInstance, live: LiveWorld, store: Se
     },
   );
   app.post<{
-    Body: ReportInput & { context: string; principal?: string; revision?: string; create?: boolean };
+    Body: ReportInput & {
+      context: string;
+      principal?: string;
+      revision?: string;
+      create?: boolean;
+      id?: string;
+    };
   }>(
     '/api/reports',
     {
@@ -92,15 +134,16 @@ export function registerReports(app: FastifyInstance, live: LiveWorld, store: Se
             context: text,
             principal,
             revision: text,
+            id: { type: 'string', maxLength: 1000 },
             create: { type: 'boolean' },
           },
         },
       },
     },
     async (req) => {
-      const { context, principal: p, revision, create, ...input } = req.body;
+      const { context, principal: p, revision, create, id, ...input } = req.body;
       check(context);
-      const result = saveReport(live.world, input, { principal: practicePrincipal(p), revision, create });
+      const result = saveReport(live.world, input, { principal: practicePrincipal(p), revision, create, id });
       store?.checkpoint(live.world);
       return result;
     },
@@ -154,9 +197,10 @@ export function registerReports(app: FastifyInstance, live: LiveWorld, store: Se
     return {
       context: live.context,
       reports: plan.knowledge
-        .filter((c) => c.object.kind === 'report')
+        .filter((c) => ['report', 'alert'].includes(c.object.kind))
         .map((c) => ({
           sourceId: c.object.id,
+          kind: c.object.kind,
           title: c.object.title,
           app: c.object.app,
           owner: c.object.owner,

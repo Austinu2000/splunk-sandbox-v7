@@ -22,6 +22,7 @@ import { SessionsPage } from './pages/SessionsPage';
 import { InterviewBar } from './components/InterviewBar';
 import { HomePage } from './replica/HomePage';
 import { KnowledgePage } from './replica/KnowledgePage';
+import { DashboardsPage } from './pages/DashboardsPage';
 import { ReportsPage } from './pages/ReportsPage';
 import { SettingsPage } from './replica/SettingsPage';
 import { InstalledViewPage, ViewCatalog } from './replica/InstalledViewPage';
@@ -183,7 +184,15 @@ export function App() {
       )}
       {knowledge && (
         <div role={route === 'analytics' ? undefined : 'main'} tabIndex={-1}>
-          {route === 'reports' ? <ReportsPage /> : <KnowledgePage section={route} id={sub} />}
+          {['reports', 'alerts', 'triggered-alerts'].includes(route) ? (
+            <ReportsPage
+              mode={route === 'reports' ? 'reports' : route === 'alerts' ? 'alerts' : 'triggered'}
+            />
+          ) : ['dashboards', 'dashboard', 'studio'].includes(route) ? (
+            <DashboardsPage />
+          ) : (
+            <KnowledgePage section={route} id={sub} />
+          )}
         </div>
       )}
       {route === 'apps' && <AppsPage />}
