@@ -47,7 +47,17 @@ const v7Lessons: Lesson[] = readdirSync(v7Dir)
     const definition = engineeringLessonSchema.parse(JSON.parse(readFileSync(new URL(n, v7Dir), 'utf8')));
     if (definition.status !== 'verified')
       throw new Error('Unverified V7 lesson cannot be registered: ' + definition.id);
-    const supported = new Set(['inspection', 'answer', 'configuration', 'permissions', 'inventory']);
+    const supported = new Set([
+      'inspection',
+      'answer',
+      'configuration',
+      'permissions',
+      'inventory',
+      'index-state',
+      'query',
+      'access',
+      'bucket-state',
+    ]);
     if (definition.checks.some((c) => !supported.has(c.kind)))
       throw new Error('Unsupported V7 outcome evaluator: ' + definition.id);
     return {

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-017",
+  "version": 1,
+  "title": "Onboard a Linux Log File Through Splunk Web",
+  "track": "Data ingestion and parsing",
+  "objectives": [
+    "Onboard a Linux Log File Through Splunk Web",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-017-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Use Settings \u2192 Indexes to create linux_logs on standalone idx01. In Add Data, upload /var/log/practice/linux.log with two explicit records: status=200 and status=500. Set sourcetype=linux_training and index=linux_logs.",
+      "paths": [
+        "web"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Inspect active inputs and delivery status, then independently search the exact source and sourcetype.",
+      "paths": [
+        "web"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "linux_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "linux_logs",
+      "settings": {}
+    },
+    {
+      "kind": "configuration",
+      "label": "idx01: active inputs.conf sourcetype",
+      "host": "idx01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/linux.log",
+      "key": "sourcetype",
+      "equals": "linux_training",
+      "effective": true
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=linux_logs sourcetype=linux_training source=\"/var/log/practice/linux.log\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: source",
+      "id": "source",
+      "expected": "/var/log/practice/linux.log"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "source",
+      "prompt": "What source path identifies the uploaded Linux log?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-017:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-017:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-017:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-017:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-017:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-017:isolation"
+    }
+  ]
+}

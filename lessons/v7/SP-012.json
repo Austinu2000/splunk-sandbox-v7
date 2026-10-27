@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-012",
+  "version": 1,
+  "title": "Understand Hot, Warm, Cold, Frozen, and Thawed Data",
+  "track": "Indexes and data lifecycle",
+  "objectives": [
+    "Understand Hot, Warm, Cold, Frozen, and Thawed Data",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.lifecycle",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-012-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create lifecycle_logs with maxHotIdleSecs=10, maxWarmDBCount=1, retention=60 seconds and coldToFrozenDir=/archive/lifecycle_logs.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Ingest two separate batches at least one clock tick apart. Inspect hot, warm and cold states in Settings \u2192 Indexes or | dbinspect index=lifecycle_logs. Advance time past retention.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "In Settings \u2192 Indexes, restore one archived bucket to thawed storage. Verify one frozen archive remains and exactly one event is searchable. This restore is a bounded practice workflow, not a native Splunk command.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "lifecycle_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "lifecycle_logs",
+      "settings": {
+        "maxHotIdleSecs": 10,
+        "maxWarmDBCount": 1,
+        "coldToFrozenDir": "/archive/lifecycle_logs"
+      }
+    },
+    {
+      "kind": "bucket-state",
+      "label": "Recorded bucket reaches frozen",
+      "host": "idx01",
+      "index": "lifecycle_logs",
+      "state": "frozen",
+      "minimum": 1,
+      "archived": true
+    },
+    {
+      "kind": "bucket-state",
+      "label": "Recorded bucket reaches thawed",
+      "host": "idx01",
+      "index": "lifecycle_logs",
+      "state": "thawed",
+      "minimum": 1,
+      "archived": true
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=lifecycle_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 1
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: frozen",
+      "id": "frozen",
+      "expected": "no"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "frozen",
+      "prompt": "Is frozen data searchable before an explicit thaw (yes/no)?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-012:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-012:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-012:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-012:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-012:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-012:isolation"
+    }
+  ]
+}

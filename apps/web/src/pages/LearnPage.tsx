@@ -122,9 +122,11 @@ export function LearnPage() {
               ? lesson.kvIncident
                 ? 'This lesson starts with a seeded KV Store incident. Open KV Store administration to investigate.'
                 : 'Use KV Store administration or the terminal to complete the collection exercise.'
-              : lesson?.seeded
-                ? 'This session includes seeded repository faults for the lesson.'
-                : 'This workspace starts with the profile’s standard repository baseline; follow the manual for additional challenge setup.'}
+              : /^(SP-|AU-)/.test(lesson?.id ?? '')
+                ? 'Complete the tasks, inspect the resulting state and save your evidence answers. Outcome checks determine completion.'
+                : lesson?.seeded
+                  ? 'This session includes seeded repository faults for the lesson.'
+                  : 'This workspace starts with the profile’s standard repository baseline; follow the manual for additional challenge setup.'}
           </div>
           <div className="v5-learn-layout">
             <div>

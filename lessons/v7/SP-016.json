@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-016",
+  "version": 1,
+  "title": "Troubleshoot Missing, Incorrect, or Unauthorized Index Access",
+  "track": "Indexes and data lifecycle",
+  "objectives": [
+    "Troubleshoot Missing, Incorrect, or Unauthorized Index Access",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "access.enforce",
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-016-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create application_logs on idx01, ingest one explicit event through /var/log/practice/access.log, and verify it as admin.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Inspect role_user on sh01. Grant search access only to application_logs without granting indexes_edit; restart sh01. Compare admin and analyst results through simulated REST or practice-principal search.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "application_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_logs",
+      "settings": {}
+    },
+    {
+      "kind": "access",
+      "label": "Analyst can search repaired destination",
+      "host": "sh01",
+      "principal": "analyst",
+      "index": "application_logs",
+      "allowed": true
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=application_logs source=\"/var/log/practice/access.log\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 1
+      },
+      "principal": "analyst"
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: configuration",
+      "id": "configuration",
+      "expected": "authorize.conf"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "configuration",
+      "prompt": "Which configuration file controls role search index access?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-016:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-016:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-016:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-016:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-016:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-016:isolation"
+    }
+  ]
+}

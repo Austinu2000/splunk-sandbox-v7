@@ -1,4 +1,6 @@
 import { tokenizeSpl } from '@sandbox/shared';
+import type { PracticePrincipal } from '@sandbox/shared';
+import { OperationsError } from '../engineering/access';
 import { KvError } from '../kvstore/engine';
 import { training } from '../training/engine';
 import type { World } from '../world';
@@ -11,6 +13,7 @@ import { autoSpanMs, parseTime } from './time';
 import { SplError, isNumeric, toStr, type Value } from './values';
 
 export interface SearchRequest {
+  principal?: PracticePrincipal;
   search: string;
   /** Time modifiers; the search's own earliest=/latest= win. */
   earliest?: string;
@@ -88,7 +91,7 @@ export function runSearch(world: World, req: SearchRequest, limits = LIMITS): Se
     execute(world, req, limits, out);
     out.status = out.messages.some((m) => m.type === 'error') ? 'failed' : 'done';
   } catch (e) {
-    if (!(e instanceof SplError) && !(e instanceof KvError)) throw e;
+    if (!(e instanceof SplError) && !(e instanceof KvError) && !(e instanceof OperationsError)) throw e;
     out.status = 'failed';
     out.messages.push({ type: 'error', text: e instanceof SplError ? e.display : e.message });
   }
@@ -167,7 +170,7 @@ function execute(world: World, req: SearchRequest, limits: typeof LIMITS, out: S
   out.earliest = earliest;
   out.latest = latest;
 
-  const ctx: RunContext = { world, now, earliest, latest, messages: out.messages };
+  const ctx: RunContext = { world, now, earliest, latest, messages: out.messages, principal:req.principal };
   out.kind = cmds.some((c) => c.transforming) || leadingPipe ? 'statistics' : 'events';
   const span = Math.max(1000, Math.floor(autoSpanMs(latest - earliest)));
   out.timelineSpan = span;

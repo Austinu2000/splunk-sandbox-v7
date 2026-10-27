@@ -1,3 +1,5 @@
+import { AddDataPage } from '../pages/AddDataPage';
+import { IndexesPage } from '../pages/IndexesPage';
 import { currentProfile } from '../environment';
 import { profileStorage } from '../environment';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -8,7 +10,6 @@ import { settingsGroups, settingsPages } from './settingsCatalog';
 import {
   defaultDefinition,
   hubs,
-  inputGroups,
   tableDefinitions,
   type SettingRow,
   type TableDefinition,
@@ -654,52 +655,6 @@ function HubPage({ id }: { id: string }) {
   );
 }
 
-function InputCatalog() {
-  return (
-    <>
-      <Header
-        title="Data inputs"
-        description="Set up data inputs from files and directories, network ports, and scripted inputs."
-      />
-      <div className="rs-hub">
-        <p>
-          If you want to set up forwarding and receiving between two Splunk instances, go to{' '}
-          <a href="#/settings/forwarding-and-receiving">Forwarding and receiving</a>.
-        </p>
-        {inputGroups.map((group) => (
-          <section key={group.title}>
-            <h2>{group.title}</h2>
-            <table className="rs-table">
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Inputs</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {group.items.map(([name, description]) => (
-                  <tr key={name}>
-                    <td>
-                      <a href={localHref('data-inputs', group.title + ' ' + name)}>{name}</a>
-                      <p>{description}</p>
-                    </td>
-                    <td>{read<SettingRow[]>('data-inputs/' + slug(group.title + ' ' + name), []).length}</td>
-                    <td className="rs-hub-action">
-                      <a href={localHref('add-data') + '?method=' + encodeURIComponent(name ?? '')}>
-                        ＋ Add new
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        ))}
-      </div>
-    </>
-  );
-}
 
 function Forwarding() {
   const groups = [
@@ -751,80 +706,7 @@ function Forwarding() {
   );
 }
 
-function Indexes() {
-  const [data, setData] = useState<SettingRow[] | null>(null);
-  const [error, setError] = useState('');
-  useEffect(() => {
-    let live = true;
-    api
-      .search({
-        search: '| rest /services/data/indexes splunk_server=idx01',
-        earliest: '-15m',
-        latest: 'now',
-      })
-      .then((result) => {
-        if (!live) return;
-        if (result.job.status === 'failed') {
-          setError('The sandbox could not read the index inventory.');
-          return;
-        }
-        setData(
-          result.results.items.map((row) => ({
-            Name: String(row.title),
-            Type: 'Events',
-            App: 'system',
-            'Current Size':
-              Number(row.currentDBSizeMB) >= 1024
-                ? (Number(row.currentDBSizeMB) / 1024).toFixed(2) + ' GB'
-                : Number(row.currentDBSizeMB).toLocaleString() + ' MB',
-            'Max Size': (Number(row.maxTotalDataSizeMB) / 1024).toFixed(2) + ' GB',
-            'Event Count': '—',
-            'Home Path': String(row.homePath),
-            'Frozen Path': 'N/A',
-            Status: row.disabled === '1' ? 'Disabled' : 'Enabled',
-          })),
-        );
-      })
-      .catch((e) => {
-        if (live) setError((e as Error).message);
-      });
-    return () => {
-      live = false;
-    };
-  }, []);
-  return (
-    <>
-      {error && <Notice>{error}</Notice>}
-      <SettingsTable
-        id="indexes"
-        readOnly
-        dynamicRows={data ?? []}
-        definition={{
-          title: 'Indexes',
-          description:
-            'A repository for data in Splunk Enterprise. Indexes reside in flat files on the Splunk Enterprise instance known as the indexer.',
-          columns: [
-            'Name',
-            'Actions',
-            'Type',
-            'App',
-            'Current Size',
-            'Max Size',
-            'Event Count',
-            'Home Path',
-            'Frozen Path',
-            'Status',
-          ],
-          rows: [],
-          newLabel: 'New Index',
-          actions: ['Edit', 'Delete', 'Disable'],
-          empty: data ? 'No indexes available.' : 'Loading indexes…',
-          note: 'Index inventory and sizes are read from the simulated idx01 through the same REST search used in Search & Reporting. Event totals are not reported by that endpoint.',
-        }}
-      />
-    </>
-  );
-}
+function Indexes() { return <IndexesPage />; }
 
 function Licensing() {
   const state = usePoll(() => api.monitoring('license'), [], 10000);
@@ -1176,150 +1058,7 @@ function Authentication() {
   );
 }
 
-function AddData() {
-  const [method, setMethod] = useState('');
-  const [step, setStep] = useState(1);
-  const [source, setSource] = useState('');
-  const [sourcetype, setSourcetype] = useState('auto');
-  const [index, setIndex] = useState('main');
-  const [notice, setNotice] = useState('');
-  if (!method)
-    return (
-      <>
-        <Header title="What data do you want to send to the Splunk platform?" />
-        <div className="rs-add-grid">
-          {[
-            {
-              label: 'Upload',
-              title: 'Upload files from my computer',
-              icon: '⇧',
-              description: 'Local log files · Local structured files (e.g. CSV)',
-            },
-            {
-              label: 'Monitor',
-              title: 'Monitor files and ports on this Splunk platform instance',
-              icon: '▣',
-              description:
-                'Files · HTTP · WMI · TCP/UDP · Scripts · Modular inputs for external data sources',
-            },
-            {
-              label: 'Forward',
-              title: 'Forward data from a Splunk forwarder',
-              icon: '⇥',
-              description: 'Files · TCP/UDP · Scripts',
-            },
-          ].map((item) => (
-            <button key={item.label} onClick={() => setMethod(item.label)}>
-              <span className="rs-add-icon">{item.icon}</span>
-              <strong>{item.title}</strong>
-              <span>{item.description}</span>
-            </button>
-          ))}
-        </div>
-      </>
-    );
-  return (
-    <>
-      <Header title="Add Data">
-        <button
-          onClick={() => {
-            setMethod('');
-            setStep(1);
-          }}
-        >
-          Start over
-        </button>
-      </Header>
-      <div className="rs-wizard">
-        <ol className="rs-step-list">
-          {['Select Source', 'Set Source Type', 'Input Settings', 'Review'].map((label, i) => (
-            <li key={label} className={step === i + 1 ? 'active' : ''}>
-              {i + 1}. {label}
-            </li>
-          ))}
-        </ol>
-        <h2>{method} data</h2>
-        {notice && <Notice>{notice}</Notice>}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (step < 4) setStep(step + 1);
-            else {
-              try {
-                save('last-input-draft', { method, source, sourcetype, index });
-                setNotice(
-                  'Input draft saved. File ingestion, port listeners, and forwarding are not implemented by the sandbox. To practise input configuration, open a simulated host in Terminal.',
-                );
-              } catch {
-                setNotice('Unable to save input draft.');
-              }
-            }
-          }}
-        >
-          {step === 1 && (
-            <>
-              <p>Select the source to configure. This wizard records an input draft for practice.</p>
-              <label className="rs-field">
-                <span>
-                  {method === 'Upload'
-                    ? 'File name'
-                    : method === 'Forward'
-                      ? 'Forwarder host'
-                      : 'File or directory'}
-                </span>
-                <input
-                  required
-                  placeholder={method === 'Forward' ? 'dal-lin-00001' : '/var/log/application.log'}
-                  value={source}
-                  onChange={(e) => setSource(e.target.value)}
-                />
-              </label>
-            </>
-          )}
-          {step === 2 && (
-            <label className="rs-field">
-              <span>Source type</span>
-              <select value={sourcetype} onChange={(e) => setSourcetype(e.target.value)}>
-                {['auto', 'csv', 'json', 'syslog', 'access_combined', 'splunkd'].map((type) => (
-                  <option key={type}>{type}</option>
-                ))}
-              </select>
-            </label>
-          )}
-          {step === 3 && (
-            <label className="rs-field">
-              <span>Index</span>
-              <select value={index} onChange={(e) => setIndex(e.target.value)}>
-                {['main', 'app', 'os', 'network'].map((i) => (
-                  <option key={i}>{i}</option>
-                ))}
-              </select>
-            </label>
-          )}
-          {step === 4 && (
-            <dl>
-              <dt>Source</dt>
-              <dd>{source}</dd>
-              <dt>Source type</dt>
-              <dd>{sourcetype}</dd>
-              <dt>Index</dt>
-              <dd>{index}</dd>
-            </dl>
-          )}
-          <div className="rs-modal-actions">
-            <button type="button" onClick={() => (step > 1 ? setStep(step - 1) : setMethod(''))}>
-              Back
-            </button>
-            <button className="rs-primary" type="submit">
-              {step === 4 ? 'Save input draft' : 'Next'}
-            </button>
-          </div>
-        </form>
-        {notice && <a href="#/terminal">Open sandbox terminal →</a>}
-      </div>
-    </>
-  );
-}
+function AddData() { return <AddDataPage />; }
 
 function Instrumentation() {
   const [info, setInfo] = useState<string | null>(null);
@@ -1947,7 +1686,7 @@ export function SettingsPage({ id }: { id: string }) {
   else if (base === 'password-management') content = <PasswordPolicy />;
   else if (base === 'authentication-methods') content = <Authentication />;
   else if (base === 'add-data') content = <AddData />;
-  else if (base === 'data-inputs') content = <InputCatalog />;
+  else if (base === 'data-inputs') content = <AddDataPage />;
   else if (base === 'forwarding-and-receiving') content = <Forwarding />;
   else if (base === 'tokens') content = <Tokens />;
   else if (base === 'health-report-manager') content = <HealthReport />;

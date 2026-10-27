@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 1 and subsequent gates
+## Current work: Milestone 3 and subsequent gates
 
 Implemented:
 
@@ -22,8 +22,8 @@ Implemented:
   No candidate mapping is counted as verified functional coverage.
 - Architecture, staged migration design, capability boundaries and milestone docs.
 
-No new AU/SP exercises are executable at this gate. Existing 27 G/A/X/K entries
-remain available with inherited grading limits. The full expansion is incomplete.
+At the original Milestone 0 gate, no new exercises were executable. Subsequent
+implemented work is listed below. The full expansion remains incomplete.
 
 ## Ongoing foundation implementation
 
@@ -49,9 +49,9 @@ remain available with inherited grading limits. The full expansion is incomplete
 | Gate | Status | Deliverable |
 | --- | --- | --- |
 | 0 | Implemented; validation below | Architecture/persistence audit and safe preflight |
-| 1 | In progress | Foundations/inventory; AU-01–14 and SP-001–006 |
-| 2 | Planned | Indexes/data onboarding; SP-007–025 |
-| 3 | Planned | Reports/searches/summary indexing; SP-035–046 |
+| 1 | Implemented | Foundations/inventory; AU-01–14 and SP-001–006 |
+| 2 | Implemented | Indexes/data onboarding; SP-007–025 |
+| 3 | In progress | Reports/searches/summary indexing; SP-035–046 |
 | 4 | Planned | Playbooks/Git; AU-15–27 |
 | 5 | Planned | Forwarders/DS; AU-28–35 and SP-026–034 |
 | 6 | Planned | Dashboards/alerts; SP-047–054 |
@@ -97,3 +97,24 @@ silently imported. No API keys or `.env` files were copied into V7.
 On October 27, 2026 the user explicitly revoked per-milestone review stops and
 authorized continuing through the remaining build list. Keep validation gates and
 honest delivered/planned status; no review pause is required between milestones.
+
+## Indexes and onboarding implementation
+
+- SP-006–SP-025 now execute real index, input, parsing, access and lifecycle tasks.
+  Learn contains **39 new exercises / 66 total**, preserving the original 27.
+- Standalone Web/CLI/simulated REST share one configuration service; cluster peers
+  require the manager bundle. Recorded data follows active inputs and routing.
+- HEC tokens, monitor checkpoints, timestamp/line parsing, search-time extractions,
+  bucket retention/archive/thaw and practice-principal permissions are implemented
+  within [documented limits](V7-INDEXES-AND-INPUTS.md).
+- 120 new lesson acceptance cases pass, plus 14 focused engine checks and the
+  shared API persistence/input test. The profile regression exposed and fixed
+  a generated self-inheriting role; all 36 profile tests now pass.
+- Browser verified Web index creation, empty-index completion, explicit two-line
+  upload and the two actual search events. Proof: [search](v7-ingested-search.png).
+- Full regression: **542 tests across 40 files pass**, with TypeScript and ESLint
+  passing.
+- Save schema 6 journals new inputs/events/lifecycle operations; older saves still
+  load. Existing knowledge-object migration remains pending in Milestone 3.
+
+The earlier foundation note about SP-006 being pending is superseded by this gate.

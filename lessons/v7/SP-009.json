@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-009",
+  "version": 1,
+  "title": "Understand Events Indexes, Metrics Indexes, and Summary Indexes",
+  "track": "Indexes and data lifecycle",
+  "objectives": [
+    "Understand Events Indexes, Metrics Indexes, and Summary Indexes",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone"
+  ],
+  "fixture": {
+    "id": "sp-009-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create application_events (Events), application_metrics (Metrics), and application_summary (Events) on idx01. Inspect datatype in the catalog or btool.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Explain why a summary destination is an ordinary events index whose contents come from a summary-producing search. Metric index storage is recognized; metric query/rollup behavior is outside this exercise.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "application_events is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_events",
+      "settings": {
+        "datatype": "event"
+      }
+    },
+    {
+      "kind": "index-state",
+      "label": "application_metrics is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_metrics",
+      "settings": {
+        "datatype": "metric"
+      }
+    },
+    {
+      "kind": "index-state",
+      "label": "application_summary is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_summary",
+      "settings": {
+        "datatype": "event"
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: summary",
+      "id": "summary",
+      "expected": "event"
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: metrics",
+      "id": "metrics",
+      "expected": "metric"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "summary",
+      "prompt": "Which datatype is used for this summary destination?"
+    },
+    {
+      "id": "metrics",
+      "prompt": "Which datatype identifies a metrics index?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-009:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-009:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-009:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-009:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-009:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-009:isolation"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-010",
+  "version": 1,
+  "title": "Configure an Index Using `indexes.conf`",
+  "track": "Indexes and data lifecycle",
+  "objectives": [
+    "Configure an Index Using `indexes.conf`",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-010-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create etc/apps/application_indexes/local/indexes.conf on idx01 with [application_logs], homePath=$SPLUNK_DB/application_logs/db, coldPath=$SPLUNK_DB/application_logs/colddb and thawedPath=$SPLUNK_DB/application_logs/thaweddb.",
+      "paths": [
+        "config",
+        "cli"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Compare disk btool output with the running catalog before restarting idx01. Restart and independently verify the active index and source path.",
+      "paths": [
+        "config",
+        "cli"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "application_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_logs",
+      "settings": {}
+    },
+    {
+      "kind": "configuration",
+      "label": "idx01: active indexes.conf homePath",
+      "host": "idx01",
+      "conf": "indexes",
+      "stanza": "application_logs",
+      "key": "homePath",
+      "equals": "$SPLUNK_DB/application_logs/db",
+      "effective": true,
+      "source": "/opt/splunk/etc/apps/application_indexes/local/indexes.conf"
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: activation",
+      "id": "activation",
+      "expected": "restart"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "activation",
+      "prompt": "Which activation action makes this raw standalone configuration edit effective?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-010:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-010:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-010:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-010:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-010:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-010:isolation"
+    }
+  ]
+}

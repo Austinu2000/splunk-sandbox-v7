@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-021",
+  "version": 1,
+  "title": "Configure Timestamp Extraction",
+  "track": "Data ingestion and parsing",
+  "objectives": [
+    "Configure Timestamp Extraction",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-021-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create application_logs on idx01. Before monitoring timestamp.log, configure sourcetype=timestamp_training in idx01 props.conf: TIME_PREFIX=logged=, TIME_FORMAT=%Y-%m-%dT%H:%M:%SZ, TZ=UTC. Restart the parsing indexer.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Monitor /var/log/practice/timestamp.log into application_logs and inspect _time independently of ingestion time. The fixture timestamp is 2026-10-23 07:59:00 UTC.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "application_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_logs",
+      "settings": {}
+    },
+    {
+      "kind": "configuration",
+      "label": "idx01: active props.conf TIME_PREFIX",
+      "host": "idx01",
+      "conf": "props",
+      "stanza": "timestamp_training",
+      "key": "TIME_PREFIX",
+      "equals": "logged=",
+      "effective": true
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=application_logs sourcetype=timestamp_training | table _time",
+      "rows": 1,
+      "cells": {
+        "_time": 1792742340
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: timezone",
+      "id": "timezone",
+      "expected": "UTC"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "timezone",
+      "prompt": "Which timezone is explicitly configured for the source?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/timestamp.log",
+      "text": "logged=2026-10-23T07:59:00Z status=500\n",
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-021:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-021:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-021:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-021:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-021:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-021:isolation"
+    }
+  ]
+}

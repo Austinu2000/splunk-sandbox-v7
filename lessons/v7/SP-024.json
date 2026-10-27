@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-024",
+  "version": 1,
+  "title": "Route Events to Indexes Using Supported Configuration",
+  "track": "Data ingestion and parsing",
+  "objectives": [
+    "Route Events to Indexes Using Supported Configuration",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-024-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create checkout_logs on idx01. On that parsing indexer configure props.conf [route_training] TRANSFORMS-route=checkout_route and transforms.conf [checkout_route] REGEX=service=checkout, DEST_KEY=_MetaData:Index, FORMAT=checkout_logs. Restart idx01.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Monitor route.log with initial index=main and sourcetype=route_training. Verify the matching event actually lands in checkout_logs.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "checkout_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "checkout_logs",
+      "settings": {}
+    },
+    {
+      "kind": "configuration",
+      "label": "idx01: active transforms.conf DEST_KEY",
+      "host": "idx01",
+      "conf": "transforms",
+      "stanza": "checkout_route",
+      "key": "DEST_KEY",
+      "equals": "_MetaData:Index",
+      "effective": true
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=checkout_logs sourcetype=route_training | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 1
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: configuration",
+      "id": "configuration",
+      "expected": "transforms.conf"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "configuration",
+      "prompt": "Which file supplies DEST_KEY and FORMAT?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/route.log",
+      "text": "service=checkout status=200\n",
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-024:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-024:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-024:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-024:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-024:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-024:isolation"
+    }
+  ]
+}

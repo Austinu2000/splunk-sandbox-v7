@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-018",
+  "version": 1,
+  "title": "Create and Troubleshoot Monitoring Inputs",
+  "track": "Data ingestion and parsing",
+  "objectives": [
+    "Create and Troubleshoot Monitoring Inputs",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-018-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture contains a root-owned unreadable /var/log/practice/blocked.log. Create application_logs and activate a monitor for that file with sourcetype=app_log. Inspect its blocked delivery status.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Repair ownership to splunk and mode to 0640, preserving the source. Advance a clock tick and verify two events arrive exactly once.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "application_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_logs",
+      "settings": {}
+    },
+    {
+      "kind": "permissions",
+      "label": "Source readable by service identity with least access",
+      "host": "idx01",
+      "path": "/var/log/practice/blocked.log",
+      "owner": "splunk",
+      "mode": 416
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=application_logs source=\"/var/log/practice/blocked.log\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: identity",
+      "id": "identity",
+      "expected": "splunk"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "identity",
+      "prompt": "Which service identity needs read access?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/blocked.log",
+      "text": "status=500\nstatus=200\n",
+      "owner": "root",
+      "mode": 384
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-018:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-018:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-018:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-018:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-018:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-018:isolation"
+    }
+  ]
+}

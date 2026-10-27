@@ -1,3 +1,5 @@
+import { fixturePrincipal, indexRest } from '../engineering/index-commands';
+import { receiveHec } from '../engineering/hec';
 import type { CommandFn } from '../shell/types';
 import { ok, fail } from '../shell/types';
 import { kvRest } from './rest';
@@ -8,7 +10,9 @@ export const kvCurl: CommandFn = ({ world, sh, argv }) => {
     let method = 'GET',
       raw = '',
       url = '',
-      data = false;
+      data = false,
+      auth = '',
+      authorization = '';
     for (let i = 1; i < argv.length; i++) {
       const a = argv[i]!;
       if (['-X', '--request'].includes(a)) method = argv[++i]!;
@@ -16,15 +20,16 @@ export const kvCurl: CommandFn = ({ world, sh, argv }) => {
         const v = argv[++i] ?? '';
         raw += raw ? '&' + v : v;
         data = true;
-      } else if (['-H', '--header', '-u', '--user'].includes(a)) i++;
-      else if (['-k', '-s', '-S', '--insecure', '--silent', '--show-error'].includes(a)) continue;
+      } else if (['-u', '--user'].includes(a)) auth = argv[++i] ?? '';
+      else if (['-H', '--header'].includes(a)) {
+        const header = argv[++i] ?? '';
+        if (/^authorization:/i.test(header)) authorization = header.slice(header.indexOf(':') + 1).trim();
+      } else if (['-k', '-s', '-S', '--insecure', '--silent', '--show-error'].includes(a)) continue;
       else if (a === '--get' || a === '-G') method = 'GET';
       else if (a.startsWith('-')) throw new KvError(`Unsupported curl flag: ${a}`);
       else url = a;
     }
     const target = new URL(url);
-    if (target.protocol !== 'https:' || target.port !== '8089')
-      throw new KvError('Use a simulated https://HOST:8089 KV endpoint');
     const host = ['localhost', '127.0.0.1'].includes(target.hostname) ? sh.host.hostname : target.hostname;
     let body: unknown = {};
     if (raw) {
@@ -42,6 +47,20 @@ export const kvCurl: CommandFn = ({ world, sh, argv }) => {
     )
       method = 'POST';
     if (method === 'GET' && raw) target.search = raw;
+    if (target.pathname.startsWith('/services/collector')) {
+      if (method !== 'POST') throw new KvError('HEC event collection requires POST');
+      return ok(JSON.stringify(receiveHec(world, host, url, authorization, body), null, 2) + '\n');
+    }
+    if (target.protocol !== 'https:' || target.port !== '8089')
+      throw new KvError('Use a simulated https://HOST:8089 management endpoint or configured HEC endpoint');
+    if (target.pathname.startsWith('/services/data/indexes'))
+      return ok(
+        JSON.stringify(
+          indexRest(world, host, method, target.pathname + target.search, body, fixturePrincipal(auth)),
+          null,
+          2,
+        ) + '\n',
+      );
     return ok(
       JSON.stringify(kvRest(world, host, method, target.pathname + target.search, body), null, 2) + '\n',
     );

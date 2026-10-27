@@ -83,10 +83,15 @@ export * from './training/lessons';
 export * from './training/lesson-setup';
 
 export * from './kvstore/engine';
-export { reloadAppConf } from './hosts/running';
+export { reloadAppConf, restartSplunk, runningConf } from './hosts/running';
 
 export * from './engineering/migration';
 export * from './engineering/lesson-schema';
 export * from './ansible/inventory';
 export { automationView } from './ansible/view';
 export * from './engineering/foundations';
+export * from './engineering/indexes';
+export * from './engineering/access';
+export * from './engineering/ingestion';
+export { configureHec,receiveHec } from './engineering/hec';
+export {indexBuckets,thawPracticeBucket} from './engineering/lifecycle';

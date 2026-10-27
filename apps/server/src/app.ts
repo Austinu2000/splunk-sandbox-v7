@@ -1,4 +1,6 @@
 import { registerKvStore } from './kvstore';
+import { registerIndexes } from './indexes';
+import { registerInputs } from './inputs';
 import { KvError } from '@sandbox/sim';
 import { registerLearn } from './learn';
 import { registerTraining } from './training';
@@ -22,6 +24,7 @@ import {
   summarizeFleet,
   worldInfo,
   engineeringMigrationPreview,
+  OperationsError,
   type World,
 } from '@sandbox/sim';
 import { aiGradingEnabled, createAiGrader, type AiGrader } from './aiGrader';
@@ -87,10 +90,13 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerKvStore(app, live, () => {
     store?.checkpoint(live.world);
   });
+  registerIndexes(app,live,()=>store?.checkpoint(live.world));
+  registerInputs(app,live,()=>store?.checkpoint(live.world));
 
   app.setErrorHandler((err: Error & { validation?: unknown }, _req, reply) => {
     if (
       err instanceof KvError ||
+      err instanceof OperationsError ||
       err instanceof TrainingError ||
       err instanceof ProfileError ||
       err instanceof ScenarioError ||

@@ -1,6 +1,6 @@
 # V7 Splunk engineering lessons
 
-Status: **5 of 100 new SP lessons implemented**. SP-001–SP-005 are executable in Learn; the remaining rows are planned. All existing 27 G/A/X/K entries remain in Learn with their inherited limitations. No new lesson is registered until its required operations and solution/failure/reset/resume/isolation tests pass.
+Status: **25 of 100 new SP lessons implemented**. SP-001–SP-025 are executable in Learn; the remaining rows are planned. All existing 27 G/A/X/K entries remain in Learn with their inherited limitations. No new lesson is registered until its required operations and solution/failure/reset/resume/isolation tests pass.
 
 `packages/sim/src/engineering/lesson-schema.ts` defines the versioned authoring contract. `docs/V7-CURRICULUM-PLAN.json` preserves stable IDs, milestones and planning status. Actual fixtures and per-lesson official references are authored alongside functionality, not fabricated in bulk.
 
@@ -11,26 +11,26 @@ Status: **5 of 100 new SP lessons implemented**. SP-001–SP-005 are executable 
 | SP-003 | Understanding Splunk Services, Ports, and the Splunk CLI | 1 | Verified |
 | SP-004 | Understanding Splunk App Directories and Configuration Precedence | 1 | Verified |
 | SP-005 | Using `btool` to Inspect Effective Configuration | 1 | Verified |
-| SP-006 | Permissions, Roles, App Context, and Administrative Scope | 1 | Planned |
-| SP-007 | Create Your First Events Index Through Splunk Web | 2 | Planned |
-| SP-008 | Create and Inspect an Index Through the CLI | 2 | Planned |
-| SP-009 | Understand Events Indexes, Metrics Indexes, and Summary Indexes | 2 | Planned |
-| SP-010 | Configure an Index Using `indexes.conf` | 2 | Planned |
-| SP-011 | Configure Index Retention and Storage Limits | 2 | Planned |
-| SP-012 | Understand Hot, Warm, Cold, Frozen, and Thawed Data | 2 | Planned |
-| SP-013 | Create a New Clustered Index Through the Cluster Manager | 2 | Planned |
-| SP-014 | Validate and Deploy a Clustered Index Configuration Bundle | 2 | Planned |
-| SP-015 | Route a New Data Source Into a Custom Index | 2 | Planned |
-| SP-016 | Troubleshoot Missing, Incorrect, or Unauthorized Index Access | 2 | Planned |
-| SP-017 | Onboard a Linux Log File Through Splunk Web | 2 | Planned |
-| SP-018 | Create and Troubleshoot Monitoring Inputs | 2 | Planned |
-| SP-019 | Configure and Test an HTTP Event Collector Input | 2 | Planned |
-| SP-020 | Understand Forwarder, Heavy Forwarder, and Indexer Processing | 2 | Planned |
-| SP-021 | Configure Timestamp Extraction | 2 | Planned |
-| SP-022 | Troubleshoot Event Line Breaking | 2 | Planned |
-| SP-023 | Configure Sourcetypes and Field Extraction | 2 | Planned |
-| SP-024 | Route Events to Indexes Using Supported Configuration | 2 | Planned |
-| SP-025 | Diagnose a Broken Data Ingestion Pipeline | 2 | Planned |
+| SP-006 | Permissions, Roles, App Context, and Administrative Scope | 1 | Verified |
+| SP-007 | Create Your First Events Index Through Splunk Web | 2 | Verified |
+| SP-008 | Create and Inspect an Index Through the CLI | 2 | Verified |
+| SP-009 | Understand Events Indexes, Metrics Indexes, and Summary Indexes | 2 | Verified |
+| SP-010 | Configure an Index Using `indexes.conf` | 2 | Verified |
+| SP-011 | Configure Index Retention and Storage Limits | 2 | Verified |
+| SP-012 | Understand Hot, Warm, Cold, Frozen, and Thawed Data | 2 | Verified |
+| SP-013 | Create a New Clustered Index Through the Cluster Manager | 2 | Verified |
+| SP-014 | Validate and Deploy a Clustered Index Configuration Bundle | 2 | Verified |
+| SP-015 | Route a New Data Source Into a Custom Index | 2 | Verified |
+| SP-016 | Troubleshoot Missing, Incorrect, or Unauthorized Index Access | 2 | Verified |
+| SP-017 | Onboard a Linux Log File Through Splunk Web | 2 | Verified |
+| SP-018 | Create and Troubleshoot Monitoring Inputs | 2 | Verified |
+| SP-019 | Configure and Test an HTTP Event Collector Input | 2 | Verified |
+| SP-020 | Understand Forwarder, Heavy Forwarder, and Indexer Processing | 2 | Verified |
+| SP-021 | Configure Timestamp Extraction | 2 | Verified |
+| SP-022 | Troubleshoot Event Line Breaking | 2 | Verified |
+| SP-023 | Configure Sourcetypes and Field Extraction | 2 | Verified |
+| SP-024 | Route Events to Indexes Using Supported Configuration | 2 | Verified |
+| SP-025 | Diagnose a Broken Data Ingestion Pipeline | 2 | Verified |
 | SP-026 | Install and Verify a Universal Forwarder | 5 | Planned |
 | SP-027 | Configure `deploymentclient.conf` | 5 | Planned |
 | SP-028 | Create and Manage Deployment Server Classes | 5 | Planned |

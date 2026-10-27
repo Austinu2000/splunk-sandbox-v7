@@ -444,6 +444,10 @@
   color: #dce1e5;
   border-color: #3b464f;
 }
+.search-replica table.events {
+  background: #171d21;
+  color: #dce1e5;
+}
 .search-replica .events td,
 .search-replica .results td,
 .search-replica .fields-sidebar,

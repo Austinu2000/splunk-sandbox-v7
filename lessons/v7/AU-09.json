@@ -84,7 +84,7 @@
     }
   ],
   "feedback": {
-    "success": "Verified observations, answers and required operational state are correct.",
+    "success": "Completion requires verified observations, evidence answers and the required operational state.",
     "incomplete": "Inspect the failed checks; edits on disk may need activation."
   },
   "reset": "restore-attempt-baseline",

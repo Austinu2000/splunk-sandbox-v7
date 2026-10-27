@@ -103,7 +103,14 @@ function snapshotOverlay(world: World, host: string, filter?: (path: string) => 
   const next = filter
     ? new Map([...prev].filter(([path]) => !filter(path)))
     : new Map<string, OverlayEntry>();
-  for (const [path, entry] of overlay) if (!filter || filter(path)) next.set(path, structuredClone(entry));
+  const selected = filter ? [...overlay.keys()].filter(filter) : [];
+  for (const [path, entry] of overlay)
+    if (
+      !filter ||
+      filter(path) ||
+      (entry.kind === 'dir' && selected.some((file) => file.startsWith(path + '/')))
+    )
+      next.set(path, structuredClone(entry));
   let revisions = world.hosts.revisions.get(host);
   if (!revisions)
     world.hosts.revisions.set(host, (revisions = [{ time: -Infinity, overlay: structuredClone(prev) }]));
@@ -226,5 +233,20 @@ export function reloadAppConf(world: World, p: HostProfile, app: string): void {
         path.startsWith(`${p.splunk!.home}/etc/apps/${app}/`) &&
         /\/(collections|transforms)\.conf$/.test(path),
     );
+  });
+}
+
+/** Standalone index creation/online-edit activation; raw disk edits still need a supported apply. */
+export function activateIndexConf(world: World, p: HostProfile): void {
+  op(world, { k: 'indexes.activate', host: p.hostname }, () => {
+    ensureFs(world, p);
+    snapshotOverlay(world, p.hostname, (path) => path.endsWith('/indexes.conf'));
+  });
+}
+export function activateInputConf(world: World, p: HostProfile): void {
+  op(world, { k: 'inputs.activate', host: p.hostname }, () => {
+    ensureFs(world, p);
+    snapshotOverlay(world, p.hostname, (path) => path.endsWith('/inputs.conf'));
+    notify(world, p);
   });
 }

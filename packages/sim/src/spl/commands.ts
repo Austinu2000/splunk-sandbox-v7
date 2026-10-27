@@ -1,5 +1,9 @@
 import { extendedCommand } from './extended';
+import { indexBuckets } from '../engineering/lifecycle';
+import { canSearchIndex } from '../engineering/access';
+import { infraName } from '../infra';
 import type { World } from '../world';
+import type { PracticePrincipal } from '@sandbox/shared';
 import { boolOpt, intOpt, splitTopLevel, takeOptions, tokenizeArgs, words, type ArgTok } from './args';
 import { evaluate, isTrue, parseExpr, toFieldValue, type Expr } from './eval';
 import { lookupTable, makeresults, metadata, rest } from './generators';
@@ -9,6 +13,7 @@ import { autoSpanMs, parseSpan } from './time';
 import { SplError, compareValues, scalar, toNumber, toStr, wildcardRegex, type Value } from './values';
 
 export interface RunContext {
+  principal?: PracticePrincipal;
   world: World;
   /** Sim now, epoch ms. */
   now: number;
@@ -717,6 +722,33 @@ function generating(
 }
 
 const COMMANDS: Record<string, Parser> = {
+  dbinspect: generating(
+    (o, ws, ctx, name) => {
+      if (ws.length || !o.has('index'))
+        throw new SplError('Supported: dbinspect index=NAME (recorded teaching buckets only)', name);
+      return indexBuckets(ctx.world)
+        .filter(
+          (b) =>
+            b.index === o.get('index') &&
+            b.state !== 'frozen' &&
+            canSearchIndex(ctx.world, infraName(ctx.world, 'search_head'), ctx.principal ?? 'admin', b.index),
+        )
+        .map((b) =>
+          Row.of({
+            bucketId: b.id,
+            state: b.state,
+            path: b.path,
+            index: b.index,
+            splunk_server: b.host,
+            eventCount: b.events.length,
+            sizeOnDiskMB: b.bytes / 1024 ** 2,
+            startEpoch: b.earliest / 1000,
+            endEpoch: b.latest / 1000,
+          }),
+        );
+    },
+    ['index'],
+  ),
   search: searchCmd,
   where,
   eval: evalCmd,
@@ -755,7 +787,7 @@ const COMMANDS: Record<string, Parser> = {
   ),
 };
 
-const GENERATING = new Set(['inputlookup', 'rest', 'metadata', 'makeresults', 'tstats']);
+const GENERATING = new Set(['inputlookup', 'rest', 'metadata', 'makeresults', 'tstats', 'dbinspect']);
 
 export function isGenerating(name: string): boolean {
   return GENERATING.has(name);

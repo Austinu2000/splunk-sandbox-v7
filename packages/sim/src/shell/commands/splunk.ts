@@ -1,3 +1,5 @@
+import { indexCli } from '../../engineering/index-commands';
+import { validateClusterIndexes } from '../../engineering/indexes';
 import { kvCli } from '../../kvstore/commands';
 import { clusterHealth, retirePeer } from '../../training/cluster';
 import { trainingAction, getResource } from '../../training/engine';
@@ -230,6 +232,7 @@ const BUNDLE_WARNING =
 function applyBundle(sh: Shell, args: string[]): CmdReturn {
   if (sh.host.role !== 'cluster_manager') return notManager();
   if (!splunkdRunning(sh.world, sh.host)) return notRunning();
+  try { validateClusterIndexes(managerBundle(sh.world,sh.host)); } catch(e) { return fail((e as Error).message); }
   if (args.includes('--answer-yes')) return ok(BUNDLE_WARNING + doApply(sh));
   // Interactive confirmation, like the real CLI.
   let host: ProgramHost;
@@ -287,6 +290,7 @@ export const splunk: CommandFn = (ctx) => {
   // $SPLUNK_HOME/bin/btool is a shortcut for `splunk btool`.
   if (/(^|\/)btool$/.test(argv[0]!)) return btool(sh, argv.slice(1));
   const [cmd, ...rest] = argv.slice(1);
+  if ((['add','edit','list'].includes(cmd ?? '') && rest[0] === 'index') || (cmd === 'validate' && rest[0] === 'cluster-bundle')) return indexCli(ctx);
   if (
     (['show', 'resync', 'backup', 'restore'].includes(cmd ?? '') &&
       (rest[0] === 'kvstore' || rest[0] === 'kvstore-status')) ||

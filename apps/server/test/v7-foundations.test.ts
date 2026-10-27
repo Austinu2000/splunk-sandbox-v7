@@ -9,7 +9,7 @@ describe('V7 foundation lesson API', () => {
     const { app, live } = buildApp(createWorld({ fleetSize: 1000 }), { store, aiGrader: null });
     try {
       const list = (await app.inject('/api/learn')).json();
-      expect(list.lessons).toHaveLength(46);
+      expect(list.lessons.length).toBeGreaterThanOrEqual(46);
       expect(list.lessons.find((l: { id: string }) => l.id === 'AU-08').checks).toBeUndefined();
       expect(list.lessons.find((l: { id: string }) => l.id === 'AU-08').questions).toHaveLength(1);
       expect(

@@ -19,6 +19,8 @@ import type { ServiceState } from './hosts/running';
 import { applyConstraints, initDerived, type DerivedState } from './derive/state';
 import { hashString, Rng } from './rng';
 import { installLicenseHooks, recordLicense } from './ingest/license';
+import { tickInputs } from './engineering/ingestion';
+import { tickIndexLifecycle } from './engineering/lifecycle';
 
 export interface WorldClock {
   /** Sim epoch ms. Always startTime + tick * tickMs. */
@@ -30,6 +32,7 @@ export interface WorldClock {
 }
 
 export interface World {
+  ingestion?: import('@sandbox/shared').IngestionState;
   kvstore?: import('@sandbox/shared').KvState;
   lesson?: {
     id: string;
@@ -148,6 +151,8 @@ function tickOnce(world: World): void {
   tickSchedules(world);
   tickKv(world);
   tickTraining(world);
+  tickInputs(world);
+  tickIndexLifecycle(world);
   updateScenarios(world);
   world.history.prune(now - world.config.historyRetentionMs);
 }

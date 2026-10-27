@@ -1,16 +1,16 @@
+import { activeIndexNames, indexCatalog } from '../engineering/indexes';
+import { canSearchIndex } from '../engineering/access';
+import { recordedEvents } from '../engineering/ingestion';
 import { kvLookup, kvRead, kvState, kvStatus, kvCollections } from '../kvstore/engine';
 import { training, refreshTraining } from '../training/engine';
-import { setting } from '../conf/merge';
-import { runningConf } from '../hosts/running';
 import { infraName } from '../infra';
 import { dsClient } from '../ds/manage';
 import { forwarderRecord } from '../fleet/query';
 import { DOMAIN, ENTERPRISE_VERSION, resolveHost, splunkdRunning, type HostProfile } from '../hosts/profile';
 import { hostTimeline, type Timeline } from '../logs/sources';
-import { clusterIndexes } from '../hosts/confs';
 import { mix32 } from '../rng';
 import type { RunContext } from './commands';
-import { candidateHosts, delivered, hostSources, indexAllowed, INDEXES } from './data';
+import { candidateHosts, delivered, hostSources, indexAllowed } from './data';
 import { Row } from './row';
 import { pushdown, parseSearch } from './search';
 import { SplError, type Value } from './values';
@@ -217,29 +217,16 @@ export function rest(ctx: RunContext, endpoint: string, opts: Map<string, string
         indexers
           .filter((p) => splunkdRunning(world, p))
           .flatMap((p) =>
-            ['_internal', '_audit', 'main', ...clusterIndexes(world)].map((idx) =>
+            indexCatalog(world, p.hostname, ctx.principal ?? 'admin').map((index) =>
               Row.of({
                 splunk_server: p.hostname,
-                title: idx,
-                currentDBSizeMB: 1000 + (mix32(p.hash, idx.length) % 90000),
-                maxTotalDataSizeMB: world.config.profile
-                  ? Number(
-                      setting(runningConf(world, p, 'indexes'), idx, 'maxTotalDataSizeMB') ??
-                        setting(runningConf(world, p, 'indexes'), 'default', 'maxTotalDataSizeMB') ??
-                        500000,
-                    )
-                  : 500000,
-                frozenTimePeriodInSecs: world.config.profile
-                  ? Number(
-                      setting(runningConf(world, p, 'indexes'), idx, 'frozenTimePeriodInSecs') ??
-                        setting(runningConf(world, p, 'indexes'), 'default', 'frozenTimePeriodInSecs') ??
-                        31536000,
-                    )
-                  : idx === '_internal'
-                    ? 2592000
-                    : (idx === 'network' ? 90 : 365) * 86400,
-                homePath: `$SPLUNK_DB/${idx === 'main' ? 'defaultdb' : idx === '_internal' ? '_internaldb' : idx}/db`,
-                disabled: '0',
+                title: index.name,
+                ...index.settings,
+                disabled: index.settings.disabled ? '1' : '0',
+                currentDBSizeMB: index.currentDBSizeMB,
+                sourcePath: index.sourcePath,
+                owner: index.owner,
+                app: index.app,
               }),
             ),
           ),
@@ -315,9 +302,7 @@ export function metadata(ctx: RunContext, type: string, index: string | undefine
   const pd = pushdown(parseSearch(index ? `index=${index}` : ''));
   const { world, earliest } = ctx;
   const latest = Math.min(ctx.latest, world.clock.now);
-  const wantData = (world.config.profile ? world.config.profile.indexes.map((i) => i.name) : INDEXES).some(
-    (i) => !i.startsWith('_') && indexAllowed(pd, i),
-  );
+  const wantData = activeIndexNames(world).some((i) => !i.startsWith('_') && indexAllowed(pd, i));
   const groups = new Map<string, { first: number; last: number; count: number }>();
   const add = (key: string, last: number, count: number) => {
     const g = groups.get(key) ?? { first: earliest, last: 0, count: 0 };
@@ -325,6 +310,16 @@ export function metadata(ctx: RunContext, type: string, index: string | undefine
     g.count += count;
     groups.set(key, g);
   };
+  const permitted = (name: string) =>
+    canSearchIndex(world, infraName(world, 'search_head'), ctx.principal ?? 'admin', name, !index) &&
+    indexAllowed(pd, name);
+  for (const event of recordedEvents(world)) {
+    if (event.time <= earliest || event.time > latest || !permitted(event.index)) continue;
+    const key = type === 'hosts' ? event.host : type === 'sources' ? event.source : event.sourcetype;
+    const previous = groups.get(key);
+    add(key, event.time, 1);
+    groups.get(key)!.first = Math.min(previous?.first ?? event.time, event.time);
+  }
   for (const p of candidateHosts(world, pd)) {
     const tl = hostTimeline(world, p, latest - STEP_BACK.at(-1)!);
     // Events stop at the moment delivery stopped (offline, or blocked and not yet recovered).
@@ -332,7 +327,7 @@ export function metadata(ctx: RunContext, type: string, index: string | undefine
     const until = Math.min(latest, stoppedAt ?? latest);
     if (until <= earliest) continue;
     for (const s of hostSources(world, p, wantData)) {
-      if (!indexAllowed(pd, s.index)) continue;
+      if (!permitted(s.index)) continue;
       const deliveredTimes = (t0: number, t1: number) =>
         s.log
           .entries(t0, t1)

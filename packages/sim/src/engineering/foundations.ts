@@ -6,8 +6,49 @@ import { restartSplunk, runningConf, vfsReader } from '../hosts/running';
 import { loadConf, setting } from '../conf/merge';
 import { automationView } from '../ansible/view';
 import { inventoryHosts } from '../ansible/inventory';
+import { indexCatalog, indexExists } from './indexes';
+import { canSearchIndex, requireCapability } from './access';
+import { runSearch } from '../spl/run';
+import { indexBuckets } from './lifecycle';
+import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | {
+      kind: 'index-state';
+      label: string;
+      host: string;
+      name: string;
+      settings?: Record<string, string | number | boolean>;
+      empty?: boolean;
+    }
+  | {
+      kind: 'query';
+      label: string;
+      search: string;
+      earliest?: string;
+      latest?: string;
+      principal?: PracticePrincipal;
+      rows: number;
+      cells?: Record<string, string | number>;
+    }
+  | {
+      kind: 'access';
+      label: string;
+      host: string;
+      principal: PracticePrincipal;
+      index?: string;
+      capability?: string;
+      allowed: boolean;
+    }
+  | {
+      kind: 'bucket-state';
+      label: string;
+      host: string;
+      index: string;
+      state: 'hot' | 'warm' | 'cold' | 'frozen' | 'thawed';
+      minimum: number;
+      archived?: boolean;
+    }
   | {
       kind: 'inspection';
       label: string;
@@ -95,6 +136,60 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'index-state': {
+      if (!indexExists(world, check.name, check.host)) return false;
+      const entry = indexCatalog(world, check.host).find((i) => i.name === check.name);
+      return (
+        !!entry &&
+        !entry.pending &&
+        !entry.issues.length &&
+        (!check.empty || entry.currentDBSizeMB === 0) &&
+        Object.entries(check.settings ?? {}).every(
+          ([key, value]) => String(entry.settings[key as keyof typeof entry.settings]) === String(value),
+        )
+      );
+    }
+    case 'query': {
+      if (/\b(?:collect|outputlookup)\b/i.test(check.search)) return false;
+      const result = runSearch(world, {
+        search: check.search,
+        earliest: check.earliest ?? '-24h',
+        latest: check.latest ?? 'now',
+        principal: check.principal,
+      });
+      const rows = result.kind === 'events' ? result.events : result.results;
+      return (
+        result.status === 'done' &&
+        !result.scan?.truncated &&
+        rows.length === check.rows &&
+        Object.entries(check.cells ?? {}).every(([key, value]) =>
+          rows.some((row) => String(row.get(key)) === String(value)),
+        )
+      );
+    }
+    case 'access': {
+      try {
+        const allowed = check.index
+          ? canSearchIndex(world, check.host, check.principal, check.index)
+          : (() => {
+              requireCapability(world, check.host, check.principal, check.capability ?? 'indexes_edit');
+              return true;
+            })();
+        return allowed === check.allowed;
+      } catch {
+        return check.allowed === false;
+      }
+    }
+    case 'bucket-state':
+      return (
+        indexBuckets(world).filter(
+          (b) =>
+            b.host === check.host &&
+            b.index === check.index &&
+            b.state === check.state &&
+            (check.archived === undefined || b.archived === check.archived),
+        ).length >= check.minimum
+      );
     case 'inspection':
       return world.actions.some((a) => {
         if (!(

@@ -3,7 +3,9 @@ import { hostFs } from '../vfs/build';
 import { ROOT, type Vfs } from '../vfs/vfs';
 import type { World } from '../world';
 import { resolveHost, splunkdRunning, type HostProfile } from './profile';
-import { restartSplunk, runningVfs } from './running';
+import { restartSplunk, runningVfs, runningConf } from './running';
+import { setting } from '../conf/merge';
+import { validateClusterIndexes } from '../engineering/indexes';
 
 /**
  * The indexer cluster bundle: files under etc/manager-apps on the cluster manager, copied to
@@ -49,8 +51,11 @@ export function peerBundle(world: World, peer: HostProfile): Record<string, stri
 
 export function applyClusterBundle(world: World, cm: HostProfile): { checksum: string; restarted: string[] } {
   const files = managerBundle(world, cm);
+  validateClusterIndexes(files);
   const restarted: string[] = [];
   for (const peer of clusterPeers(world)) {
+    if (!['peer', 'slave'].includes(setting(runningConf(world, peer, 'server'), 'clustering', 'mode') ?? ''))
+      continue;
     const fs = hostFs(world, peer);
     const base = `${peer.splunk!.home}/etc/peer-apps`;
     // The bundle replaces peer-apps wholesale: stale files from older bundles go away.

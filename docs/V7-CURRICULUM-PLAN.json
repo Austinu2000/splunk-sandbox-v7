@@ -93,10 +93,10 @@
       "track": "Splunk Architecture and Administration Basics",
       "trackNumber": 1,
       "milestone": 1,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-007",
@@ -104,10 +104,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-008",
@@ -115,10 +115,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-009",
@@ -126,10 +126,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-010",
@@ -137,10 +137,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-011",
@@ -148,10 +148,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-012",
@@ -159,10 +159,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-013",
@@ -170,10 +170,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-014",
@@ -181,10 +181,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-015",
@@ -192,10 +192,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-016",
@@ -203,10 +203,10 @@
       "track": "Index Creation, Configuration, and Data Lifecycle",
       "trackNumber": 2,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-017",
@@ -214,10 +214,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-018",
@@ -225,10 +225,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-019",
@@ -236,10 +236,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-020",
@@ -247,10 +247,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-021",
@@ -258,10 +258,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-022",
@@ -269,10 +269,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-023",
@@ -280,10 +280,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-024",
@@ -291,10 +291,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-025",
@@ -302,10 +302,10 @@
       "track": "Data Ingestion, Parsing, and Troubleshooting",
       "trackNumber": 3,
       "milestone": 2,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-026",

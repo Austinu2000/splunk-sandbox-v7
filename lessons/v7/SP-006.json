@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-006",
+  "version": 1,
+  "title": "Permissions, Roles, App Context, and Administrative Scope",
+  "track": "Administration scope",
+  "objectives": [
+    "Permissions, Roles, App Context, and Administrative Scope",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 1,
+  "prerequisites": [
+    "SP-005"
+  ],
+  "requiredCapabilities": [
+    "access.enforce",
+    "index.standalone"
+  ],
+  "fixture": {
+    "id": "sp-006-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "On standalone idx01, compare admin and analyst in Settings \u2192 Indexes. Try creating application_logs as analyst, then create it as admin. Practice principals are local role simulations, not real authentication.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Inspect authorize.conf on sh01. Add application_logs to role_user srchIndexesAllowed and restart sh01. Preserve least privilege: do not grant indexes_edit to role_user. Verify the allowed index through the simulated analyst catalog/REST.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Explain the administrative capability and whether index definitions use global or per-app configuration context.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "application_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_logs",
+      "settings": {}
+    },
+    {
+      "kind": "access",
+      "label": "Analyst can search the assigned index",
+      "host": "sh01",
+      "principal": "analyst",
+      "index": "application_logs",
+      "allowed": true
+    },
+    {
+      "kind": "access",
+      "label": "Analyst still cannot administer indexes",
+      "host": "idx01",
+      "principal": "analyst",
+      "capability": "indexes_edit",
+      "allowed": false
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: capability",
+      "id": "capability",
+      "expected": "indexes_edit"
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: context",
+      "id": "context",
+      "expected": "global"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "capability",
+      "prompt": "Which capability controls index creation?"
+    },
+    {
+      "id": "context",
+      "prompt": "Do index definitions use global or per-app configuration context?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-006:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-006:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-006:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-006:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-006:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-006:isolation"
+    }
+  ]
+}

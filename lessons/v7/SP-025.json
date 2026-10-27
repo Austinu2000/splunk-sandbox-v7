@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-025",
+  "version": 1,
+  "title": "Diagnose a Broken Data Ingestion Pipeline",
+  "track": "Data ingestion and parsing",
+  "objectives": [
+    "Diagnose a Broken Data Ingestion Pipeline",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-025-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "A multi-fault input is blocked on hf01: the fixture file is unreadable, its monitor points to missing_destination, and outputs.conf names an unavailable receiver. Inspect delivery and configuration sources before changing them.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Create pipeline_logs on standalone idx01. Repair hf01 output destination to idx01:9997 and restart hf01; set the monitor destination to pipeline_logs and sourcetype=pipeline_training; set the source owner to splunk and mode 0640.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Advance a clock tick and verify both records reached idx01 exactly once. Save the first failed layer in your evidence answer.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "pipeline_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "pipeline_logs",
+      "settings": {}
+    },
+    {
+      "kind": "configuration",
+      "label": "hf01: active inputs.conf index",
+      "host": "hf01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/broken.log",
+      "key": "index",
+      "equals": "pipeline_logs",
+      "effective": true
+    },
+    {
+      "kind": "permissions",
+      "label": "Repaired source read permissions",
+      "host": "hf01",
+      "path": "/var/log/practice/broken.log",
+      "owner": "splunk",
+      "mode": 416
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=pipeline_logs sourcetype=pipeline_training | stats count by splunk_server",
+      "rows": 1,
+      "cells": {
+        "count": 2,
+        "splunk_server": "idx01"
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: first",
+      "id": "first",
+      "expected": "permissions"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "first",
+      "prompt": "Which layer blocks reading the fixture before forwarding is attempted?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "hf01",
+      "path": "/var/log/practice/broken.log",
+      "text": "status=500\nstatus=200\n",
+      "owner": "root",
+      "mode": 384
+    },
+    {
+      "kind": "file",
+      "host": "hf01",
+      "path": "/opt/splunk/etc/system/local/outputs.conf",
+      "text": "[tcpout]\ndefaultGroup=broken\n[tcpout:broken]\nserver=missing-receiver:9997\n",
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "hf01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/broken.log]\nindex=missing_destination\nsourcetype=pipeline_training\ndisabled=false\n",
+      "owner": "splunk",
+      "apply": true
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-025:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-025:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-025:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-025:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-025:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-025:isolation"
+    }
+  ]
+}

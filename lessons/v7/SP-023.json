@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-023",
+  "version": 1,
+  "title": "Configure Sourcetypes and Field Extraction",
+  "track": "Data ingestion and parsing",
+  "objectives": [
+    "Configure Sourcetypes and Field Extraction",
+    "Verify the active operational state and explain the evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "index.standalone",
+    "input.onboard",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-023-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create application_logs and monitor /var/log/practice/orders.log with sourcetype=orders_training. The event contains order:ABC42, which is not an automatic key=value field.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "On sh01 configure props.conf [orders_training] EXTRACT-order = order:(?<order_id>[A-Z0-9]+). Restart sh01, then verify order_id=ABC42 without reingesting the event.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect effective configuration and the delivery error before changing a setting.",
+    "Creating an index does not add events. Verify the destination, activation and search window independently."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/manage-indexes/create-custom-indexes",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native index administration and configuration"
+    },
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Inputsconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Input and HEC configuration reference"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "application_logs is active on idx01 with the required settings",
+      "host": "idx01",
+      "name": "application_logs",
+      "settings": {}
+    },
+    {
+      "kind": "configuration",
+      "label": "sh01: active props.conf EXTRACT-order",
+      "host": "sh01",
+      "conf": "props",
+      "stanza": "orders_training",
+      "key": "EXTRACT-order",
+      "equals": "order:(?<order_id>[A-Z0-9]+)",
+      "effective": true
+    },
+    {
+      "kind": "query",
+      "label": "Search independently confirms the indexed result",
+      "search": "index=application_logs sourcetype=orders_training | table order_id",
+      "rows": 1,
+      "cells": {
+        "order_id": "ABC42"
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: phase",
+      "id": "phase",
+      "expected": "search"
+    }
+  ],
+  "minutes": 20,
+  "questions": [
+    {
+      "id": "phase",
+      "prompt": "Does this EXTRACT rule run at index time or search time (index/search)?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[general]\nserverName = idx01\n[clustering]\nmode = disabled\n",
+      "apply": true,
+      "owner": "splunk"
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/orders.log",
+      "text": "order:ABC42 status=200\n",
+      "owner": "splunk"
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-onboarding:SP-023:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-onboarding:SP-023:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-onboarding:SP-023:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-onboarding:SP-023:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-onboarding:SP-023:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-onboarding:SP-023:isolation"
+    }
+  ]
+}

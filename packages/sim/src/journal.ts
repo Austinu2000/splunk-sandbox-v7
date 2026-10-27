@@ -11,6 +11,16 @@ import type { World } from './world';
  * restarts it performs, and nothing that happens inside a tick is recorded at all.
  */
 export type Mutation =
+  | { t: number; k: 'index.thaw'; id: string }
+  | { t: number; k: 'inputs.activate'; host: string }
+  | {
+      t: number;
+      k: 'ingestion.append';
+      records: import('@sandbox/shared').RecordedEvent[];
+      checkpoints: Record<string, import('@sandbox/shared').InputCheckpoint>;
+      nextId: number;
+    }
+  | { t: number; k: 'indexes.activate'; host: string }
   | { t: number; k: 'kv.state'; state: import('@sandbox/shared').KvState }
   | { t: number; k: 'config.reload'; host: string; app: string }
   | { t: number; k: 'code.state'; state: import('@sandbox/shared').CodeState }

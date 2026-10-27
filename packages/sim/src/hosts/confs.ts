@@ -165,7 +165,7 @@ export function systemLocal(world: World, p: HostProfile): Record<string, string
         .map((m) => `\n[roleMap_${profile.auth.method}]\n${m.group} = ${m.roles.join(';')}\n`)
         .join('');
     files['authorize.conf'] = [...new Set(profile.auth.roleMappings.flatMap((m) => m.roles))]
-      .map((r) => `[role_${r}]\nimportRoles = user\n`)
+      .map((r) => `[role_${r}]\n${r==='user'?'':'importRoles = user\n'}`)
       .join('\n');
   }
   const role = p.role;

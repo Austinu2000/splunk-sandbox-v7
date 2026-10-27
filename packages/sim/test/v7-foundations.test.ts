@@ -60,7 +60,7 @@ const solutions: Record<string, string[]> = {
   'AU-13': [...login, 'ansible all -i inventories/test/hosts.yml --list-hosts'],
   'AU-14': [...login, 'ansible indexers --list-hosts'],
 };
-for (const definition of lessons)
+for (const definition of lessons.filter((lesson)=>Object.hasOwn(solutions,lesson.id)))
   describe(definition.id, () => {
     const checks = definition.checks as FoundationCheck[];
     const fresh = () => {

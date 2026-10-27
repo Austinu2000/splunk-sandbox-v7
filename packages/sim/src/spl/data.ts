@@ -1,6 +1,10 @@
+import { activeIndexNames } from '../engineering/indexes';
+import { canSearchIndex } from '../engineering/access';
+import { recordedEvents } from '../engineering/ingestion';
 import { operationMetrics } from '../operations';
 import { runningConf } from '../hosts/running';
 import { setting } from '../conf/merge';
+import { confBool } from '../conf/parse';
 import { infraName } from '../infra';
 import {
   extractTime,
@@ -201,9 +205,32 @@ export function scanEvents(
   const { world, earliest, latest } = ctx;
   const stats: ScanStats = { scanned: 0, hosts: 0, sources: 0, truncated: false };
   const started = clock();
-  const wantData = (world.config.profile ? world.config.profile.indexes.map((i) => i.name) : INDEXES).some(
-    (i) => !i.startsWith('_') && indexAllowed(pd, i),
+  const searchHost = infraName(world, 'search_head');
+  const defaultsOnly = !pd.fields.has('index') && !pd.fields.has('index|or');
+  const searchable = new Set(
+    activeIndexNames(world).filter((index) =>
+      canSearchIndex(world, searchHost, ctx.principal ?? 'admin', index, defaultsOnly),
+    ),
   );
+  const availableByReceiver = new Map(
+    world.infra
+      .filter((h) => h.role === 'indexer' && !h.retired)
+      .map((h) => [
+        h.hostname,
+        new Set(
+          [...runningConf(world, resolveHost(world, h.hostname)!, 'indexes').stanzas]
+            .filter(
+              ([name]) =>
+                name !== 'default' &&
+                !confBool(
+                  setting(runningConf(world, resolveHost(world, h.hostname)!, 'indexes'), name, 'disabled'),
+                ),
+            )
+            .map(([name]) => name),
+        ),
+      ]),
+  );
+  const wantData = [...searchable].some((i) => !i.startsWith('_') && indexAllowed(pd, i));
   const tokens = pd.tokens;
   const es = world.config.profile?.infra.esSearchHead ? resolveHost(world, 'es01') : null;
   const malwareMapped = es && operationMetrics(world, es).malwareMapped;
@@ -233,9 +260,48 @@ export function scanEvents(
     return from;
   };
 
+  for (const event of recordedEvents(world)) {
+    if (
+      event.time <= earliest ||
+      event.time > latest ||
+      !searchable.has(event.index) ||
+      !indexAllowed(pd, event.index) ||
+      !allowed(pd, 'host', event.host) ||
+      !allowed(pd, 'source', event.source) ||
+      !allowed(pd, 'sourcetype', event.sourcetype)
+    )
+      continue;
+    const row = new Row({
+      time: event.time,
+      indexTime: event.indexTime,
+      raw: event.raw,
+      host: event.host,
+      source: event.source,
+      sourcetype: event.sourcetype,
+      index: event.index,
+      splunk_server: event.receiver,
+    });
+    for (const [key, value] of Object.entries(event.fields)) row.set(key, value);
+    const props = runningConf(world, resolveHost(world, searchHost)!, 'props').stanzas.get(event.sourcetype);
+    for (const [key, value] of props?.settings ?? [])
+      if (key.startsWith('EXTRACT-')) {
+        try {
+          const re = new RegExp(value.value.replace(/\(\?P</g, '(?<'));
+          const match = re.exec(event.raw);
+          for (const [field, text] of Object.entries(match?.groups ?? {}))
+            if (text !== undefined) row.set(field, text);
+        } catch {
+          ctx.messages.push({ type: 'warn', text: 'Invalid search-time field extraction: ' + key });
+        }
+      }
+    stats.scanned++;
+    if (filter(row) && onRow(row) === false) return stats;
+  }
+
   for (const p of candidateHosts(world, pd)) {
     const sources = hostSources(world, p, wantData).filter(
       (s) =>
+        searchable.has(s.index) &&
         indexAllowed(pd, s.index) &&
         allowed(pd, 'sourcetype', s.sourcetype) &&
         allowed(pd, 'source', s.source) &&
@@ -280,6 +346,7 @@ export function scanEvents(
       }
       stats.scanned += entries.length;
       for (const [et, raw, t] of entries) {
+        if (!availableByReceiver.get(serverAt(t))?.has(s.index)) continue;
         if (p.fleetRow !== undefined && !delivered(tl, t)) continue;
         if (t < cutoff(s.index, serverAt(t))) continue;
         const ev: SplEvent = {

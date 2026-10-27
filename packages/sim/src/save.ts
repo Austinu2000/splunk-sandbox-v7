@@ -1,3 +1,4 @@
+import { thawPracticeBucket } from './engineering/lifecycle';
 import { applyGitPatches } from './git/journal';
 import { initGit } from './git/state';
 import { generateInfra } from './infra';
@@ -5,7 +6,16 @@ import { journal } from './journal';
 import type { WorldConfig } from './config';
 import { validateProfile } from './profile';
 import { invalidateHostProfiles, resolveHost } from './hosts/profile';
-import { reloadAppConf, reloadDeployServer, restartSplunk, startSplunk, stopSplunk } from './hosts/running';
+import {
+  activateIndexConf,
+  activateInputConf,
+  reloadAppConf,
+  reloadDeployServer,
+  restartSplunk,
+  startSplunk,
+  stopSplunk,
+} from './hosts/running';
+import { replayRecordedEvents } from './engineering/ingestion';
 import { startLicenseHistory } from './ingest/license';
 import {
   attachAiAssessment,
@@ -31,10 +41,10 @@ import { createWorld, setClock, tickWorld, type World } from './world';
  * of user changes; loading creates a fresh world from the seed and replays the journal tick by
  * tick, so the result is the same world, not an approximation of it.
  */
-export const SAVE_VERSION = 5;
+export const SAVE_VERSION = 6;
 
 export interface SavedWorld {
-  version: 1 | 2 | 3 | 4 | typeof SAVE_VERSION;
+  version: 1 | 2 | 3 | 4 | 5 | typeof SAVE_VERSION;
   lesson?: World['lesson'];
   profileId?: string;
   config?: WorldConfig;
@@ -73,6 +83,18 @@ function host(world: World, name: string) {
 
 function apply(world: World, m: Mutation): void {
   switch (m.k) {
+    case 'index.thaw':
+      thawPracticeBucket(world, m.id);
+      return;
+    case 'inputs.activate':
+      activateInputConf(world, host(world, m.host));
+      return;
+    case 'ingestion.append':
+      replayRecordedEvents(world, m.records, m.checkpoints, m.nextId);
+      return;
+    case 'indexes.activate':
+      activateIndexConf(world, host(world, m.host));
+      return;
     case 'kv.state':
       world.kvstore = structuredClone(m.state);
       return;
@@ -151,6 +173,7 @@ export function loadWorld(
     saved.version !== 2 &&
     saved.version !== 3 &&
     saved.version !== 4 &&
+    saved.version !== 5 &&
     saved.version !== SAVE_VERSION
   )
     throw new SaveError(`Unsupported save version ${saved.version}`);

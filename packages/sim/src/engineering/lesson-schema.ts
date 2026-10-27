@@ -80,6 +80,50 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('index-state'),
+      label: text,
+      host: text,
+      name: text,
+      settings: z.record(z.union([z.string(), z.number(), z.boolean()])).optional(),
+      empty: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('query'),
+      label: text,
+      search: text,
+      earliest: text.optional(),
+      latest: text.optional(),
+      principal: z.enum(['admin', 'analyst', 'operator']).optional(),
+      rows: z.number().int().min(0),
+      cells: z.record(z.union([z.string(), z.number()])).optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('access'),
+      label: text,
+      host: text,
+      principal: z.enum(['admin', 'analyst', 'operator']),
+      index: text.optional(),
+      capability: text.optional(),
+      allowed: z.boolean(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('bucket-state'),
+      label: text,
+      host: text,
+      index: text,
+      state: z.enum(['hot', 'warm', 'cold', 'frozen', 'thawed']),
+      minimum: z.number().int().positive(),
+      archived: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
       kind: z.literal('inspection'),
       label: text,
       command: text,

@@ -477,3 +477,5 @@ export * from './splSyntax';
 
 export * from './knowledge';
 export * from './engineering';
+export * from './indexes';
+export * from './ingestion';
