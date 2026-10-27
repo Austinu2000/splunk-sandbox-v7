@@ -1,7 +1,15 @@
 import type { LiveWorld } from './live';
 import type { FastifyInstance } from 'fastify';
 import type { PageDto, ResultValue, SearchEventDto, SearchJobDto } from '@sandbox/shared';
-import { eventToPlain, logAction, rowToPlain, runSearch, practicePrincipal, type SearchOutcome } from '@sandbox/sim';
+import {
+  eventToPlain,
+  logAction,
+  rowToPlain,
+  runSearch,
+  practicePrincipal,
+  recordSearchEvidence,
+  type SearchOutcome,
+} from '@sandbox/sim';
 
 const MAX_JOBS = 20;
 
@@ -65,14 +73,32 @@ export function registerSearch(app: FastifyInstance, live: LiveWorld): void {
     },
     async (req) => {
       const { search, earliest = '-15m', latest = 'now' } = req.body;
-      const outcome = runSearch(live.world, {...req.body,principal:practicePrincipal(req.headers['x-sandbox-principal'] as string|undefined)});
+      const outcome = runSearch(live.world, {
+        ...req.body,
+        principal: practicePrincipal(req.headers['x-sandbox-principal'] as string | undefined),
+      });
       logAction(
         live.world,
-        { kind: 'search', success: outcome.status === 'done', text: `${search} [earliest=${earliest} latest=${latest}]` },
+        {
+          kind: 'search',
+          success: outcome.status === 'done',
+          text: `${search} [earliest=${earliest} latest=${latest}]`,
+        },
         Date.now(),
       );
       const sid = `${Math.floor(live.world.clock.now / 1000)}.${++seq}`;
       jobs.set(sid, outcome);
+      recordSearchEvidence(live.world, {
+        id: sid,
+        search: outcome.search,
+        earliest: outcome.earliest,
+        latest: outcome.latest,
+        status: outcome.status,
+        scanCount: outcome.scan?.scanned ?? 0,
+        workUnits: outcome.workUnits,
+        resultCount: outcome.kind === 'events' ? outcome.events.length : outcome.results.length,
+        inspected: false,
+      });
       while (jobs.size > MAX_JOBS) jobs.delete(jobs.keys().next().value!);
       return {
         job: toDto(sid, outcome),
@@ -82,6 +108,13 @@ export function registerSearch(app: FastifyInstance, live: LiveWorld): void {
     },
   );
 
+  app.post<{ Params: { sid: string } }>('/api/search/jobs/:sid/inspect', async (req, reply) => {
+    const job = jobs.get(req.params.sid),
+      evidence = live.world.searchEvidence?.find((r) => r.id === req.params.sid);
+    if (!job || !evidence) return reply.code(404).send({ error: 'Unknown or expired search job.' });
+    recordSearchEvidence(live.world, { ...evidence, inspected: true });
+    return toDto(req.params.sid, job);
+  });
   const pageQuery = {
     type: 'object',
     properties: {

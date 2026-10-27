@@ -203,6 +203,7 @@ export function scanEvents(
   clock: () => number,
 ): ScanStats {
   const { world, earliest, latest } = ctx;
+  const baselineEarliest = Math.max(earliest, world.clock.now - world.config.historyRetentionMs);
   const stats: ScanStats = { scanned: 0, hosts: 0, sources: 0, truncated: false };
   const started = clock();
   const searchHost = infraName(world, 'search_head');
@@ -308,8 +309,8 @@ export function scanEvents(
         allowed(pd, 'host', s.host ?? p.hostname),
     );
     if (!sources.length) continue;
-    const tl = hostTimeline(world, p, earliest);
-    const states = statesIn(tl, earliest, latest);
+    const tl = hostTimeline(world, p, baselineEarliest);
+    const states = statesIn(tl, baselineEarliest, latest);
     const serverAt = indexerFor(world, p);
     let touched = false;
     for (const s of sources) {
@@ -331,18 +332,20 @@ export function scanEvents(
         parsingActive(world);
       let entries: [eventTime: number, raw: string, indexTime: number][];
       if (!parse)
-        entries = s.log.entries(earliest, Math.min(latest, world.clock.now)).map(([t, raw]) => [t, raw, t]);
+        entries = s.log
+          .entries(baselineEarliest, Math.min(latest, world.clock.now))
+          .map(([t, raw]) => [t, raw, t]);
       else {
         const shift = shiftPossible(world, s.sourcetype) ? MAX_SHIFT_MS : 0;
         entries = parsedEntries(
           world,
           s,
           s.log.entries(
-            Math.floor((earliest - shift) / 120_000) * 120_000 - 1,
+            Math.floor((baselineEarliest - shift) / 120_000) * 120_000 - 1,
             Math.min(world.clock.now, Math.ceil((latest + shift) / 120_000) * 120_000),
           ),
           p.role === 'heavy_forwarder' ? () => p.hostname : serverAt,
-        ).filter(([et]) => et > earliest && et <= latest);
+        ).filter(([et]) => et > baselineEarliest && et <= latest);
       }
       stats.scanned += entries.length;
       for (const [et, raw, t] of entries) {

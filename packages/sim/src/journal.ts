@@ -11,6 +11,9 @@ import type { World } from './world';
  * restarts it performs, and nothing that happens inside a tick is recorded at all.
  */
 export type Mutation =
+  | { t: number; k: 'search.evidence'; records: import('@sandbox/shared').SearchEvidence[] }
+  | { t: number; k: 'reports.activate'; host: string }
+  | { t: number; k: 'reports.state'; state: import('@sandbox/shared').ReportRuntime }
   | { t: number; k: 'index.thaw'; id: string }
   | { t: number; k: 'inputs.activate'; host: string }
   | {

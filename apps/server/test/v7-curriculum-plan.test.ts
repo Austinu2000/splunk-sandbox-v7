@@ -18,6 +18,17 @@ it('keeps planned AU/SP lessons out of executable Learn and preserves all existi
     ...Array.from({ length: 50 }, (_, n) => `AU-${String(n + 1).padStart(2, '0')}`),
   ];
   expect(plan.lessons.map((l: { id: string }) => l.id)).toEqual(expected);
+  expect(
+    readdirSync(new URL('../../../lessons/v7/', import.meta.url))
+      .filter((name) => name.endsWith('.json'))
+      .map((name) => name.slice(0, -5))
+      .sort(),
+  ).toEqual(
+    plan.lessons
+      .filter((lesson: { executable: boolean }) => lesson.executable)
+      .map((lesson: { id: string }) => lesson.id)
+      .sort(),
+  );
   for (const lesson of plan.lessons) {
     const file = new URL('../../../lessons/v7/' + lesson.id + '.json', import.meta.url);
     if (lesson.executable) {

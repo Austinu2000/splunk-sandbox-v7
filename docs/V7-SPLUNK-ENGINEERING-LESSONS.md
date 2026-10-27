@@ -1,6 +1,6 @@
 # V7 Splunk engineering lessons
 
-Status: **25 of 100 new SP lessons implemented**. SP-001–SP-025 are executable in Learn; the remaining rows are planned. All existing 27 G/A/X/K entries remain in Learn with their inherited limitations. No new lesson is registered until its required operations and solution/failure/reset/resume/isolation tests pass.
+Status: **37 of 100 new SP lessons implemented**. SP-001–SP-025 and SP-035–SP-046 are executable in Learn; the remaining rows are planned. All existing 27 G/A/X/K entries remain in Learn with their inherited limitations. No new lesson is registered until its required operations and solution/failure/reset/resume/isolation tests pass.
 
 `packages/sim/src/engineering/lesson-schema.ts` defines the versioned authoring contract. `docs/V7-CURRICULUM-PLAN.json` preserves stable IDs, milestones and planning status. Actual fixtures and per-lesson official references are authored alongside functionality, not fabricated in bulk.
 
@@ -40,18 +40,18 @@ Status: **25 of 100 new SP lessons implemented**. SP-001–SP-025 are executable
 | SP-032 | Investigate Deployment Server Phone-Home Problems | 5 | Planned |
 | SP-033 | Perform a Controlled Forwarder Upgrade | 5 | Planned |
 | SP-034 | Troubleshoot Forwarder TLS, Certificates, and Connection Failures | 5 | Planned |
-| SP-035 | Build and Filter an SPL Search | 3 | Planned |
-| SP-036 | Create Statistical Reports with `stats` and `timechart` | 3 | Planned |
-| SP-037 | Extract and Transform Fields with `rex` and `eval` | 3 | Planned |
-| SP-038 | Enrich Searches Using Lookups | 3 | Planned |
-| SP-039 | Inspect Search Jobs and Search Performance | 3 | Planned |
-| SP-040 | Create and Save a Report Through Splunk Web | 3 | Planned |
-| SP-041 | Create or Manage a Report Through Configuration or REST | 3 | Planned |
-| SP-042 | Schedule a Report and Verify Its Execution | 3 | Planned |
-| SP-043 | Understand Summary Indexing Versus Search Acceleration | 3 | Planned |
-| SP-044 | Create and Configure an Index for Summary Data | 3 | Planned |
-| SP-045 | Populate a Summary Index Using a Scheduled Report in Splunk Web | 3 | Planned |
-| SP-046 | Configure, Query, and Troubleshoot Summary Indexing Through CLI/Configuration | 3 | Planned |
+| SP-035 | Build and Filter an SPL Search | 3 | Verified |
+| SP-036 | Create Statistical Reports with `stats` and `timechart` | 3 | Verified |
+| SP-037 | Extract and Transform Fields with `rex` and `eval` | 3 | Verified |
+| SP-038 | Enrich Searches Using Lookups | 3 | Verified |
+| SP-039 | Inspect Search Jobs and Search Performance | 3 | Verified |
+| SP-040 | Create and Save a Report Through Splunk Web | 3 | Verified |
+| SP-041 | Create or Manage a Report Through Configuration or REST | 3 | Verified |
+| SP-042 | Schedule a Report and Verify Its Execution | 3 | Verified |
+| SP-043 | Understand Summary Indexing Versus Search Acceleration | 3 | Verified |
+| SP-044 | Create and Configure an Index for Summary Data | 3 | Verified |
+| SP-045 | Populate a Summary Index Using a Scheduled Report in Splunk Web | 3 | Verified |
+| SP-046 | Configure, Query, and Troubleshoot Summary Indexing Through CLI/Configuration | 3 | Verified |
 | SP-047 | Create a Dashboard Through Splunk Web | 6 | Planned |
 | SP-048 | Create Dashboard Studio Visualizations and Inputs | 6 | Planned |
 | SP-049 | Inspect and Edit Supported Dashboard Source | 6 | Planned |

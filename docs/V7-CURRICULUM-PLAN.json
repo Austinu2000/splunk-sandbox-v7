@@ -412,10 +412,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-036",
@@ -423,10 +423,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-037",
@@ -434,10 +434,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-038",
@@ -445,10 +445,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-039",
@@ -456,10 +456,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-040",
@@ -467,10 +467,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-041",
@@ -478,10 +478,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-042",
@@ -489,10 +489,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-043",
@@ -500,10 +500,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-044",
@@ -511,10 +511,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-045",
@@ -522,10 +522,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-046",
@@ -533,10 +533,10 @@
       "track": "SPL, Reports, Summary Indexing, and Search Optimization",
       "trackNumber": 5,
       "milestone": 3,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-047",

@@ -479,3 +479,4 @@ export * from './knowledge';
 export * from './engineering';
 export * from './indexes';
 export * from './ingestion';
+export type { SavedReport, ReportRun, ReportRuntime, SearchEvidence } from './reports';

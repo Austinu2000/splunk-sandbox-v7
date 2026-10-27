@@ -10,9 +10,42 @@ import { indexCatalog, indexExists } from './indexes';
 import { canSearchIndex, requireCapability } from './access';
 import { runSearch } from '../spl/run';
 import { indexBuckets } from './lifecycle';
+import { listReports } from './reports';
+import { tickWorld, setClock } from '../world';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | {
+      kind: 'report-state';
+      label: string;
+      host: string;
+      app: string;
+      title: string;
+      owner?: string;
+      sharing?: string;
+      search?: string;
+      scheduled?: boolean;
+      summaryIndex?: string;
+      cron?: string;
+    }
+  | {
+      kind: 'report-run';
+      label: string;
+      host: string;
+      app: string;
+      title: string;
+      scheduled?: boolean;
+      minimumWrites?: number;
+      cells?: Record<string, string | number>;
+    }
+  | {
+      kind: 'search-job';
+      label: string;
+      search: string;
+      inspected?: boolean;
+      moreWorkThan?: string;
+      minimumRows?: number;
+    }
   | {
       kind: 'index-state';
       label: string;
@@ -89,11 +122,17 @@ export type FoundationCheck =
     };
 
 export type FoundationSetup =
+  | { kind: 'advance'; ticks: number; paused?: boolean }
   | { kind: 'file'; host: string; path: string; text: string; mode?: number; owner?: string; apply?: boolean }
   | { kind: 'remove-inventory-host'; host: string; path: string; target: string };
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
   for (const step of steps) {
+    if (step.kind === 'advance') {
+      tickWorld(world, step.ticks);
+      if (step.paused !== undefined) setClock(world, { paused: step.paused });
+      continue;
+    }
     const host = resolveHost(world, step.host);
     if (!host) throw new Error(`Unknown fixture host: ${step.host}`);
     const fs = hostFs(world, host);
@@ -136,6 +175,50 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'report-state':
+      return listReports(world, check.host).some(
+        (r) =>
+          r.managed &&
+          r.app === check.app &&
+          r.title === check.title &&
+          !r.issues.length &&
+          r.enabled &&
+          (['owner', 'sharing', 'search', 'scheduled', 'summaryIndex', 'cron'] as const).every(
+            (key) => check[key] === undefined || r[key] === check[key],
+          ),
+      );
+    case 'report-run': {
+      const reports = listReports(world, check.host).filter(
+        (r) => r.app === check.app && r.title === check.title,
+      );
+      return (world.reports?.runs ?? []).some(
+        (run) =>
+          reports.some((r) => r.id === run.reportId && r.revision === run.revision) &&
+          run.status === 'succeeded' &&
+          (check.scheduled === undefined || (run.scheduledTime !== undefined) === check.scheduled) &&
+          run.summaryEventIds.length >= (check.minimumWrites ?? 0) &&
+          Object.entries(check.cells ?? {}).every(([key, value]) =>
+            run.rows.some((r) => String(r[key]) === String(value)),
+          ),
+      );
+    }
+    case 'search-job': {
+      const jobs = world.searchEvidence ?? [];
+      return jobs.some(
+        (job) =>
+          job.status === 'done' &&
+          new RegExp(check.search, 'i').test(job.search) &&
+          (!check.inspected || job.inspected) &&
+          job.resultCount >= (check.minimumRows ?? 1) &&
+          (!check.moreWorkThan ||
+            jobs.some(
+              (other) =>
+                other.status === 'done' &&
+                new RegExp(check.moreWorkThan!, 'i').test(other.search) &&
+                other.workUnits < job.workUnits,
+            )),
+      );
+    }
     case 'index-state': {
       if (!indexExists(world, check.name, check.host)) return false;
       const entry = indexCatalog(world, check.host).find((i) => i.name === check.name);
@@ -156,6 +239,7 @@ export function foundationCheck(world: World, check: FoundationCheck): boolean {
         earliest: check.earliest ?? '-24h',
         latest: check.latest ?? 'now',
         principal: check.principal,
+        readOnly: true,
       });
       const rows = result.kind === 'events' ? result.events : result.results;
       return (

@@ -13,6 +13,7 @@ import { autoSpanMs, parseTime } from './time';
 import { SplError, isNumeric, toStr, type Value } from './values';
 
 export interface SearchRequest {
+  readOnly?: boolean;
   principal?: PracticePrincipal;
   search: string;
   /** Time modifiers; the search's own earliest=/latest= win. */
@@ -156,21 +157,30 @@ function execute(world: World, req: SearchRequest, limits: typeof LIMITS, out: S
   };
   let earliest = parse(pd?.earliest ?? req.earliest, now - 15 * 60_000);
   let latest = parse(pd?.latest ?? req.latest, now);
-  if (earliest === 0 || earliest < now - retention) {
-    if (earliest !== 0 && earliest < now - retention)
-      out.messages.push({
-        type: 'info',
-        text: 'The sandbox keeps 24 hours of data; the time range was limited to the last 24 hours.',
-      });
-    earliest = now - retention;
-  }
+  if (earliest === 0)
+    earliest = Math.min(now - retention, ...(world.ingestion?.events.map((event) => event.time - 1) ?? []));
+  if (earliest < now - retention)
+    out.messages.push({
+      type: 'info',
+      text: 'Generated fleet history covers the last 24 hours. Persisted recorded data follows its index retention and can be queried over this longer range.',
+    });
   // Future events exist only when timestamps were extracted wrongly; allow looking 2 days ahead (MAX_DAYS_HENCE).
   latest = Math.min(latest, now + 2 * 86_400_000);
   if (earliest >= latest) throw new SplError('The earliest time is after the latest time.');
   out.earliest = earliest;
   out.latest = latest;
 
-  const ctx: RunContext = { world, now, earliest, latest, messages: out.messages, principal:req.principal };
+  const ctx: RunContext = {
+    world,
+    now,
+    earliest,
+    latest,
+    messages: out.messages,
+    principal: req.principal,
+    readOnly: req.readOnly,
+    search: text,
+    effects: [],
+  };
   out.kind = cmds.some((c) => c.transforming) || leadingPipe ? 'statistics' : 'events';
   const span = Math.max(1000, Math.floor(autoSpanMs(latest - earliest)));
   out.timelineSpan = span;
@@ -257,6 +267,12 @@ function execute(world: World, req: SearchRequest, limits: typeof LIMITS, out: S
     // Internal fields stay hidden on event rows, but a command that built new rows (table, stats)
     // chose its fields explicitly, so keep them.
     out.columns = namesOf(rows, 500).filter((c) => !c.startsWith('_') || c === '_time' || !rows[0]?.event);
+  }
+  if (ctx.effects?.length) {
+    if (out.scan?.truncated || out.messages.some((m) => m.type === 'error'))
+      throw new SplError('Write refused because the source search was incomplete');
+    if (ctx.effects.length > 1) throw new SplError('Only one summary write is supported per search');
+    ctx.effects.forEach((effect) => effect());
   }
 }
 

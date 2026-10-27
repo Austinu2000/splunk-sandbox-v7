@@ -57,6 +57,9 @@ const v7Lessons: Lesson[] = readdirSync(v7Dir)
       'query',
       'access',
       'bucket-state',
+      'report-state',
+      'report-run',
+      'search-job',
     ]);
     if (definition.checks.some((c) => !supported.has(c.kind)))
       throw new Error('Unsupported V7 outcome evaluator: ' + definition.id);

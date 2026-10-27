@@ -299,6 +299,11 @@ export function IndexesPage() {
               });
             }}
           >
+            {error && (
+              <p role="alert" className="error">
+                {error}
+              </p>
+            )}
             <div className="v5-fields">
               <label>
                 Index name

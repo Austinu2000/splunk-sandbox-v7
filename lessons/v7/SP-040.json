@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-040",
+  "version": 1,
+  "title": "Create and Save a Report Through Splunk Web",
+  "track": "Searches, reports and summary indexing",
+  "objectives": [
+    "Create and Save a Report Through Splunk Web",
+    "Verify result values and the persisted operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-017"
+  ],
+  "requiredCapabilities": [
+    "search.execute",
+    "report.manage"
+  ],
+  "fixture": {
+    "id": "sp-040-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture has three explicit source_logs events and starts with the clock paused. Keep it paused while configuring, then use clock controls or the Interview Workbench advance action for scheduled work.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "In Search run index=source_logs | stats count by status and use Save As \u2192 Report, title Errors by status, private owner admin in app search. Or use Reports \u2192 New Report with the same scope.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Run the saved report from Reports and inspect actual result rows and sourcePath. Verify the same definition using btool or simulated REST.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the source results and time window before saving or scheduling a report.",
+    "Use savedsearches.conf or simulated REST to independently verify the definition; inspect actual execution history and search the summary destination."
+  ],
+  "references": [
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Savedsearchesconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Saved search scheduling and summary action settings"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/search-commands/collect",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Persist search results into an existing summary index"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "report-state",
+      "label": "Active report definition and scope",
+      "host": "sh01",
+      "app": "search",
+      "title": "Errors by status",
+      "owner": "admin",
+      "sharing": "Private",
+      "search": "index=source_logs | stats count by status"
+    },
+    {
+      "kind": "report-run",
+      "label": "Actual report execution and expected results",
+      "host": "sh01",
+      "app": "search",
+      "title": "Errors by status",
+      "cells": {
+        "status": "500",
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: owner",
+      "id": "owner",
+      "expected": "admin"
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "owner",
+      "prompt": "Which owner is stored on the private report?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[clustering]\nmode=disabled\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/indexes.conf",
+      "text": "[source_logs]\nhomePath=$SPLUNK_DB/source_logs/db\ncoldPath=$SPLUNK_DB/source_logs/colddb\nthawedPath=$SPLUNK_DB/source_logs/thaweddb\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/reports.log",
+      "text": "status=500 service=checkout latency=400\nstatus=200 service=auth latency=25\nstatus=500 service=checkout latency=300\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/reports.log]\nindex=source_logs\nsourcetype=app_log\ndisabled=0\n",
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-reports:SP-040:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-reports:SP-040:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-reports:SP-040:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-reports:SP-040:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-reports:SP-040:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-reports:SP-040:isolation"
+    }
+  ]
+}

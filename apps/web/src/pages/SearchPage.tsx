@@ -14,6 +14,7 @@ import {
 import { fmtEventTime, fmtInt } from '../format';
 import { searchHash } from '../links';
 import { addKnowledgeObject, recordSearchJob } from '../replica/knowledgeStore';
+import { request } from './TrainingPage';
 import '../replica/search.css';
 
 type TimeRange = { label: string; earliest: string; latest: string; realtime?: boolean };
@@ -528,6 +529,23 @@ export function SearchPage({ visible }: { visible: boolean }) {
   const [saveDescription, setSaveDescription] = useState('');
   const [saveSharing, setSaveSharing] = useState<'Private' | 'App'>('Private');
   const [saveNotice, setSaveNotice] = useState('');
+  const [reportScope, setReportScope] = useState<{ context: string; host: string } | null>(null);
+  const [saving, setSaving] = useState(false);
+  useEffect(() => {
+    let active = true;
+    setReportScope(null);
+    if (saveType === 'report')
+      void request<{ context: string; host: string }>('reports')
+        .then((scope) => {
+          if (active) setReportScope(scope);
+        })
+        .catch((e) => {
+          if (active) setError(String(e));
+        });
+    return () => {
+      active = false;
+    };
+  }, [saveType]);
   const [exporting, setExporting] = useState(false);
   const [notice, setNotice] = useState('');
   const [realtimePaused, setRealtimePaused] = useState(false);
@@ -679,8 +697,37 @@ export function SearchPage({ visible }: { visible: boolean }) {
     setRealtimePaused(true);
     setNotice('Search stopped in this view. Work already submitted to the simulation may finish.');
   };
-  const save = () => {
+  const save = async () => {
     if (!saveType || !saveTitle.trim()) return;
+    if (saveType === 'report') {
+      if (!reportScope) return;
+      setSaving(true);
+      try {
+        await request('reports', {
+          ...reportScope,
+          app: 'search',
+          owner: 'admin',
+          sharing: saveSharing,
+          title: saveTitle.trim(),
+          description: saveDescription,
+          search: query,
+          earliest: range.earliest,
+          latest: range.latest,
+          enabled: true,
+          scheduled: false,
+          create: true,
+        });
+        setSaveType(null);
+        setSaveNotice(
+          `${saveTitle.trim()} saved on ${reportScope.host} in the search app. View it in Reports.`,
+        );
+      } catch (e) {
+        setError(String(e));
+      } finally {
+        setSaving(false);
+      }
+      return;
+    }
     const item = addKnowledgeObject({
       kind: saveType,
       title: saveTitle.trim(),
@@ -1050,7 +1097,9 @@ export function SearchPage({ visible }: { visible: boolean }) {
                 <div className="search-dropdown">
                   <button
                     onClick={() => {
-                      setInspect(true);
+                      void request('search/jobs/' + encodeURIComponent(job.sid) + '/inspect', {})
+                        .then(() => setInspect(true))
+                        .catch((e) => setError(String(e)));
                       setMenu(null);
                     }}
                   >
@@ -1245,7 +1294,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
             className="search-save-form"
             onSubmit={(e) => {
               e.preventDefault();
-              save();
+              void save();
             }}
           >
             <label>
@@ -1267,7 +1316,9 @@ export function SearchPage({ visible }: { visible: boolean }) {
               </select>
             </label>
             <p className="search-muted">
-              Saved in this browser's sandbox.{' '}
+              {saveType === 'report'
+                ? `Saved in this environment on ${reportScope?.host ?? 'the selected search head'}, app search, owner admin. Scheduling starts off.`
+                : 'Saved with this environment.'}{' '}
               {saveType === 'alert'
                 ? 'Alert definitions can be opened and run manually; scheduled evaluation and delivery are not simulated.'
                 : ''}
@@ -1276,8 +1327,12 @@ export function SearchPage({ visible }: { visible: boolean }) {
               <button type="button" onClick={() => setSaveType(null)}>
                 Cancel
               </button>
-              <button className="primary" type="submit">
-                Save
+              <button
+                className="primary"
+                type="submit"
+                disabled={saving || (saveType === 'report' && !reportScope)}
+              >
+                {saving ? 'Saving…' : 'Save'}
               </button>
             </div>
           </form>

@@ -269,6 +269,9 @@ export function patchConf(
   unset: string[] = [],
 ): string {
   const lines = text.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++)
+    while (lines[i]!.endsWith('\\') && i + 1 < lines.length) lines[i] += '\n' + lines.splice(i + 1, 1)[0];
+  const serialize = (value: string) => value.replace(/\r?\n/g, '\\\n');
   let inStanza = false,
     found = false,
     insertAt = lines.length;
@@ -291,7 +294,7 @@ export function patchConf(
     }
     insertAt = i + 1;
     if (key && Object.hasOwn(values, key)) {
-      lines[i] = `${key} = ${values[key]}`;
+      lines[i] = `${key} = ${serialize(values[key]!)}`;
       seen.add(key);
     }
   }
@@ -304,7 +307,7 @@ export function patchConf(
     0,
     ...Object.entries(values)
       .filter(([key]) => !seen.has(key))
-      .map(([key, value]) => `${key} = ${value}`),
+      .map(([key, value]) => `${key} = ${serialize(value)}`),
   );
   return lines.join('\n') + (lines.at(-1) === '' ? '' : '\n');
 }

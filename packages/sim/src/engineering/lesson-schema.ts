@@ -80,6 +80,43 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('report-state'),
+      label: text,
+      host: text,
+      app: text,
+      title: text,
+      owner: text.optional(),
+      sharing: text.optional(),
+      search: text.optional(),
+      scheduled: z.boolean().optional(),
+      summaryIndex: text.optional(),
+      cron: text.optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('report-run'),
+      label: text,
+      host: text,
+      app: text,
+      title: text,
+      scheduled: z.boolean().optional(),
+      minimumWrites: z.number().int().min(0).optional(),
+      cells: z.record(z.union([z.string(), z.number()])).optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('search-job'),
+      label: text,
+      search: text,
+      inspected: z.boolean().optional(),
+      moreWorkThan: text.optional(),
+      minimumRows: z.number().int().min(1).optional(),
+    })
+    .strict(),
+  z
+    .object({
       kind: z.literal('index-state'),
       label: text,
       host: text,
@@ -214,6 +251,13 @@ export const engineeringLessonSchema = z
     setup: z
       .array(
         z.discriminatedUnion('kind', [
+          z
+            .object({
+              kind: z.literal('advance'),
+              ticks: z.number().int().min(1).max(100),
+              paused: z.boolean().optional(),
+            })
+            .strict(),
           z
             .object({
               kind: z.literal('file'),

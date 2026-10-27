@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-038",
+  "version": 1,
+  "title": "Enrich Searches Using Lookups",
+  "track": "Searches, reports and summary indexing",
+  "objectives": [
+    "Enrich Searches Using Lookups",
+    "Verify result values and the persisted operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-017"
+  ],
+  "requiredCapabilities": [
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-038-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture has three explicit source_logs events and starts with the clock paused. Keep it paused while configuring, then use clock controls or the Interview Workbench advance action for scheduled work.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Create a lookup with | makeresults | eval service=\"checkout\", owner=\"platform\" | fields service owner | outputlookup service_owners.csv.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Search index=source_logs | lookup service_owners.csv service OUTPUT owner | stats count by owner. Verify the two checkout events are enriched with platform; the unmatched auth event remains unmatched.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the source results and time window before saving or scheduling a report.",
+    "Use savedsearches.conf or simulated REST to independently verify the definition; inspect actual execution history and search the summary destination."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Search commands, transformations and job behavior"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "search-job",
+      "label": "Successful observed job: lookup service_owners.csv",
+      "search": "lookup service_owners.csv"
+    },
+    {
+      "kind": "query",
+      "label": "Independent search confirms the expected values",
+      "search": "index=source_logs | lookup service_owners.csv service OUTPUT owner | search owner=platform | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: owner",
+      "id": "owner",
+      "expected": "platform"
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "owner",
+      "prompt": "Which team owns checkout in the lookup?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[clustering]\nmode=disabled\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/indexes.conf",
+      "text": "[source_logs]\nhomePath=$SPLUNK_DB/source_logs/db\ncoldPath=$SPLUNK_DB/source_logs/colddb\nthawedPath=$SPLUNK_DB/source_logs/thaweddb\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/reports.log",
+      "text": "status=500 service=checkout latency=400\nstatus=200 service=auth latency=25\nstatus=500 service=checkout latency=300\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/reports.log]\nindex=source_logs\nsourcetype=app_log\ndisabled=0\n",
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-reports:SP-038:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-reports:SP-038:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-reports:SP-038:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-reports:SP-038:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-reports:SP-038:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-reports:SP-038:isolation"
+    }
+  ]
+}

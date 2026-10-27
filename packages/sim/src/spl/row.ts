@@ -26,6 +26,7 @@ export const DEFAULT_FIELDS = [
   'splunk_server',
   'linecount',
 ];
+const eventMetadata = new Set([...DEFAULT_FIELDS, '_indextime']);
 
 /**
  * A search result row. Rows that come from events extract fields lazily on first access, so a
@@ -71,7 +72,8 @@ export class Row {
   private extract(): void {
     if (this.extracted || !this.event) return;
     this.extracted = true;
-    for (const [k, v] of extractFields(this.event)) if (!this.values.has(k)) this.values.set(k, v);
+    for (const [k, v] of extractFields(this.event))
+      if (!this.values.has(k) && !eventMetadata.has(k)) this.values.set(k, v);
   }
 
   get(f: string): Value {

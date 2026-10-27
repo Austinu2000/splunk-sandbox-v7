@@ -1,5 +1,6 @@
 import { AddDataPage } from '../pages/AddDataPage';
 import { IndexesPage } from '../pages/IndexesPage';
+import { ReportsPage } from '../pages/ReportsPage';
 import { currentProfile } from '../environment';
 import { profileStorage } from '../environment';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -15,7 +16,7 @@ import {
   type TableDefinition,
   type HubItem,
 } from './settingsData';
-import { useKnowledge, readKnowledge, saveKnowledge, makeKnowledgeObject } from './knowledgeStore';
+import { useKnowledge } from './knowledgeStore';
 import { installedViews } from './viewCatalog';
 import { viewHref } from './navigation';
 import './settings.css';
@@ -655,7 +656,6 @@ function HubPage({ id }: { id: string }) {
   );
 }
 
-
 function Forwarding() {
   const groups = [
     {
@@ -706,7 +706,9 @@ function Forwarding() {
   );
 }
 
-function Indexes() { return <IndexesPage />; }
+function Indexes() {
+  return <IndexesPage />;
+}
 
 function Licensing() {
   const state = usePoll(() => api.monitoring('license'), [], 10000);
@@ -1058,7 +1060,9 @@ function Authentication() {
   );
 }
 
-function AddData() { return <AddDataPage />; }
+function AddData() {
+  return <AddDataPage />;
+}
 
 function Instrumentation() {
   const [info, setInfo] = useState<string | null>(null);
@@ -1539,84 +1543,17 @@ function HealthReport() {
   );
 }
 
-function SavedSearchSettings() {
-  const state = useKnowledge();
-  const rows: SettingRow[] = state.objects
-    .filter((item) => item.kind === 'report' || item.kind === 'alert')
-    .map((item) => ({
-      _id: item.id,
-      Name: item.title,
-      Description: item.description,
-      'Search string': item.search,
-      Type: item.kind === 'alert' ? 'Alert' : 'Report',
-      Schedule: item.schedule ?? 'none',
-      Owner: item.owner,
-      App: item.app,
-      Sharing: item.sharing,
-      Status: item.enabled ? 'Enabled' : 'Disabled',
-    }));
-  const onRowsChange = (next: SettingRow[]) => {
-    const current = readKnowledge();
-    const objects = current.objects.filter((item) => item.kind !== 'report' && item.kind !== 'alert');
-    for (const row of next) {
-      const existing = current.objects.find((item) => item.id === row._id);
-      const item = makeKnowledgeObject({
-        ...existing,
-        title: row.Name ?? '',
-        kind: row.Type === 'Alert' ? 'alert' : 'report',
-        description: row.Description ?? '',
-        search: row['Search string'] ?? '',
-        schedule: row.Schedule === 'none' ? undefined : row.Schedule,
-        owner: row.Owner ?? 'admin',
-        app: row.App ?? 'search',
-        sharing: row.Sharing === 'Global' ? 'Global' : row.Sharing === 'App' ? 'App' : 'Private',
-        enabled: row.Status !== 'Disabled',
-      });
-      const originalId = item.id;
-      let n = 2;
-      while (objects.some((object) => object.id === item.id)) item.id = originalId + '_' + n++;
-      objects.push(item);
-    }
-    saveKnowledge({ ...current, objects });
-  };
-  return (
-    <SettingsTable
-      id="searches-reports-and-alerts"
-      definition={{
-        title: 'Searches, Reports, and Alerts',
-        description:
-          'Searches, reports, and alerts are saved searches created from pivot or the search page.',
-        columns: [
-          'Name',
-          'Actions',
-          'Type',
-          'Schedule',
-          'Owner',
-          'App',
-          'Sharing',
-          'Status',
-          'Search string',
-        ],
-        newLabel: 'New Search',
-        scoped: true,
-        actions: ['Edit', 'Clone', 'Disable', 'Delete'],
-        rows: [],
-      }}
-      dynamicRows={rows}
-      onRowsChange={onRowsChange}
-    />
-  );
-}
 function AllConfigurations() {
   const knowledge = useKnowledge();
   const rows: SettingRow[] = [
     ...knowledge.objects.map((item) => ({
       Name: item.title,
-      'Config type': item.kind === 'dashboard' ? 'view' : 'savedsearch',
+      'Config type':
+        item.kind === 'report' ? 'Legacy report draft' : item.kind === 'dashboard' ? 'view' : 'savedsearch',
       Owner: item.owner,
       App: item.app,
       Sharing: item.sharing,
-      Status: item.enabled ? 'Enabled' : 'Disabled',
+      Status: item.kind === 'report' ? 'Review import in Reports' : item.enabled ? 'Enabled' : 'Disabled',
       _href:
         item.kind === 'dashboard'
           ? '#/dashboard/' + item.id
@@ -1696,7 +1633,7 @@ export function SettingsPage({ id }: { id: string }) {
   else if (base === 'server-controls') content = <Controls />;
   else if (['federated-search', 'workload-management', 'ingest-actions'].includes(base))
     content = <Tabbed key={base} id={base} />;
-  else if (base === 'searches-reports-and-alerts') content = <SavedSearchSettings />;
+  else if (base === 'searches-reports-and-alerts') content = <ReportsPage />;
   else if (base === 'all-configurations') content = <AllConfigurations />;
   else if (tableDefinitions[base])
     content = <SettingsTable key={base} id={base} definition={tableDefinitions[base]!} />;

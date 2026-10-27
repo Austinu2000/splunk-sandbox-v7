@@ -250,3 +250,13 @@ export function activateInputConf(world: World, p: HostProfile): void {
     notify(world, p);
   });
 }
+export function activateReportConf(world: World, p: HostProfile): void {
+  op(world, { k: 'reports.activate', host: p.hostname }, () => {
+    ensureFs(world, p);
+    snapshotOverlay(
+      world,
+      p.hostname,
+      (path) => path.endsWith('/savedsearches.conf') || path.endsWith('/metadata/local.meta'),
+    );
+  });
+}

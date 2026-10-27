@@ -9,6 +9,7 @@ import { invalidateHostProfiles, resolveHost } from './hosts/profile';
 import {
   activateIndexConf,
   activateInputConf,
+  activateReportConf,
   reloadAppConf,
   reloadDeployServer,
   restartSplunk,
@@ -83,6 +84,15 @@ function host(world: World, name: string) {
 
 function apply(world: World, m: Mutation): void {
   switch (m.k) {
+    case 'search.evidence':
+      world.searchEvidence = structuredClone(m.records);
+      return;
+    case 'reports.activate':
+      activateReportConf(world, host(world, m.host));
+      return;
+    case 'reports.state':
+      world.reports = structuredClone(m.state);
+      return;
     case 'index.thaw':
       thawPracticeBucket(world, m.id);
       return;

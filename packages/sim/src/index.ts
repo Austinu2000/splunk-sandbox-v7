@@ -93,5 +93,17 @@ export * from './engineering/foundations';
 export * from './engineering/indexes';
 export * from './engineering/access';
 export * from './engineering/ingestion';
-export { configureHec,receiveHec } from './engineering/hec';
-export {indexBuckets,thawPracticeBucket} from './engineering/lifecycle';
+export { configureHec, receiveHec } from './engineering/hec';
+export { indexBuckets, thawPracticeBucket } from './engineering/lifecycle';
+export {
+  listReports,
+  saveReport,
+  executeReport,
+  reportRevision,
+  legacyReports,
+  importLegacyReport,
+  type ReportInput,
+} from './engineering/reports';
+export { activateReportConf } from './hosts/running';
+export { recordSearchEvidence } from './engineering/search-evidence';
+export { legacyReceiptKey } from './engineering/reports';

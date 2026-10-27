@@ -21,6 +21,7 @@ import { hashString, Rng } from './rng';
 import { installLicenseHooks, recordLicense } from './ingest/license';
 import { tickInputs } from './engineering/ingestion';
 import { tickIndexLifecycle } from './engineering/lifecycle';
+import { tickReports } from './engineering/reports';
 
 export interface WorldClock {
   /** Sim epoch ms. Always startTime + tick * tickMs. */
@@ -32,6 +33,8 @@ export interface WorldClock {
 }
 
 export interface World {
+  searchEvidence?: import('@sandbox/shared').SearchEvidence[];
+  reports?: import('@sandbox/shared').ReportRuntime;
   ingestion?: import('@sandbox/shared').IngestionState;
   kvstore?: import('@sandbox/shared').KvState;
   lesson?: {
@@ -153,6 +156,7 @@ function tickOnce(world: World): void {
   tickTraining(world);
   tickInputs(world);
   tickIndexLifecycle(world);
+  tickReports(world);
   updateScenarios(world);
   world.history.prune(now - world.config.historyRetentionMs);
 }

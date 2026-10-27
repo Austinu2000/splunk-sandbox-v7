@@ -6,12 +6,17 @@ import { Row } from './row';
 import { SplError, toStr } from './values';
 import { training, persistTraining } from '../training/engine';
 import { parseSpan } from './time';
+import { collectSummary } from '../engineering/summary';
+import { infraName } from '../infra';
+import { takeOptions, tokenizeArgs } from './args';
 export function extendedCommand(name: string, args: string): Omit<Command, 'name' | 'text'> | undefined {
   const base = { transforming: true };
   if (name === 'outputlookup')
     return {
       ...base,
       run: (rows, ctx) => {
+        if (ctx.readOnly)
+          throw new SplError('outputlookup is not allowed in a read-only report source', name);
         const m = /^(?:append=(true|false)\s+)?([\w.-]+)(?:\s+append=(true|false))?$/.exec(args);
         if (!m) throw new SplError('Use outputlookup [append=true|false] filename.csv', name);
         const kv = m[2]!.endsWith('.csv') ? null : kvLookup(ctx.world, m[2]!);
@@ -125,6 +130,8 @@ export function extendedCommand(name: string, args: string): Omit<Command, 'name
           throw new SplError('Subsearch nesting/size limit exceeded', name);
         const out = runSearch(ctx.world, {
           search: m[2]!,
+          principal: ctx.principal,
+          readOnly: ctx.readOnly,
           earliest: String(ctx.earliest / 1000),
           latest: String(ctx.latest / 1000),
         });
@@ -186,17 +193,41 @@ export function extendedCommand(name: string, args: string): Omit<Command, 'name
     return {
       ...base,
       run: (rows, ctx) => {
-        const m = /^index=(\w+)$/.exec(args);
-        if (!m) throw new SplError('Use collect index=summary_name', name);
-        const s = training(ctx.world);
-        s.summaries[m[1]!] = {
-          search: 'collected rows',
-          rows: rows.map((r) => r.toObject()),
-          tick: ctx.world.clock.tick,
-        };
-        persistTraining(ctx.world);
+        if (ctx.readOnly)
+          throw new SplError(
+            'collect is not allowed inside a read-only source; configure the report summary action',
+            name,
+          );
+        const { opts, rest } = takeOptions(tokenizeArgs(args, name), ['index', 'source', 'sourcetype']);
+        if (!opts.get('index') || rest.length)
+          throw new SplError('Supported: collect index=NAME [source=SOURCE] [sourcetype=TYPE]', name);
+        const objects = rows.map((row) => row.toObject());
+        ctx.effects!.push(() =>
+          collectSummary(ctx.world, objects, {
+            index: opts.get('index')!,
+            host: infraName(ctx.world, 'search_head'),
+            principal: ctx.principal ?? 'admin',
+            earliest: ctx.earliest,
+            latest: ctx.latest,
+            writer: ctx.search ?? 'manual collect',
+            source: opts.get('source'),
+            sourcetype: opts.get('sourcetype'),
+          }),
+        );
         return rows;
       },
+    };
+  if (name === 'addinfo')
+    return {
+      ...base,
+      transforming: false,
+      run: (rows, ctx) =>
+        rows.map((row) => {
+          row.set('info_min_time', ctx.earliest / 1000);
+          row.set('info_max_time', ctx.latest / 1000);
+          row.set('info_search_time', ctx.now / 1000);
+          return row;
+        }),
     };
   if (name === 'tstats') {
     const generate = (ctx: RunContext) => {
@@ -215,6 +246,8 @@ export function extendedCommand(name: string, args: string): Omit<Command, 'name
           search: src,
           earliest: String(ctx.earliest / 1000),
           latest: String(ctx.latest / 1000),
+          principal: ctx.principal,
+          readOnly: ctx.readOnly,
         });
         if (o.status === 'failed') throw new SplError('Unable to search indexed dataset', name);
         rows = o.events;

@@ -7,6 +7,7 @@ import { globToRegExp } from '../vfs/path';
 export class OperationsError extends Error {}
 const defaults: Record<string, Record<string, string>> = {
   admin: {
+    run_collect: 'enabled',
     importRoles: 'power',
     indexes_edit: 'enabled',
     edit_monitor: 'enabled',
@@ -16,6 +17,7 @@ const defaults: Record<string, Record<string, string>> = {
     srchIndexesDefault: '*',
   },
   power: {
+    run_collect: 'enabled',
     importRoles: 'user',
     edit_monitor: 'enabled',
     srchIndexesAllowed: 'app;os;network;main',

@@ -1,6 +1,7 @@
 import { activeIndexNames, indexCatalog } from '../engineering/indexes';
 import { canSearchIndex } from '../engineering/access';
 import { recordedEvents } from '../engineering/ingestion';
+import { listReports } from '../engineering/reports';
 import { kvLookup, kvRead, kvState, kvStatus, kvCollections } from '../kvstore/engine';
 import { training, refreshTraining } from '../training/engine';
 import { infraName } from '../infra';
@@ -188,6 +189,23 @@ export function rest(ctx: RunContext, endpoint: string, opts: Map<string, string
       Row.of({ title: c.collection, ...c.settings, count: c.count }),
     );
   switch (path) {
+    case 'saved/searches':
+      return listReports(world, sh.hostname, ctx.principal ?? 'admin').map((r) =>
+        Row.of({
+          title: r.title,
+          search: r.search,
+          'eai:acl.app': r.app,
+          'eai:acl.owner': r.owner,
+          'eai:acl.sharing': r.sharing.toLowerCase(),
+          is_scheduled: r.scheduled ? '1' : '0',
+          cron_schedule: r.cron,
+          'dispatch.earliest_time': r.earliest,
+          'dispatch.latest_time': r.latest,
+          disabled: r.enabled ? '0' : '1',
+          'action.summary_index._name': r.summaryIndex ?? '',
+          sourcePath: r.sourcePath,
+        }),
+      );
     case 'server/info':
       return scope(peers.map((p) => serverInfo(world, p)));
     case 'search/distributed/peers':
@@ -301,11 +319,13 @@ export function metadata(ctx: RunContext, type: string, index: string | undefine
     throw new SplError('Invalid type. Use type=hosts, type=sources or type=sourcetypes.', command);
   const pd = pushdown(parseSearch(index ? `index=${index}` : ''));
   const { world, earliest } = ctx;
+  const baselineEarliest = Math.max(earliest, world.clock.now - world.config.historyRetentionMs);
   const latest = Math.min(ctx.latest, world.clock.now);
   const wantData = activeIndexNames(world).some((i) => !i.startsWith('_') && indexAllowed(pd, i));
   const groups = new Map<string, { first: number; last: number; count: number }>();
-  const add = (key: string, last: number, count: number) => {
-    const g = groups.get(key) ?? { first: earliest, last: 0, count: 0 };
+  const add = (key: string, last: number, count: number, first = baselineEarliest) => {
+    const g = groups.get(key) ?? { first, last: 0, count: 0 };
+    g.first = Math.min(g.first, first);
     g.last = Math.max(g.last, last);
     g.count += count;
     groups.set(key, g);
@@ -316,16 +336,14 @@ export function metadata(ctx: RunContext, type: string, index: string | undefine
   for (const event of recordedEvents(world)) {
     if (event.time <= earliest || event.time > latest || !permitted(event.index)) continue;
     const key = type === 'hosts' ? event.host : type === 'sources' ? event.source : event.sourcetype;
-    const previous = groups.get(key);
-    add(key, event.time, 1);
-    groups.get(key)!.first = Math.min(previous?.first ?? event.time, event.time);
+    add(key, event.time, 1, event.time);
   }
   for (const p of candidateHosts(world, pd)) {
     const tl = hostTimeline(world, p, latest - STEP_BACK.at(-1)!);
     // Events stop at the moment delivery stopped (offline, or blocked and not yet recovered).
     const stoppedAt = p.fleetRow === undefined && !p.splunk ? null : deliveryStoppedAt(world, p, tl, latest);
     const until = Math.min(latest, stoppedAt ?? latest);
-    if (until <= earliest) continue;
+    if (until <= baselineEarliest) continue;
     for (const s of hostSources(world, p, wantData)) {
       if (!permitted(s.index)) continue;
       const deliveredTimes = (t0: number, t1: number) =>
@@ -339,7 +357,7 @@ export function metadata(ctx: RunContext, type: string, index: string | undefine
       let rate = 0;
       let lo = until;
       for (const back of STEP_BACK) {
-        const t0 = Math.max(earliest, until - back);
+        const t0 = Math.max(baselineEarliest, until - back);
         if (t0 >= lo) break;
         const times = deliveredTimes(t0, lo);
         if (times.length) {
@@ -350,7 +368,7 @@ export function metadata(ctx: RunContext, type: string, index: string | undefine
         lo = t0;
       }
       if (last === null) continue;
-      const count = Math.round(rate * (until - Math.max(earliest, p.bootTime)));
+      const count = Math.round(rate * (until - Math.max(baselineEarliest, p.bootTime)));
       const key = type === 'hosts' ? (s.host ?? p.hostname) : type === 'sources' ? s.source : s.sourcetype;
       add(key, last, Math.max(count, 1));
     }

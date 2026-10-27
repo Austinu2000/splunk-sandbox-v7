@@ -810,6 +810,10 @@ export function smallLog(world: World, p: HostProfile, kind: 'utility' | 'audit'
 export function schedulerLog(world: World, p: HostProfile): LogSource {
   return source(24 * 3_600_000, (t0, t1) =>
     simulateScheduler(world, p, t0, t1)
+      .filter(
+        (record) =>
+          !(world.reports?.runs ?? []).some((run) => run.host === p.hostname && run.title === record.name),
+      )
       .map((r): Entry => {
         const s = Math.floor(r.scheduledTime / 1000);
         const common = `savedsearch_id="${r.owner};${r.app};${r.name}", search_type="scheduled", user="${r.owner}", app="${r.app}", savedsearch_name="${r.name}", priority=default`;
@@ -824,6 +828,21 @@ export function schedulerLog(world: World, p: HostProfile): LogSource {
           `${splunkTs(r.logTime)} INFO  SavedSplunker - ${common}, status=success, digest_mode=1, scheduled_time=${s}, window_time=0, dispatch_time=${Math.floor(r.dispatchTime! / 1000)}, run_time=${r.runSeconds!.toFixed(3)}, result_count=${r.resultCount}, alert_actions="", sid="${sid}", suppressed=0, thread_id="AlertNotifierWorker-0", workload_pool=""`,
         ];
       })
+      .concat(
+        (world.reports?.runs ?? [])
+          .filter((run) => run.host === p.hostname && run.scheduledTime !== undefined)
+          .flatMap((run): Entry[] => {
+            const time = world.config.startTime + run.tick * world.config.tickMs;
+            return time > t0 && time <= t1
+              ? [
+                  [
+                    time,
+                    `${splunkTs(time)} INFO SavedSplunker - savedsearch_name=${JSON.stringify(run.title)}, status=${run.status === 'succeeded' ? 'success' : run.status}, scheduled_time=${Math.floor(run.scheduledTime! / 1000)}, result_count=${run.resultCount}, summary_event_count=${run.summaryEventIds.length}, reason=${JSON.stringify(run.error ?? '')}, sid=${JSON.stringify(run.id)}`,
+                  ],
+                ]
+              : [];
+          }),
+      )
       .sort((a, b) => a[0] - b[0]),
   );
 }

@@ -1,5 +1,6 @@
 import { fixturePrincipal, indexRest } from '../engineering/index-commands';
 import { receiveHec } from '../engineering/hec';
+import { reportRest } from '../engineering/report-rest';
 import type { CommandFn } from '../shell/types';
 import { ok, fail } from '../shell/types';
 import { kvRest } from './rest';
@@ -57,6 +58,14 @@ export const kvCurl: CommandFn = ({ world, sh, argv }) => {
       return ok(
         JSON.stringify(
           indexRest(world, host, method, target.pathname + target.search, body, fixturePrincipal(auth)),
+          null,
+          2,
+        ) + '\n',
+      );
+    if (/^\/servicesNS\/[^/]+\/[^/]+\/saved\/searches/.test(target.pathname))
+      return ok(
+        JSON.stringify(
+          reportRest(world, host, method, target.pathname + target.search, body, fixturePrincipal(auth)),
           null,
           2,
         ) + '\n',

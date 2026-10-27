@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-043",
+  "version": 1,
+  "title": "Understand Summary Indexing Versus Search Acceleration",
+  "track": "Searches, reports and summary indexing",
+  "objectives": [
+    "Understand Summary Indexing Versus Search Acceleration",
+    "Verify result values and the persisted operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 2,
+  "prerequisites": [
+    "SP-017"
+  ],
+  "requiredCapabilities": [
+    "report.manage",
+    "summary.persist",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-043-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture has three explicit source_logs events and starts with the clock paused. Keep it paused while configuring, then use clock controls or the Interview Workbench advance action for scheduled work.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Create an events index source_stats with retention=2592000 seconds. Create Summary comparison with search=index=source_logs | stats count by status, earliest=-15m, latest=now, and summary destination source_stats.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Run once and collect the summary, then query index=source_stats | stats sum(count) as total. Explain why persisted summary events differ from report/data-model acceleration. Native acceleration is a separate unsupported executor feature here; enabling auto_summarize does not create these summary rows.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the source results and time window before saving or scheduling a report.",
+    "Use savedsearches.conf or simulated REST to independently verify the definition; inspect actual execution history and search the summary destination."
+  ],
+  "references": [
+    {
+      "url": "https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Savedsearchesconf",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Saved search scheduling and summary action settings"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/search-commands/collect",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Persist search results into an existing summary index"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "index-state",
+      "label": "Active events index for summary data",
+      "host": "idx01",
+      "name": "source_stats",
+      "settings": {
+        "datatype": "event",
+        "frozenTimePeriodInSecs": 2592000
+      },
+      "empty": false
+    },
+    {
+      "kind": "report-state",
+      "label": "Active report definition and scope",
+      "host": "sh01",
+      "app": "search",
+      "title": "Summary comparison",
+      "summaryIndex": "source_stats"
+    },
+    {
+      "kind": "report-run",
+      "label": "Actual report execution and expected results",
+      "host": "sh01",
+      "app": "search",
+      "title": "Summary comparison",
+      "minimumWrites": 2
+    },
+    {
+      "kind": "query",
+      "label": "Independent search confirms the expected values",
+      "search": "index=source_stats | stats sum(count) as total",
+      "rows": 1,
+      "cells": {
+        "total": 3
+      }
+    },
+    {
+      "kind": "answer",
+      "label": "Evidence answer: storage",
+      "id": "storage",
+      "expected": "events"
+    }
+  ],
+  "minutes": 25,
+  "questions": [
+    {
+      "id": "storage",
+      "prompt": "Does this workflow persist events or acceleration artifacts (events/acceleration)?"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/server.conf",
+      "text": "[clustering]\nmode=disabled\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/indexes.conf",
+      "text": "[source_logs]\nhomePath=$SPLUNK_DB/source_logs/db\ncoldPath=$SPLUNK_DB/source_logs/colddb\nthawedPath=$SPLUNK_DB/source_logs/thaweddb\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/var/log/practice/reports.log",
+      "text": "status=500 service=checkout latency=400\nstatus=200 service=auth latency=25\nstatus=500 service=checkout latency=300\n",
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/reports.log]\nindex=source_logs\nsourcetype=app_log\ndisabled=0\n",
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    }
+  ],
+  "feedback": {
+    "success": "Completion requires active configuration, verified search results and correct evidence answers.",
+    "incomplete": "Inspect failed outcomes. Disk changes require activation; data must be ingested explicitly."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "v7-reports:SP-043:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "v7-reports:SP-043:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "v7-reports:SP-043:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "v7-reports:SP-043:reset"
+    },
+    {
+      "case": "resume",
+      "test": "v7-reports:SP-043:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "v7-reports:SP-043:isolation"
+    }
+  ]
+}

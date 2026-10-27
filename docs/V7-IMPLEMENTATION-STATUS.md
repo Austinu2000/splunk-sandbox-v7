@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 3 and subsequent gates
+## Current work: Milestone 4 and subsequent gates
 
 Implemented:
 
@@ -51,8 +51,8 @@ implemented work is listed below. The full expansion remains incomplete.
 | 0 | Implemented; validation below | Architecture/persistence audit and safe preflight |
 | 1 | Implemented | Foundations/inventory; AU-01–14 and SP-001–006 |
 | 2 | Implemented | Indexes/data onboarding; SP-007–025 |
-| 3 | In progress | Reports/searches/summary indexing; SP-035–046 |
-| 4 | Planned | Playbooks/Git; AU-15–27 |
+| 3 | Implemented within documented scope | Reports/searches/summary indexing; SP-035–046 |
+| 4 | In progress | Playbooks/Git; AU-15–27 |
 | 5 | Planned | Forwarders/DS; AU-28–35 and SP-026–034 |
 | 6 | Planned | Dashboards/alerts; SP-047–054 |
 | 7 | Planned | Clustering/KV; AU-36–43 and SP-055–068 |
@@ -118,3 +118,23 @@ honest delivered/planned status; no review pause is required between milestones.
   load. Existing knowledge-object migration remains pending in Milestone 3.
 
 The earlier foundation note about SP-006 being pending is superseded by this gate.
+
+## Reports and summary implementation
+
+- SP-035–SP-046 are executable: **51 new exercises / 78 total** with all 27
+  inherited entries retained. Each new report lesson has six acceptance cases.
+- Reports, Search Save As Report, native configuration and simulated REST share
+  scoped files, ownership metadata, revisions and activation. Stale-tab context
+  checks prevent writes after an environment or lesson swap.
+- Scheduled execution retains actual results, windows, failures/skips and summary
+  event IDs. Summary data is persisted and searchable over its index retention;
+  overlapping writes and failed source searches do not create duplicate data.
+- Reviewed legacy import preserves original raw data, keeps schedules off and
+  records idempotent receipts and an archived source. Alert/dashboard migration
+  remains for later milestones.
+- Full regression: **627 tests across 43 files pass**. TypeScript, ESLint and the
+  production web build pass; the inherited bundle-size advisory remains.
+  No full-expansion completion claim is made.
+- Browser validation completed SP-045: two summary rows representing three events,
+  followed by an empty window with no duplicates; independent sum(count)=3.
+- See [supported report behavior and remaining limits](V7-REPORTS-AND-SUMMARY-INDEXING.md).

@@ -22,6 +22,7 @@ import { SessionsPage } from './pages/SessionsPage';
 import { InterviewBar } from './components/InterviewBar';
 import { HomePage } from './replica/HomePage';
 import { KnowledgePage } from './replica/KnowledgePage';
+import { ReportsPage } from './pages/ReportsPage';
 import { SettingsPage } from './replica/SettingsPage';
 import { InstalledViewPage, ViewCatalog } from './replica/InstalledViewPage';
 import { AppsPage, LoginPage, PreferencesPage, HelpPage, UpgradePage } from './replica/AuxiliaryPages';
@@ -182,7 +183,7 @@ export function App() {
       )}
       {knowledge && (
         <div role={route === 'analytics' ? undefined : 'main'} tabIndex={-1}>
-          <KnowledgePage section={route} id={sub} />
+          {route === 'reports' ? <ReportsPage /> : <KnowledgePage section={route} id={sub} />}
         </div>
       )}
       {route === 'apps' && <AppsPage />}
