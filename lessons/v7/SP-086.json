@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-086",
+  "version": 1,
+  "title": "Configure and Troubleshoot a DB Connect Data Source",
+  "track": "Cloud ingestion and service health",
+  "objectives": [
+    "Configure and Troubleshoot a DB Connect Data Source",
+    "Verify real recorded events, retained failures and current operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-069"
+  ],
+  "requiredCapabilities": [
+    "cloud.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-086-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Open Recorded integration operations \u2192 DB Connect. Inspect the actual failed unordered-query receipt and KV collection splunk_app_db_connect/dbx_db_input on sh01. The supplied v7_inventory checkpoint begins at zero; three fictional source database rows have not been indexed."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Repair native db_inputs.conf query to SELECT id, service, status FROM service_events WHERE id > ? ORDER BY id ASC. Keep mode=rising, connection=practice_db, tail_rising_column_name=id, tail_rising_column_number=1 and checkpoint_key=v7_inventory. Stage, restart virtual sh01 and poll. Confirm three actual indexed rows and KV checkpoint=3; another poll must not duplicate them."
+    },
+    {
+      "id": "task-3",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Append fictional source row id=4, service=checkout, status=200 using the adapter control, then poll again. Confirm checkpoint=4 and Search index=db_logs | stats count dc(id) as ids returns count=4 and ids=4; inspect the job. Numeric unique ordered IDs avoid the timestamp-tie/skew issue. The bounded adapter never runs SQL/JDBC. Its KV document fields are teaching fields, not a claim of vendor checkpoint payload parity."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/connect-relational-databases/deploy-and-use-db-connect/4.3/reference/db_inputs.conf.spec",
+      "vendorVersion": "Splunk DB Connect 4.3",
+      "purpose": "Native rising input and checkpoint_key fields"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/connect-relational-databases/deploy-and-use-db-connect/4.1/configure-and-manage-splunk-db-connect/create-and-manage-database-inputs",
+      "vendorVersion": "Splunk DB Connect 4.1",
+      "purpose": "Ordered rising checkpoints and KV persistence since 3.10"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "integration-state",
+      "label": "Actual retained delivery, pending and failure evidence",
+      "adapter": "database",
+      "events": 4,
+      "pending": 0,
+      "priorFailure": true,
+      "checkpoint": 4
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual verification search and inspector",
+      "search": "^index=db_logs.*stats count",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=db_logs | stats count dc(id) as ids",
+      "rows": 1,
+      "cells": {
+        "count": 4,
+        "ids": 4
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "integration-fixture",
+      "adapter": "database"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-086:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-086:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-086:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-086:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-086:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-086:isolation"
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+import { registerServiceHealth } from './serviceHealth';
+import { registerIntegrations } from './integrations';
 import { registerIdentity } from './identity';
 import { registerSecurity } from './security';
 import { registerDataModels } from './dataModels';
@@ -83,6 +85,8 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerPlatform(app, live, store);
   registerSecurity(app, live, store);
   registerIdentity(app, live, store);
+  registerIntegrations(app, live, store);
+  registerServiceHealth(app, live, store);
   registerDataModels(app, live, store);
   registerInterview(
     app,

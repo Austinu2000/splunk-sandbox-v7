@@ -508,3 +508,7 @@ export * from './data-models';
 export * from './security';
 
 export * from './identity';
+
+export * from './integrations';
+
+export * from './service-health';

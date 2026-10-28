@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-088",
+  "version": 1,
+  "title": "Correlate Infrastructure Logs, Application Errors, and Service Impact",
+  "track": "Cloud ingestion and service health",
+  "objectives": [
+    "Correlate Infrastructure Logs, Application Errors, and Service Impact",
+    "Verify real recorded events, retained failures and current operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-069"
+  ],
+  "requiredCapabilities": [
+    "cloud.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-088-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Open Recorded service health. The application KPIs are healthy, but the indexing dependency includes the actually stopped idx02 service, reducing downstream checkout health. Inspect captured own-KPI versus final scores, dependencyImpact and the source service-availability values. Compare these with the native virtual service and Monitoring Console."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Start the idx02 Splunk service from its virtual terminal and evaluate the active service model again without rewriting the application query or deleting the failure evidence. All services should become healthy and checkout score=100 while the earlier dependency impact remains available."
+    },
+    {
+      "id": "task-3",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Independently search index=service_logs | stats count and open Job Inspector: count=3. Explain why the defined infrastructure dependency reduced service health even though the application query itself remained healthy. These weighted availability and dependency rules are a documented model, not a claim of every native ITSI or cluster availability policy."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Independent actual data investigation"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "service-health",
+      "label": "Infrastructure dependency impact retained and actual service restored",
+      "service": "checkout",
+      "score": 100,
+      "dependencies": [
+        "authentication",
+        "indexing"
+      ],
+      "search": "index=service_logs service=checkout | eval error=if(status>=500,100,0) | stats avg(error) as error_rate",
+      "field": "error_rate",
+      "warning": 5,
+      "critical": 20,
+      "priorDependencyImpact": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual verification search and inspector",
+      "search": "^index=service_logs.*stats count",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=service_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "service-health-fixture",
+      "infrastructure": true
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-088:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-088:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-088:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-088:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-088:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-088:isolation"
+    }
+  ]
+}

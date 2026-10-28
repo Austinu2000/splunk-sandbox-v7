@@ -1,3 +1,5 @@
+import { ServiceHealthPage } from '../pages/ServiceHealthPage';
+import { IntegrationsPage } from '../pages/IntegrationsPage';
 import { IdentityOperationsPage } from '../pages/IdentityOperationsPage';
 import { SecurityOperationsPage } from '../pages/SecurityOperationsPage';
 import { DataModelsPage } from '../pages/DataModelsPage';
@@ -1556,6 +1558,8 @@ export function SettingsPage({ id }: { id: string }) {
         )}
       />
     );
+  else if (base === 'service-health') content = <ServiceHealthPage />;
+  else if (base === 'integration-operations') content = <IntegrationsPage />;
   else if (base === 'identity-operations') content = <IdentityOperationsPage />;
   else if (base === 'security-operations') content = <SecurityOperationsPage />;
   else if (base === 'data-models') content = <DataModelsPage />;

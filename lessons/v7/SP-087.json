@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-087",
+  "version": 1,
+  "title": "Investigate ITSI KPIs, Dependencies, and Service Health",
+  "track": "Cloud ingestion and service health",
+  "objectives": [
+    "Investigate ITSI KPIs, Dependencies, and Service Health",
+    "Verify real recorded events, retained failures and current operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-069"
+  ],
+  "requiredCapabilities": [
+    "cloud.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-087-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Open Interview workbench \u2192 Recorded service health. The initial model is a teaching JSON format, not a native ITSI service export. It derives actual query KPIs from service_logs. Inspect the two checkout failures, the overly loose critical threshold and the absent authentication dependency."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "For checkout keep the actual error search and field error_rate, weight=11 (native minimum-health indicator importance), warning=5; set critical=20 and dependencies=[\"authentication\"]. Preserve the authentication latency KPI. Stage, activate and evaluate: checkout should be critical with score=0 while its dependency is healthy. Retain this actual failure evaluation."
+    },
+    {
+      "id": "task-3",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Advance the paused clock by two minutes so old errors leave the -1m window; a new evaluation with no fresh records must show unknown. On virtual idx01 append /opt/staging/v7-healthy-service-records.log to /var/log/practice/service-health.log, then advance an input tick. Evaluate again and verify checkout score=100 from real fresh records and a healthy authentication dependency. Independently search index=service_logs service=checkout earliest=-1m | stats avg(status) as status and inspect the job. The bounded model uses native weighted KPI contributions and importance-11 critical behavior, with three contribution levels and all KPIs selected from each listed dependency. It is separate from a native service export and full entity/threshold/dependency controls."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/visualize-and-assess-service-health/4.20/create-kpis/set-kpi-importance-values-in-itsi",
+      "vendorVersion": "Splunk ITSI 4.20",
+      "purpose": "Native weighted health contributions, importance 0\u201311 and minimum-health critical indicators"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "service-health",
+      "label": "Actual KPI failure corrected with active dependencies and new healthy source records",
+      "service": "checkout",
+      "score": 100,
+      "dependencies": [
+        "authentication"
+      ],
+      "search": "index=service_logs service=checkout | eval error=if(status>=500,100,0) | stats avg(error) as error_rate",
+      "field": "error_rate",
+      "warning": 5,
+      "critical": 20,
+      "priorCritical": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual verification search and inspector",
+      "search": "^index=service_logs.*stats avg",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=service_logs service=checkout earliest=-1m | stats avg(status) as status",
+      "rows": 1,
+      "cells": {
+        "status": 200
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "service-health-fixture",
+      "infrastructure": false
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-087:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-087:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-087:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-087:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-087:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-087:isolation"
+    }
+  ]
+}

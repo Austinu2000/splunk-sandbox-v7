@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-083",
+  "version": 1,
+  "title": "Onboard and Troubleshoot AWS VPC Flow Logs",
+  "track": "Cloud ingestion and service health",
+  "objectives": [
+    "Onboard and Troubleshoot AWS VPC Flow Logs",
+    "Verify real recorded events, retained failures and current operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-069"
+  ],
+  "requiredCapabilities": [
+    "cloud.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-083-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Open Interview workbench \u2192 Recorded integration operations \u2192 AWS SQS / S3. The fixture retains an actual s3:GetObject denial, three pending fictional SQS notifications and two explicit CloudWatchLogs object versions. Inspect active native aws_sqs_based_s3 inputs.conf and the IAM policy source. No AWS account, connection or real secret is used."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Preserve the SQS receive/delete statement and add an Allow statement for s3:GetObject on arn:aws:s3:::sandbox-v7-vpcflow/*. The bounded policy supports native Version=2012-10-17, Statement, Sid, Effect, Action and Resource, with explicit Deny precedence. Stage the policy and poll once. Expect three recorded events, all notifications acknowledged and the repeated object version recognized as a duplicate. Poll again to verify no duplicate events."
+    },
+    {
+      "id": "task-3",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Search index=cloud_logs | stats count, then index=cloud_logs action=REJECT | stats count by dstport and open Job Inspector. Confirm three total flows, two REJECT flows, and actual extracted srcaddr/dstaddr/port/action fields. This adapter decodes plain explicit CloudWatch logEvents JSON; compression and full AWS IAM evaluation are outside scope."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://splunk.github.io/splunk-add-on-for-amazon-web-services/SQS-basedS3/",
+      "vendorVersion": "Splunk Add-on for AWS",
+      "purpose": "SQS notification ingestion and native input fields"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html",
+      "vendorVersion": "AWS IAM JSON policy syntax",
+      "purpose": "Native policy fields; bounded resource/action evaluator"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "integration-state",
+      "label": "Actual retained delivery, pending and failure evidence",
+      "adapter": "aws",
+      "events": 3,
+      "pending": 0,
+      "priorFailure": true,
+      "duplicates": 1
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual verification search and inspector",
+      "search": "^index=cloud_logs.*stats count",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=cloud_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=cloud_logs action=REJECT | stats count by dstport",
+      "rows": 2,
+      "cells": {
+        "count": 1
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "integration-fixture",
+      "adapter": "aws"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-083:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-083:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-083:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-083:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-083:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-083:isolation"
+    }
+  ]
+}

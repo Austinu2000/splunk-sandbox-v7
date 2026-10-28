@@ -80,6 +80,34 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('integration-state'),
+      label: text,
+      adapter: z.enum(['aws', 'otel', 'cribl', 'database']),
+      events: z.number().int().min(0),
+      pending: z.number().int().min(0),
+      priorFailure: z.boolean(),
+      duplicates: z.number().int().min(0).optional(),
+      dropped: z.array(text).optional(),
+      checkpoint: z.number().int().min(0).optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('service-health'),
+      label: text,
+      service: text,
+      score: z.number().min(0).max(100),
+      dependencies: z.array(text).max(10),
+      search: text,
+      field: text,
+      warning: z.number(),
+      critical: z.number(),
+      priorCritical: z.boolean().optional(),
+      priorDependencyImpact: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
       kind: z.literal('identity-probe'),
       label: text,
       host: text,
@@ -489,6 +517,13 @@ export const engineeringLessonSchema = z
     setup: z
       .array(
         z.discriminatedUnion('kind', [
+          z
+            .object({
+              kind: z.literal('integration-fixture'),
+              adapter: z.enum(['aws', 'otel', 'cribl', 'database']),
+            })
+            .strict(),
+          z.object({ kind: z.literal('service-health-fixture'), infrastructure: z.boolean() }).strict(),
           z
             .object({
               kind: z.literal('monitoring-fixture'),

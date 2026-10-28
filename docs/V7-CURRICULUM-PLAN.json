@@ -940,10 +940,10 @@
       "track": "Cloud Ingestion, Cribl, OpenTelemetry, and ITSI",
       "trackNumber": 11,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-084",
@@ -951,10 +951,10 @@
       "track": "Cloud Ingestion, Cribl, OpenTelemetry, and ITSI",
       "trackNumber": 11,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-085",
@@ -962,10 +962,10 @@
       "track": "Cloud Ingestion, Cribl, OpenTelemetry, and ITSI",
       "trackNumber": 11,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-086",
@@ -973,10 +973,10 @@
       "track": "Cloud Ingestion, Cribl, OpenTelemetry, and ITSI",
       "trackNumber": 11,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-087",
@@ -984,10 +984,10 @@
       "track": "Cloud Ingestion, Cribl, OpenTelemetry, and ITSI",
       "trackNumber": 11,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-088",
@@ -995,10 +995,10 @@
       "track": "Cloud Ingestion, Cribl, OpenTelemetry, and ITSI",
       "trackNumber": 11,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-089",

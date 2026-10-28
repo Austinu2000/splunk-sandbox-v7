@@ -60,6 +60,8 @@ export function TrainingPage() {
           <p>Investigate incidents. Demonstrate recovery. Explain your decisions.</p>
         </div>
         <div className="v5-actions">
+          <a href="#/settings/service-health">Recorded service health →</a>
+          <a href="#/settings/integration-operations">Recorded integration operations →</a>
           <a href="#/settings/security-operations">Recorded security operations →</a>
           <a href="#/code">Code & Ansible →</a>
           <a href="#/terminal">Terminal →</a>

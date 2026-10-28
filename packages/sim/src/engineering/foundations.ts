@@ -1,4 +1,11 @@
 import {
+  setupIntegrationFixture,
+  integrationFoundationCheck,
+  type IntegrationFoundationCheck,
+} from './integration-foundations';
+import { initializeServiceHealth } from './service-health-fixtures';
+import type { IntegrationKind } from '@sandbox/shared';
+import {
   setupMonitoringFixture,
   monitoringFoundationCheck,
   type MonitoringFixtureMode,
@@ -38,6 +45,7 @@ import { journal } from '../journal';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | IntegrationFoundationCheck
   | MonitoringFoundationCheck
   | ClusterFoundationCheck
   | {
@@ -238,6 +246,8 @@ export type FoundationCheck =
     };
 
 export type FoundationSetup =
+  | { kind: 'integration-fixture'; adapter: IntegrationKind }
+  | { kind: 'service-health-fixture'; infrastructure: boolean }
   | { kind: 'monitoring-fixture'; mode: MonitoringFixtureMode }
   | { kind: 'cluster-starters' }
   | { kind: 'cluster-fixture'; mode: ClusterFixtureMode }
@@ -269,6 +279,14 @@ export type FoundationSetup =
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
   for (const step of steps) {
+    if (step.kind === 'integration-fixture') {
+      setupIntegrationFixture(world, step.adapter);
+      continue;
+    }
+    if (step.kind === 'service-health-fixture') {
+      initializeServiceHealth(world, step.infrastructure);
+      continue;
+    }
     if (step.kind === 'monitoring-fixture') {
       setupMonitoringFixture(world, step.mode);
       continue;
@@ -399,6 +417,9 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'integration-state':
+    case 'service-health':
+      return integrationFoundationCheck(world, check);
     case 'identity-probe':
     case 'platform-observation':
     case 'input-buffer':

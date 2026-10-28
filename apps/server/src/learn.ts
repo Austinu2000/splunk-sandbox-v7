@@ -48,6 +48,8 @@ const v7Lessons: Lesson[] = readdirSync(v7Dir)
     if (definition.status !== 'verified')
       throw new Error('Unverified V7 lesson cannot be registered: ' + definition.id);
     const supported = new Set([
+      'integration-state',
+      'service-health',
       'identity-probe',
       'platform-observation',
       'input-buffer',

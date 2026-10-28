@@ -168,3 +168,17 @@ export * from './engineering/security';
 export * from './engineering/monitoring-foundations';
 
 export * from './engineering/identity';
+
+export * from './engineering/integration-state';
+export * from './engineering/integration-fixtures';
+export * from './engineering/integrations';
+export * from './engineering/aws-practice';
+export * from './engineering/telemetry-practice';
+export * from './engineering/cribl-practice';
+export * from './engineering/database-practice';
+
+export * from './engineering/service-health';
+
+export * from './engineering/service-health-fixtures';
+
+export * from './engineering/integration-foundations';

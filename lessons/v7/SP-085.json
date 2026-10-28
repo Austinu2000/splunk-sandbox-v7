@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-085",
+  "version": 1,
+  "title": "Troubleshoot a Cribl Routing or Persistent Queue Issue",
+  "track": "Cloud ingestion and service health",
+  "objectives": [
+    "Troubleshoot a Cribl Routing or Persistent Queue Issue",
+    "Verify real recorded events, retained failures and current operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-069"
+  ],
+  "requiredCapabilities": [
+    "cloud.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-085-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Open Recorded integration operations \u2192 Cribl routing. The fixture retains three actual pending records and failed receipts for a fictional unavailable HEC destination. Inspect the pending critical-1, critical-2 and debug-1 source records; the queue is a persisted teaching buffer, separate from full native Cribl persistent-queue files."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Configure native route fields so severity === 'debug' goes to devnull with final=true, then a final=true catch-all sends the remaining events to splunk_out. Use pipeline=passthru. Only true/false and a single quoted scalar ===/!== predicate are supported; arbitrary JavaScript is rejected. Preserve the supplied virtual HEC token and set the separate fictional destination available=true. Stage sources, activate routes and poll."
+    },
+    {
+      "id": "task-3",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Verify that debug-1 alone is dropped, both critical records have actual event IDs, and pending=0. Retry without duplicates. Search index=routed_logs | stats count and inspect the job: count=2. Independently verify severity=debug returns zero events and both operational severities remain searchable."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://docs.cribl.io/stream/routes/",
+      "vendorVersion": "Cribl Stream route concepts",
+      "purpose": "Native filter, output and final semantics; bounded predicate execution"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "integration-state",
+      "label": "Actual retained delivery, pending and failure evidence",
+      "adapter": "cribl",
+      "events": 2,
+      "pending": 0,
+      "priorFailure": true,
+      "dropped": [
+        "debug-1"
+      ]
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual verification search and inspector",
+      "search": "^index=routed_logs.*stats count",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=routed_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=routed_logs severity=debug | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 0
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "integration-fixture",
+      "adapter": "cribl"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-085:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-085:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-085:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-085:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-085:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-085:isolation"
+    }
+  ]
+}

@@ -1,9 +1,19 @@
-# Milestone 8 working record
+# Milestone 8 completed working record
 
-M8 remains in progress. SP-069–082 passed 84 acceptance cases and are now available.
-Learn contains 125 new + 27 inherited = **152/177 lessons**. SP-083–088 and
-Milestones 9–11 remain; **25 new lessons** and the final audit are outstanding.
+M8 is complete within its documented simulation scope. SP-069–088 passed all 120
+lesson acceptance cases. Learn contains 131 new + 27 inherited = **158/177 lessons**.
+Milestones 9–11 remain: **19 new lessons** plus the final curriculum/question audit.
 The user authorized continuing without approval gates.
+
+The complete M8 regression passed **1,186 tests across 73 files**, with TypeScript,
+ESLint and the production build passing. Browser SP-080/081/085/088 verified actual
+response, identity, queued delivery and service-health outcomes. Existing free
+practice is restored after the separate verification attempts. See the final
+[M8 operations record](V7-INTEGRATION-OPERATIONS.md),
+[security](V7-RECORDED-SECURITY-OPERATIONS.md) and [identity](V7-IDENTITY-PRACTICE.md).
+
+The entries below retain implementation history; earlier pending statements are
+superseded by this completed gate and the current implementation status document.
 
 ## Foundation currently implemented
 

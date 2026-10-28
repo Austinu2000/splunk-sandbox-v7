@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-084",
+  "version": 1,
+  "title": "Ingest and Correlate Application Traces with OpenTelemetry",
+  "track": "Cloud ingestion and service health",
+  "objectives": [
+    "Ingest and Correlate Application Traces with OpenTelemetry",
+    "Verify real recorded events, retained failures and current operational evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-069"
+  ],
+  "requiredCapabilities": [
+    "cloud.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-084-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Open Recorded integration operations \u2192 OpenTelemetry. The source defines an OTLP receiver and both fictional HEC exporters, but only logs are enabled in service.pipelines. One actual correlated log has been accepted; two explicit root/child spans remain pending. Inspect the retained missing-pipeline failures."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Add service.pipelines.traces with receivers: [otlp], processors: [batch] and exporters: [splunk_hec/traces]. Preserve the existing logs pipeline and supplied virtual token/exporter. Stage the source, activate the offline adapter, then poll once. Verify pending=0 and all three signal records have actual indexed event IDs. Retry and confirm no duplicates. This is a normalized offline signal fixture, not OTLP/protobuf, an APM backend or a running Collector process."
+    },
+    {
+      "id": "task-3",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Search index=traces OR index=app_logs | stats count dc(span_id) as spans by trace_id and inspect the job. Expect one trace with count=3 and two distinct span IDs. Independently inspect the child span with parent_span_id=1111111111111111 and follow the shared trace_id into the log."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://opentelemetry.io/docs/collector/configuration/",
+      "vendorVersion": "OpenTelemetry Collector configuration",
+      "purpose": "Defined components must be referenced by signal pipelines"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "integration-state",
+      "label": "Actual retained delivery, pending and failure evidence",
+      "adapter": "otel",
+      "events": 3,
+      "pending": 0,
+      "priorFailure": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual verification search and inspector",
+      "search": "index=traces OR index=app_logs",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=traces OR index=app_logs | stats count dc(span_id) as spans by trace_id",
+      "rows": 1,
+      "cells": {
+        "count": 3,
+        "spans": 2,
+        "trace_id": "11111111111111111111111111111111"
+      }
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record result",
+      "search": "index=traces span_id=2222222222222222 parent_span_id=1111111111111111 | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 1
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "integration-fixture",
+      "adapter": "otel"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-084:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-084:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-084:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-084:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-084:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-084:isolation"
+    }
+  ]
+}

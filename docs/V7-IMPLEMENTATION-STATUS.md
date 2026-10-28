@@ -2,7 +2,7 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 8 and subsequent gates
+## Current work: Milestone 9 and subsequent gates
 
 Implemented:
 
@@ -56,7 +56,7 @@ implemented work is listed below. The full expansion remains incomplete.
 | 5 | Implemented within documented scope | Forwarders/DS; AU-28–35 and SP-026–034 |
 | 6 | Implemented within documented scope | Dashboards/alerts; SP-047–054 |
 | 7 | Implemented within documented scope | Clustering/KV; AU-36–43 and SP-055–068 |
-| 8 | In progress | Monitoring/security/integrations; SP-069–088 |
+| 8 | Implemented within documented scope | Monitoring/security/integrations; SP-069–088 |
 | 9 | Planned | Upgrades/recovery; AU-44–50 and SP-089–092 |
 | 10 | Planned | APL/Erie capstones; SP-093–100 |
 | 11 | Planned | Curriculum/question audit and complete regression |
@@ -275,3 +275,29 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
 - Browser SP-081 met its workflow checks through actual staging, virtual restart,
   both identity probes and an inspected analyst count=3 search.
 - [Scope and limits](V7-IDENTITY-PRACTICE.md); [proof](v7-identity-probes.png).
+
+## M8 complete: monitoring, security, ingestion and service health
+
+- SP-069–088 passed **120 lesson acceptance cases**. Learn contains **131 new /
+  158 total lessons**. All 27 inherited IDs remain. Nineteen new lessons and the
+  final coverage/regression audit remain; V7 as a whole is not complete.
+- AWS native input/IAM subset, enabled Collector signal pipelines, bounded Cribl
+  routes/backpressure and DB rising inputs/KV checkpoints deliver actual recorded
+  events, retaining failures and safe retry state.
+- Service KPIs use actual queries/services, weighted contributions and importance
+  0/11 behavior. The explicit teaching schema selects all KPIs from listed
+  dependencies; unknown data cannot silently become a healthy zero.
+- Full regression passed **1,186 tests across 73 files**. TypeScript, ESLint and
+  production build passed. The inherited bundle-size advisory remains.
+- Browser SP-085 verified two actual deliveries, debug-only discard, no duplicate
+  retry and inspected count=2. SP-088 verified own application score 100 with
+  dependency-reduced checkout score 80, followed by score 100 after starting the
+  actual virtual idx02 service; an independent inspected query returned count=3.
+- Separate V7 verification attempts are saved; existing Lab free practice is
+  restored after checks. [Delivery proof](v7-integration-recovery.png),
+  [impact](v7-service-impact.png), [recovery](v7-service-recovery.png).
+- Supported fields, component versions, simulation boundaries and primary sources:
+  [integration operations](V7-INTEGRATION-OPERATIONS.md). Save schema 14 retains
+  adapters/KPIs and loads versions 1–13.
+- Continuing directly to M9 upgrades/recovery and M10 capstones, then M11's final
+  lesson/question audit, dependency/security review and complete regression.
