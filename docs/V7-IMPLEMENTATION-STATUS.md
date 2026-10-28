@@ -319,3 +319,25 @@ subsequent maintenance/shell/cluster/privilege refinements passed 46 focused tes
 TypeScript, ESLint and the web build pass, with the inherited bundle advisory.
 The browser verified hf01 at 9.4.2 in a separate learner attempt and returned to
 the original Lab free-practice session. [Upgrade proof](v7-maintenance-upgrade.png).
+
+## Graded maintenance exercises available; Milestone 9 continues
+
+SP-089–092 are now promoted after 24 solution/failure/reset/resume/isolation
+acceptance cases, four passive-grading checks and a malformed-metadata recovery
+check. Learn contains **135 new / 162 total** exercises. AU-44–50, SP-093–100 and
+Milestone 11's question/curriculum audit remain outstanding.
+
+The exercises grade the current six-host upgrade preflight, actual standalone
+package completion, configuration-only recovery with a failed-change safety
+archive, and ordered certificate rotation with active verification and unique
+canary delivery. Related forwarder/identity/curriculum regression: **146 tests
+passed**. The full regression passed **1,229 tests / 76 files**; no Milestone 9
+completion claim is made.
+
+Browser SP-092 proof: recovered old certificate, overlap trust, new issuer and
+new-only trust all retained their actual activation outcomes; Search/Job Inspector
+verified four distinct canaries. Learn showed all checks and **Lesson complete**,
+then returned to the original free practice. See [activation evidence](v7-certificate-rotation.png)
+and [completed lesson](v7-maintenance-lesson-complete.png). Verified V7 lessons
+now say they are complete when all scored outcomes pass; inherited manual lessons
+retain their separate workflow-only wording.

@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-092",
+  "version": 1,
+  "title": "Troubleshoot Certificate Rotation and Restore Connectivity",
+  "track": "Upgrades, maintenance and disaster recovery",
+  "objectives": [
+    "Troubleshoot Certificate Rotation and Restore Connectivity",
+    "Verify actual source, version, service/data and retained recovery evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-091"
+  ],
+  "requiredCapabilities": [
+    "upgrade.recover",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-092-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "A prematurely activated receiver certificate signed by training-ca-next broke the forwarder's old trust. On idx01 copy /opt/staging/v7-old-server.pem back to /opt/splunk/etc/auth/v7/server.pem and restart Splunk. Keep verification enabled. Advance a shared tick and confirm the original two v7_rotation canaries arrive. Actual activation relationship checks are retained in maintenance receipts.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "On lab-lnx-0001 first copy /opt/staging/v7-overlap-ca.pem to /opt/splunkforwarder/etc/auth/v7/ca.pem, keep splunk ownership/mode 0600, and restart. Then activate /opt/staging/v7-next-server.pem as idx01's server.pem, also mode 0600, and restart idx01. The overlap trust must verify the new issuer before retiring the old one. Metadata fixtures model trust relationships, not real cryptography or PEM parsing.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Finally copy /opt/staging/v7-next-ca.pem over the forwarder's active CA and restart it. The native CA path is in server.conf [sslConfig]; do not disable sslVerifyServerCert or change peer-name checks. Append practice_id=rotation-final-001 status=200 service=ops and practice_id=rotation-final-002 status=200 service=ops to /var/log/practice/forwarder.log, advance a tick and verify Search index=os sourcetype=v7_rotation | stats count dc(practice_id) as ids returns count=4, ids=4. Open Job Inspector and review the retained old-only, overlapping and new-only successful activation checks.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the active native source and the original failure before changing anything.",
+    "Use the paused shared clock and an independent Search/Job Inspector check."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/manage-users-and-security/9.4/secure-splunk-platform-communications-with-transport-layer-security-certificates/configure-splunk-indexing-and-forwarding-to-use-tls-certificates",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Verified TLS forwarding relationships"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "certificate-rotation",
+      "label": "Verified old trust, overlap transition and current new-only issuer with retained failure",
+      "host": "lab-lnx-0001",
+      "server": "idx01.corp.example:9998",
+      "oldIssuer": "training-ca",
+      "issuer": "training-ca-next"
+    },
+    {
+      "kind": "configuration",
+      "label": "Native verification remains enabled",
+      "host": "lab-lnx-0001",
+      "conf": "outputs",
+      "stanza": "tcpout:v7_receiver",
+      "key": "sslVerifyServerCert",
+      "equals": "true",
+      "effective": true
+    },
+    {
+      "kind": "permissions",
+      "label": "Restrictive active CA permissions",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/auth/v7/ca.pem",
+      "mode": 384,
+      "owner": "splunk"
+    },
+    {
+      "kind": "permissions",
+      "label": "Restrictive receiver certificate permissions",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/auth/v7/server.pem",
+      "mode": 384,
+      "owner": "splunk"
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record verification",
+      "search": "index=os sourcetype=v7_rotation | stats count dc(practice_id) as ids",
+      "rows": 1,
+      "cells": {
+        "count": 4,
+        "ids": 4
+      }
+    },
+    {
+      "kind": "search-job",
+      "label": "Verification search and Job Inspector retained",
+      "search": "^index=os.*v7_rotation.*stats count",
+      "inspected": true
+    }
+  ],
+  "minutes": 35,
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/var/log/practice/forwarder.log",
+      "text": "practice_id=v7-canary-001 status=200 service=ops\npractice_id=v7-canary-002 status=500 service=ops\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/forwarder.log]\nindex = os\nsourcetype = v7_rotation\ndisabled = false\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/auth/v7/ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"training-ca\"}\n",
+      "owner": "splunk",
+      "mode": 384,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/staging/v7-correct-ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"training-ca\"}\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/auth/v7/server.pem",
+      "text": "{\"format\":\"sandbox-certificate-v1\",\"commonName\":\"idx01.corp.example\",\"issuer\":\"training-ca-next\",\"notAfter\":1824249600000}\n",
+      "owner": "splunk",
+      "mode": 384,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[splunktcp-ssl://9998]\ndisabled=false\n[SSL]\nserverCert=/opt/splunk/etc/auth/v7/server.pem\nsslVersions=tls1.2\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/outputs.conf",
+      "text": "[tcpout]\ndefaultGroup = v7_receiver\n[tcpout:v7_receiver]\nserver = idx01.corp.example:9998\nuseSSL=true\nsslVerifyServerCert=true\nsslCommonNameToCheck=idx01.corp.example\nsslVersions=tls1.2\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/staging/v7-old-server.pem",
+      "text": "{\"format\":\"sandbox-certificate-v1\",\"commonName\":\"idx01.corp.example\",\"issuer\":\"training-ca\",\"notAfter\":1824249600000}\n",
+      "mode": 384,
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/staging/v7-next-server.pem",
+      "text": "{\"format\":\"sandbox-certificate-v1\",\"commonName\":\"idx01.corp.example\",\"issuer\":\"training-ca-next\",\"notAfter\":1824249600000}\n",
+      "mode": 384,
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/staging/v7-overlap-ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"training-ca\",\"names\":[\"training-ca\",\"training-ca-next\"]}\n",
+      "mode": 384,
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/staging/v7-next-ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"training-ca-next\"}\n",
+      "mode": 384,
+      "owner": "splunk",
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/server.conf",
+      "text": "[sslConfig]\nsslRootCAPath=/opt/splunkforwarder/etc/auth/v7/ca.pem\n",
+      "mode": 384,
+      "owner": "splunk",
+      "apply": true
+    },
+    {
+      "kind": "certificate-watch",
+      "host": "lab-lnx-0001",
+      "server": "idx01.corp.example:9998"
+    }
+  ],
+  "feedback": {
+    "success": "Actual maintenance outcomes, preserved data and independent verification meet this lesson.",
+    "incomplete": "Review current source, version, activation history and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-092:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-092:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-092:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-092:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-092:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-092:isolation"
+    }
+  ]
+}

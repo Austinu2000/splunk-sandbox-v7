@@ -267,6 +267,43 @@ export function MaintenancePage() {
                 </article>
               ))}
           </section>
+          {!!v.state?.tlsProbes?.length && (
+            <section className="v5-card">
+              <h2>Certificate activation checks</h2>
+              <p>
+                Captured from actual virtual service activation and active teaching metadata. These checks
+                model trust relationships and do not perform real TLS or PEM cryptography.
+              </p>
+              <div className="v5-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Tick / source</th>
+                      <th>Receiver / issuer</th>
+                      <th>Active trust</th>
+                      <th>Verification</th>
+                      <th>Connection</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {v.state.tlsProbes.map((p, i) => (
+                      <tr key={i}>
+                        <td>
+                          {p.tick} · {p.host}
+                        </td>
+                        <td>
+                          {p.server} · {p.issuer || 'Unavailable'}
+                        </td>
+                        <td>{p.caIssuers.join(', ') || 'Unavailable'}</td>
+                        <td>{p.verified ? 'Enabled' : 'Disabled'}</td>
+                        <td>{p.reachable ? 'Verified relationship' : p.error || 'Unavailable'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
           <details>
             <summary>Verification and recovery receipts</summary>
             <pre>

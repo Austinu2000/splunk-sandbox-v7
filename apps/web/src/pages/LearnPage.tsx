@@ -143,7 +143,9 @@ export function LearnPage() {
                   intentionally excluded.
                 </p>
               )}
-              <h3>{lesson?.questions ? 'Outcome checks' : 'Workflow checks'}</h3>
+              <h3>
+                {lesson?.questions || /^(SP-|AU-)/.test(current.id) ? 'Outcome checks' : 'Workflow checks'}
+              </h3>
               {data.data?.progress?.checks.map((c) => (
                 <p key={c.label}>
                   {c.passed ? '✓' : '○'} {c.label}
@@ -153,7 +155,9 @@ export function LearnPage() {
                 {data.data?.progress?.completed
                   ? lesson?.questions
                     ? 'Lesson complete — verified outcomes and answers passed.'
-                    : 'Workflow milestones met — review all manual success criteria below.'
+                    : /^(SP-|AU-)/.test(current.id)
+                      ? 'Lesson complete — verified outcomes passed.'
+                      : 'Workflow milestones met — review all manual success criteria below.'
                   : 'Keep practicing; checks update as you work.'}
               </p>
               {lesson && lesson.level < 4 && (

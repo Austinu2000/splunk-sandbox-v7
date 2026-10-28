@@ -1,8 +1,10 @@
 # V7 upgrade and recovery foundation — Milestone 9 in progress
 
 This is a bounded, offline teaching workflow. Milestone 9 is **not complete**:
-AU-44–50 and SP-089–092 still need authored fixtures, scoring, acceptance cases
-and promotion into Learn. The catalog remains 158 lessons (131 new + 27 inherited).
+AU-44–50 still need authored fixtures, scoring, acceptance cases and promotion.
+SP-089–092 are available after 24 acceptance cases, four passive grading checks
+and a malformed-certificate recovery test. The catalog now contains 162 lessons
+(135 new + 27 inherited).
 
 ## Available foundation
 
@@ -112,3 +114,30 @@ Native virtual `df /opt` and maintenance readiness now share the same seeded
 baseline plus actual active recorded bucket bytes. Neither view invents a separate
 storage figure for the UI. This remains a bounded local recorded-data capacity
 model rather than full OS filesystem or vendor storage accounting.
+
+## Graded upgrade and recovery exercises
+
+SP-089 verifies a current six-host preflight; SP-090 completes a real virtual hf01
+package change; SP-091 restores the known-good configuration with a separate
+failed-change safety archive; SP-092 recovers a premature certificate rotation,
+proves old-only trust, overlaps both CA issuers, activates the new issuer and
+retires old trust. Certificate checks are captured from native service activation
+and remain available in the maintenance page. Disabling verification is retained
+as a failed teaching outcome, not a passing recovery.
+
+The CA metadata model supports up to five explicit issuer labels to represent an
+overlap trust bundle. New rotation practice uses native server.conf [sslConfig]
+sslRootCAPath; older lessons retain their supported, deprecated outputs.conf field.
+This remains JSON teaching metadata, not real PEM, signatures, key management or
+certificate issuance. Native reference: [TLS forwarding configuration in 9.4](https://help.splunk.com/en/splunk-enterprise/administer/manage-users-and-security/9.4/secure-splunk-platform-communications-with-transport-layer-security-certificates/configure-splunk-indexing-and-forwarding-to-use-tls-certificates).
+
+Browser SP-092 verification completed the old-certificate recovery, overlap trust,
+new-certificate activation and retirement of the old CA, with verification enabled
+throughout. Native activation checks retain the initial failure and each real
+relationship. Search and Job Inspector confirmed count=4 and four distinct practice
+IDs. [Activation history](v7-certificate-rotation.png),
+[completed graded exercise](v7-maintenance-lesson-complete.png). The original Lab
+free-practice session was restored after the separate learner attempt.
+
+SP-089–092 checkpoint: full regression **1,229 tests / 76 files passed**.
+AU-44–50 and the remaining milestone gates are still in progress.

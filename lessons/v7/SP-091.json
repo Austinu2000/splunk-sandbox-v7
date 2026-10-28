@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-091",
+  "version": 1,
+  "title": "Back Up Configuration and Recover from a Failed Change",
+  "track": "Upgrades, maintenance and disaster recovery",
+  "objectives": [
+    "Back Up Configuration and Recover from a Failed Change",
+    "Verify actual source, version, service/data and retained recovery evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-090"
+  ],
+  "requiredCapabilities": [
+    "upgrade.recover",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-091-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The known_good hf01 archive contains the original active maxKBps=128 configuration. A later change staged maxKBps=1 and stopped the service. Inspect the two configurations, service events and verified archive metadata before recovery. Indexed data and KV Store have separate backup boundaries.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "With hf01 stopped, restore known_good through Enterprise maintenance. Inspect the automatically captured before_restore archive: it must preserve the failed configuration. Start the virtual service and use btool limits list --debug to confirm active maxKBps=128. The installed package must remain 9.4.1; configuration restore cannot stand in for a package downgrade.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Search index=source_logs | stats count, inspect the job and verify count=3. Confirm all original configuration files and permissions match the known-good archive and that neither search data nor the installed package was replaced.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the active native source and the original failure before changing anything.",
+    "Use the paused shared clock and an independent Search/Job Inspector check."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/deploy-the-indexer-cluster/perform-an-automated-rolling-upgrade-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Controlled upgrade order, artifact verification and health prerequisites"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration-recovery",
+      "label": "Actual known-good restore, failed-change safety archive and unchanged package version",
+      "host": "hf01",
+      "backup": "known_good",
+      "version": "9.4.1"
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record verification",
+      "search": "index=source_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "search-job",
+      "label": "Verification search and Job Inspector retained",
+      "search": "^index=source_logs.*stats count",
+      "inspected": true
+    }
+  ],
+  "minutes": 35,
+  "setup": [
+    {
+      "kind": "maintenance-fixture",
+      "mode": "configuration-recovery"
+    }
+  ],
+  "feedback": {
+    "success": "Actual maintenance outcomes, preserved data and independent verification meet this lesson.",
+    "incomplete": "Review current source, version, activation history and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-091:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-091:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-091:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-091:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-091:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-091:isolation"
+    }
+  ]
+}

@@ -11,8 +11,14 @@ export function teachingCertificate(
 ) {
   return JSON.stringify({ format: 'sandbox-certificate-v1', commonName, issuer, notAfter }) + '\n';
 }
-export function teachingCA(name = 'training-ca') {
-  return JSON.stringify({ format: 'sandbox-ca-v1', name }) + '\n';
+export function teachingCA(name: string | string[] = 'training-ca') {
+  return (
+    JSON.stringify({
+      format: 'sandbox-ca-v1',
+      name: Array.isArray(name) ? name[0] : name,
+      ...(Array.isArray(name) ? { names: name } : {}),
+    }) + '\n'
+  );
 }
 function fixture(world: World, p: HostProfile, path: string, format: string) {
   if (!path) throw new Error('Certificate or CA path is missing');
@@ -23,6 +29,7 @@ function fixture(world: World, p: HostProfile, path: string, format: string) {
   let value: Record<string, unknown>;
   try {
     value = JSON.parse(text) as Record<string, unknown>;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Invalid metadata');
   } catch {
     throw new Error(
       'Use the explicit teaching certificate/CA artifact; native PEM parsing is outside this bounded simulation',
@@ -43,8 +50,15 @@ function verify(
     root = fixture(world, verifier, ca, 'sandbox-ca-v1');
   if (typeof cert.notAfter !== 'number' || cert.notAfter <= world.clock.now)
     throw new Error('TLS certificate is expired or has no valid expiry');
-  if (typeof root.name !== 'string' || cert.issuer !== root.name)
-    throw new Error('TLS issuer does not match the configured CA');
+  const roots = root.names === undefined ? [root.name] : root.names;
+  if (
+    !Array.isArray(roots) ||
+    !roots.length ||
+    roots.length > 5 ||
+    roots.some((n) => typeof n !== 'string' || !n || n.length > 80)
+  )
+    throw new Error('Invalid teaching CA trust bundle');
+  if (!roots.includes(cert.issuer)) throw new Error('TLS issuer does not match the configured CA');
   if (
     expected &&
     !expected

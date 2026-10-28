@@ -1,4 +1,11 @@
 import {
+  setupMaintenanceFixture,
+  maintenanceFoundationCheck,
+  type MaintenanceFixtureMode,
+  type MaintenanceFoundationCheck,
+} from './maintenance-foundations';
+import { watchCertificateRotation } from './certificate-rotation';
+import {
   setupIntegrationFixture,
   integrationFoundationCheck,
   type IntegrationFoundationCheck,
@@ -45,6 +52,7 @@ import { journal } from '../journal';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | MaintenanceFoundationCheck
   | IntegrationFoundationCheck
   | MonitoringFoundationCheck
   | ClusterFoundationCheck
@@ -246,6 +254,8 @@ export type FoundationCheck =
     };
 
 export type FoundationSetup =
+  | { kind: 'maintenance-fixture'; mode: MaintenanceFixtureMode }
+  | { kind: 'certificate-watch'; host: string; server: string }
   | { kind: 'integration-fixture'; adapter: IntegrationKind }
   | { kind: 'service-health-fixture'; infrastructure: boolean }
   | { kind: 'monitoring-fixture'; mode: MonitoringFixtureMode }
@@ -279,6 +289,14 @@ export type FoundationSetup =
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
   for (const step of steps) {
+    if (step.kind === 'maintenance-fixture') {
+      setupMaintenanceFixture(world, step.mode);
+      continue;
+    }
+    if (step.kind === 'certificate-watch') {
+      watchCertificateRotation(world, step.host, step.server);
+      continue;
+    }
     if (step.kind === 'integration-fixture') {
       setupIntegrationFixture(world, step.adapter);
       continue;
@@ -417,6 +435,11 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'upgrade-preflight':
+    case 'enterprise-upgrade':
+    case 'configuration-recovery':
+    case 'certificate-rotation':
+      return maintenanceFoundationCheck(world, check);
     case 'integration-state':
     case 'service-health':
       return integrationFoundationCheck(world, check);

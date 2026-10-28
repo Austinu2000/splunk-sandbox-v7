@@ -1006,10 +1006,10 @@
       "track": "Upgrades, Maintenance, and Disaster Recovery",
       "trackNumber": 12,
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-090",
@@ -1017,10 +1017,10 @@
       "track": "Upgrades, Maintenance, and Disaster Recovery",
       "trackNumber": 12,
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-091",
@@ -1028,10 +1028,10 @@
       "track": "Upgrades, Maintenance, and Disaster Recovery",
       "trackNumber": 12,
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-092",
@@ -1039,10 +1039,10 @@
       "track": "Upgrades, Maintenance, and Disaster Recovery",
       "trackNumber": 12,
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-093",

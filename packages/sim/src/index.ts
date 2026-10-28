@@ -190,3 +190,6 @@ export * from './engineering/upgrade-preflight';
 export * from './engineering/enterprise-upgrade';
 
 export * from './engineering/maintenance-view';
+
+export * from './engineering/maintenance-foundations';
+export * from './engineering/certificate-rotation';

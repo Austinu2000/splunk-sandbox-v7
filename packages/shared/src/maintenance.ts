@@ -40,6 +40,18 @@ export interface UpgradeJob {
 export interface MaintenanceRuntime {
   version: 1;
   nextId: number;
+  tlsWatches?: { host: string; server: string }[];
+  tlsProbes?: {
+    tick: number;
+    host: string;
+    server: string;
+    reachable: boolean;
+    verified: boolean;
+    issuer: string;
+    caIssuers: string[];
+    sourceRevision: string;
+    error: string;
+  }[];
   installations: Record<string, { version: string; licenseAccepted: boolean; installedTick: number }>;
   backups: ConfigurationBackup[];
   restores: {

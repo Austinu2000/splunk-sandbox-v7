@@ -79,6 +79,38 @@ const validationCase = z.enum([
 ]);
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
+    .object({ kind: z.literal('upgrade-preflight'), label: text, targets: z.array(text).min(1).max(20) })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('enterprise-upgrade'),
+      label: text,
+      targets: z.array(text).min(1).max(20),
+      version: text,
+      resumed: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('configuration-recovery'),
+      label: text,
+      host: text,
+      backup: text,
+      version: text,
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('certificate-rotation'),
+      label: text,
+      host: text,
+      server: text,
+      oldIssuer: text,
+      issuer: text,
+    })
+    .strict(),
+
+  z
     .object({
       kind: z.literal('integration-state'),
       label: text,
@@ -517,6 +549,14 @@ export const engineeringLessonSchema = z
     setup: z
       .array(
         z.discriminatedUnion('kind', [
+          z
+            .object({
+              kind: z.literal('maintenance-fixture'),
+              mode: z.enum(['planning', 'execution', 'configuration-recovery']),
+            })
+            .strict(),
+          z.object({ kind: z.literal('certificate-watch'), host: text, server: text }).strict(),
+
           z
             .object({
               kind: z.literal('integration-fixture'),

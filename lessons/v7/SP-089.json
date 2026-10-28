@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-089",
+  "version": 1,
+  "title": "Plan a Splunk Upgrade and Validate Prerequisites",
+  "track": "Upgrades, maintenance and disaster recovery",
+  "objectives": [
+    "Plan a Splunk Upgrade and Validate Prerequisites",
+    "Verify actual source, version, service/data and retained recovery evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-068"
+  ],
+  "requiredCapabilities": [
+    "upgrade.recover",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-089-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Enterprise upgrade and recovery. Inspect the initial blocked preflight and the actual LM, CM, search-head and indexer topology. The patch target is the explicit 9.4.2 teaching descriptor, not a current real-vendor release recommendation. Plan lm01 \u2192 cm01 \u2192 sh01 \u2192 idx01 \u2192 idx02 \u2192 idx03; the recorded cluster must remain healthy.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Stage the verified teaching package and create and verify a current configuration-only archive on each of those six hosts. In KV Store independently back up sh01 data; configuration archives do not include it. Review SHA-256 identity, available modeled storage, native syntax, running services and replication/search factors. Capture a fresh valid six-host preflight. Do not start the upgrade in this planning lesson.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Search index=source_logs | stats count and open Job Inspector; count=3. Compare the current native source and archive identities with the retained preflight. A stale or merely once-valid preflight must not complete the lesson.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the active native source and the original failure before changing anything.",
+    "Use the paused shared clock and an independent Search/Job Inspector check."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/deploy-the-indexer-cluster/perform-an-automated-rolling-upgrade-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Controlled upgrade order, artifact verification and health prerequisites"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "upgrade-preflight",
+      "label": "Current valid six-host plan and verified independent backups",
+      "targets": [
+        "lm01",
+        "cm01",
+        "sh01",
+        "idx01",
+        "idx02",
+        "idx03"
+      ]
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-record verification",
+      "search": "index=source_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "search-job",
+      "label": "Verification search and Job Inspector retained",
+      "search": "^index=source_logs.*stats count",
+      "inspected": true
+    }
+  ],
+  "minutes": 35,
+  "setup": [
+    {
+      "kind": "maintenance-fixture",
+      "mode": "planning"
+    }
+  ],
+  "feedback": {
+    "success": "Actual maintenance outcomes, preserved data and independent verification meet this lesson.",
+    "incomplete": "Review current source, version, activation history and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-089:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-089:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-089:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-089:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-089:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-089:isolation"
+    }
+  ]
+}
