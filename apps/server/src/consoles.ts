@@ -6,7 +6,7 @@ import { dsClients, dsOverview, monitoringConsole, type DsClientQuery } from '@s
 /** Monitoring Console and Forwarder Management: read-only views of the world, computed on request. */
 export function registerConsoles(app: FastifyInstance, live: LiveWorld): void {
   // Several browser tabs polling the same view within one tick share one computation.
-  const cache = new Map<McView, { tick: number; dto: McViewDto }>();
+  const cache = new Map<McView, { tick: number; revision: number; dto: McViewDto }>();
   live.onSwap(() => cache.clear());
 
   app.get<{ Params: { view: McView } }>(
@@ -22,9 +22,14 @@ export function registerConsoles(app: FastifyInstance, live: LiveWorld): void {
     },
     async (req) => {
       const hit = cache.get(req.params.view);
-      if (hit && hit.tick === live.world.clock.tick) return hit.dto;
+      if (hit && hit.tick === live.world.clock.tick && hit.revision === live.world.journal.log.length)
+        return hit.dto;
       const dto = monitoringConsole(live.world, req.params.view);
-      cache.set(req.params.view, { tick: live.world.clock.tick, dto });
+      cache.set(req.params.view, {
+        tick: live.world.clock.tick,
+        revision: live.world.journal.log.length,
+        dto,
+      });
       return dto;
     },
   );

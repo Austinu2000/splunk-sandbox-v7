@@ -1,3 +1,4 @@
+import { recordedKnowledge } from '../engineering/recorded-knowledge';
 import { activeIndexNames } from '../engineering/indexes';
 import { canSearchIndex } from '../engineering/access';
 import { recordedEvents } from '../engineering/ingestion';
@@ -208,7 +209,8 @@ export function scanEvents(
   const started = clock();
   const recordedHosts = new Set<string>(),
     recordedSources = new Set<string>();
-  const searchHost = infraName(world, 'search_head');
+  const searchHost = ctx.host ?? infraName(world, 'search_head');
+  const applyRecordedKnowledge = recordedKnowledge(ctx, searchHost);
   const defaultsOnly = !pd.fields.has('index') && !pd.fields.has('index|or');
   const searchable = new Set(
     activeIndexNames(world).filter((index) =>
@@ -301,6 +303,7 @@ export function scanEvents(
           ctx.messages.push({ type: 'warn', text: 'Invalid search-time field extraction: ' + key });
         }
       }
+    applyRecordedKnowledge(row, event.sourcetype);
     const sourceKey = event.host + '\0' + event.source;
     if (!recordedHosts.has(event.host)) {
       recordedHosts.add(event.host);

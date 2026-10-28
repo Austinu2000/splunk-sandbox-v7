@@ -2,6 +2,7 @@ import type { LiveWorld } from './live';
 import type { FastifyInstance } from 'fastify';
 import type { PageDto, ResultValue, SearchEventDto, SearchJobDto } from '@sandbox/shared';
 import {
+  OperationsError,
   eventToPlain,
   logAction,
   rowToPlain,
@@ -19,8 +20,14 @@ export function registerSearch(app: FastifyInstance, live: LiveWorld): void {
   let seq = 0;
   live.onSwap(() => jobs.clear());
 
+  app.get('/api/search/context', async () => ({
+    context: live.context,
+    host: live.world.infra.find((n) => n.role === 'search_head' && !n.retired)?.hostname,
+    hosts: live.world.infra.filter((n) => n.role === 'search_head' && !n.retired).map((n) => n.hostname),
+  }));
   const toDto = (sid: string, o: SearchOutcome): SearchJobDto => ({
     sid,
+    host: o.host,
     search: o.search,
     earliest: o.earliest,
     latest: o.latest,
@@ -55,7 +62,7 @@ export function registerSearch(app: FastifyInstance, live: LiveWorld): void {
     items: o.results.slice(offset, offset + count).map((r) => rowToPlain(r, o.columns)),
   });
 
-  app.post<{ Body: { search: string; earliest?: string; latest?: string } }>(
+  app.post<{ Body: { search: string; earliest?: string; latest?: string; host?: string; context?: string } }>(
     '/api/search/jobs',
     {
       schema: {
@@ -64,6 +71,8 @@ export function registerSearch(app: FastifyInstance, live: LiveWorld): void {
           required: ['search'],
           additionalProperties: false,
           properties: {
+            host: { type: 'string', minLength: 1, maxLength: 100 },
+            context: { type: 'string', minLength: 1, maxLength: 300 },
             search: { type: 'string', maxLength: 10_000 },
             earliest: { type: 'string', maxLength: 64 },
             latest: { type: 'string', maxLength: 64 },
@@ -72,15 +81,21 @@ export function registerSearch(app: FastifyInstance, live: LiveWorld): void {
       },
     },
     async (req) => {
+      if (req.body.context && req.body.context !== live.context)
+        throw new OperationsError(
+          'The environment or lesson changed; review Search before running this draft',
+        );
       const { search, earliest = '-15m', latest = 'now' } = req.body;
       const outcome = runSearch(live.world, {
         ...req.body,
+        readOnly: !req.body.context,
         principal: practicePrincipal(req.headers['x-sandbox-principal'] as string | undefined),
       });
       logAction(
         live.world,
         {
           kind: 'search',
+          host: outcome.host,
           success: outcome.status === 'done',
           text: `${search} [earliest=${earliest} latest=${latest}]`,
         },

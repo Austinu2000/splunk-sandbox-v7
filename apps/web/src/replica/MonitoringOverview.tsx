@@ -1,3 +1,4 @@
+import { PlatformPanel } from '../components/PlatformPanel';
 import { api } from '../api';
 import { usePoll } from '../usePoll';
 import { Chart } from '../components/Chart';
@@ -122,6 +123,7 @@ export function MonitoringOverview() {
           </p>
         ))}
       </div>
+      <PlatformPanel />
     </main>
   );
 }

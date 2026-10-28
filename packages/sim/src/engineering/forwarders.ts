@@ -1,7 +1,8 @@
+import { runtimeHooks } from '../hosts/runtime-hooks';
 import type { ForwarderRuntime, ForwarderClientState, DeploymentCatalog } from '@sandbox/shared';
 import type { World } from '../world';
 import { resolveHost, splunkVersion, splunkdRunning, type HostProfile } from '../hosts/profile';
-import { runningVfs, runningConf, deploymentServer, runtimeHooks, stopSplunk } from '../hosts/running';
+import { runningVfs, runningConf, deploymentServer, stopSplunk } from '../hosts/running';
 import { hostFs } from '../vfs/build';
 import { vfsReader } from '../hosts/running';
 import { ROOT } from '../vfs/vfs';
@@ -120,7 +121,9 @@ function autoRestart(world: World, p: ClientIdentity, c: DeploymentCatalog) {
   if (!previous) return false;
   let changedApps = changedCatalogApps.get(c);
   if (!changedApps) {
-    changedApps = new Set(Object.keys(c.apps).filter((app) => JSON.stringify(previous.apps[app]) !== JSON.stringify(c.apps[app])));
+    changedApps = new Set(
+      Object.keys(c.apps).filter((app) => JSON.stringify(previous.apps[app]) !== JSON.stringify(c.apps[app])),
+    );
     changedCatalogApps.set(c, changedApps);
   }
   const priorApps = Object.keys(appsFromCatalog(world, p, previous));
@@ -427,7 +430,9 @@ export function validateForwarderStart(world: World, p: HostProfile) {
   if (p.role !== 'deployment_server' || !world.forwarders) return;
   const next = capture(world, world.forwarders.nextCatalog, true);
   if (world.forwarders.catalogs.length >= 32 && next.revision !== world.forwarders.catalogs.at(-1)!.revision)
-    throw new TrainingError('Deployment history limit: 32 catalogs; save a checkpoint and start a new practice attempt');
+    throw new TrainingError(
+      'Deployment history limit: 32 catalogs; save a checkpoint and start a new practice attempt',
+    );
 }
 
 let hooksInstalled = false;

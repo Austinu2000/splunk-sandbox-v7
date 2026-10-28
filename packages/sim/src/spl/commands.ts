@@ -13,6 +13,8 @@ import { autoSpanMs, parseSpan } from './time';
 import { SplError, compareValues, scalar, toNumber, toStr, wildcardRegex, type Value } from './values';
 
 export interface RunContext {
+  extraWork?: number;
+  host?: string;
   readOnly?: boolean;
   search?: string;
   effects?: Array<() => void>;

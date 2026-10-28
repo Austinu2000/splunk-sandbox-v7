@@ -224,3 +224,16 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
   without that field retain their prior profile-based return behavior.
 - Continuing into M8 monitoring/security/integration work without a review stop.
   The 39 remaining AU/SP lessons and final coverage audit are still outstanding.
+
+## M8 foundation checkpoint (milestone still in progress)
+
+- Actual service/input/storage observations, persisted ingestion queues and native
+  search-time aliases/evaluations/tags now support recorded-data investigations.
+- Native data-model JSON and acceleration settings create stored row snapshots;
+  tstats uses coverage, source revisions and index permissions. Settings provides
+  staging, rebuild evidence and a dispatch-host-scoped Search link.
+- Full regression: **1,045 tests / 62 files pass**. TypeScript, ESLint and the
+  production build pass. Browser verified a three-event snapshot and count=3.
+- Learn remains **138/177**; no M8 lesson has been promoted yet. Security response,
+  integration delivery, KPI work and M8 lesson acceptance checks remain. See
+  [M8 working record](V7-M8-WORKING-NOTES.md) for scope and primary references.

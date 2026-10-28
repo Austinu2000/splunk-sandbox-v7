@@ -1,3 +1,4 @@
+import { resolveHost, splunkdRunning } from '../hosts/profile';
 import { tokenizeSpl } from '@sandbox/shared';
 import type { PracticePrincipal } from '@sandbox/shared';
 import { OperationsError } from '../engineering/access';
@@ -13,6 +14,7 @@ import { autoSpanMs, parseTime } from './time';
 import { SplError, isNumeric, toStr, type Value } from './values';
 
 export interface SearchRequest {
+  host?: string;
   readOnly?: boolean;
   principal?: PracticePrincipal;
   search: string;
@@ -36,6 +38,7 @@ export interface Phase {
 }
 
 export interface SearchOutcome {
+  host?: string;
   search: string;
   earliest: number;
   latest: number;
@@ -63,6 +66,7 @@ const clock = () => globalThis.performance.now();
 
 function emptyOutcome(req: SearchRequest, now: number): SearchOutcome {
   return {
+    host: req.host,
     search: req.search,
     earliest: now,
     latest: now,
@@ -96,7 +100,7 @@ export function runSearch(world: World, req: SearchRequest, limits = LIMITS): Se
     out.status = 'failed';
     out.messages.push({ type: 'error', text: e instanceof SplError ? e.display : e.message });
   }
-  out.workUnits = (out.scan?.scanned ?? 0) + out.phases.reduce((n, p) => n + p.rows, 0);
+  out.workUnits += (out.scan?.scanned ?? 0) + out.phases.reduce((n, p) => n + p.rows, 0);
   out.runMs = Math.round(clock() - started);
   return out;
 }
@@ -170,7 +174,13 @@ function execute(world: World, req: SearchRequest, limits: typeof LIMITS, out: S
   out.earliest = earliest;
   out.latest = latest;
 
+  if (req.host !== undefined) {
+    const host = resolveHost(world, req.host);
+    if (!host?.splunk || !splunkdRunning(world, host))
+      throw new SplError('Search dispatch host is unavailable');
+  }
   const ctx: RunContext = {
+    host: req.host,
     world,
     now,
     earliest,
@@ -268,6 +278,7 @@ function execute(world: World, req: SearchRequest, limits: typeof LIMITS, out: S
     // chose its fields explicitly, so keep them.
     out.columns = namesOf(rows, 500).filter((c) => !c.startsWith('_') || c === '_time' || !rows[0]?.event);
   }
+  out.workUnits = ctx.extraWork ?? 0;
   if (ctx.effects?.length) {
     if (out.scan?.truncated || out.messages.some((m) => m.type === 'error'))
       throw new SplError('Write refused because the source search was incomplete');

@@ -430,6 +430,7 @@ export function executeReport(
     const result = runSearch(
       world,
       {
+        host: report.host,
         search: report.search,
         earliest: String(earliest / 1000),
         latest: String(latest / 1000),

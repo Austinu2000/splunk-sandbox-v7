@@ -121,6 +121,8 @@ export type ClockSpeed = (typeof CLOCK_SPEEDS)[number];
 export type ResultValue = string | number | null | string[];
 
 export interface SearchRequestDto {
+  host?: string;
+  context?: string;
   search: string;
   earliest: string;
   latest: string;
@@ -151,6 +153,7 @@ export interface SearchMessageDto {
 }
 
 export interface SearchJobDto {
+  host?: string;
   sid: string;
   search: string;
   /** Epoch ms of the resolved time range. */
@@ -495,3 +498,9 @@ export * from './dashboards';
 export { classicSource, studioSource } from './dashboard-source';
 
 export * from './clusters';
+
+export * from './platform';
+
+export * from './ingestion-buffers';
+
+export * from './data-models';

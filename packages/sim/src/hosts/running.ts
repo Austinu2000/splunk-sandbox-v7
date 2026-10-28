@@ -1,3 +1,4 @@
+import { runtimeHooks } from './runtime-hooks';
 import {
   deliverySignature,
   enableForwarderOperations,
@@ -135,11 +136,7 @@ function snapshotOverlay(world: World, host: string, filter?: (path: string) => 
   world.hosts.confVersion++;
 }
 
-/** Hooks run after a host's running state changes (the derivation layer registers here). */
-export const runtimeHooks: {
-  changed: ((world: World, p: HostProfile) => void)[];
-  beforeChange: ((world: World, p: HostProfile, action: 'stop' | 'start' | 'reload') => void)[];
-} = { changed: [], beforeChange: [] };
+export { runtimeHooks } from './runtime-hooks';
 const notify = (world: World, p: HostProfile) => runtimeHooks.changed.forEach((h) => h(world, p));
 const announce = (world: World, p: HostProfile, action: 'stop' | 'start' | 'reload') =>
   runtimeHooks.beforeChange.forEach((h) => h(world, p, action));

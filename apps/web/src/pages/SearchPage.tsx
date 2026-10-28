@@ -62,11 +62,16 @@ const EXAMPLES = [
   '| rest /services/server/info | table splunk_server version server_roles',
 ];
 
-export function searchFromHash(): { q: string; earliest: string; latest: string } | null {
+export function searchFromHash(): { q: string; earliest: string; latest: string; host?: string } | null {
   const m = /^#\/search\??(.*)$/.exec(window.location.hash);
   if (!m) return null;
   const p = new URLSearchParams(m[1]);
-  return { q: p.get('q') ?? '', earliest: p.get('earliest') ?? '-24h', latest: p.get('latest') ?? 'now' };
+  return {
+    host: p.get('host') ?? undefined,
+    q: p.get('q') ?? '',
+    earliest: p.get('earliest') ?? '-24h',
+    latest: p.get('latest') ?? 'now',
+  };
 }
 function rangeFor(earliest: string, latest: string): TimeRange {
   return (
@@ -505,6 +510,19 @@ function JobInspector({ job, onClose }: { job: SearchJobDto; onClose: () => void
 export function SearchPage({ visible }: { visible: boolean }) {
   const initial = searchFromHash();
   const [query, setQuery] = useState(initial?.q ?? '');
+  const [dispatchHost, setDispatchHost] = useState(initial?.host ?? '');
+  type Scope = { context: string; host: string; hosts: string[] };
+  const [searchScope, setSearchScope] = useState<Scope | null>(null),
+    scopeRequest = useRef<Promise<Scope> | null>(null);
+  const getSearchScope = useCallback((review = false) => {
+    if (review || !scopeRequest.current)
+      scopeRequest.current = request<Scope>('search/context').then((scope) => {
+        setSearchScope(scope);
+        return scope;
+      });
+    return scopeRequest.current;
+  }, []);
+
   const [range, setRange] = useState<TimeRange>(() =>
     rangeFor(initial?.earliest ?? '-24h', initial?.latest ?? 'now'),
   );
@@ -536,7 +554,9 @@ export function SearchPage({ visible }: { visible: boolean }) {
     let active = true;
     setReportScope(null);
     if (saveType)
-      void request<{ context: string; host: string }>('reports')
+      void request<{ context: string; host: string }>(
+        'reports?host=' + encodeURIComponent(dispatchHost || ''),
+      )
         .then((scope) => {
           if (active) setReportScope(scope);
         })
@@ -546,7 +566,10 @@ export function SearchPage({ visible }: { visible: boolean }) {
     return () => {
       active = false;
     };
-  }, [saveType]);
+  }, [saveType, dispatchHost]);
+  useEffect(() => {
+    void getSearchScope().catch((e) => setError(String(e)));
+  }, [getSearchScope]);
   const [exporting, setExporting] = useState(false);
   const [notice, setNotice] = useState('');
   const [realtimePaused, setRealtimePaused] = useState(false);
@@ -557,7 +580,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
   const menuRoot = useRef<HTMLElement>(null);
 
   const run = useCallback(
-    async (q: string, r: TimeRange = range, refresh = false) => {
+    async (q: string, r: TimeRange = range, refresh = false, hostOverride?: string) => {
       if (!q.trim()) return;
       const thisRun = ++generation.current;
       runningRef.current = true;
@@ -565,11 +588,18 @@ export function SearchPage({ visible }: { visible: boolean }) {
       setError(null);
       setNotice('');
       setMenu(null);
-      const hash = searchHash(q, r.earliest, r.latest);
+      const hash = searchHash(q, r.earliest, r.latest, hostOverride ?? (dispatchHost || undefined));
       lastHashRun.current = hash;
       if (window.location.hash !== hash) window.history.replaceState(null, '', hash);
       try {
-        const res = await api.search({ search: q, earliest: r.earliest, latest: r.latest });
+        const scope = await getSearchScope();
+        const res = await api.search({
+          host: hostOverride ?? (dispatchHost || scope.host),
+          context: scope.context,
+          search: q,
+          earliest: r.earliest,
+          latest: r.latest,
+        });
         if (thisRun !== generation.current) return;
         setJob(res.job);
         setEvents({ ...res.events, items: res.events.items.slice(0, EVENTS_PAGE) });
@@ -599,7 +629,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
         }
       }
     },
-    [range],
+    [range, dispatchHost, getSearchScope],
   );
 
   useEffect(() => {
@@ -609,8 +639,9 @@ export function SearchPage({ visible }: { visible: boolean }) {
       if (h?.q && window.location.hash !== lastHashRun.current) {
         const r = rangeFor(h.earliest, h.latest);
         setQuery(h.q);
+        if (h.host) setDispatchHost(h.host);
         setRange(r);
-        void run(h.q, r);
+        void run(h.q, r, false, h.host);
       } else if (h && !h.q && lastHashRun.current) {
         generation.current++;
         runningRef.current = false;
@@ -863,6 +894,33 @@ export function SearchPage({ visible }: { visible: boolean }) {
             </div>
           </div>
         )}
+      </div>
+      <div
+        className="search-practice-scope"
+        style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '8px 20px' }}
+      >
+        <label>
+          Practice dispatch host{' '}
+          <select
+            aria-label="Practice dispatch host"
+            value={dispatchHost || searchScope?.host || ''}
+            onChange={(e) => setDispatchHost(e.target.value)}
+          >
+            {searchScope?.hosts.map((host) => (
+              <option key={host}>{host}</option>
+            ))}
+          </select>
+        </label>
+        <button
+          type="button"
+          onClick={() =>
+            void getSearchScope(true)
+              .then(() => setError(null))
+              .catch((e) => setError(String(e)))
+          }
+        >
+          Review current environment
+        </button>
       </div>
       <form
         className="search-bar"

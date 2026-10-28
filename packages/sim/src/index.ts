@@ -150,3 +150,15 @@ export * from './engineering/smartstore';
 export * from './engineering/shc-admin';
 
 export { setClusterSiteOutage } from './engineering/cluster-faults';
+
+export { platformSnapshot, inspectPlatform } from './engineering/platform';
+
+export { registerIngestionBuffer, ingestionBufferView } from './engineering/ingestion-buffers';
+
+export {
+  activeDataModels,
+  buildDataModel,
+  dataModelRows,
+  stageDataModel,
+  parseDataModel,
+} from './engineering/data-models';

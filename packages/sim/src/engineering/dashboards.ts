@@ -301,7 +301,7 @@ export function renderDashboard(
         if (budget <= 0) throw new OperationsError('Dashboard scan budget exhausted');
         const query = runSearch(
           world,
-          { search, earliest, latest, principal, readOnly: true },
+          { host: d.host, search, earliest, latest, principal, readOnly: true },
           { maxScan: Math.min(250000, budget), maxMs: Infinity },
         );
         budget -= query.scan?.scanned ?? 0;

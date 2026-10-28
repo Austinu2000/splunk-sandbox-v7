@@ -1,3 +1,4 @@
+import { bufferParsedInput } from './ingestion-buffers';
 import { forwarderConnection } from './forwarder-tls';
 import type {
   InputCheckpoint,
@@ -178,6 +179,7 @@ export function ingestText(
       provenance,
       operationId: `${hostName}:${source}:${world.clock.tick}:${world.ingestion?.nextId ?? 1}`,
     }));
+  if (bufferParsedInput(world, events)) return [];
   return appendRecordedEvents(world, events);
 }
 export function configureMonitor(

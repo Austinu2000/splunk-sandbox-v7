@@ -8,7 +8,7 @@ import { hostname as fleetHostname } from '../fleet/query';
 import { BLOCKED, OFFLINE } from '../fleet/tables';
 import { EXTRA_KBPS, forwarderInputs, type CollectedInput } from '../hosts/inputs';
 import { resolveHost, type HostProfile } from '../hosts/profile';
-import { runtimeHooks } from '../hosts/running';
+import { runtimeHooks } from '../hosts/runtime-hooks';
 import type { World } from '../world';
 import { nullQueued, parseConfig } from './parsing';
 
@@ -197,6 +197,16 @@ export function totalRate(rates: Map<string, number>): number {
   return s;
 }
 
+/** Actual indexed input/HEC bytes. Summary-generated stash records are not billed. */
+export function recordedLicenseUsage(world: World, t0: number, t1: number): Map<string, number> {
+  const out = new Map<string, number>();
+  for (const event of world.ingestion?.events ?? [])
+    if (event.provenance !== 'summary' && event.indexTime > t0 && event.indexTime <= t1) {
+      const key = event.index + '|' + event.sourcetype;
+      out.set(key, (out.get(key) ?? 0) + event.bytes);
+    }
+  return out;
+}
 /** Bytes indexed between t0 and t1 (piecewise-constant per minute). */
 export function bytesBetween(world: World, t0: number, t1: number): number {
   let total = 0;
@@ -205,7 +215,7 @@ export function bytesBetween(world: World, t0: number, t1: number): number {
     const b = Math.min(t + 60_000, t1);
     total += (totalRate(licenseRatesAt(world, t)) * (b - a)) / 1000;
   }
-  return total;
+  return total + [...recordedLicenseUsage(world, t0, t1).values()].reduce((n, v) => n + v, 0);
 }
 
 export interface LicenseStatus {
@@ -223,7 +233,9 @@ export function licenseStatus(world: World): LicenseStatus {
   const midnight = Math.floor(now / 86_400_000) * 86_400_000;
   const quota = licenseQuotaBytes(world);
   const today = bytesBetween(world, midnight, now);
-  const rates = licenseRatesAt(world, now);
+  const rates = new Map(licenseRatesAt(world, now));
+  for (const [key, bytes] of recordedLicenseUsage(world, now - 60000, now))
+    rates.set(key, (rates.get(key) ?? 0) + bytes / 60);
   return {
     quotaBytes: quota,
     todayBytes: today,

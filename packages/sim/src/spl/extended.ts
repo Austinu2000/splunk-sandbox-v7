@@ -1,3 +1,5 @@
+import { activeDataModels, dataModelRows } from '../engineering/data-models';
+import { parseSearch, matches } from './search';
 import { kvLookup, kvWrite, kvCollections } from '../kvstore/engine';
 import type { Command, RunContext } from './commands';
 import { parseCommand } from './commands';
@@ -19,7 +21,7 @@ export function extendedCommand(name: string, args: string): Omit<Command, 'name
           throw new SplError('outputlookup is not allowed in a read-only report source', name);
         const m = /^(?:append=(true|false)\s+)?([\w.-]+)(?:\s+append=(true|false))?$/.exec(args);
         if (!m) throw new SplError('Use outputlookup [append=true|false] filename.csv', name);
-        const kv = m[2]!.endsWith('.csv') ? null : kvLookup(ctx.world, m[2]!);
+        const kv = m[2]!.endsWith('.csv') ? null : kvLookup(ctx.world, m[2]!, ctx.host);
         if (kv) {
           const schema =
             kvCollections(ctx.world, kv.host, kv.app).find((c) => c.collection === kv.collection)?.settings ??
@@ -231,6 +233,41 @@ export function extendedCommand(name: string, args: string): Omit<Command, 'name
     };
   if (name === 'tstats') {
     const generate = (ctx: RunContext) => {
+      const dm =
+        /^(?:summariesonly=(true|false)\s+)?(.+?)\s+from\s+datamodel=([A-Za-z]\w*)(?:\.([A-Za-z]\w*))?(?:\s+where\s+(.+?))?(?:\s+by\s+([\w., ]+))?$/i.exec(
+          args,
+        );
+      const legacy = dm && ctx.world.training?.summaries[dm[3]!];
+      if (
+        dm &&
+        (!legacy ||
+          activeDataModels(ctx.world, ctx.host ?? infraName(ctx.world, 'search_head'), dm[3]).length)
+      ) {
+        const result = dataModelRows(
+          ctx.world,
+          ctx.host ?? infraName(ctx.world, 'search_head'),
+          dm[3]!,
+          dm[4],
+          ctx.earliest,
+          ctx.latest,
+          dm[1]?.toLowerCase() === 'true',
+          ctx.principal,
+        );
+        ctx.extraWork = (ctx.extraWork ?? 0) + result.workUnits;
+        ctx.messages.push({
+          type: 'info',
+          text: result.accelerated
+            ? 'Read a compatible data model acceleration snapshot'
+            : 'No complete current summary; scanned the actual model source',
+        });
+        if (result.partial)
+          ctx.messages.push({
+            type: 'warn',
+            text: 'Only the stored summary coverage is available for this summariesonly query',
+          });
+        const rows = dm[5] ? result.rows.filter((row) => matches(parseSearch(dm[5]!), row)) : result.rows;
+        return parseCommand('stats ' + dm[2] + (dm[6] ? ' by ' + dm[6] : '')).run(rows, ctx);
+      }
       const m =
         /^(?:summariesonly=(true|false)\s+)?(.+?)\s+(?:where|from)\s+(.+?)(?:\s+by\s+([\w, ]+))?$/.exec(args);
       if (!m) throw new SplError('Supported: tstats aggregation where index=name [by fields]', name);
@@ -243,6 +280,7 @@ export function extendedCommand(name: string, args: string): Omit<Command, 'name
       if (data) rows = data.rows.map(Row.of);
       else {
         const o = runSearch(ctx.world, {
+          host: ctx.host,
           search: src,
           earliest: String(ctx.earliest / 1000),
           latest: String(ctx.latest / 1000),

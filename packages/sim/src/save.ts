@@ -44,10 +44,10 @@ import { createWorld, setClock, tickWorld, type World } from './world';
  * of user changes; loading creates a fresh world from the seed and replays the journal tick by
  * tick, so the result is the same world, not an approximation of it.
  */
-export const SAVE_VERSION = 9;
+export const SAVE_VERSION = 10;
 
 export interface SavedWorld {
-  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | typeof SAVE_VERSION;
+  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | typeof SAVE_VERSION;
   lesson?: World['lesson'];
   profileId?: string;
   config?: WorldConfig;
@@ -86,6 +86,15 @@ function host(world: World, name: string) {
 
 function apply(world: World, m: Mutation): void {
   switch (m.k) {
+    case 'data-models.state':
+      world.dataModels = structuredClone(m.state);
+      return;
+    case 'ingestion.buffers':
+      world.ingestionBuffers = structuredClone(m.state);
+      return;
+    case 'platform.state':
+      world.platform = structuredClone(m.state);
+      return;
     case 'forwarders.state':
       applyForwarderState(world, m.state);
       return;
@@ -201,6 +210,7 @@ export function loadWorld(
     saved.version !== 6 &&
     saved.version !== 7 &&
     saved.version !== 8 &&
+    saved.version !== 9 &&
     saved.version !== SAVE_VERSION
   )
     throw new SaveError(`Unsupported save version ${saved.version}`);

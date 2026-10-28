@@ -11,7 +11,14 @@ import { hashString, mix32, unit } from '../rng';
 import type { World } from '../world';
 import { isoTs, splunkTs, syslogTs } from './format';
 import { SKIP_REASON, simulateScheduler } from '../scheduler';
-import { bytesBetween, licenseQuotaBytes, licenseRatesAt, LICENSE_POOL, totalRate } from '../ingest/license';
+import {
+  recordedLicenseUsage,
+  bytesBetween,
+  licenseQuotaBytes,
+  licenseRatesAt,
+  LICENSE_POOL,
+  totalRate,
+} from '../ingest/license';
 
 /** One log event: its time and raw text (multi-line for Windows events). */
 export type Entry = [time: number, raw: string];
@@ -863,13 +870,15 @@ export function licenseUsageLog(world: World, p: HostProfile): LogSource {
           at - 100,
           `${splunkTs(at - 100)} INFO  LicenseUsage - type=RolloverSummary day=${(t - 86_400_000) / 1000} stack=enterprise pool=${LICENSE_POOL} b=${Math.round(bytesBetween(world, t - 86_400_000, t))} poolsz=${quota}`,
         ]);
-      const rates = licenseRatesAt(world, t - 60_000);
-      for (const [key, bps] of [...rates.entries()].sort()) {
-        if (bps <= 0) continue;
+      const rates = new Map([...licenseRatesAt(world, t - 60_000)].map(([key, bps]) => [key, bps * 60]));
+      for (const [key, bytes] of recordedLicenseUsage(world, t - 60000, t))
+        rates.set(key, (rates.get(key) ?? 0) + bytes);
+      for (const [key, bytes] of [...rates.entries()].sort()) {
+        if (bytes <= 0) continue;
         const [idx, st] = key.split('|');
         out.push([
           at,
-          `${splunkTs(at)} INFO  LicenseUsage - type=Usage s="" st="${st}" h="" o="" idx="${idx}" i="${guid}" pool="${LICENSE_POOL}" b=${Math.round(bps * 60)} poolsz=${quota}`,
+          `${splunkTs(at)} INFO  LicenseUsage - type=Usage s="" st="${st}" h="" o="" idx="${idx}" i="${guid}" pool="${LICENSE_POOL}" b=${Math.round(bytes)} poolsz=${quota}`,
         ]);
       }
     });

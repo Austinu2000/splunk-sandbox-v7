@@ -1,3 +1,5 @@
+import { tickDataModels } from './engineering/data-models';
+import { tickIngestionBuffers } from './engineering/ingestion-buffers';
 import { tickClusterManagement } from './engineering/cluster-tick';
 import { tickKv } from './kvstore/engine';
 import { tickSchedules } from './training/schedule';
@@ -51,6 +53,9 @@ export interface World {
     answers?: Record<string, string>;
     returnProfile?: string;
   };
+  dataModels?: import('@sandbox/shared').DataModelRuntime;
+  platform?: import('@sandbox/shared').PlatformRuntime;
+  ingestionBuffers?: import('@sandbox/shared').IngestionBufferRuntime;
   training?: import('@sandbox/shared').TrainingState;
   actionSequence?: number;
   code?: import('@sandbox/shared').CodeState;
@@ -163,9 +168,11 @@ function tickOnce(world: World): void {
   tickTraining(world);
   tickForwarders(world);
   tickInputs(world);
+  tickIngestionBuffers(world);
   tickIndexLifecycle(world);
   tickClusterManagement(world);
   tickReports(world);
+  tickDataModels(world);
   updateScenarios(world);
   world.history.prune(now - world.config.historyRetentionMs);
 }

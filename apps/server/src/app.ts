@@ -1,3 +1,5 @@
+import { registerDataModels } from './dataModels';
+import { registerPlatform } from './platform';
 import { registerForwarders } from './forwarders';
 import { registerKvStore } from './kvstore';
 import { registerIndexes } from './indexes';
@@ -76,6 +78,8 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerSearch(app, live);
   registerScenarios(app, live);
   registerConsoles(app, live);
+  registerPlatform(app, live, store);
+  registerDataModels(app, live, store);
   registerInterview(
     app,
     live,

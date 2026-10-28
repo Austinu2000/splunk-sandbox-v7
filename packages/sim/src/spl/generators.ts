@@ -38,7 +38,7 @@ export function lookupTable(ctx: RunContext, rawName: string): LookupTable {
   const name = rawName.replace(/\.csv$/, '');
   if (['__proto__', 'constructor', 'prototype'].includes(name)) throw new SplError('Invalid lookup name');
   const { world } = ctx;
-  const kv = rawName.endsWith('.csv') ? null : kvLookup(world, rawName);
+  const kv = rawName.endsWith('.csv') ? null : kvLookup(world, rawName, ctx.host);
   if (kv) {
     const records = kvRead(world, kv.host, kv.app, kv.collection);
     const columns = kv.fields.length ? kv.fields : [...new Set(records.flatMap((r) => Object.keys(r)))];
