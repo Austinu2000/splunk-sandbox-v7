@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-27",
+  "scanner": "Gitleaks 8.30.1",
+  "redaction": "100%; no raw matched secret content is persisted in this artifact",
+  "sourceExclusions": [
+    "node_modules",
+    "dist",
+    ".git",
+    "ignored local data"
+  ],
+  "historyScope": "all available local Git history before the final checkpoint; final working tree independently scanned",
+  "scans": {
+    "worktree": {
+      "rawMatches": 7,
+      "reviewedNonsecretMatches": 7,
+      "realCredentialsIdentified": 0,
+      "findings": [
+        {
+          "rule": "generic-api-key",
+          "file": "packages/sim/src/engineering/monitoring-foundations.ts",
+          "line": 137,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Ternary sourcetype selection, not a credential assignment."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/index-administration.test.ts",
+          "line": 256,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/index-administration.test.ts",
+          "line": 261,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/v7-reports.test.ts",
+          "line": 97,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/v7-reports.test.ts",
+          "line": 100,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/dashboards-alerts.test.ts",
+          "line": 212,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/reports.test.ts",
+          "line": 250,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        }
+      ]
+    },
+    "history": {
+      "rawMatches": 7,
+      "reviewedNonsecretMatches": 7,
+      "realCredentialsIdentified": 0,
+      "findings": [
+        {
+          "rule": "generic-api-key",
+          "file": "packages/sim/src/engineering/monitoring-foundations.ts",
+          "line": 119,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Ternary sourcetype selection, not a credential assignment."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/dashboards-alerts.test.ts",
+          "line": 212,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/reports.test.ts",
+          "line": 250,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/v7-reports.test.ts",
+          "line": 97,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/v7-reports.test.ts",
+          "line": 100,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/index-administration.test.ts",
+          "line": 256,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        },
+        {
+          "rule": "curl-auth-user",
+          "file": "packages/sim/test/index-administration.test.ts",
+          "line": 261,
+          "classification": "nonsecret teaching fixture",
+          "reason": "Explicit fictional local teaching credential in virtual REST tests."
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "vitest": "4.1.12",
+    "zod": "4.6.7",
+    "echarts": "6.1.0",
+    "tinypool": "removed from resolved tree",
+    "npmAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "lockfileDryRun": "passed",
+    "npmLs": "no dependency problems"
+  },
+  "privacyLimits": [
+    "Inherited local home paths and learner defaults contain personal attribution.",
+    "Source-document provenance and existing Git author/machine metadata contain attribution.",
+    "Saved learner notes/labels and SQLite state are ignored by Git and outside this release scan.",
+    "No Git history rewrite, identity modification, publish or push was performed."
+  ],
+  "limits": "Pattern-based review does not guarantee detection of every possible secret or personal datum."
+}

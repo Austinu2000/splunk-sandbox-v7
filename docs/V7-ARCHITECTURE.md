@@ -1,5 +1,14 @@
 # V7 shared architecture and persistence
 
+## Frozen release update
+
+The sections below retain the Milestone 0 architecture decision and its original
+gap audit. They are historical, not the current delivery checklist. The frozen
+169-lesson release uses save schema 15, operational indexes/knowledge objects,
+shared schedules and the maintenance engine. See the current
+[frozen-release audit](V7-FROZEN-RELEASE-AUDIT.md) and
+[implementation status](V7-IMPLEMENTATION-STATUS.md). Eight capstones remain deferred.
+
 ## Milestone 0 decision
 
 Continue the V6 world, virtual filesystems, journal, terminal, search engine,

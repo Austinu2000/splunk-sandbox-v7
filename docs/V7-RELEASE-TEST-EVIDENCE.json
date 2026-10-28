@@ -1,0 +1,6190 @@
+{
+  "schemaVersion": 1,
+  "scope": "Frozen V7 release; eight capstones deferred by user request",
+  "regression": {
+    "success": true,
+    "passed": 1310,
+    "files": 78,
+    "skipped": 0
+  },
+  "available": 169,
+  "inheritedLessonIds": [
+    "A1",
+    "A10",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "K1",
+    "K2",
+    "K3",
+    "K4",
+    "X1",
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "X6"
+  ],
+  "inheritedEvidence": [
+    {
+      "id": "A1",
+      "test": "inherited:A1:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A10",
+      "test": "inherited:A10:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A2",
+      "test": "inherited:A2:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A3",
+      "test": "inherited:A3:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A4",
+      "test": "inherited:A4:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A5",
+      "test": "inherited:A5:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A6",
+      "test": "inherited:A6:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A7",
+      "test": "inherited:A7:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A8",
+      "test": "inherited:A8:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "A9",
+      "test": "inherited:A9:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "G1",
+      "test": "inherited:G1:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "G2",
+      "test": "inherited:G2:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "G3",
+      "test": "inherited:G3:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "G4",
+      "test": "inherited:G4:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "G5",
+      "test": "inherited:G5:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "G6",
+      "test": "inherited:G6:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "G7",
+      "test": "inherited:G7:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "K1",
+      "test": "inherited:K1:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "K2",
+      "test": "inherited:K2:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "K3",
+      "test": "inherited:K3:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "K4",
+      "test": "inherited:K4:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "X1",
+      "test": "inherited:X1:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "X2",
+      "test": "inherited:X2:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "X3",
+      "test": "inherited:X3:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "X4",
+      "test": "inherited:X4:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "X5",
+      "test": "inherited:X5:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    },
+    {
+      "id": "X6",
+      "test": "inherited:X6:start-resume-reset-isolation",
+      "status": "passed",
+      "file": "apps/server/test/v7-frozen-release.test.ts"
+    }
+  ],
+  "deferredLessonIds": [
+    "SP-093",
+    "SP-094",
+    "SP-095",
+    "SP-096",
+    "SP-097",
+    "SP-098",
+    "SP-099",
+    "SP-100"
+  ],
+  "reviewedQuestions": 235,
+  "questionClassifications": {
+    "personal-response": 82,
+    "verified-practice": 36,
+    "partial-practice": 87,
+    "conceptual-only": 15,
+    "not-implemented": 15
+  },
+  "limitations": "Passing bounded simulations does not prove native vendor parity or real work experience. Inherited lessons retain their existing workflow-based completion semantics. Deferred capstones are not executable.",
+  "lessons": [
+    {
+      "id": "SP-001",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:SP-001:solution",
+          "actualTitle": "SP-001:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-001:incorrect-action",
+          "actualTitle": "SP-001:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-001:no-false-completion",
+          "actualTitle": "SP-001:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-001:reset",
+          "actualTitle": "SP-001:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-001:resume",
+          "actualTitle": "SP-001:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-001:isolation",
+          "actualTitle": "SP-001:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-002",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:SP-002:solution",
+          "actualTitle": "SP-002:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-002:incorrect-action",
+          "actualTitle": "SP-002:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-002:no-false-completion",
+          "actualTitle": "SP-002:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-002:reset",
+          "actualTitle": "SP-002:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-002:resume",
+          "actualTitle": "SP-002:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-002:isolation",
+          "actualTitle": "SP-002:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-003",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:SP-003:solution",
+          "actualTitle": "SP-003:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-003:incorrect-action",
+          "actualTitle": "SP-003:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-003:no-false-completion",
+          "actualTitle": "SP-003:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-003:reset",
+          "actualTitle": "SP-003:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-003:resume",
+          "actualTitle": "SP-003:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-003:isolation",
+          "actualTitle": "SP-003:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-004",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:SP-004:solution",
+          "actualTitle": "SP-004:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-004:incorrect-action",
+          "actualTitle": "SP-004:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-004:no-false-completion",
+          "actualTitle": "SP-004:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-004:reset",
+          "actualTitle": "SP-004:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-004:resume",
+          "actualTitle": "SP-004:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-004:isolation",
+          "actualTitle": "SP-004:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-005",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:SP-005:solution",
+          "actualTitle": "SP-005:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-005:incorrect-action",
+          "actualTitle": "SP-005:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-005:no-false-completion",
+          "actualTitle": "SP-005:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-005:reset",
+          "actualTitle": "SP-005:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-005:resume",
+          "actualTitle": "SP-005:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:SP-005:isolation",
+          "actualTitle": "SP-005:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-006",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-006:solution",
+          "actualTitle": "SP-006:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-006:incorrect-action",
+          "actualTitle": "SP-006:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-006:no-false-completion",
+          "actualTitle": "SP-006:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-006:reset",
+          "actualTitle": "SP-006:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-006:resume",
+          "actualTitle": "SP-006:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-006:isolation",
+          "actualTitle": "SP-006:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-007",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-007:solution",
+          "actualTitle": "SP-007:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-007:incorrect-action",
+          "actualTitle": "SP-007:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-007:no-false-completion",
+          "actualTitle": "SP-007:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-007:reset",
+          "actualTitle": "SP-007:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-007:resume",
+          "actualTitle": "SP-007:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-007:isolation",
+          "actualTitle": "SP-007:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-008",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-008:solution",
+          "actualTitle": "SP-008:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-008:incorrect-action",
+          "actualTitle": "SP-008:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-008:no-false-completion",
+          "actualTitle": "SP-008:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-008:reset",
+          "actualTitle": "SP-008:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-008:resume",
+          "actualTitle": "SP-008:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-008:isolation",
+          "actualTitle": "SP-008:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-009",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-009:solution",
+          "actualTitle": "SP-009:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-009:incorrect-action",
+          "actualTitle": "SP-009:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-009:no-false-completion",
+          "actualTitle": "SP-009:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-009:reset",
+          "actualTitle": "SP-009:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-009:resume",
+          "actualTitle": "SP-009:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-009:isolation",
+          "actualTitle": "SP-009:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-010",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-010:solution",
+          "actualTitle": "SP-010:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-010:incorrect-action",
+          "actualTitle": "SP-010:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-010:no-false-completion",
+          "actualTitle": "SP-010:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-010:reset",
+          "actualTitle": "SP-010:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-010:resume",
+          "actualTitle": "SP-010:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-010:isolation",
+          "actualTitle": "SP-010:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-011",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-011:solution",
+          "actualTitle": "SP-011:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-011:incorrect-action",
+          "actualTitle": "SP-011:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-011:no-false-completion",
+          "actualTitle": "SP-011:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-011:reset",
+          "actualTitle": "SP-011:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-011:resume",
+          "actualTitle": "SP-011:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-011:isolation",
+          "actualTitle": "SP-011:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-012",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-012:solution",
+          "actualTitle": "SP-012:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-012:incorrect-action",
+          "actualTitle": "SP-012:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-012:no-false-completion",
+          "actualTitle": "SP-012:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-012:reset",
+          "actualTitle": "SP-012:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-012:resume",
+          "actualTitle": "SP-012:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-012:isolation",
+          "actualTitle": "SP-012:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-013",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-013:solution",
+          "actualTitle": "SP-013:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-013:incorrect-action",
+          "actualTitle": "SP-013:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-013:no-false-completion",
+          "actualTitle": "SP-013:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-013:reset",
+          "actualTitle": "SP-013:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-013:resume",
+          "actualTitle": "SP-013:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-013:isolation",
+          "actualTitle": "SP-013:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-014",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-014:solution",
+          "actualTitle": "SP-014:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-014:incorrect-action",
+          "actualTitle": "SP-014:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-014:no-false-completion",
+          "actualTitle": "SP-014:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-014:reset",
+          "actualTitle": "SP-014:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-014:resume",
+          "actualTitle": "SP-014:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-014:isolation",
+          "actualTitle": "SP-014:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-015",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-015:solution",
+          "actualTitle": "SP-015:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-015:incorrect-action",
+          "actualTitle": "SP-015:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-015:no-false-completion",
+          "actualTitle": "SP-015:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-015:reset",
+          "actualTitle": "SP-015:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-015:resume",
+          "actualTitle": "SP-015:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-015:isolation",
+          "actualTitle": "SP-015:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-016",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-016:solution",
+          "actualTitle": "SP-016:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-016:incorrect-action",
+          "actualTitle": "SP-016:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-016:no-false-completion",
+          "actualTitle": "SP-016:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-016:reset",
+          "actualTitle": "SP-016:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-016:resume",
+          "actualTitle": "SP-016:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-016:isolation",
+          "actualTitle": "SP-016:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-017",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-017:solution",
+          "actualTitle": "SP-017:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-017:incorrect-action",
+          "actualTitle": "SP-017:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-017:no-false-completion",
+          "actualTitle": "SP-017:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-017:reset",
+          "actualTitle": "SP-017:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-017:resume",
+          "actualTitle": "SP-017:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-017:isolation",
+          "actualTitle": "SP-017:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-018",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-018:solution",
+          "actualTitle": "SP-018:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-018:incorrect-action",
+          "actualTitle": "SP-018:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-018:no-false-completion",
+          "actualTitle": "SP-018:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-018:reset",
+          "actualTitle": "SP-018:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-018:resume",
+          "actualTitle": "SP-018:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-018:isolation",
+          "actualTitle": "SP-018:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-019",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-019:solution",
+          "actualTitle": "SP-019:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-019:incorrect-action",
+          "actualTitle": "SP-019:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-019:no-false-completion",
+          "actualTitle": "SP-019:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-019:reset",
+          "actualTitle": "SP-019:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-019:resume",
+          "actualTitle": "SP-019:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-019:isolation",
+          "actualTitle": "SP-019:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-020",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-020:solution",
+          "actualTitle": "SP-020:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-020:incorrect-action",
+          "actualTitle": "SP-020:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-020:no-false-completion",
+          "actualTitle": "SP-020:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-020:reset",
+          "actualTitle": "SP-020:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-020:resume",
+          "actualTitle": "SP-020:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-020:isolation",
+          "actualTitle": "SP-020:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-021",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-021:solution",
+          "actualTitle": "SP-021:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-021:incorrect-action",
+          "actualTitle": "SP-021:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-021:no-false-completion",
+          "actualTitle": "SP-021:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-021:reset",
+          "actualTitle": "SP-021:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-021:resume",
+          "actualTitle": "SP-021:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-021:isolation",
+          "actualTitle": "SP-021:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-022",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-022:solution",
+          "actualTitle": "SP-022:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-022:incorrect-action",
+          "actualTitle": "SP-022:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-022:no-false-completion",
+          "actualTitle": "SP-022:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-022:reset",
+          "actualTitle": "SP-022:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-022:resume",
+          "actualTitle": "SP-022:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-022:isolation",
+          "actualTitle": "SP-022:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-023",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-023:solution",
+          "actualTitle": "SP-023:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-023:incorrect-action",
+          "actualTitle": "SP-023:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-023:no-false-completion",
+          "actualTitle": "SP-023:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-023:reset",
+          "actualTitle": "SP-023:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-023:resume",
+          "actualTitle": "SP-023:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-023:isolation",
+          "actualTitle": "SP-023:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-024",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-024:solution",
+          "actualTitle": "SP-024:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-024:incorrect-action",
+          "actualTitle": "SP-024:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-024:no-false-completion",
+          "actualTitle": "SP-024:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-024:reset",
+          "actualTitle": "SP-024:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-024:resume",
+          "actualTitle": "SP-024:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-024:isolation",
+          "actualTitle": "SP-024:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-025",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-onboarding:SP-025:solution",
+          "actualTitle": "SP-025:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-025:incorrect-action",
+          "actualTitle": "SP-025:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-025:no-false-completion",
+          "actualTitle": "SP-025:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-025:reset",
+          "actualTitle": "SP-025:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-025:resume",
+          "actualTitle": "SP-025:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        },
+        {
+          "test": "v7-onboarding:SP-025:isolation",
+          "actualTitle": "SP-025:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-onboarding.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-026",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-026:solution",
+          "actualTitle": "SP-026:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-026:incorrect-action",
+          "actualTitle": "SP-026:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-026:no-false-completion",
+          "actualTitle": "SP-026:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-026:reset",
+          "actualTitle": "SP-026:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-026:resume",
+          "actualTitle": "SP-026:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-026:isolation",
+          "actualTitle": "SP-026:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-027",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-027:solution",
+          "actualTitle": "SP-027:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-027:incorrect-action",
+          "actualTitle": "SP-027:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-027:no-false-completion",
+          "actualTitle": "SP-027:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-027:reset",
+          "actualTitle": "SP-027:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-027:resume",
+          "actualTitle": "SP-027:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-027:isolation",
+          "actualTitle": "SP-027:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-028",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-028:solution",
+          "actualTitle": "SP-028:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-028:incorrect-action",
+          "actualTitle": "SP-028:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-028:no-false-completion",
+          "actualTitle": "SP-028:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-028:reset",
+          "actualTitle": "SP-028:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-028:resume",
+          "actualTitle": "SP-028:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-028:isolation",
+          "actualTitle": "SP-028:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-029",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-029:solution",
+          "actualTitle": "SP-029:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-029:incorrect-action",
+          "actualTitle": "SP-029:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-029:no-false-completion",
+          "actualTitle": "SP-029:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-029:reset",
+          "actualTitle": "SP-029:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-029:resume",
+          "actualTitle": "SP-029:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-029:isolation",
+          "actualTitle": "SP-029:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-030",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-030:solution",
+          "actualTitle": "SP-030:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-030:incorrect-action",
+          "actualTitle": "SP-030:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-030:no-false-completion",
+          "actualTitle": "SP-030:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-030:reset",
+          "actualTitle": "SP-030:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-030:resume",
+          "actualTitle": "SP-030:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-030:isolation",
+          "actualTitle": "SP-030:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-031",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-031:solution",
+          "actualTitle": "SP-031:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-031:incorrect-action",
+          "actualTitle": "SP-031:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-031:no-false-completion",
+          "actualTitle": "SP-031:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-031:reset",
+          "actualTitle": "SP-031:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-031:resume",
+          "actualTitle": "SP-031:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-031:isolation",
+          "actualTitle": "SP-031:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-032",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-032:solution",
+          "actualTitle": "SP-032:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-032:incorrect-action",
+          "actualTitle": "SP-032:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-032:no-false-completion",
+          "actualTitle": "SP-032:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-032:reset",
+          "actualTitle": "SP-032:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-032:resume",
+          "actualTitle": "SP-032:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-032:isolation",
+          "actualTitle": "SP-032:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-033",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-033:solution",
+          "actualTitle": "SP-033:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-033:incorrect-action",
+          "actualTitle": "SP-033:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-033:no-false-completion",
+          "actualTitle": "SP-033:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-033:reset",
+          "actualTitle": "SP-033:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-033:resume",
+          "actualTitle": "SP-033:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-033:isolation",
+          "actualTitle": "SP-033:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-034",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:SP-034:solution",
+          "actualTitle": "SP-034:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-034:incorrect-action",
+          "actualTitle": "SP-034:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-034:no-false-completion",
+          "actualTitle": "SP-034:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-034:reset",
+          "actualTitle": "SP-034:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-034:resume",
+          "actualTitle": "SP-034:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:SP-034:isolation",
+          "actualTitle": "SP-034:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-035",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-035:solution",
+          "actualTitle": "SP-035:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-035:incorrect-action",
+          "actualTitle": "SP-035:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-035:no-false-completion",
+          "actualTitle": "SP-035:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-035:reset",
+          "actualTitle": "SP-035:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-035:resume",
+          "actualTitle": "SP-035:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-035:isolation",
+          "actualTitle": "SP-035:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-036",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-036:solution",
+          "actualTitle": "SP-036:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-036:incorrect-action",
+          "actualTitle": "SP-036:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-036:no-false-completion",
+          "actualTitle": "SP-036:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-036:reset",
+          "actualTitle": "SP-036:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-036:resume",
+          "actualTitle": "SP-036:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-036:isolation",
+          "actualTitle": "SP-036:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-037",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-037:solution",
+          "actualTitle": "SP-037:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-037:incorrect-action",
+          "actualTitle": "SP-037:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-037:no-false-completion",
+          "actualTitle": "SP-037:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-037:reset",
+          "actualTitle": "SP-037:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-037:resume",
+          "actualTitle": "SP-037:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-037:isolation",
+          "actualTitle": "SP-037:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-038",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-038:solution",
+          "actualTitle": "SP-038:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-038:incorrect-action",
+          "actualTitle": "SP-038:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-038:no-false-completion",
+          "actualTitle": "SP-038:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-038:reset",
+          "actualTitle": "SP-038:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-038:resume",
+          "actualTitle": "SP-038:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-038:isolation",
+          "actualTitle": "SP-038:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-039",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-039:solution",
+          "actualTitle": "SP-039:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-039:incorrect-action",
+          "actualTitle": "SP-039:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-039:no-false-completion",
+          "actualTitle": "SP-039:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-039:reset",
+          "actualTitle": "SP-039:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-039:resume",
+          "actualTitle": "SP-039:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-039:isolation",
+          "actualTitle": "SP-039:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-040",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-040:solution",
+          "actualTitle": "SP-040:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-040:incorrect-action",
+          "actualTitle": "SP-040:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-040:no-false-completion",
+          "actualTitle": "SP-040:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-040:reset",
+          "actualTitle": "SP-040:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-040:resume",
+          "actualTitle": "SP-040:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-040:isolation",
+          "actualTitle": "SP-040:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-041",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-041:solution",
+          "actualTitle": "SP-041:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-041:incorrect-action",
+          "actualTitle": "SP-041:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-041:no-false-completion",
+          "actualTitle": "SP-041:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-041:reset",
+          "actualTitle": "SP-041:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-041:resume",
+          "actualTitle": "SP-041:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-041:isolation",
+          "actualTitle": "SP-041:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-042",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-042:solution",
+          "actualTitle": "SP-042:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-042:incorrect-action",
+          "actualTitle": "SP-042:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-042:no-false-completion",
+          "actualTitle": "SP-042:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-042:reset",
+          "actualTitle": "SP-042:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-042:resume",
+          "actualTitle": "SP-042:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-042:isolation",
+          "actualTitle": "SP-042:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-043",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-043:solution",
+          "actualTitle": "SP-043:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-043:incorrect-action",
+          "actualTitle": "SP-043:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-043:no-false-completion",
+          "actualTitle": "SP-043:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-043:reset",
+          "actualTitle": "SP-043:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-043:resume",
+          "actualTitle": "SP-043:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-043:isolation",
+          "actualTitle": "SP-043:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-044",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-044:solution",
+          "actualTitle": "SP-044:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-044:incorrect-action",
+          "actualTitle": "SP-044:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-044:no-false-completion",
+          "actualTitle": "SP-044:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-044:reset",
+          "actualTitle": "SP-044:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-044:resume",
+          "actualTitle": "SP-044:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-044:isolation",
+          "actualTitle": "SP-044:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-045",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-045:solution",
+          "actualTitle": "SP-045:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-045:incorrect-action",
+          "actualTitle": "SP-045:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-045:no-false-completion",
+          "actualTitle": "SP-045:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-045:reset",
+          "actualTitle": "SP-045:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-045:resume",
+          "actualTitle": "SP-045:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-045:isolation",
+          "actualTitle": "SP-045:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-046",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-reports:SP-046:solution",
+          "actualTitle": "SP-046:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-046:incorrect-action",
+          "actualTitle": "SP-046:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-046:no-false-completion",
+          "actualTitle": "SP-046:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-046:reset",
+          "actualTitle": "SP-046:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-046:resume",
+          "actualTitle": "SP-046:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        },
+        {
+          "test": "v7-reports:SP-046:isolation",
+          "actualTitle": "SP-046:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-reports.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-047",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-047:solution",
+          "actualTitle": "SP-047:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-047:incorrect-action",
+          "actualTitle": "SP-047:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-047:no-false-completion",
+          "actualTitle": "SP-047:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-047:reset",
+          "actualTitle": "SP-047:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-047:resume",
+          "actualTitle": "SP-047:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-047:isolation",
+          "actualTitle": "SP-047:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-048",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-048:solution",
+          "actualTitle": "SP-048:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-048:incorrect-action",
+          "actualTitle": "SP-048:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-048:no-false-completion",
+          "actualTitle": "SP-048:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-048:reset",
+          "actualTitle": "SP-048:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-048:resume",
+          "actualTitle": "SP-048:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-048:isolation",
+          "actualTitle": "SP-048:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-049",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-049:solution",
+          "actualTitle": "SP-049:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-049:incorrect-action",
+          "actualTitle": "SP-049:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-049:no-false-completion",
+          "actualTitle": "SP-049:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-049:reset",
+          "actualTitle": "SP-049:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-049:resume",
+          "actualTitle": "SP-049:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-049:isolation",
+          "actualTitle": "SP-049:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-050",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-050:solution",
+          "actualTitle": "SP-050:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-050:incorrect-action",
+          "actualTitle": "SP-050:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-050:no-false-completion",
+          "actualTitle": "SP-050:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-050:reset",
+          "actualTitle": "SP-050:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-050:resume",
+          "actualTitle": "SP-050:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-050:isolation",
+          "actualTitle": "SP-050:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-051",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-051:solution",
+          "actualTitle": "SP-051:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-051:incorrect-action",
+          "actualTitle": "SP-051:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-051:no-false-completion",
+          "actualTitle": "SP-051:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-051:reset",
+          "actualTitle": "SP-051:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-051:resume",
+          "actualTitle": "SP-051:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-051:isolation",
+          "actualTitle": "SP-051:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-052",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-052:solution",
+          "actualTitle": "SP-052:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-052:incorrect-action",
+          "actualTitle": "SP-052:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-052:no-false-completion",
+          "actualTitle": "SP-052:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-052:reset",
+          "actualTitle": "SP-052:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-052:resume",
+          "actualTitle": "SP-052:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-052:isolation",
+          "actualTitle": "SP-052:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-053",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-053:solution",
+          "actualTitle": "SP-053:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-053:incorrect-action",
+          "actualTitle": "SP-053:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-053:no-false-completion",
+          "actualTitle": "SP-053:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-053:reset",
+          "actualTitle": "SP-053:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-053:resume",
+          "actualTitle": "SP-053:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-053:isolation",
+          "actualTitle": "SP-053:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-054",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-dashboards:SP-054:solution",
+          "actualTitle": "SP-054:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-054:incorrect-action",
+          "actualTitle": "SP-054:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-054:no-false-completion",
+          "actualTitle": "SP-054:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-054:reset",
+          "actualTitle": "SP-054:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-054:resume",
+          "actualTitle": "SP-054:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        },
+        {
+          "test": "v7-dashboards:SP-054:isolation",
+          "actualTitle": "SP-054:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-dashboards.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-055",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-055:solution",
+          "actualTitle": "SP-055:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-055:incorrect-action",
+          "actualTitle": "SP-055:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-055:no-false-completion",
+          "actualTitle": "SP-055:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-055:reset",
+          "actualTitle": "SP-055:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-055:resume",
+          "actualTitle": "SP-055:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-055:isolation",
+          "actualTitle": "SP-055:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-056",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-056:solution",
+          "actualTitle": "SP-056:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-056:incorrect-action",
+          "actualTitle": "SP-056:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-056:no-false-completion",
+          "actualTitle": "SP-056:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-056:reset",
+          "actualTitle": "SP-056:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-056:resume",
+          "actualTitle": "SP-056:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-056:isolation",
+          "actualTitle": "SP-056:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-057",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-057:solution",
+          "actualTitle": "SP-057:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-057:incorrect-action",
+          "actualTitle": "SP-057:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-057:no-false-completion",
+          "actualTitle": "SP-057:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-057:reset",
+          "actualTitle": "SP-057:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-057:resume",
+          "actualTitle": "SP-057:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-057:isolation",
+          "actualTitle": "SP-057:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-058",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-058:solution",
+          "actualTitle": "SP-058:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-058:incorrect-action",
+          "actualTitle": "SP-058:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-058:no-false-completion",
+          "actualTitle": "SP-058:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-058:reset",
+          "actualTitle": "SP-058:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-058:resume",
+          "actualTitle": "SP-058:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-058:isolation",
+          "actualTitle": "SP-058:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-059",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-059:solution",
+          "actualTitle": "SP-059:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-059:incorrect-action",
+          "actualTitle": "SP-059:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-059:no-false-completion",
+          "actualTitle": "SP-059:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-059:reset",
+          "actualTitle": "SP-059:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-059:resume",
+          "actualTitle": "SP-059:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-059:isolation",
+          "actualTitle": "SP-059:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-060",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-060:solution",
+          "actualTitle": "SP-060:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-060:incorrect-action",
+          "actualTitle": "SP-060:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-060:no-false-completion",
+          "actualTitle": "SP-060:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-060:reset",
+          "actualTitle": "SP-060:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-060:resume",
+          "actualTitle": "SP-060:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-060:isolation",
+          "actualTitle": "SP-060:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-061",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-061:solution",
+          "actualTitle": "SP-061:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-061:incorrect-action",
+          "actualTitle": "SP-061:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-061:no-false-completion",
+          "actualTitle": "SP-061:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-061:reset",
+          "actualTitle": "SP-061:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-061:resume",
+          "actualTitle": "SP-061:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-061:isolation",
+          "actualTitle": "SP-061:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-062",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-062:solution",
+          "actualTitle": "SP-062:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-062:incorrect-action",
+          "actualTitle": "SP-062:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-062:no-false-completion",
+          "actualTitle": "SP-062:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-062:reset",
+          "actualTitle": "SP-062:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-062:resume",
+          "actualTitle": "SP-062:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-062:isolation",
+          "actualTitle": "SP-062:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-063",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-063:solution",
+          "actualTitle": "SP-063:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-063:incorrect-action",
+          "actualTitle": "SP-063:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-063:no-false-completion",
+          "actualTitle": "SP-063:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-063:reset",
+          "actualTitle": "SP-063:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-063:resume",
+          "actualTitle": "SP-063:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-063:isolation",
+          "actualTitle": "SP-063:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-064",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-064:solution",
+          "actualTitle": "SP-064:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-064:incorrect-action",
+          "actualTitle": "SP-064:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-064:no-false-completion",
+          "actualTitle": "SP-064:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-064:reset",
+          "actualTitle": "SP-064:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-064:resume",
+          "actualTitle": "SP-064:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-064:isolation",
+          "actualTitle": "SP-064:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-065",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-065:solution",
+          "actualTitle": "SP-065:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-065:incorrect-action",
+          "actualTitle": "SP-065:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-065:no-false-completion",
+          "actualTitle": "SP-065:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-065:reset",
+          "actualTitle": "SP-065:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-065:resume",
+          "actualTitle": "SP-065:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-065:isolation",
+          "actualTitle": "SP-065:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-066",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-066:solution",
+          "actualTitle": "SP-066:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-066:incorrect-action",
+          "actualTitle": "SP-066:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-066:no-false-completion",
+          "actualTitle": "SP-066:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-066:reset",
+          "actualTitle": "SP-066:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-066:resume",
+          "actualTitle": "SP-066:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-066:isolation",
+          "actualTitle": "SP-066:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-067",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-067:solution",
+          "actualTitle": "SP-067:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-067:incorrect-action",
+          "actualTitle": "SP-067:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-067:no-false-completion",
+          "actualTitle": "SP-067:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-067:reset",
+          "actualTitle": "SP-067:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-067:resume",
+          "actualTitle": "SP-067:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-067:isolation",
+          "actualTitle": "SP-067:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-068",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-068:solution",
+          "actualTitle": "SP-068:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-068:incorrect-action",
+          "actualTitle": "SP-068:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-068:no-false-completion",
+          "actualTitle": "SP-068:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-068:reset",
+          "actualTitle": "SP-068:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-068:resume",
+          "actualTitle": "SP-068:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "SP-068:isolation",
+          "actualTitle": "SP-068:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-069",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-069:solution",
+          "actualTitle": "SP-069:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-069:incorrect-action",
+          "actualTitle": "SP-069:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-069:no-false-completion",
+          "actualTitle": "SP-069:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-069:reset",
+          "actualTitle": "SP-069:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-069:resume",
+          "actualTitle": "SP-069:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-069:isolation",
+          "actualTitle": "SP-069:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-070",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-070:solution",
+          "actualTitle": "SP-070:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-070:incorrect-action",
+          "actualTitle": "SP-070:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-070:no-false-completion",
+          "actualTitle": "SP-070:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-070:reset",
+          "actualTitle": "SP-070:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-070:resume",
+          "actualTitle": "SP-070:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-070:isolation",
+          "actualTitle": "SP-070:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-071",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-071:solution",
+          "actualTitle": "SP-071:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-071:incorrect-action",
+          "actualTitle": "SP-071:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-071:no-false-completion",
+          "actualTitle": "SP-071:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-071:reset",
+          "actualTitle": "SP-071:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-071:resume",
+          "actualTitle": "SP-071:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-071:isolation",
+          "actualTitle": "SP-071:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-072",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-072:solution",
+          "actualTitle": "SP-072:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-072:incorrect-action",
+          "actualTitle": "SP-072:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-072:no-false-completion",
+          "actualTitle": "SP-072:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-072:reset",
+          "actualTitle": "SP-072:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-072:resume",
+          "actualTitle": "SP-072:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-072:isolation",
+          "actualTitle": "SP-072:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-073",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-073:solution",
+          "actualTitle": "SP-073:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-073:incorrect-action",
+          "actualTitle": "SP-073:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-073:no-false-completion",
+          "actualTitle": "SP-073:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-073:reset",
+          "actualTitle": "SP-073:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-073:resume",
+          "actualTitle": "SP-073:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-073:isolation",
+          "actualTitle": "SP-073:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-074",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-074:solution",
+          "actualTitle": "SP-074:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-074:incorrect-action",
+          "actualTitle": "SP-074:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-074:no-false-completion",
+          "actualTitle": "SP-074:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-074:reset",
+          "actualTitle": "SP-074:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-074:resume",
+          "actualTitle": "SP-074:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-074:isolation",
+          "actualTitle": "SP-074:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-075",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-075:solution",
+          "actualTitle": "SP-075:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-075:incorrect-action",
+          "actualTitle": "SP-075:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-075:no-false-completion",
+          "actualTitle": "SP-075:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-075:reset",
+          "actualTitle": "SP-075:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-075:resume",
+          "actualTitle": "SP-075:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-075:isolation",
+          "actualTitle": "SP-075:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-076",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-076:solution",
+          "actualTitle": "SP-076:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-076:incorrect-action",
+          "actualTitle": "SP-076:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-076:no-false-completion",
+          "actualTitle": "SP-076:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-076:reset",
+          "actualTitle": "SP-076:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-076:resume",
+          "actualTitle": "SP-076:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-076:isolation",
+          "actualTitle": "SP-076:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-077",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-077:solution",
+          "actualTitle": "SP-077:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-077:incorrect-action",
+          "actualTitle": "SP-077:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-077:no-false-completion",
+          "actualTitle": "SP-077:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-077:reset",
+          "actualTitle": "SP-077:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-077:resume",
+          "actualTitle": "SP-077:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-077:isolation",
+          "actualTitle": "SP-077:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-078",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-078:solution",
+          "actualTitle": "SP-078:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-078:incorrect-action",
+          "actualTitle": "SP-078:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-078:no-false-completion",
+          "actualTitle": "SP-078:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-078:reset",
+          "actualTitle": "SP-078:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-078:resume",
+          "actualTitle": "SP-078:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-078:isolation",
+          "actualTitle": "SP-078:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-079",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-079:solution",
+          "actualTitle": "SP-079:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-079:incorrect-action",
+          "actualTitle": "SP-079:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-079:no-false-completion",
+          "actualTitle": "SP-079:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-079:reset",
+          "actualTitle": "SP-079:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-079:resume",
+          "actualTitle": "SP-079:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-079:isolation",
+          "actualTitle": "SP-079:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-080",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-080:solution",
+          "actualTitle": "SP-080:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-080:incorrect-action",
+          "actualTitle": "SP-080:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-080:no-false-completion",
+          "actualTitle": "SP-080:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-080:reset",
+          "actualTitle": "SP-080:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-080:resume",
+          "actualTitle": "SP-080:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        },
+        {
+          "test": "SP-080:isolation",
+          "actualTitle": "SP-080:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-monitoring.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-081",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-081:solution",
+          "actualTitle": "SP-081:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-081:incorrect-action",
+          "actualTitle": "SP-081:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-081:no-false-completion",
+          "actualTitle": "SP-081:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-081:reset",
+          "actualTitle": "SP-081:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-081:resume",
+          "actualTitle": "SP-081:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-081:isolation",
+          "actualTitle": "SP-081:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-082",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-082:solution",
+          "actualTitle": "SP-082:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-082:incorrect-action",
+          "actualTitle": "SP-082:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-082:no-false-completion",
+          "actualTitle": "SP-082:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-082:reset",
+          "actualTitle": "SP-082:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-082:resume",
+          "actualTitle": "SP-082:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        },
+        {
+          "test": "SP-082:isolation",
+          "actualTitle": "SP-082:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-identity.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-083",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-083:solution",
+          "actualTitle": "SP-083:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-083:incorrect-action",
+          "actualTitle": "SP-083:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-083:no-false-completion",
+          "actualTitle": "SP-083:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-083:reset",
+          "actualTitle": "SP-083:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-083:resume",
+          "actualTitle": "SP-083:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-083:isolation",
+          "actualTitle": "SP-083:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-084",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-084:solution",
+          "actualTitle": "SP-084:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-084:incorrect-action",
+          "actualTitle": "SP-084:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-084:no-false-completion",
+          "actualTitle": "SP-084:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-084:reset",
+          "actualTitle": "SP-084:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-084:resume",
+          "actualTitle": "SP-084:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-084:isolation",
+          "actualTitle": "SP-084:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-085",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-085:solution",
+          "actualTitle": "SP-085:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-085:incorrect-action",
+          "actualTitle": "SP-085:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-085:no-false-completion",
+          "actualTitle": "SP-085:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-085:reset",
+          "actualTitle": "SP-085:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-085:resume",
+          "actualTitle": "SP-085:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-085:isolation",
+          "actualTitle": "SP-085:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-086",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-086:solution",
+          "actualTitle": "SP-086:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-086:incorrect-action",
+          "actualTitle": "SP-086:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-086:no-false-completion",
+          "actualTitle": "SP-086:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-086:reset",
+          "actualTitle": "SP-086:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-086:resume",
+          "actualTitle": "SP-086:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-086:isolation",
+          "actualTitle": "SP-086:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-087",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-087:solution",
+          "actualTitle": "SP-087:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-087:incorrect-action",
+          "actualTitle": "SP-087:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-087:no-false-completion",
+          "actualTitle": "SP-087:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-087:reset",
+          "actualTitle": "SP-087:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-087:resume",
+          "actualTitle": "SP-087:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-087:isolation",
+          "actualTitle": "SP-087:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-088",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-088:solution",
+          "actualTitle": "SP-088:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-088:incorrect-action",
+          "actualTitle": "SP-088:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-088:no-false-completion",
+          "actualTitle": "SP-088:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-088:reset",
+          "actualTitle": "SP-088:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-088:resume",
+          "actualTitle": "SP-088:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        },
+        {
+          "test": "SP-088:isolation",
+          "actualTitle": "SP-088:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-integrations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-089",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-089:solution",
+          "actualTitle": "SP-089:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-089:incorrect-action",
+          "actualTitle": "SP-089:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-089:no-false-completion",
+          "actualTitle": "SP-089:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-089:reset",
+          "actualTitle": "SP-089:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-089:resume",
+          "actualTitle": "SP-089:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-089:isolation",
+          "actualTitle": "SP-089:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-090",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-090:solution",
+          "actualTitle": "SP-090:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-090:incorrect-action",
+          "actualTitle": "SP-090:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-090:no-false-completion",
+          "actualTitle": "SP-090:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-090:reset",
+          "actualTitle": "SP-090:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-090:resume",
+          "actualTitle": "SP-090:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-090:isolation",
+          "actualTitle": "SP-090:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-091",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-091:solution",
+          "actualTitle": "SP-091:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-091:incorrect-action",
+          "actualTitle": "SP-091:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-091:no-false-completion",
+          "actualTitle": "SP-091:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-091:reset",
+          "actualTitle": "SP-091:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-091:resume",
+          "actualTitle": "SP-091:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-091:isolation",
+          "actualTitle": "SP-091:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "SP-092",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "SP-092:solution",
+          "actualTitle": "SP-092:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-092:incorrect-action",
+          "actualTitle": "SP-092:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-092:no-false-completion",
+          "actualTitle": "SP-092:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-092:reset",
+          "actualTitle": "SP-092:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-092:resume",
+          "actualTitle": "SP-092:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        },
+        {
+          "test": "SP-092:isolation",
+          "actualTitle": "SP-092:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-maintenance.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-01",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-01:solution",
+          "actualTitle": "AU-01:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-01:incorrect-action",
+          "actualTitle": "AU-01:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-01:no-false-completion",
+          "actualTitle": "AU-01:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-01:reset",
+          "actualTitle": "AU-01:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-01:resume",
+          "actualTitle": "AU-01:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-01:isolation",
+          "actualTitle": "AU-01:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-02",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-02:solution",
+          "actualTitle": "AU-02:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-02:incorrect-action",
+          "actualTitle": "AU-02:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-02:no-false-completion",
+          "actualTitle": "AU-02:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-02:reset",
+          "actualTitle": "AU-02:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-02:resume",
+          "actualTitle": "AU-02:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-02:isolation",
+          "actualTitle": "AU-02:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-03",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-03:solution",
+          "actualTitle": "AU-03:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-03:incorrect-action",
+          "actualTitle": "AU-03:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-03:no-false-completion",
+          "actualTitle": "AU-03:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-03:reset",
+          "actualTitle": "AU-03:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-03:resume",
+          "actualTitle": "AU-03:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-03:isolation",
+          "actualTitle": "AU-03:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-04",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-04:solution",
+          "actualTitle": "AU-04:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-04:incorrect-action",
+          "actualTitle": "AU-04:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-04:no-false-completion",
+          "actualTitle": "AU-04:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-04:reset",
+          "actualTitle": "AU-04:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-04:resume",
+          "actualTitle": "AU-04:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-04:isolation",
+          "actualTitle": "AU-04:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-05",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-05:solution",
+          "actualTitle": "AU-05:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-05:incorrect-action",
+          "actualTitle": "AU-05:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-05:no-false-completion",
+          "actualTitle": "AU-05:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-05:reset",
+          "actualTitle": "AU-05:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-05:resume",
+          "actualTitle": "AU-05:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-05:isolation",
+          "actualTitle": "AU-05:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-06",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-06:solution",
+          "actualTitle": "AU-06:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-06:incorrect-action",
+          "actualTitle": "AU-06:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-06:no-false-completion",
+          "actualTitle": "AU-06:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-06:reset",
+          "actualTitle": "AU-06:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-06:resume",
+          "actualTitle": "AU-06:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-06:isolation",
+          "actualTitle": "AU-06:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-07",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-07:solution",
+          "actualTitle": "AU-07:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-07:incorrect-action",
+          "actualTitle": "AU-07:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-07:no-false-completion",
+          "actualTitle": "AU-07:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-07:reset",
+          "actualTitle": "AU-07:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-07:resume",
+          "actualTitle": "AU-07:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-07:isolation",
+          "actualTitle": "AU-07:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-08",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-08:solution",
+          "actualTitle": "AU-08:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-08:incorrect-action",
+          "actualTitle": "AU-08:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-08:no-false-completion",
+          "actualTitle": "AU-08:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-08:reset",
+          "actualTitle": "AU-08:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-08:resume",
+          "actualTitle": "AU-08:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-08:isolation",
+          "actualTitle": "AU-08:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-09",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-09:solution",
+          "actualTitle": "AU-09:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-09:incorrect-action",
+          "actualTitle": "AU-09:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-09:no-false-completion",
+          "actualTitle": "AU-09:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-09:reset",
+          "actualTitle": "AU-09:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-09:resume",
+          "actualTitle": "AU-09:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-09:isolation",
+          "actualTitle": "AU-09:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-10",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-10:solution",
+          "actualTitle": "AU-10:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-10:incorrect-action",
+          "actualTitle": "AU-10:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-10:no-false-completion",
+          "actualTitle": "AU-10:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-10:reset",
+          "actualTitle": "AU-10:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-10:resume",
+          "actualTitle": "AU-10:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-10:isolation",
+          "actualTitle": "AU-10:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-11",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-11:solution",
+          "actualTitle": "AU-11:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-11:incorrect-action",
+          "actualTitle": "AU-11:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-11:no-false-completion",
+          "actualTitle": "AU-11:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-11:reset",
+          "actualTitle": "AU-11:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-11:resume",
+          "actualTitle": "AU-11:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-11:isolation",
+          "actualTitle": "AU-11:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-12",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-12:solution",
+          "actualTitle": "AU-12:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-12:incorrect-action",
+          "actualTitle": "AU-12:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-12:no-false-completion",
+          "actualTitle": "AU-12:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-12:reset",
+          "actualTitle": "AU-12:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-12:resume",
+          "actualTitle": "AU-12:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-12:isolation",
+          "actualTitle": "AU-12:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-13",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-13:solution",
+          "actualTitle": "AU-13:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-13:incorrect-action",
+          "actualTitle": "AU-13:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-13:no-false-completion",
+          "actualTitle": "AU-13:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-13:reset",
+          "actualTitle": "AU-13:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-13:resume",
+          "actualTitle": "AU-13:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-13:isolation",
+          "actualTitle": "AU-13:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-14",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-foundations:AU-14:solution",
+          "actualTitle": "AU-14:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-14:incorrect-action",
+          "actualTitle": "AU-14:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-14:no-false-completion",
+          "actualTitle": "AU-14:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-14:reset",
+          "actualTitle": "AU-14:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-14:resume",
+          "actualTitle": "AU-14:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        },
+        {
+          "test": "v7-foundations:AU-14:isolation",
+          "actualTitle": "AU-14:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-foundations.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-15",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-15:solution",
+          "actualTitle": "AU-15:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-15:incorrect-action",
+          "actualTitle": "AU-15:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-15:no-false-completion",
+          "actualTitle": "AU-15:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-15:reset",
+          "actualTitle": "AU-15:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-15:resume",
+          "actualTitle": "AU-15:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-15:isolation",
+          "actualTitle": "AU-15:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-16",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-16:solution",
+          "actualTitle": "AU-16:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-16:incorrect-action",
+          "actualTitle": "AU-16:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-16:no-false-completion",
+          "actualTitle": "AU-16:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-16:reset",
+          "actualTitle": "AU-16:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-16:resume",
+          "actualTitle": "AU-16:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-16:isolation",
+          "actualTitle": "AU-16:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-17",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-17:solution",
+          "actualTitle": "AU-17:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-17:incorrect-action",
+          "actualTitle": "AU-17:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-17:no-false-completion",
+          "actualTitle": "AU-17:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-17:reset",
+          "actualTitle": "AU-17:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-17:resume",
+          "actualTitle": "AU-17:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-17:isolation",
+          "actualTitle": "AU-17:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-18",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-18:solution",
+          "actualTitle": "AU-18:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-18:incorrect-action",
+          "actualTitle": "AU-18:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-18:no-false-completion",
+          "actualTitle": "AU-18:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-18:reset",
+          "actualTitle": "AU-18:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-18:resume",
+          "actualTitle": "AU-18:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-18:isolation",
+          "actualTitle": "AU-18:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-19",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-19:solution",
+          "actualTitle": "AU-19:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-19:incorrect-action",
+          "actualTitle": "AU-19:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-19:no-false-completion",
+          "actualTitle": "AU-19:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-19:reset",
+          "actualTitle": "AU-19:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-19:resume",
+          "actualTitle": "AU-19:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-19:isolation",
+          "actualTitle": "AU-19:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-20",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-20:solution",
+          "actualTitle": "AU-20:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-20:incorrect-action",
+          "actualTitle": "AU-20:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-20:no-false-completion",
+          "actualTitle": "AU-20:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-20:reset",
+          "actualTitle": "AU-20:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-20:resume",
+          "actualTitle": "AU-20:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-20:isolation",
+          "actualTitle": "AU-20:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-21",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-21:solution",
+          "actualTitle": "AU-21:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-21:incorrect-action",
+          "actualTitle": "AU-21:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-21:no-false-completion",
+          "actualTitle": "AU-21:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-21:reset",
+          "actualTitle": "AU-21:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-21:resume",
+          "actualTitle": "AU-21:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-21:isolation",
+          "actualTitle": "AU-21:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-22",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-22:solution",
+          "actualTitle": "AU-22:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-22:incorrect-action",
+          "actualTitle": "AU-22:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-22:no-false-completion",
+          "actualTitle": "AU-22:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-22:reset",
+          "actualTitle": "AU-22:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-22:resume",
+          "actualTitle": "AU-22:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-22:isolation",
+          "actualTitle": "AU-22:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-23",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-23:solution",
+          "actualTitle": "AU-23:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-23:incorrect-action",
+          "actualTitle": "AU-23:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-23:no-false-completion",
+          "actualTitle": "AU-23:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-23:reset",
+          "actualTitle": "AU-23:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-23:resume",
+          "actualTitle": "AU-23:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-23:isolation",
+          "actualTitle": "AU-23:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-24",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-24:solution",
+          "actualTitle": "AU-24:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-24:incorrect-action",
+          "actualTitle": "AU-24:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-24:no-false-completion",
+          "actualTitle": "AU-24:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-24:reset",
+          "actualTitle": "AU-24:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-24:resume",
+          "actualTitle": "AU-24:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-24:isolation",
+          "actualTitle": "AU-24:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-25",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-25:solution",
+          "actualTitle": "AU-25:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-25:incorrect-action",
+          "actualTitle": "AU-25:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-25:no-false-completion",
+          "actualTitle": "AU-25:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-25:reset",
+          "actualTitle": "AU-25:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-25:resume",
+          "actualTitle": "AU-25:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-25:isolation",
+          "actualTitle": "AU-25:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-26",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-26:solution",
+          "actualTitle": "AU-26:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-26:incorrect-action",
+          "actualTitle": "AU-26:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-26:no-false-completion",
+          "actualTitle": "AU-26:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-26:reset",
+          "actualTitle": "AU-26:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-26:resume",
+          "actualTitle": "AU-26:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-26:isolation",
+          "actualTitle": "AU-26:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-27",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-automation:AU-27:solution",
+          "actualTitle": "AU-27:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-27:incorrect-action",
+          "actualTitle": "AU-27:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-27:no-false-completion",
+          "actualTitle": "AU-27:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-27:reset",
+          "actualTitle": "AU-27:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-27:resume",
+          "actualTitle": "AU-27:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        },
+        {
+          "test": "v7-automation:AU-27:isolation",
+          "actualTitle": "AU-27:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-28",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-28:solution",
+          "actualTitle": "AU-28:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-28:incorrect-action",
+          "actualTitle": "AU-28:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-28:no-false-completion",
+          "actualTitle": "AU-28:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-28:reset",
+          "actualTitle": "AU-28:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-28:resume",
+          "actualTitle": "AU-28:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-28:isolation",
+          "actualTitle": "AU-28:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-29",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-29:solution",
+          "actualTitle": "AU-29:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-29:incorrect-action",
+          "actualTitle": "AU-29:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-29:no-false-completion",
+          "actualTitle": "AU-29:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-29:reset",
+          "actualTitle": "AU-29:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-29:resume",
+          "actualTitle": "AU-29:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-29:isolation",
+          "actualTitle": "AU-29:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-30",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-30:solution",
+          "actualTitle": "AU-30:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-30:incorrect-action",
+          "actualTitle": "AU-30:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-30:no-false-completion",
+          "actualTitle": "AU-30:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-30:reset",
+          "actualTitle": "AU-30:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-30:resume",
+          "actualTitle": "AU-30:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-30:isolation",
+          "actualTitle": "AU-30:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-31",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-31:solution",
+          "actualTitle": "AU-31:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-31:incorrect-action",
+          "actualTitle": "AU-31:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-31:no-false-completion",
+          "actualTitle": "AU-31:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-31:reset",
+          "actualTitle": "AU-31:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-31:resume",
+          "actualTitle": "AU-31:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-31:isolation",
+          "actualTitle": "AU-31:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-32",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-32:solution",
+          "actualTitle": "AU-32:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-32:incorrect-action",
+          "actualTitle": "AU-32:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-32:no-false-completion",
+          "actualTitle": "AU-32:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-32:reset",
+          "actualTitle": "AU-32:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-32:resume",
+          "actualTitle": "AU-32:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-32:isolation",
+          "actualTitle": "AU-32:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-33",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-33:solution",
+          "actualTitle": "AU-33:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-33:incorrect-action",
+          "actualTitle": "AU-33:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-33:no-false-completion",
+          "actualTitle": "AU-33:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-33:reset",
+          "actualTitle": "AU-33:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-33:resume",
+          "actualTitle": "AU-33:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-33:isolation",
+          "actualTitle": "AU-33:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-34",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-34:solution",
+          "actualTitle": "AU-34:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-34:incorrect-action",
+          "actualTitle": "AU-34:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-34:no-false-completion",
+          "actualTitle": "AU-34:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-34:reset",
+          "actualTitle": "AU-34:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-34:resume",
+          "actualTitle": "AU-34:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-34:isolation",
+          "actualTitle": "AU-34:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-35",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "v7-forwarders:AU-35:solution",
+          "actualTitle": "AU-35:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-35:incorrect-action",
+          "actualTitle": "AU-35:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-35:no-false-completion",
+          "actualTitle": "AU-35:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-35:reset",
+          "actualTitle": "AU-35:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-35:resume",
+          "actualTitle": "AU-35:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        },
+        {
+          "test": "v7-forwarders:AU-35:isolation",
+          "actualTitle": "AU-35:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-forwarders.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-36",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-36:solution",
+          "actualTitle": "AU-36:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-36:incorrect-action",
+          "actualTitle": "AU-36:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-36:no-false-completion",
+          "actualTitle": "AU-36:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-36:reset",
+          "actualTitle": "AU-36:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-36:resume",
+          "actualTitle": "AU-36:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-36:isolation",
+          "actualTitle": "AU-36:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-37",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-37:solution",
+          "actualTitle": "AU-37:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-37:incorrect-action",
+          "actualTitle": "AU-37:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-37:no-false-completion",
+          "actualTitle": "AU-37:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-37:reset",
+          "actualTitle": "AU-37:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-37:resume",
+          "actualTitle": "AU-37:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-37:isolation",
+          "actualTitle": "AU-37:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-38",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-38:solution",
+          "actualTitle": "AU-38:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-38:incorrect-action",
+          "actualTitle": "AU-38:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-38:no-false-completion",
+          "actualTitle": "AU-38:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-38:reset",
+          "actualTitle": "AU-38:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-38:resume",
+          "actualTitle": "AU-38:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-38:isolation",
+          "actualTitle": "AU-38:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-39",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-39:solution",
+          "actualTitle": "AU-39:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-39:incorrect-action",
+          "actualTitle": "AU-39:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-39:no-false-completion",
+          "actualTitle": "AU-39:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-39:reset",
+          "actualTitle": "AU-39:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-39:resume",
+          "actualTitle": "AU-39:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-39:isolation",
+          "actualTitle": "AU-39:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-40",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-40:solution",
+          "actualTitle": "AU-40:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-40:incorrect-action",
+          "actualTitle": "AU-40:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-40:no-false-completion",
+          "actualTitle": "AU-40:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-40:reset",
+          "actualTitle": "AU-40:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-40:resume",
+          "actualTitle": "AU-40:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-40:isolation",
+          "actualTitle": "AU-40:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-41",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-41:solution",
+          "actualTitle": "AU-41:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-41:incorrect-action",
+          "actualTitle": "AU-41:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-41:no-false-completion",
+          "actualTitle": "AU-41:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-41:reset",
+          "actualTitle": "AU-41:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-41:resume",
+          "actualTitle": "AU-41:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-41:isolation",
+          "actualTitle": "AU-41:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-42",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-42:solution",
+          "actualTitle": "AU-42:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-42:incorrect-action",
+          "actualTitle": "AU-42:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-42:no-false-completion",
+          "actualTitle": "AU-42:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-42:reset",
+          "actualTitle": "AU-42:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-42:resume",
+          "actualTitle": "AU-42:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-42:isolation",
+          "actualTitle": "AU-42:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-43",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-43:solution",
+          "actualTitle": "AU-43:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-43:incorrect-action",
+          "actualTitle": "AU-43:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-43:no-false-completion",
+          "actualTitle": "AU-43:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-43:reset",
+          "actualTitle": "AU-43:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-43:resume",
+          "actualTitle": "AU-43:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        },
+        {
+          "test": "AU-43:isolation",
+          "actualTitle": "AU-43:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-clusters.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-44",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-44:solution",
+          "actualTitle": "AU-44:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-44:incorrect-action",
+          "actualTitle": "AU-44:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-44:no-false-completion",
+          "actualTitle": "AU-44:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-44:reset",
+          "actualTitle": "AU-44:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-44:resume",
+          "actualTitle": "AU-44:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-44:isolation",
+          "actualTitle": "AU-44:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-45",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-45:solution",
+          "actualTitle": "AU-45:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-45:incorrect-action",
+          "actualTitle": "AU-45:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-45:no-false-completion",
+          "actualTitle": "AU-45:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-45:reset",
+          "actualTitle": "AU-45:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-45:resume",
+          "actualTitle": "AU-45:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-45:isolation",
+          "actualTitle": "AU-45:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-46",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-46:solution",
+          "actualTitle": "AU-46:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-46:incorrect-action",
+          "actualTitle": "AU-46:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-46:no-false-completion",
+          "actualTitle": "AU-46:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-46:reset",
+          "actualTitle": "AU-46:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-46:resume",
+          "actualTitle": "AU-46:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-46:isolation",
+          "actualTitle": "AU-46:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-47",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-47:solution",
+          "actualTitle": "AU-47:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-47:incorrect-action",
+          "actualTitle": "AU-47:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-47:no-false-completion",
+          "actualTitle": "AU-47:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-47:reset",
+          "actualTitle": "AU-47:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-47:resume",
+          "actualTitle": "AU-47:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-47:isolation",
+          "actualTitle": "AU-47:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-48",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-48:solution",
+          "actualTitle": "AU-48:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-48:incorrect-action",
+          "actualTitle": "AU-48:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-48:no-false-completion",
+          "actualTitle": "AU-48:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-48:reset",
+          "actualTitle": "AU-48:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-48:resume",
+          "actualTitle": "AU-48:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-48:isolation",
+          "actualTitle": "AU-48:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-49",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-49:solution",
+          "actualTitle": "AU-49:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-49:incorrect-action",
+          "actualTitle": "AU-49:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-49:no-false-completion",
+          "actualTitle": "AU-49:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-49:reset",
+          "actualTitle": "AU-49:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-49:resume",
+          "actualTitle": "AU-49:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-49:isolation",
+          "actualTitle": "AU-49:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "AU-50",
+      "fixtureVersion": 1,
+      "evidence": [
+        {
+          "test": "AU-50:solution",
+          "actualTitle": "AU-50:solution",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-50:incorrect-action",
+          "actualTitle": "AU-50:incorrect-action",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-50:no-false-completion",
+          "actualTitle": "AU-50:no-false-completion",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-50:reset",
+          "actualTitle": "AU-50:reset",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-50:resume",
+          "actualTitle": "AU-50:resume",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        },
+        {
+          "test": "AU-50:isolation",
+          "actualTitle": "AU-50:isolation",
+          "status": "passed",
+          "file": "packages/sim/test/v7-advanced-automation.test.ts"
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

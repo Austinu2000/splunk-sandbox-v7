@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-48",
+  "version": 1,
+  "title": "Recover a partial upgrade without repeating completed hosts",
+  "track": "Enterprise troubleshooting automation (refined objectives)",
+  "objectives": [
+    "Recover a partial upgrade without repeating completed hosts",
+    "Refinement of the accepted AU-44\u201350 track; the original individual source was unavailable."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "AU-47"
+  ],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "upgrade.recover"
+  ],
+  "fixture": {
+    "id": "au-48-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The retained six-host upgrade completed lm01, cm01, sh01 and idx01, then paused on a corrupted pending idx02 package. Inspect its actual version/service/phase history and original reviewed digests. Re-running a full install over completed hosts is not the recovery plan.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Use playbooks/v7_enterprise_repair.yml --limit idx02 to restore only the reviewed package descriptor and manifest from source and verify actual SHA-256. Review the retained paused job, then resume it through Enterprise maintenance and advance shared ticks until all six hosts verify 9.4.2.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Independently search index=source_logs | stats count and inspect the job; count=3. The recorded upgrade must retain the original pause/resume history and exactly one install per host. Configuration source must still match the original review.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the original failure, target scope and active source before changing anything.",
+    "Verify native operational state independently of a playbook exit code."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible core bounded compatibility subset",
+      "purpose": "On-change activation and explicit failed-handler recovery"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/deploy-the-indexer-cluster/perform-an-automated-rolling-upgrade-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Controlled upgrade order, artifact verification and health prerequisites"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "automation-run",
+      "label": "Actual scoped automation: playbooks/v7_enterprise_repair.yml",
+      "path": "playbooks/v7_enterprise_repair.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "idx02"
+      ],
+      "currentSource": true,
+      "verifiedPackages": [
+        "idx02"
+      ]
+    },
+    {
+      "kind": "enterprise-upgrade",
+      "label": "Paused plan resumed without repeating completed hosts",
+      "targets": [
+        "lm01",
+        "cm01",
+        "sh01",
+        "idx01",
+        "idx02",
+        "idx03"
+      ],
+      "version": "9.4.2",
+      "resumed": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-data verification",
+      "search": "index=source_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "search-job",
+      "label": "Verification job and inspector retained",
+      "search": "^index=source_logs.*stats count",
+      "inspected": true
+    }
+  ],
+  "minutes": 40,
+  "setup": [
+    {
+      "kind": "maintenance-fixture",
+      "mode": "partial-upgrade"
+    },
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "cluster-starters"
+    },
+    {
+      "kind": "upgrade-starters"
+    }
+  ],
+  "feedback": {
+    "success": "Actual maintenance outcomes, preserved data and independent verification meet this lesson.",
+    "incomplete": "Review current source, version, activation history and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "AU-48:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "AU-48:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "AU-48:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "AU-48:reset"
+    },
+    {
+      "case": "resume",
+      "test": "AU-48:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "AU-48:isolation"
+    }
+  ]
+}

@@ -101,9 +101,13 @@ export function codeCommitFiles(
 export function checkTree(tree: Tree): string[] {
   const errors: string[] = [];
   for (const [path, file] of Object.entries(tree)) {
+    const credentialSource = file.text.replace(
+      /(^\s*url_password\s*:\s*)(['"]?)training-only\2\s*$/gm,
+      '$1${V7_FIXTURE_PASSWORD}',
+    );
     if (/^(<<<<<<<|=======|>>>>>>>)/m.test(file.text)) errors.push(`${path}: unresolved merge markers`);
     if (
-      /(?:password|api_key|secret)\s*[:=]\s*[^\s${#][^\n]+/i.test(file.text) &&
+      /(?:password|api_key|secret)\s*[:=]\s*[^\s${#][^\n]+/i.test(credentialSource) &&
       !file.text.includes('$ANSIBLE_VAULT') &&
       !/simulated|placeholder|lookup\(/i.test(file.text)
     )

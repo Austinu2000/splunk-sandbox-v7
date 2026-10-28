@@ -1,11 +1,14 @@
 # Splunk Engineer Sandbox v7
 
-V7 is an independent continuation of V6 at commit `a9d4237`. The operations and
-learning expansion is in progress. Learn contains **135 new AU/SP exercises plus
-all 27 inherited G/A/X/K lessons (162 total)**. Cluster, SHC, KV, monitoring, security and integration exercises are implemented
-within their documented scope. Upgrades/recovery, capstones and the final audit
-remain under development. The complete 150-lesson expansion is not finished.
+V7 is an independent continuation of V6 at commit `a9d4237`. The current build is
+frozen at **142 new AU/SP exercises plus all 27 inherited G/A/X/K lessons (169 total)**.
+Upgrades/recovery and advanced automation are included within their documented
+simulation scope. The eight SP-093–100 capstones are deferred at the user's request.
+The original 150-new-lesson expansion is not claimed complete.
 
+See the [frozen-release audit](docs/V7-FROZEN-RELEASE-AUDIT.md),
+[individual question review](docs/V7-INTERVIEW-COVERAGE-AUDIT.md) and
+[actual regression evidence](docs/V7-RELEASE-TEST-EVIDENCE.json).
 ```sh
 nvm use 22
 npm ci   # first setup only; already installed in the local V7 copy

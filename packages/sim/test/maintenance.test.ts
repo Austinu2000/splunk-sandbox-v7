@@ -12,6 +12,8 @@ import {
   verifyConfigurationBackup,
   restoreConfigurationBackup,
   configurationFingerprint,
+  configurationMatchesReview,
+  persistMaintenance,
   sha256Text,
   resolveHost,
   stopSplunk,
@@ -275,4 +277,74 @@ it('reports the same current modeled /opt capacity in native virtual df and upgr
   t.run('ssh splunk@idx01');
   const output = t.run('df -k /opt').trim().split('\n').at(-1)!.trim().split(/\s+/);
   expect(Number(output[3])).toBe(Math.round(capacity.availableMB * 1024));
+});
+
+it('reverifies legacy full-etc archives and retains old plan pins without restoring vendor version/default files', () => {
+  const w = fresh(),
+    host = 'hf01',
+    p = resolveHost(w, host)!,
+    fs = hostFs(w, p),
+    root = '/opt/splunk/etc';
+  stageEnterprisePackage(w, host);
+  const b = createConfigurationBackup(w, host, 'legacy');
+  verifyConfigurationBackup(w, host, b.id);
+  const body = JSON.parse(fs.readFile(b.path, ROOT));
+  body.format = 'sandbox-configuration-archive-v1';
+  body.files = {};
+  body.directories = {};
+  fs.walk(root, ROOT, (path, n) => {
+    if (n.type === 'dir')
+      body.directories[path.slice(root.length)] = { owner: n.owner, group: n.group, mode: n.mode };
+    else
+      body.files[path.slice(root.length + 1)] = {
+        text: fs.readFile(path, ROOT),
+        owner: n.owner,
+        group: n.group,
+        mode: n.mode,
+      };
+  });
+  const legacyPin = sha256Text(
+      JSON.stringify([
+        body.directories,
+        Object.entries(body.files)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([name, value]) => {
+            const f = value as { text: string; owner: string; group: string; mode: number };
+            return [name, f.text, f.owner, f.group, f.mode];
+          }),
+      ]),
+    ),
+    text = JSON.stringify(body),
+    stored = w.maintenance!.backups[0]!;
+  stored.sourceRevision = legacyPin;
+  stored.digest = sha256Text(text);
+  delete stored.scopeVersion;
+  fs.writeFile(stored.path, text, ROOT);
+  fs.writeFile(stored.path + '.sha256', stored.digest + '  ' + stored.path + '\n', ROOT);
+  persistMaintenance(w);
+  stopSplunk(w, p);
+  expect(() => restoreConfigurationBackup(w, host, stored.id)).toThrow('Verify this legacy archive again');
+  verifyConfigurationBackup(w, host, stored.id);
+  expect(stored.originalSourceRevision).toBe(legacyPin);
+  expect(stored.scopeVersion).toBe(2);
+  startSplunk(w, p);
+  const f = captureUpgradePreflight(w, [host]);
+  expect(f.valid).toBe(true);
+  w.maintenance!.preflights.at(-1)!.sourceRevisions[host] = legacyPin;
+  persistMaintenance(w);
+  stopSplunk(w, p);
+  installEnterprisePackage(w, host);
+  acceptEnterpriseTrainingLicense(w, host);
+  startSplunk(w, p);
+  expect(hostFs(w, p).readFile(root + '/splunk.version', ROOT)).toContain('VERSION=9.4.2');
+  expect(hostFs(w, p).readFile(root + '/system/default/server.conf', ROOT)).toContain('Version 9.4.2');
+  expect(configurationMatchesReview(w, host, legacyPin, stored.id)).toBe(true);
+  stopSplunk(w, p);
+  restoreConfigurationBackup(w, host, stored.id);
+  expect(hostFs(w, p).readFile(root + '/splunk.version', ROOT)).toContain('VERSION=9.4.2');
+  expect(hostFs(w, p).readFile(root + '/system/default/server.conf', ROOT)).toContain('Version 9.4.2');
+  startSplunk(w, p);
+  const resumed = loadWorld(saveWorld(w), []);
+  expect(configurationFingerprint(resumed, host)).toBe(configurationFingerprint(w, host));
+  expect(configurationMatchesReview(resumed, host, legacyPin, stored.id)).toBe(true);
 });

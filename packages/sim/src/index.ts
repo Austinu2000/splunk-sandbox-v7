@@ -193,3 +193,5 @@ export * from './engineering/maintenance-view';
 
 export * from './engineering/maintenance-foundations';
 export * from './engineering/certificate-rotation';
+
+export * from './ansible/upgrade-starters';

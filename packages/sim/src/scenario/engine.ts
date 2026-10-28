@@ -116,7 +116,7 @@ const confChange = z
     host: z.string(),
     path: z.string().regex(/^\/opt\/splunk(?:forwarder)?\/etc\/.+\.conf$/),
     stanza: z.string(),
-    set: z.record(z.string()).default({}),
+    set: z.record(z.string(), z.string()).default({}),
     unset: z.array(z.string()).default([]),
     /** none: the file changes on disk only (e.g. the cluster manager's copy of the bundle). */
     apply: z.enum(['restart', 'deploy-server', 'none']),

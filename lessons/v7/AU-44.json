@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-44",
+  "version": 1,
+  "title": "Recover unreachable inventory targets and verify actual management identities",
+  "track": "Enterprise troubleshooting automation (refined objectives)",
+  "objectives": [
+    "Recover unreachable inventory targets and verify actual management identities",
+    "Refinement of the accepted AU-44\u201350 track; the original individual source was unavailable."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "AU-43",
+    "SP-090"
+  ],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "upgrade.recover"
+  ],
+  "fixture": {
+    "id": "au-44-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Use the isolated Lab automation checkout. Run playbooks/v7_enterprise_transport.yml against indexers and inspect its real unreachable result before editing. The inventory has an idx02_missing entry. Compare canonical virtual topology, inventory graph/host variables and management identity. This bounded transport model uses canonical virtual host names; it does not open SSH or honor an arbitrary external ansible_host address.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Repair the inventory entry to idx02 and run the same committed or working-tree playbook again. The three actual indexer management responses must report 9.4.1. Keep all three correct targets; deleting the unreachable entry or replacing the playbook with an empty task list is insufficient. Preserve the full existing fleet inventory and reconcile other missing managed components, including mc01, from the topology rather than replacing inventory with only three indexers.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect the original failure, target scope and active source before changing anything.",
+    "Verify native operational state independently of a playbook exit code."
+  ],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible core bounded compatibility subset",
+      "purpose": "On-change activation and explicit failed-handler recovery"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/deploy-the-indexer-cluster/perform-an-automated-rolling-upgrade-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Controlled upgrade order, artifact verification and health prerequisites"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "inventory",
+      "label": "All canonical indexers retained in repaired inventory",
+      "pattern": "indexers",
+      "expected": [
+        "idx01",
+        "idx02",
+        "idx03"
+      ],
+      "noMissing": true
+    },
+    {
+      "kind": "automation-run",
+      "label": "Actual scoped automation: playbooks/v7_enterprise_transport.yml",
+      "path": "playbooks/v7_enterprise_transport.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "idx01",
+        "idx02",
+        "idx03"
+      ],
+      "currentSource": true,
+      "priorFailure": true,
+      "managedVersions": {
+        "idx01": "9.4.1",
+        "idx02": "9.4.1",
+        "idx03": "9.4.1"
+      }
+    }
+  ],
+  "minutes": 40,
+  "setup": [
+    {
+      "kind": "maintenance-fixture",
+      "mode": "planning"
+    },
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "cluster-starters"
+    },
+    {
+      "kind": "upgrade-starters"
+    },
+    {
+      "kind": "rename-inventory-host",
+      "host": "ansible01",
+      "path": "/home/svc_ansible/splunk-automation/inventories/lab/hosts.yml",
+      "from": "idx02",
+      "to": "idx02_missing"
+    }
+  ],
+  "feedback": {
+    "success": "Actual maintenance outcomes, preserved data and independent verification meet this lesson.",
+    "incomplete": "Review current source, version, activation history and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "AU-44:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "AU-44:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "AU-44:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "AU-44:reset"
+    },
+    {
+      "case": "resume",
+      "test": "AU-44:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "AU-44:isolation"
+    }
+  ]
+}

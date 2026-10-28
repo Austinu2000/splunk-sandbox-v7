@@ -18,12 +18,32 @@ interface BackupMeta {
   mode: number;
 }
 interface BackupBody {
-  format: 'sandbox-configuration-archive-v1';
+  format: 'sandbox-configuration-archive-v1' | 'sandbox-configuration-archive-v2';
   host: string;
   root: string;
   packageVersion: string;
   files: Record<string, BackupMeta & { text: string }>;
   directories: Record<string, BackupMeta>;
+}
+const packageOwned = (name: string) =>
+  name.replace(/^\//, '') === 'splunk.version' ||
+  name.replace(/^\//, '') === 'system/default' ||
+  name.replace(/^\//, '').startsWith('system/default/');
+function configurationFiles(w: World, host: string) {
+  const p = maintenanceHost(w, host);
+  return Object.fromEntries(
+    Object.entries(filesUnder(hostFs(w, p), p.splunk!.home + '/etc')).filter(([name]) => !packageOwned(name)),
+  );
+}
+function bodyRevision(body: Pick<BackupBody, 'files' | 'directories'>) {
+  return sha256Text(
+    JSON.stringify([
+      Object.entries(body.directories).sort(([a], [b]) => a.localeCompare(b)),
+      Object.entries(body.files)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([name, f]) => [name, f.text, f.owner, f.group, f.mode]),
+    ]),
+  );
 }
 function configurationDirectories(w: World, host: string) {
   const p = maintenanceHost(w, host),
@@ -31,7 +51,7 @@ function configurationDirectories(w: World, host: string) {
     root = p.splunk!.home + '/etc',
     dirs: BackupBody['directories'] = {};
   fs.walk(root, ROOT, (path, node) => {
-    if (node.type === 'dir')
+    if (node.type === 'dir' && !packageOwned(path.slice(root.length)))
       dirs[path.slice(root.length)] = { owner: node.owner, group: node.group, mode: node.mode };
   });
   return dirs;
@@ -39,18 +59,12 @@ function configurationDirectories(w: World, host: string) {
 export function configurationFingerprint(w: World, host: string) {
   const p = maintenanceHost(w, host),
     fs = hostFs(w, p),
-    files = filesUnder(fs, p.splunk!.home + '/etc');
-  return sha256Text(
-    JSON.stringify([
-      configurationDirectories(w, host),
-      Object.entries(files)
-        .sort(([a], [b]) => a.localeCompare(b))
-        .map(([name, text]) => {
-          const node = fs.findNode(p.splunk!.home + '/etc/' + name)!;
-          return [name, text, node.owner, node.group, node.mode];
-        }),
-    ]),
-  );
+    files: BackupBody['files'] = {};
+  for (const [name, text] of Object.entries(configurationFiles(w, host))) {
+    const n = fs.findNode(p.splunk!.home + '/etc/' + name)!;
+    files[name] = { text, owner: n.owner, group: n.group, mode: n.mode };
+  }
+  return bodyRevision({ files, directories: configurationDirectories(w, host) });
 }
 export function createConfigurationBackup(w: World, host: string, name: string) {
   const p = maintenanceHost(w, host);
@@ -63,7 +77,7 @@ export function createConfigurationBackup(w: World, host: string, name: string) 
     throw new OperationsError('Configuration backup name already exists on this host');
   const fs = hostFs(w, p),
     root = p.splunk!.home + '/etc',
-    texts = filesUnder(fs, root),
+    texts = configurationFiles(w, host),
     files: BackupBody['files'] = {};
   if (
     Object.keys(texts).length > 1000 ||
@@ -77,7 +91,7 @@ export function createConfigurationBackup(w: World, host: string, name: string) 
   if (Object.keys(configurationDirectories(w, host)).length > 1000)
     throw new OperationsError('Bounded configuration archive limit: 1,000 directories');
   const body: BackupBody = {
-      format: 'sandbox-configuration-archive-v1',
+      format: 'sandbox-configuration-archive-v2',
       host,
       root,
       packageVersion: splunkVersion(w, p)!,
@@ -101,6 +115,7 @@ export function createConfigurationBackup(w: World, host: string, name: string) 
     path,
     digest,
     sourceRevision: configurationFingerprint(w, host),
+    scopeVersion: 2,
     packageVersion: body.packageVersion,
     tick: w.clock.tick,
   };
@@ -127,7 +142,7 @@ function readBackup(w: World, host: string, id: string) {
     throw new OperationsError('Malformed configuration archive');
   }
   if (
-    body.format !== 'sandbox-configuration-archive-v1' ||
+    !['sandbox-configuration-archive-v1', 'sandbox-configuration-archive-v2'].includes(body.format) ||
     body.host !== host ||
     body.root !== p.splunk!.home + '/etc' ||
     !body.files ||
@@ -154,16 +169,26 @@ function readBackup(w: World, host: string, id: string) {
     )
       throw new OperationsError('Invalid archive member');
   }
+  body.files = Object.fromEntries(Object.entries(body.files).filter(([name]) => !packageOwned(name)));
+  body.directories = Object.fromEntries(
+    Object.entries(body.directories).filter(([name]) => !packageOwned(name)),
+  );
   return { backup, body };
 }
 export function verifyConfigurationBackup(w: World, host: string, id: string) {
   const { backup, body } = readBackup(w, host, id);
+  if (backup.scopeVersion !== 2) backup.originalSourceRevision ??= backup.sourceRevision;
+  backup.scopeVersion = 2;
+  backup.sourceRevision = bodyRevision(body);
   backup.verified = w.clock.tick;
   maintenanceReceipt(
     w,
     host,
     'backup-verified',
-    backup.id + ' SHA-256 OK; ' + Object.keys(body.files).length + ' virtual configuration files',
+    backup.id +
+      ' SHA-256 OK; ' +
+      Object.keys(body.files).length +
+      ' virtual configuration files; package-owned defaults/version files excluded',
   );
   return structuredClone(backup);
 }
@@ -175,12 +200,16 @@ export function restoreConfigurationBackup(w: World, host: string, id: string) {
   if (w.maintenance?.jobs.some((j) => j.status === 'running' || j.status === 'paused'))
     throw new OperationsError('Finish the upgrade job before a separate configuration restore');
   const { backup, body } = readBackup(w, host, id);
+  if (backup.scopeVersion !== 2)
+    throw new OperationsError(
+      'Verify this legacy archive again to review its configuration-only scope; package defaults and version files will be preserved',
+    );
   if (backup.verified === undefined)
     throw new OperationsError('Verify this configuration archive before restoring it');
   const s = maintenanceState(w),
     before = createConfigurationBackup(w, host, 'before_restore_' + s.nextId),
     fs = hostFs(w, p),
-    current = filesUnder(fs, body.root);
+    current = configurationFiles(w, host);
   for (const name of Object.keys(current))
     if (!Object.hasOwn(body.files, name)) fs.remove(body.root + '/' + name, ROOT);
   const dirs = configurationDirectories(w, host);
@@ -212,4 +241,21 @@ export function restoreConfigurationBackup(w: World, host: string, id: string) {
   s.restores.push(record);
   persistMaintenance(w);
   return structuredClone(record);
+}
+
+/** Old captured plans retain their original pins; verify their registered archive
+ * identity and compare only user configuration when package-owned headers change. */
+export function configurationMatchesReview(w: World, host: string, revision: string, id?: string) {
+  if (configurationFingerprint(w, host) === revision) return true;
+  if (!id) return false;
+  try {
+    const { backup, body } = readBackup(w, host, id);
+    return (
+      backup.verified !== undefined &&
+      (backup.sourceRevision === revision || backup.originalSourceRevision === revision) &&
+      bodyRevision(body) === configurationFingerprint(w, host)
+    );
+  } catch {
+    return false;
+  }
 }

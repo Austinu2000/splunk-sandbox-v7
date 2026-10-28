@@ -1,3 +1,6 @@
+import type { AutomationObservation } from '@sandbox/shared';
+import { verifyVirtualChecksums } from '../engineering/checksums';
+import { installEnterprisePackage, acceptEnterpriseTrainingLicense } from '../engineering/enterprise-upgrade';
 import { validateManagedClusterBundle, queueIndexerRestart } from '../engineering/cluster-jobs';
 import { advancedClusterHealth } from '../engineering/cluster-health';
 import { setClusterMaintenance } from '../engineering/cluster-cli';
@@ -12,7 +15,7 @@ import { ansibleConfig, parseInventory, inventoryHosts } from './inventory';
 export { yaml } from './yaml';
 import type { World } from '../world';
 import { saveWorld, loadWorld } from '../save';
-import { resolveHost, splunkdRunning } from '../hosts/profile';
+import { resolveHost, splunkdRunning, splunkVersion } from '../hosts/profile';
 import { hostFs } from '../vfs/build';
 import { ROOT, type Cred } from '../vfs/vfs';
 import { startSplunk, stopSplunk, restartSplunk, reloadDeployServer } from '../hosts/running';
@@ -126,6 +129,7 @@ function safeVariable(name: string) {
   return name;
 }
 export interface AnsibleResult {
+  observations?: AutomationObservation[];
   fixture?: boolean;
   playbook: string;
   inventory?: string;
@@ -265,7 +269,7 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
     persistTraining(world);
     return result;
   }
-  for (const play of plays) {
+  execution: for (const play of plays) {
     let names = selected(String(play.hosts ?? 'all'));
     if (opts.limit) {
       const allowed = new Set(selected(opts.limit));
@@ -606,10 +610,42 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                 } else throw new TrainingError('Unsupported service state');
               } else if (module === 'command' || module === 'shell') {
                 const cmd = render(a._raw ?? a.cmd, vars).replace(/^\/opt\/splunk(?:forwarder)?\/bin\//, '');
-                if (cmd === 'splunk start --accept-license --answer-yes --no-prompt') {
-                  if (cred.user !== 'root' || hp.role !== 'universal_forwarder')
-                    throw new TrainingError('Use become on a Universal Forwarder');
-                  acceptForwarderLicense(target, hp.hostname);
+                if (cmd.startsWith('sha256sum -c ')) {
+                  const match = /^sha256sum -c (\/[A-Za-z0-9_./-]+)$/.exec(cmd);
+                  if (!match)
+                    throw new TrainingError('Use a bounded absolute virtual checksum manifest path');
+                  const checked = verifyVirtualChecksums(fs, match[1]!, cred, (p) => {
+                    if (!p.startsWith('/'))
+                      throw new TrainingError(
+                        'Use absolute virtual package paths in this automation manifest',
+                      );
+                    return p;
+                  });
+                  result.observations ??= [];
+                  for (const f of checked.files)
+                    result.observations.push({
+                      kind: 'checksum',
+                      host: hp.hostname,
+                      ...f,
+                      tick: target.clock.tick,
+                    });
+                  response.stdout = checked.stdout;
+                  note(checked.stdout);
+                  if (!checked.valid) throw new TrainingError('Package SHA-256 verification failed');
+                } else if (/^tar -xzf (\/[A-Za-z0-9_./-]+) -C \/opt$/.test(cmd)) {
+                  if (cred.user !== 'root')
+                    throw new TrainingError('Package extraction requires become in this automation model');
+                  const path = /^tar -xzf (\S+) -C \/opt$/.exec(cmd)![1]!;
+                  fs.readFile(path, cred);
+                  changed = installEnterprisePackage(target, hp.hostname, path);
+                } else if (cmd === 'splunk version') {
+                  response.stdout = splunkVersion(target, hp) ?? 'not installed';
+                  note(String(response.stdout));
+                } else if (cmd === 'splunk start --accept-license --answer-yes --no-prompt') {
+                  if (cred.user !== 'root')
+                    throw new TrainingError('Training package startup requires become');
+                  if (hp.role === 'universal_forwarder') acceptForwarderLicense(target, hp.hostname);
+                  else acceptEnterpriseTrainingLicense(target, hp.hostname);
                   changed = !splunkdRunning(target, hp);
                   if (changed) startSplunk(target, hp);
                 } else if (
@@ -749,6 +785,26 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
                   renderBody(a.body ?? {}, vars),
                   auth,
                 );
+                const parsedTarget = new URL(url),
+                  observedHost = resolveHost(
+                    target,
+                    ['localhost', '127.0.0.1'].includes(parsedTarget.hostname)
+                      ? hp.hostname
+                      : parsedTarget.hostname,
+                  );
+                if (method === 'GET' && observedHost) {
+                  result.observations ??= [];
+                  result.observations.push({
+                    kind: 'management',
+                    host: observedHost.hostname,
+                    path: parsedTarget.pathname,
+                    status: Number(response.status),
+                    ...(parsedTarget.pathname === '/services/server/info'
+                      ? { version: splunkVersion(target, observedHost) ?? undefined }
+                      : {}),
+                    tick: target.clock.tick,
+                  });
+                }
                 changed = Boolean(response.changed);
                 const expected = Array.isArray(a.status_code)
                   ? a.status_code.map(Number)
@@ -823,6 +879,10 @@ export function runAnsible(world: World, tree: Tree, path: string, opts: Ansible
         result.failed++;
       }
       const failed = result.hosts.slice(-batch.length).filter((h) => h.failed || h.unreachable).length;
+      if (play.any_errors_fatal && failed) {
+        result.logs.push('Fatal task failure; remaining batches and plays not run');
+        break execution;
+      }
       if ((failed / batch.length) * 100 > maxFailure) {
         result.logs.push('Failure threshold reached; remaining batches not run');
         break;

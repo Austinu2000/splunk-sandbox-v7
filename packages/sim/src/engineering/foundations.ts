@@ -1,3 +1,5 @@
+import { V7_UPGRADE_STARTER_FILES } from '../ansible/upgrade-starters';
+import { enterpriseArtifact } from './maintenance-state';
 import {
   setupMaintenanceFixture,
   maintenanceFoundationCheck,
@@ -29,7 +31,7 @@ import { V7_FORWARDER_STARTER_FILES, V7_FORWARDER_CONNECTION_FILES } from '../an
 import { enableForwarderOperations, setForwarderFixture, forwarderDetail } from './forwarders';
 import { forwarderConnection } from './forwarder-tls';
 import type { World } from '../world';
-import { resolveHost } from '../hosts/profile';
+import { resolveHost, splunkVersion } from '../hosts/profile';
 import { hostFs } from '../vfs/build';
 import { ROOT } from '../vfs/vfs';
 import { restartSplunk, runningConf, vfsReader } from '../hosts/running';
@@ -131,8 +133,11 @@ export type FoundationCheck =
       maximumChanges?: number;
       handler?: string;
       afterApply?: boolean;
+      applyHandler?: string;
       priorFailure?: boolean;
       currentSource?: boolean;
+      managedVersions?: Record<string, string>;
+      verifiedPackages?: string[];
     }
   | {
       kind: 'repository';
@@ -259,6 +264,7 @@ export type FoundationSetup =
   | { kind: 'integration-fixture'; adapter: IntegrationKind }
   | { kind: 'service-health-fixture'; infrastructure: boolean }
   | { kind: 'monitoring-fixture'; mode: MonitoringFixtureMode }
+  | { kind: 'upgrade-starters' }
   | { kind: 'cluster-starters' }
   | { kind: 'cluster-fixture'; mode: ClusterFixtureMode }
   | {
@@ -285,6 +291,7 @@ export type FoundationSetup =
   | { kind: 'automation-source'; path: string; text: string; deploy?: { playbook: string; limit: string } }
   | { kind: 'advance'; ticks: number; paused?: boolean }
   | { kind: 'file'; host: string; path: string; text: string; mode?: number; owner?: string; apply?: boolean }
+  | { kind: 'rename-inventory-host'; host: string; path: string; from: string; to: string }
   | { kind: 'remove-inventory-host'; host: string; path: string; target: string };
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
@@ -307,6 +314,16 @@ export function setupFoundation(world: World, steps: FoundationSetup[]) {
     }
     if (step.kind === 'monitoring-fixture') {
       setupMonitoringFixture(world, step.mode);
+      continue;
+    }
+    if (step.kind === 'upgrade-starters') {
+      seedRepositoryFiles(
+        world,
+        'splunk-automation',
+        'fixture/v7-maintenance',
+        V7_UPGRADE_STARTER_FILES,
+        'V7 enterprise maintenance automation fixture',
+      );
       continue;
     }
     if (step.kind === 'cluster-starters') {
@@ -396,6 +413,13 @@ export function setupFoundation(world: World, steps: FoundationSetup[]) {
     const host = resolveHost(world, step.host);
     if (!host) throw new Error(`Unknown fixture host: ${step.host}`);
     const fs = hostFs(world, host);
+    if (step.kind === 'rename-inventory-host') {
+      if (!/^[A-Za-z0-9_.-]+$/.test(step.from) || !/^[A-Za-z0-9_.-]+$/.test(step.to))
+        throw new Error('Invalid inventory fixture host name');
+      const re = new RegExp('^(\\s+)' + step.from.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(:.*)$', 'gm');
+      fs.writeFile(step.path, fs.readFile(step.path, ROOT).replace(re, '$1' + step.to + '$2'), ROOT);
+      continue;
+    }
     if (step.kind === 'remove-inventory-host') {
       const re = new RegExp('^\\s+' + step.target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ':.*\\n', 'gm');
       fs.writeFile(step.path, fs.readFile(step.path, ROOT).replace(re, ''), ROOT);
@@ -529,6 +553,20 @@ export function foundationCheck(world: World, check: FoundationCheck): boolean {
       )
         return false;
       if (check.priorFailure && !earlier.some((r) => r.failed || r.unreachable)) return false;
+      if (
+        check.applyHandler &&
+        !earlier.some(
+          (r) =>
+            !r.check &&
+            !r.syntax &&
+            !r.failed &&
+            !r.unreachable &&
+            r.changed > 0 &&
+            r.revision === run.revision &&
+            r.hosts.some((h) => h.messages.includes('RUNNING HANDLER: ' + check.applyHandler)),
+        )
+      )
+        return false;
       if (check.currentSource) {
         const repo = world.git?.repos['splunk-automation'];
         if (!repo) return false;
@@ -540,6 +578,42 @@ export function foundationCheck(world: World, check: FoundationCheck): boolean {
           if (!c || !h || checksum(filesUnder(hostFs(world, h), c.root)) !== run.revision) return false;
         }
       }
+      if (
+        check.managedVersions &&
+        !Object.entries(check.managedVersions).every(
+          ([host, version]) =>
+            resolveHost(world, host) &&
+            splunkVersion(world, resolveHost(world, host)!) === version &&
+            run.observations?.some(
+              (o) =>
+                o.kind === 'management' &&
+                o.host === host &&
+                o.path === '/services/server/info' &&
+                o.status === 200 &&
+                o.version === version,
+            ),
+        )
+      )
+        return false;
+      if (
+        check.verifiedPackages &&
+        !check.verifiedPackages.every((host) => {
+          try {
+            const artifact = enterpriseArtifact(world, host);
+            return run.observations?.some(
+              (o) =>
+                o.kind === 'checksum' &&
+                o.host === host &&
+                o.path === artifact.path &&
+                o.valid &&
+                o.digest === artifact.digest,
+            );
+          } catch {
+            return false;
+          }
+        })
+      )
+        return false;
       return true;
     }
     case 'repository': {

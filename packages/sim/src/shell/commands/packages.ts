@@ -1,3 +1,4 @@
+import { verifyVirtualChecksums } from '../../engineering/checksums';
 import { sha256Text } from '../../engineering/maintenance-state';
 import { installEnterprisePackage } from '../../engineering/enterprise-upgrade';
 import {
@@ -45,19 +46,8 @@ export const sha256sum: CommandFn = ({ sh, argv }) => {
   try {
     const args = argv.slice(1);
     if (args[0] === '-c' && args.length === 2) {
-      const path = sh.resolve(args[1]!),
-        lines = sh.fs.readFile(path, sh.cred).trim().split('\n');
-      if (lines.length > 100) throw new Error('Checksum file limit: 100 entries');
-      let failed = false;
-      const out = lines.map((line) => {
-        const m = /^([a-f0-9]{64}) [ *](.+)$/.exec(line);
-        if (!m) throw new Error('Malformed SHA-256 checksum file');
-        const actual = sha256Text(sh.fs.readFile(sh.resolve(m[2]!), sh.cred)),
-          ok = actual === m[1];
-        failed ||= !ok;
-        return m[2] + ': ' + (ok ? 'OK' : 'FAILED');
-      });
-      return { stdout: out.join('\n') + '\n', code: failed ? 1 : 0 };
+      const result = verifyVirtualChecksums(sh.fs, sh.resolve(args[1]!), sh.cred, (path) => sh.resolve(path));
+      return { stdout: result.stdout, code: result.valid ? 0 : 1 };
     }
     if (args.length !== 1 || args[0]!.startsWith('-'))
       throw new Error('Supported: sha256sum FILE | sha256sum -c MANIFEST');

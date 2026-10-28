@@ -8,6 +8,8 @@ export interface ConfigurationBackup {
   packageVersion: string;
   tick: number;
   verified?: number;
+  scopeVersion?: 2;
+  originalSourceRevision?: string;
 }
 export interface UpgradePreflight {
   id: string;

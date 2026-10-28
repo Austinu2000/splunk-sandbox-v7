@@ -114,7 +114,11 @@ export interface CodeReview {
   comments: string[];
   deployed?: string;
 }
+export type AutomationObservation =
+  | { kind: 'management'; host: string; path: string; status: number; version?: string; tick: number }
+  | { kind: 'checksum'; host: string; path: string; digest: string; valid: boolean; tick: number };
 export interface AutomationRun {
+  observations?: AutomationObservation[];
   fixture?: boolean;
   playbook?: string;
   inventory?: string;

@@ -1053,7 +1053,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "SP-094",
@@ -1064,7 +1066,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "SP-095",
@@ -1075,7 +1079,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "SP-096",
@@ -1086,7 +1092,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "SP-097",
@@ -1097,7 +1105,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "SP-098",
@@ -1108,7 +1118,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "SP-099",
@@ -1119,7 +1131,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "SP-100",
@@ -1130,7 +1144,9 @@
       "status": "planned",
       "executable": false,
       "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "functionalCoverageVerified": false,
+      "deferred": true,
+      "deferredReason": "User paused remaining lesson implementation; excluded from the frozen 169-lesson release."
     },
     {
       "id": "AU-01",
@@ -1587,71 +1603,78 @@
       "id": "AU-44",
       "track": "Enterprise troubleshooting",
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-45",
       "track": "Enterprise troubleshooting",
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-46",
       "track": "Enterprise troubleshooting",
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-47",
       "track": "Enterprise troubleshooting",
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-48",
       "track": "Enterprise troubleshooting",
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-49",
       "track": "Enterprise troubleshooting",
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "AU-50",
       "track": "Enterprise troubleshooting",
       "milestone": 9,
-      "status": "planned",
-      "executable": false,
+      "status": "verified",
+      "executable": true,
       "objectiveSource": "Track scope in accepted brief; individual objective requires reconciliation with the prior 50-lesson source.",
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     }
-  ]
+  ],
+  "releaseScope": {
+    "availableNew": 142,
+    "inherited": 27,
+    "availableTotal": 169,
+    "deferred": 8,
+    "userInstruction": "Pause remaining lessons and audit/regress the existing build."
+  }
 }

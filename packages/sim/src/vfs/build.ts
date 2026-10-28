@@ -538,8 +538,8 @@ export function hostFs(world: World, p: HostProfile, binaries: Binaries = regist
   if (!perWorld) cache.set(world, (perWorld = new Map()));
   const signature =
     p.fleetRow === undefined
-      ? `static:${world.git?.version ?? 0}`
-      : `${world.fleet.assignedClass[p.fleetRow]}:${world.fleet.version[p.fleetRow]}:${world.hosts.confVersion}:${deliverySignature(world, p)}`;
+      ? `static:${world.git?.version ?? 0}:${splunkVersion(world, p) ?? 'none'}`
+      : `${world.fleet.assignedClass[p.fleetRow]}:${world.fleet.version[p.fleetRow]}:${world.hosts.confVersion}:${deliverySignature(world, p)}:${splunkVersion(world, p) ?? 'none'}`;
   const hit = perWorld.get(p.hostname);
   if (hit && hit.signature === signature) return hit.vfs;
   let overlay = world.hosts.fsOverlay.get(p.hostname);

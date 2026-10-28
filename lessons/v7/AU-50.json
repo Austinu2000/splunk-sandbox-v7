@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "id": "AU-50",
+  "version": 1,
+  "title": "Complete a reviewed automation, maintenance and reporting assessment",
+  "track": "Enterprise troubleshooting automation (refined objectives)",
+  "objectives": [
+    "Complete a reviewed automation, maintenance and reporting assessment",
+    "Refinement of the accepted AU-44\u201350 track; the original individual source was unavailable."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 4,
+  "prerequisites": [
+    "AU-49"
+  ],
+  "requiredCapabilities": [
+    "ansible.execute",
+    "upgrade.recover",
+    "git.review"
+  ],
+  "fixture": {
+    "id": "au-50-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Deliver a complete reviewed change with a written plan and your own verification. Change the managed input sourcetype to v7_enterprise in the v7_inputs template, preserve Git review/check/approval/merge evidence and deploy committed main to ds01. Confirm its actual teaching event is searchable.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Prepare a current verified hf01 configuration backup and maintenance preflight. Execute the committed v7_enterprise_upgrade playbook on hf01, inspecting its real checksum, stop, teaching-package application, nonbinding startup flag and post-upgrade management response. The standalone version must become 9.4.2 without changing its native configuration. These teaching packages are not vendor archives or real license acceptance. Rerun the same reviewed upgrade playbook and require changed=0: its version guard must skip unnecessary service stops and package application.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    },
+    {
+      "id": "task-3",
+      "instruction": "Create and execute an app-shared sh01/search report named Engineering release verification with search index=os sourcetype=v7_enterprise | stats count. Verify its retained count=1, independently run and inspect that search, and confirm the deployed source and automation runs match current reviewed main. A Git merge, successful exit or manually typed answer alone does not establish the complete change.",
+      "paths": [
+        "web",
+        "cli",
+        "config"
+      ]
+    }
+  ],
+  "hints": [],
+  "references": [
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html",
+      "vendorVersion": "Ansible core bounded compatibility subset",
+      "purpose": "On-change activation and explicit failed-handler recovery"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/manage-splunk-enterprise-indexers/9.4/deploy-the-indexer-cluster/perform-an-automated-rolling-upgrade-of-an-indexer-cluster",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Controlled upgrade order, artifact verification and health prerequisites"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "repository",
+      "label": "Reviewed source is merged and deployed",
+      "repo": "splunk-automation",
+      "branch": "main",
+      "path": "roles/v7_inputs/templates/inputs.conf.j2",
+      "contains": "v7_enterprise",
+      "review": "merged",
+      "deployed": true
+    },
+    {
+      "kind": "automation-run",
+      "label": "Actual scoped automation: playbooks/v7_inputs.yml",
+      "path": "playbooks/v7_inputs.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "ds01"
+      ],
+      "currentSource": true
+    },
+    {
+      "kind": "automation-run",
+      "label": "Actual scoped automation: playbooks/v7_enterprise_upgrade.yml",
+      "path": "playbooks/v7_enterprise_upgrade.yml",
+      "check": false,
+      "syntax": false,
+      "targets": [
+        "hf01"
+      ],
+      "currentSource": true,
+      "managedVersions": {
+        "hf01": "9.4.2"
+      },
+      "verifiedPackages": [
+        "hf01"
+      ],
+      "maximumChanges": 0,
+      "afterApply": true
+    },
+    {
+      "kind": "enterprise-upgrade",
+      "label": "Actual standalone maintenance applied from a reviewed current preflight",
+      "targets": [
+        "hf01"
+      ],
+      "version": "9.4.2",
+      "workflow": "manual"
+    },
+    {
+      "kind": "report-state",
+      "label": "Actual app-shared verification report",
+      "host": "sh01",
+      "app": "search",
+      "title": "Engineering release verification",
+      "owner": "admin",
+      "sharing": "App",
+      "search": "index=os sourcetype=v7_enterprise | stats count",
+      "scheduled": false
+    },
+    {
+      "kind": "report-run",
+      "label": "Retained verification report result",
+      "host": "sh01",
+      "app": "search",
+      "title": "Engineering release verification",
+      "cells": {
+        "count": 1
+      }
+    },
+    {
+      "kind": "query",
+      "label": "Independent actual-data verification",
+      "search": "index=os sourcetype=v7_enterprise | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 1
+      }
+    },
+    {
+      "kind": "search-job",
+      "label": "Verification job and inspector retained",
+      "search": "^index=os.*v7_enterprise.*stats count",
+      "inspected": true
+    }
+  ],
+  "minutes": 60,
+  "setup": [
+    {
+      "kind": "maintenance-fixture",
+      "mode": "execution"
+    },
+    {
+      "kind": "automation-starters"
+    },
+    {
+      "kind": "cluster-starters"
+    },
+    {
+      "kind": "upgrade-starters"
+    }
+  ],
+  "feedback": {
+    "success": "Actual maintenance outcomes, preserved data and independent verification meet this lesson.",
+    "incomplete": "Review current source, version, activation history and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "AU-50:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "AU-50:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "AU-50:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "AU-50:reset"
+    },
+    {
+      "case": "resume",
+      "test": "AU-50:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "AU-50:isolation"
+    }
+  ]
+}

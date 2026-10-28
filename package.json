@@ -15,7 +15,8 @@
     "test:watch": "vitest",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "audit:release": "tsx scripts/audit-release.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -26,6 +27,6 @@
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.0",
-    "vitest": "^3.0.0"
+    "vitest": "4.1.12"
   }
 }

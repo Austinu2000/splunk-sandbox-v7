@@ -2,7 +2,15 @@
 
 Started October 27, 2026 from V6 `main` at `a9d4237`.
 
-## Current work: Milestone 9 and subsequent gates
+## Current release: frozen at 169 lessons; audit complete
+
+The user paused remaining lesson implementation. The authoritative current result
+is the [frozen-release audit](V7-FROZEN-RELEASE-AUDIT.md): 142 new plus 27 inherited
+lessons, eight deferred capstones, all 235 interview questions individually reviewed,
+and 1,310 passing tests across 78 files. Entries below retain earlier checkpoint
+history; counts and pending-work notes in those entries are historical.
+
+## Original Milestone 0 foundation
 
 Implemented:
 
@@ -57,9 +65,9 @@ implemented work is listed below. The full expansion remains incomplete.
 | 6 | Implemented within documented scope | Dashboards/alerts; SP-047–054 |
 | 7 | Implemented within documented scope | Clustering/KV; AU-36–43 and SP-055–068 |
 | 8 | Implemented within documented scope | Monitoring/security/integrations; SP-069–088 |
-| 9 | In progress; foundation under test | Upgrades/recovery; AU-44–50 and SP-089–092 |
-| 10 | Planned | APL/Erie capstones; SP-093–100 |
-| 11 | Planned | Curriculum/question audit and complete regression |
+| 9 | Implemented within documented scope | Upgrades/recovery; AU-44–50 and SP-089–092 |
+| 10 | Deferred at user request | APL/Erie capstones; SP-093–100 |
+| 11 | Complete for the user-frozen scope; original all-150 gate deferred | 169 available lessons, question audit and regression |
 
 The brief reserves 150 new lessons but supplies AU titles/objectives only by track.
 Reconcile the earlier individual 50-lesson source before authoring AU definitions.
@@ -341,3 +349,49 @@ then returned to the original free practice. See [activation evidence](v7-certif
 and [completed lesson](v7-maintenance-lesson-complete.png). Verified V7 lessons
 now say they are complete when all scored outcomes pass; inherited manual lessons
 retain their separate workflow-only wording.
+
+
+## User-requested scope freeze
+
+The user paused remaining lesson implementation and authorized the final coverage
+and regression audit of the existing build. AU-44–50 had passed acceptance tests
+and were already added before this instruction. The frozen catalog contains
+**142 new + 27 inherited = 169 lessons**. SP-093–100 remain planned, unregistered
+and deferred; no further lesson or capstone implementation is part of this audit.
+
+The original Milestone 11 requirement to finish all 150 new lessons is therefore
+not claimed. The current audit covers the frozen 169-lesson release, all 235 source
+questions (including partial, personal-experience and unsupported areas), saved
+attempts/isolation, dependencies and secrets, and final regression.
+
+## Frozen-release final validation
+
+Milestone 9 is complete within its documented scope. AU-44–50 were already added
+before the freeze; 42 acceptance cases plus passive and focused checks passed.
+No further lessons were implemented after the user paused development. The browser
+verified AU-48 repair, retained pause/resume history, all six target versions,
+independent search/Job Inspector evidence and scored completion, then restored
+free practice. Earlier SP-092 browser verification remains recorded above.
+
+The final patched-dependency regression passed **1,310 tests / 78 files** with no
+failed, skipped or pending tests. All **852** required new-lesson acceptance
+assertions and **27** inherited start/resume/reset/isolation checks were matched
+to actual passed results by the release evidence gate. A negative report with a
+missing acceptance result was correctly rejected. The actual API also rejects all
+eight deferred capstones. TypeScript, ESLint and the production web build pass;
+no test budget or bundle warning limit was relaxed.
+
+The individual question audit classifies **36 verified-practice, 87 partial,
+15 conceptual-only, 15 not implemented and 82 personal-response questions**.
+All 235 IDs/wordings remain intact. Reviewed does not mean functionally covered.
+
+Known dependency advisories were fixed (Vitest 4.1.12, Zod 4.6.7, ECharts 6.1.0);
+the root/workspace audit reports zero known vulnerabilities. Redacted source and
+history scans have seven reviewed nonsecret matches each. Personal attribution
+in inherited documents/defaults and Git metadata remains documented, not erased.
+
+See the [full coverage and limitation report](V7-FROZEN-RELEASE-AUDIT.md),
+[question review](V7-INTERVIEW-COVERAGE-AUDIT.md) and
+[passed fixture evidence](V7-RELEASE-TEST-EVIDENCE.json). The complete original
+150-new-lesson expansion remains unfinished under the current scope freeze;
+SP-093–100 are not executable. V7 remains separate from V6 and no push occurred.

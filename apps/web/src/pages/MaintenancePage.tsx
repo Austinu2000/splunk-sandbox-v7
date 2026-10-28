@@ -63,9 +63,9 @@ export function MaintenancePage() {
       </header>
       <p className="v5-banner">
         Offline simulation: 9.4.1 → 9.4.2 is this exercise’s patch target. Staged .tgz files contain a
-        teaching descriptor, not vendor binaries. Configuration archives exclude indexed data, KV Store data
-        and installed packages. Back these up separately. License acknowledgement is a nonbinding training
-        flag.
+        teaching descriptor, not vendor binaries. Configuration archives preserve user settings and exclude
+        indexed data, KV Store data, installed packages, and package-owned defaults/version files. Back data
+        up separately. License acknowledgement is a nonbinding training flag.
       </p>
       {error && (
         <p role="alert" className="error">
@@ -117,7 +117,11 @@ export function MaintenancePage() {
             {backups.map((b) => (
               <article key={b.id}>
                 <strong>{b.name}</strong> · captured {b.packageVersion} ·{' '}
-                {b.verified === undefined ? 'Unverified' : 'SHA-256 verified'}
+                {b.scopeVersion !== 2
+                  ? 'Legacy archive: review configuration-only scope'
+                  : b.verified === undefined
+                    ? 'Unverified'
+                    : 'SHA-256 verified'}
                 <p>
                   <code>{b.path}</code>
                 </p>
@@ -126,7 +130,7 @@ export function MaintenancePage() {
                     Verify {b.name}
                   </button>
                   <button
-                    disabled={busy || b.verified === undefined}
+                    disabled={busy || b.verified === undefined || b.scopeVersion !== 2}
                     onClick={() => void act('restore', { host, id: b.id })}
                   >
                     Restore {b.name}

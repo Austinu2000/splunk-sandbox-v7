@@ -1,8 +1,12 @@
+import { systemDefaults } from '../hosts/confs';
+import { hostFs } from '../vfs/build';
+import { ROOT } from '../vfs/vfs';
+import { buildFor } from '../hosts/profile';
 import type { UpgradeJob } from '@sandbox/shared';
 import type { World } from '../world';
 import { splunkVersion, splunkdRunning, resolveHost } from '../hosts/profile';
 import { stopSplunk, startSplunk } from '../hosts/running';
-import { configurationFingerprint } from './config-backup';
+import { configurationMatchesReview } from './config-backup';
 import { inspectUpgrade, upgradePrerequisites, maintenanceStorage } from './upgrade-preflight';
 import { advancedClusterHealth } from './cluster-health';
 import { shcHealth } from './shc-health';
@@ -55,14 +59,14 @@ export function installEnterprisePackage(w: World, host: string, path = MAINTENA
   const capacity = maintenanceStorage(w, host);
   if (!Number.isFinite(capacity.minimumMB) || capacity.availableMB < capacity.minimumMB)
     throw new OperationsError('Insufficient modeled space at package installation');
-  const source = configurationFingerprint(w, host);
+
   if (
     !w.maintenance?.preflights.some(
       (f) =>
         f.valid &&
         f.targetVersion === artifact.version &&
         f.targets.includes(host) &&
-        f.sourceRevisions[host] === source &&
+        configurationMatchesReview(w, host, f.sourceRevisions[host]!, f.backupIds[host]) &&
         f.artifactDigests[host] === artifact.digest,
     )
   )
@@ -71,6 +75,25 @@ export function installEnterprisePackage(w: World, host: string, path = MAINTENA
     );
   const s = maintenanceState(w);
   s.installations[host] = { version: artifact.version, licenseAccepted: false, installedTick: w.clock.tick };
+  const fs = hostFs(w, p),
+    home = p.splunk!.home;
+  for (const [name, text] of Object.entries(systemDefaults(p, artifact.version))) {
+    const path = home + '/etc/system/default/' + name;
+    fs.writeFile(path, text, ROOT);
+    fs.setMeta(path, { owner: 'splunk', group: 'splunk', mode: 0o644 }, ROOT);
+  }
+  const versionPath = home + '/etc/splunk.version';
+  fs.writeFile(
+    versionPath,
+    'VERSION=' +
+      artifact.version +
+      '\nBUILD=' +
+      buildFor(artifact.version) +
+      '\nPRODUCT=splunk\nPLATFORM=Linux-x86_64\n',
+    ROOT,
+  );
+  fs.setMeta(versionPath, { owner: 'splunk', group: 'splunk', mode: 0o644 }, ROOT);
+
   maintenanceReceipt(
     w,
     host,
@@ -144,7 +167,14 @@ export function queueEnterpriseUpgrade(w: World, preflightId: string, acceptTrai
 }
 function sourceGuard(w: World, job: UpgradeJob) {
   for (const host of job.targets) {
-    if (configurationFingerprint(w, host) !== job.sourceRevisions[host])
+    if (
+      !configurationMatchesReview(
+        w,
+        host,
+        job.sourceRevisions[host]!,
+        w.maintenance?.preflights.find((f) => f.id === job.preflightId)?.backupIds[host],
+      )
+    )
       throw new OperationsError(
         'Native configuration changed on ' + host + '; restore the reviewed source before resuming',
       );

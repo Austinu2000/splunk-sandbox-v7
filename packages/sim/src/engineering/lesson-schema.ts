@@ -87,6 +87,7 @@ const foundationOutcome = z.discriminatedUnion('kind', [
       label: text,
       targets: z.array(text).min(1).max(20),
       version: text,
+      workflow: z.enum(['coordinator', 'manual']).optional(),
       resumed: z.boolean().optional(),
     })
     .strict(),
@@ -244,9 +245,9 @@ const foundationOutcome = z.discriminatedUnion('kind', [
       host: text,
       app: text.optional(),
       collection: text.optional(),
-      settings: z.record(z.string()).optional(),
+      settings: z.record(z.string(), z.string()).optional(),
       records: z
-        .array(z.record(z.union([z.string(), z.number(), z.boolean()])))
+        .array(z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])))
         .max(100)
         .optional(),
       allMembers: z.boolean().optional(),
@@ -280,8 +281,8 @@ const foundationOutcome = z.discriminatedUnion('kind', [
       host: text,
       name: text,
       principal: z.enum(['admin', 'analyst', 'operator']).optional(),
-      tokens: z.record(z.string()).optional(),
-      cells: z.record(z.union([z.string(), z.number()])),
+      tokens: z.record(z.string(), z.string()).optional(),
+      cells: z.record(z.string(), z.union([z.string(), z.number()])),
     })
     .strict(),
   z
@@ -356,8 +357,11 @@ const foundationOutcome = z.discriminatedUnion('kind', [
       maximumChanges: z.number().int().min(0).optional(),
       handler: text.optional(),
       afterApply: z.boolean().optional(),
+      applyHandler: text.optional(),
       priorFailure: z.boolean().optional(),
       currentSource: z.boolean().optional(),
+      managedVersions: z.record(z.string(), text).optional(),
+      verifiedPackages: z.array(text).max(20).optional(),
     })
     .strict(),
   z
@@ -398,7 +402,7 @@ const foundationOutcome = z.discriminatedUnion('kind', [
       title: text,
       scheduled: z.boolean().optional(),
       minimumWrites: z.number().int().min(0).optional(),
-      cells: z.record(z.union([z.string(), z.number()])).optional(),
+      cells: z.record(z.string(), z.union([z.string(), z.number()])).optional(),
     })
     .strict(),
   z
@@ -419,7 +423,7 @@ const foundationOutcome = z.discriminatedUnion('kind', [
       label: text,
       host: text,
       name: text,
-      settings: z.record(z.union([z.string(), z.number(), z.boolean()])).optional(),
+      settings: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).optional(),
       empty: z.boolean().optional(),
     })
     .strict(),
@@ -432,7 +436,7 @@ const foundationOutcome = z.discriminatedUnion('kind', [
       latest: text.optional(),
       principal: z.enum(['admin', 'analyst', 'operator']).optional(),
       rows: z.number().int().min(0),
-      cells: z.record(z.union([z.string(), z.number()])).optional(),
+      cells: z.record(z.string(), z.union([z.string(), z.number()])).optional(),
     })
     .strict(),
   z
@@ -552,7 +556,7 @@ export const engineeringLessonSchema = z
           z
             .object({
               kind: z.literal('maintenance-fixture'),
-              mode: z.enum(['planning', 'execution', 'configuration-recovery']),
+              mode: z.enum(['planning', 'execution', 'configuration-recovery', 'partial-upgrade']),
             })
             .strict(),
           z.object({ kind: z.literal('certificate-watch'), host: text, server: text }).strict(),
@@ -584,6 +588,7 @@ export const engineeringLessonSchema = z
               ]),
             })
             .strict(),
+          z.object({ kind: z.literal('upgrade-starters') }).strict(),
           z.object({ kind: z.literal('cluster-starters') }).strict(),
           z
             .object({
@@ -653,6 +658,15 @@ export const engineeringLessonSchema = z
               mode: z.number().int().min(0).max(4095).optional(),
               owner: text.optional(),
               apply: z.boolean().optional(),
+            })
+            .strict(),
+          z
+            .object({
+              kind: z.literal('rename-inventory-host'),
+              host: text,
+              path: text,
+              from: text,
+              to: text,
             })
             .strict(),
           z

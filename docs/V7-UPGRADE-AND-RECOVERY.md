@@ -1,10 +1,14 @@
-# V7 upgrade and recovery foundation — Milestone 9 in progress
+# V7 upgrade and recovery — Milestone 9
 
-This is a bounded, offline teaching workflow. Milestone 9 is **not complete**:
-AU-44–50 still need authored fixtures, scoring, acceptance cases and promotion.
-SP-089–092 are available after 24 acceptance cases, four passive grading checks
-and a malformed-certificate recovery test. The catalog now contains 162 lessons
-(135 new + 27 inherited).
+Milestone 9 is implemented within the bounded offline teaching scope below.
+AU-44–50 and SP-089–092 are available. The user froze the catalog at 169 lessons
+(142 new + 27 inherited), leaving SP-093–100 deferred. The complete original
+150-new-lesson expansion is not claimed.
+
+The final regression passed **1,310 tests / 78 files** on the patched dependency
+set. Browser AU-48 recovery and SP-092 certificate rotation both passed scored
+outcomes and independent search/inspector checks. See the
+[frozen-release audit](V7-FROZEN-RELEASE-AUDIT.md) for acceptance evidence and limits.
 
 ## Available foundation
 
@@ -18,8 +22,9 @@ availability, staged package identity, configuration archives and retained jobs.
 - Package staging and configuration archives use real SHA-256 over their UTF-8
   content. Verification checks the registered archive digest; the virtual native
   `sha256sum FILE` and `sha256sum -c MANIFEST` commands can inspect artifacts.
-- Configuration archives capture the host's Splunk `etc` files, directories,
-  ownership and modes. They exclude installed packages, indexed data and KV Store
+- Configuration archives capture user settings under Splunk `etc`, including app
+  configuration, directory ownership and modes. Package-owned `splunk.version`
+  and `system/default` files are excluded and remain tied to the installed package. They exclude installed packages, indexed data and KV Store
   data. Archives are bounded to 1,000 files, 1,000 directories and 2 MB of file
   content; 30 retained archives per world. Storage is virtual and inspectable.
 - Restore requires a stopped service, a verified registered archive and no active
@@ -82,7 +87,7 @@ job continues to reserve its maintenance window until resume or explicit abort.
   hf01 actually reporting 9.4.2. This is foundation proof, not completion evidence
   for SP-001 or for any future maintenance lesson.
 
-The complete Milestone 9 gate and capstone/final-audit gates remain pending.
+The foundation history below predates the final Milestone 9 acceptance gate. The capstones remain deferred; the frozen-scope final audit is complete.
 
 ## Vendor reference and limits
 
@@ -141,3 +146,55 @@ free-practice session was restored after the separate learner attempt.
 
 SP-089–092 checkpoint: full regression **1,229 tests / 76 files passed**.
 AU-44–50 and the remaining milestone gates are still in progress.
+
+## Advanced automation and package-owned configuration
+
+AU-44–50 now exercise preserved full inventory and actual management identity,
+standalone infrastructure drift, failed-handler recovery, automated SHA-256 and
+version checks, repair/resume of a partial six-host upgrade, reviewed cluster
+publication and an integrated standalone upgrade/reporting assessment. Their
+individual objectives refine the accepted AU-44–50 range; no unavailable original
+individual AU document is represented as a verbatim source.
+
+Automation runs retain actual native-shaped management/checksum observations.
+Grading requires current-source observations for the specified hosts and rejects
+an empty or ping-only replacement playbook. The package workflow is idempotent:
+a second run reads the actual target version and skips unnecessary service stops
+and package application. `any_errors_fatal` stops later batches/plays; the exercise
+uses serial=1. The model still does not implement arbitrary Ansible modules or
+full parallel native scheduling.
+
+The combined assessment exposed a replay bug: generated package version/default
+headers were cached under the Git state and counted as user configuration. The
+host filesystem now includes installed version in its cache identity; package
+application updates its owned version/default files. Configuration scope v2
+excludes those package-owned files, so recovery cannot replace them with an old
+version while claiming to preserve the installed package.
+
+Registered v1 archives retain their raw bytes/digest and original revision. An
+explicit verification reviews the new configuration-only scope before restore.
+Legacy captured job pins are checked against their original registered archive
+identity and its user-configuration subset, preserving review evidence without
+rewriting source history or restoring old vendor defaults. Compatibility tests
+cover re-verification, older pins, restoration and save/replay.
+
+New source is available in the version 4 optional starter pack. Its `.tgz` file
+remains an explicitly labeled teaching descriptor; SHA-256 verification is real.
+The Git checker recognizes only the built-in fictional `url_password: training-only`
+value; another plaintext credential still fails its existing check.
+
+## Final recovery regression
+
+A replay defect found in AU-50 led to a shared configuration archive correction:
+package-owned `splunk.version` and `system/default` remain tied to the actual
+installed package. Package installation updates these files and the filesystem
+cache identity. Configuration restore preserves them and keeps user configuration,
+indexed data and KV data separate. Registered v1 full-etc archives retain their
+original bytes and digest; explicit verification normalizes their managed scope
+and preserves earlier review pins. Legacy backup/upgrade/replay regression passes.
+
+AU-48 browser verification repaired only idx02's original artifact, resumed the
+retained six-host job without repeated completed installs, independently searched
+three source rows and inspected the job. Learn showed all checks passed and
+lesson completion, followed by restoration of the original free-practice session.
+[Recovery proof](v7-automation-recovery-complete.png).

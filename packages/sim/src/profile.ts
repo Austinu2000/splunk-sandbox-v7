@@ -20,7 +20,7 @@ const schema = z.object({
     indexerCluster: z.object({
       indexers: count.max(200),
       multisite: z.boolean(),
-      sitePlacement: z.record(z.number().int().nonnegative()).optional(),
+      sitePlacement: z.record(z.string(), z.number().int().nonnegative()).optional(),
       replicationFactor: count,
       searchFactor: count,
     }),
