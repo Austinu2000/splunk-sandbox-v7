@@ -62,6 +62,8 @@ export function createClusterJob(
     'kind' | 'manager' | 'targets' | 'files' | 'checksum' | 'priorMaintenance'
   >,
 ) {
+  if (world.maintenance?.jobs.some((j) => j.status === 'running' || j.status === 'paused'))
+    throw new OperationsError('Finish the Enterprise upgrade before a separate cluster operation');
   const state = enableClusterManagement(world);
   if (state.jobs.some((j) => j.status === 'running' || j.status === 'paused'))
     throw new OperationsError('Finish or abort the existing cluster operation first');

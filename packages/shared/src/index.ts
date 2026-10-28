@@ -512,3 +512,5 @@ export * from './identity';
 export * from './integrations';
 
 export * from './service-health';
+
+export * from './maintenance';

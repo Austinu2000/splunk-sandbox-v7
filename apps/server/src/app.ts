@@ -1,3 +1,4 @@
+import { registerMaintenance } from './maintenance';
 import { registerServiceHealth } from './serviceHealth';
 import { registerIntegrations } from './integrations';
 import { registerIdentity } from './identity';
@@ -86,6 +87,7 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerSecurity(app, live, store);
   registerIdentity(app, live, store);
   registerIntegrations(app, live, store);
+  registerMaintenance(app, live, store);
   registerServiceHealth(app, live, store);
   registerDataModels(app, live, store);
   registerInterview(

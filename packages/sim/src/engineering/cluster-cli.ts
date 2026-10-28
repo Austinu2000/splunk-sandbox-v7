@@ -13,6 +13,10 @@ import { loadConf, setting } from '../conf/merge';
 import { resolveHost } from '../hosts/profile';
 import type { World } from '../world';
 export function setClusterMaintenance(world: World, enabled: boolean) {
+  if (world.maintenance?.jobs.some((j) => j.status === 'running' || j.status === 'paused'))
+    throw new OperationsError(
+      'The active Enterprise upgrade owns its maintenance window; finish or abort it first',
+    );
   const state = enableClusterManagement(world);
   state.manualMaintenance = enabled;
   clusterReceipt(world, 'maintenance', clusterManager(world).hostname, String(enabled));

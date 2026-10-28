@@ -1,3 +1,4 @@
+import { modeledOptStorage } from '../../engineering/storage-capacity';
 import { setForwarderBoot } from '../../engineering/forwarders';
 import { kvRuntime } from '../../kvstore/engine';
 import { resolveHost, splunkdRunning, type HostProfile } from '../../hosts/profile';
@@ -179,7 +180,11 @@ function mounts(sh: Shell): Mount[] {
     out.push({
       fs: '/dev/mapper/vg_opt-lv_opt',
       sizeGB: p.diskGB,
-      usedPct: p.role === 'indexer' ? pct(4, 61, 78) : pct(4, 9, 34),
+      usedPct: Math.min(
+        100,
+        modeledOptStorage(sh.world, p).baselinePercent +
+          (modeledOptStorage(sh.world, p).recordedBytes / (p.diskGB * 1024 ** 3)) * 100,
+      ),
       mount: '/opt',
     });
   return out;
@@ -212,7 +217,7 @@ const df: CommandFn = ({ sh, argv }) => {
     const cols = human
       ? `${fmtGB(m.sizeGB, true).padStart(5)} ${fmtGB(used, true).padStart(5)} ${fmtGB(m.sizeGB - used, true).padStart(5)}`
       : `${fmtGB(m.sizeGB, false).padStart(9)} ${fmtGB(used, false).padStart(9)} ${fmtGB(m.sizeGB - used, false).padStart(9)}`;
-    return `${m.fs.padEnd(26)} ${cols} ${String(m.usedPct).padStart(3)}% ${m.mount}`;
+    return `${m.fs.padEnd(26)} ${cols} ${String(Math.ceil(m.usedPct)).padStart(3)}% ${m.mount}`;
   });
   return ok([head, ...rows].join('\n') + '\n');
 };

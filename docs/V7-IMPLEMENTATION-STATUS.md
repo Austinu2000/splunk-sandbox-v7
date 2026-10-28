@@ -57,7 +57,7 @@ implemented work is listed below. The full expansion remains incomplete.
 | 6 | Implemented within documented scope | Dashboards/alerts; SP-047–054 |
 | 7 | Implemented within documented scope | Clustering/KV; AU-36–43 and SP-055–068 |
 | 8 | Implemented within documented scope | Monitoring/security/integrations; SP-069–088 |
-| 9 | Planned | Upgrades/recovery; AU-44–50 and SP-089–092 |
+| 9 | In progress; foundation under test | Upgrades/recovery; AU-44–50 and SP-089–092 |
 | 10 | Planned | APL/Erie capstones; SP-093–100 |
 | 11 | Planned | Curriculum/question audit and complete regression |
 
@@ -301,3 +301,21 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
   adapters/KPIs and loads versions 1–13.
 - Continuing directly to M9 upgrades/recovery and M10 capstones, then M11's final
   lesson/question audit, dependency/security review and complete regression.
+
+## Milestone 9 foundation in progress
+
+Upgrade/recovery primitives and a maintenance page are under validation. They
+include verified configuration archives, actual virtual package versions and
+service state, ordered single-host upgrade phases, retained pause/resume/abort,
+separate KV data backup prerequisites, and virtual checksum/extraction commands.
+See [the implementation and its limits](V7-UPGRADE-AND-RECOVERY.md).
+
+This foundation does **not** promote additional lessons or complete Milestone 9.
+Learn remains **158/177**; AU-44–50, SP-089–092, the eight capstones and the final
+question/curriculum audit remain outstanding.
+
+Foundation validation: **1,196 tests / 75 files** passed in the full regression;
+subsequent maintenance/shell/cluster/privilege refinements passed 46 focused tests.
+TypeScript, ESLint and the web build pass, with the inherited bundle advisory.
+The browser verified hf01 at 9.4.2 in a separate learner attempt and returned to
+the original Lab free-practice session. [Upgrade proof](v7-maintenance-upgrade.png).

@@ -23,7 +23,7 @@ export {
   outputGroup,
   summarizeFleet,
 } from './fleet/query';
-export { resolveHost, sshRoster, DETAILED_HOSTS, type HostProfile, type RosterEntry } from './hosts/profile';
+export { resolveHost, splunkVersion, sshRoster, DETAILED_HOSTS, type HostProfile, type RosterEntry } from './hosts/profile';
 export { TerminalSession, type SessionOptions } from './shell/session';
 export { stripAnsi } from './shell/ansi';
 export { runSearch, rowToPlain, eventToPlain, type SearchOutcome, type SearchRequest } from './spl/run';
@@ -182,3 +182,11 @@ export * from './engineering/service-health';
 export * from './engineering/service-health-fixtures';
 
 export * from './engineering/integration-foundations';
+
+export * from './engineering/maintenance-state';
+export * from './engineering/config-backup';
+
+export * from './engineering/upgrade-preflight';
+export * from './engineering/enterprise-upgrade';
+
+export * from './engineering/maintenance-view';

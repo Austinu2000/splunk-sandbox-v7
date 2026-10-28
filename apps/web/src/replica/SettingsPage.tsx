@@ -1,3 +1,4 @@
+import {MaintenancePage} from '../pages/MaintenancePage';
 import { ServiceHealthPage } from '../pages/ServiceHealthPage';
 import { IntegrationsPage } from '../pages/IntegrationsPage';
 import { IdentityOperationsPage } from '../pages/IdentityOperationsPage';
@@ -1558,6 +1559,7 @@ export function SettingsPage({ id }: { id: string }) {
         )}
       />
     );
+  else if (base === 'maintenance') content = <MaintenancePage />;
   else if (base === 'service-health') content = <ServiceHealthPage />;
   else if (base === 'integration-operations') content = <IntegrationsPage />;
   else if (base === 'identity-operations') content = <IdentityOperationsPage />;

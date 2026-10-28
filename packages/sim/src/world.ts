@@ -1,3 +1,4 @@
+import { tickEnterpriseUpgrades } from './engineering/enterprise-upgrade';
 import { tickIntegrations } from './engineering/integrations';
 import { tickDataModels } from './engineering/data-models';
 import { tickIngestionBuffers } from './engineering/ingestion-buffers';
@@ -38,6 +39,7 @@ export interface WorldClock {
 }
 
 export interface World {
+  maintenance?: import('@sandbox/shared').MaintenanceRuntime;
   serviceHealth?: import('@sandbox/shared').ServiceHealthRuntime;
   integrations?: import('@sandbox/shared').IntegrationRuntime;
   identity?: import('@sandbox/shared').IdentityRuntime;
@@ -177,6 +179,7 @@ function tickOnce(world: World): void {
   tickIngestionBuffers(world);
   tickIndexLifecycle(world);
   tickClusterManagement(world);
+  tickEnterpriseUpgrades(world);
   tickReports(world);
   tickDataModels(world);
   updateScenarios(world);

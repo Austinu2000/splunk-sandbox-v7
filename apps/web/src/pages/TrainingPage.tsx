@@ -60,6 +60,7 @@ export function TrainingPage() {
           <p>Investigate incidents. Demonstrate recovery. Explain your decisions.</p>
         </div>
         <div className="v5-actions">
+          <a href="#/settings/maintenance">Enterprise upgrade and recovery →</a>
           <a href="#/settings/service-health">Recorded service health →</a>
           <a href="#/settings/integration-operations">Recorded integration operations →</a>
           <a href="#/settings/security-operations">Recorded security operations →</a>

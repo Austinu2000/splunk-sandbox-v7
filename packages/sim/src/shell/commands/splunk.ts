@@ -1,3 +1,4 @@
+import { acceptEnterpriseTrainingLicense } from '../../engineering/enterprise-upgrade';
 import { shcCli } from '../../engineering/shc-cli';
 import { clusterCli } from '../../engineering/cluster-cli';
 import { forwarderConnection } from '../../engineering/forwarder-tls';
@@ -385,6 +386,8 @@ export const splunk: CommandFn = (ctx) => {
     case 'restart':
       if (cmd === 'start' && p.role === 'universal_forwarder' && rest.includes('--accept-license'))
         acceptForwarderLicense(sh.world, p.hostname);
+      if (cmd === 'start' && p.role !== 'universal_forwarder' && rest.includes('--accept-license'))
+        acceptEnterpriseTrainingLicense(sh.world, p.hostname);
       return serviceAction(sh, cmd);
     case 'btool':
       return btool(sh, rest);

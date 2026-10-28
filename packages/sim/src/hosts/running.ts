@@ -162,6 +162,7 @@ export function startSplunk(world: World, p: HostProfile): void {
 }
 
 function start(world: World, p: HostProfile): void {
+  if(world.maintenance?.installations[p.hostname]?.licenseAccepted === false)throw new Error('Accept the nonbinding Enterprise training license flag before starting this upgraded virtual package');
   const client = world.forwarders?.clients[p.hostname];
   if (client && (!client.installed || !client.licenseAccepted))
     throw new Error('Install the forwarder and accept the training license flag before starting');

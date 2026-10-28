@@ -243,6 +243,7 @@ export function splunkdRunning(world: World, p: HostProfile): boolean {
 /** The version actually installed now. Fleet versions change with version drift, so this is not cached. */
 export function splunkVersion(world: World, p: HostProfile): string | null {
   if (!p.splunk || world.forwarders?.clients[p.hostname]?.installed === false) return null;
+  if (world.maintenance?.installations[p.hostname]) return world.maintenance.installations[p.hostname]!.version;
   if (world.forwarders?.clients[p.hostname]) return world.forwarders.clients[p.hostname]!.version;
   if (p.fleetRow !== undefined) return world.versions[world.fleet.version[p.fleetRow]!]!;
   return ENTERPRISE_VERSION;
