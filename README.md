@@ -1,8 +1,8 @@
 # Splunk Engineer Sandbox v7
 
 V7 is an independent continuation of V6 at commit `a9d4237`. The operations and
-learning expansion is in progress. Learn contains **123 new AU/SP exercises plus
-all 27 inherited G/A/X/K lessons (150 total)**. Cluster, SHC, SmartStore and KV work
+learning expansion is in progress. Learn contains **125 new AU/SP exercises plus
+all 27 inherited G/A/X/K lessons (152 total)**. Cluster, SHC, SmartStore and KV work
 now has executable exercises; monitoring/integrations, upgrades and capstones are
 still under development. The complete 150-lesson expansion is not finished.
 

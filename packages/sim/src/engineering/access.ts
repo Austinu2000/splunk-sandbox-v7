@@ -10,7 +10,7 @@ const defaults: Record<string, Record<string, string>> = {
     run_collect: 'enabled',
     importRoles: 'power',
     indexes_edit: 'enabled',
-    edit_deployment_server:'enabled',
+    edit_deployment_server: 'enabled',
     edit_monitor: 'enabled',
     edit_indexer_cluster: 'enabled',
     edit_roles: 'enabled',
@@ -33,14 +33,21 @@ export function practicePrincipal(value: string | undefined): PracticePrincipal 
   return value as PracticePrincipal;
 }
 export function roleSettings(world: World, host: string, principal: PracticePrincipal) {
+  const root = { admin: 'admin', analyst: 'user', operator: 'power' }[principal];
+  return mappedRoleSettings(world, host, [root], false);
+}
+export function mappedRoleSettings(world: World, host: string, roots: string[], validate = true) {
   const target = resolveHost(world, host);
   if (!target?.splunk) throw new OperationsError('No Splunk installation on this host');
   const conf = runningConf(world, target, 'authorize');
-  const root = { admin: 'admin', analyst: 'user', operator: 'power' }[principal];
+  if (!roots.length || roots.length > 20 || roots.some((r) => !/^[A-Za-z][A-Za-z0-9_-]{0,63}$/.test(r)))
+    throw new OperationsError('Choose up to twenty valid native role names');
   const output: Record<string, string> = {};
   const visits = new Set<string>();
   const merge = (role: string, depth = 0) => {
     if (depth > 10 || visits.has(role)) throw new OperationsError('Circular or excessive role inheritance');
+    if (validate && !defaults[role] && !conf.stanzas.has('role_' + role))
+      throw new OperationsError('Mapped role is not defined: ' + role);
     visits.add(role);
     const settings = {
       ...defaults[role],
@@ -56,7 +63,7 @@ export function roleSettings(world: World, host: string, principal: PracticePrin
     }
     visits.delete(role);
   };
-  merge(root);
+  for (const root of roots) merge(root);
   return output;
 }
 export function requireCapability(
@@ -76,7 +83,9 @@ export function canSearchIndex(
   index: string,
   defaultsOnly = false,
 ) {
-  const role = roleSettings(world, host, principal);
+  return indexAllowedByRole(roleSettings(world, host, principal), index, defaultsOnly);
+}
+export function indexAllowedByRole(role: Record<string, string>, index: string, defaultsOnly = false) {
   const matches = (value: string | undefined) =>
     (value ?? '')
       .split(';')

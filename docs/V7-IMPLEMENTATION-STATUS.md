@@ -257,3 +257,21 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
 - [Supported behavior and limits](V7-RECORDED-SECURITY-OPERATIONS.md);
   [UI proof](v7-security-response.png). Continuing to identity/security and the
   remaining cloud, telemetry, routing, database and service-health exercises.
+
+## M8 identity and security checkpoint (14/20 lessons)
+
+- SP-081/082 passed twelve acceptance cases, plus passive stale-proof validation.
+  Learn now contains **125 new / 152 total lessons**. Six M8 lessons and nineteen
+  later new lessons remain, along with the final audit.
+- Native active SAML/LDAP source drives bounded fictional identity probes; mapped
+  roles use the existing authorization engine and actual recorded-row visibility.
+  No IdP, directory connection, cryptographic verification or browser login occurs.
+- Search evidence retains host/principal, and TLS canary/security outcomes require
+  actual delivery, active verification and restricted permissions.
+- The combined focused gate passed **97 tests**; TypeScript, ESLint and the
+  production web build passed (existing bundle-size advisory remains).
+  The previous full regression of 1,122 tests predates this identity checkpoint;
+  the next complete M8 gate will include the additional identity checks.
+- Browser SP-081 met its workflow checks through actual staging, virtual restart,
+  both identity probes and an inspected analyst count=3 search.
+- [Scope and limits](V7-IDENTITY-PRACTICE.md); [proof](v7-identity-probes.png).

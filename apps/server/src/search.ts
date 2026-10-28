@@ -105,6 +105,8 @@ export function registerSearch(app: FastifyInstance, live: LiveWorld): void {
       jobs.set(sid, outcome);
       recordSearchEvidence(live.world, {
         id: sid,
+        host: outcome.host,
+        principal: practicePrincipal(req.headers['x-sandbox-principal'] as string | undefined),
         search: outcome.search,
         earliest: outcome.earliest,
         latest: outcome.latest,

@@ -80,6 +80,19 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('identity-probe'),
+      label: text,
+      host: text,
+      sample: z.enum(['saml-reader', 'ldap-reader']),
+      current: z.boolean(),
+      roles: z.array(text).min(1).max(20),
+      index: text,
+      events: z.number().int().min(0),
+      priorFailure: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
       kind: z.literal('platform-observation'),
       label: text,
       host: text.optional(),
@@ -331,6 +344,8 @@ const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
       kind: z.literal('search-job'),
+      host: text.optional(),
+      principal: z.enum(['admin', 'analyst', 'operator']).optional(),
       label: text,
       search: text,
       inspected: z.boolean().optional(),
@@ -490,6 +505,7 @@ export const engineeringLessonSchema = z
                 'acceleration',
                 'detection',
                 'response',
+                'identity',
               ]),
             })
             .strict(),

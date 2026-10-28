@@ -166,3 +166,5 @@ export {
 export * from './engineering/security';
 
 export * from './engineering/monitoring-foundations';
+
+export * from './engineering/identity';

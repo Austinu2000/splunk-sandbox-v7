@@ -918,10 +918,10 @@
       "track": "Security, CIM, ES, and SOAR",
       "trackNumber": 10,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-082",
@@ -929,10 +929,10 @@
       "track": "Security, CIM, ES, and SOAR",
       "trackNumber": 10,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-083",

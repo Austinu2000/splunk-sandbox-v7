@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-081",
+  "version": 1,
+  "title": "Configure and Troubleshoot SAML, LDAP, and RBAC",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Configure and Troubleshoot SAML, LDAP, and RBAC",
+    "Verify actual permissions and active source with independent evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-006"
+  ],
+  "requiredCapabilities": [
+    "security.integrate",
+    "access.enforce",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-081-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Open Recorded security operations \u2192 Identity and role mapping on sh01. The fixture retains a failed SAML group mapping. Inspect native authentication.conf, the supplied teaching IdP metadata certificate and authorize.conf. Repair roleMap_samlv2 user=SocReaders and make the user role a reader of ops_logs with no indexes_edit, edit_roles or edit_monitor capabilities. Restart virtual sh01, review the active source, then probe the fictional SAML reader. Require roles=[user] and visibility of three actual ops_logs records."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "Next configure one LDAP strategy named practice_ldap: directory.practice.invalid port 636, SSLEnabled=1, bindDN=cn=svc-splunk,ou=svc,dc=practice,dc=invalid, bindDNpassword=training-only. Use userBaseDN=ou=People,dc=practice,dc=invalid, groupBaseDN=ou=Groups,dc=practice,dc=invalid, userNameAttribute=uid, groupNameAttribute=cn, groupMappingAttribute=dn and groupMemberAttribute=member. Map user=SocReaders in roleMap_practice_ldap. Activate it, probe the LDAP reader, and retain both methods\u2019 successful receipts plus the initial failure. These are explicit offline assertions/directory entries, not a real IdP, LDAP bind, cryptographic certificate or browser login."
+    },
+    {
+      "id": "task-3",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "In Search choose sh01 and practice principal analyst. Run index=ops_logs | stats count and inspect the job: expect count=3. Verify that index-editing permissions and protected indexes remain denied. Changing native source after a probe invalidates its current-source proof; review and probe again."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/admin-manual/9.4/configuration-file-reference/9.4.0-configuration-file-reference/authentication.conf",
+      "vendorVersion": "Splunk Enterprise 9.4 native authentication configuration",
+      "purpose": "SAML/LDAP strategy, attribute mapping and role-to-group mapping"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "identity-probe",
+      "label": "Initial SAML failure repaired with the reader role and real source visibility",
+      "host": "sh01",
+      "sample": "saml-reader",
+      "current": false,
+      "roles": [
+        "user"
+      ],
+      "index": "ops_logs",
+      "events": 3,
+      "priorFailure": true
+    },
+    {
+      "kind": "identity-probe",
+      "label": "Current LDAP mapping resolves to the least-privilege reader role",
+      "host": "sh01",
+      "sample": "ldap-reader",
+      "current": true,
+      "roles": [
+        "user"
+      ],
+      "index": "ops_logs",
+      "events": 3
+    },
+    {
+      "kind": "access",
+      "label": "Reader cannot edit indexes",
+      "host": "sh01",
+      "principal": "analyst",
+      "capability": "indexes_edit",
+      "allowed": false
+    },
+    {
+      "kind": "search-job",
+      "label": "Independent reader search on the selected head",
+      "search": "^index=ops_logs.*stats count",
+      "host": "sh01",
+      "principal": "analyst",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Reader sees exactly the actual source rows",
+      "search": "index=ops_logs | stats count",
+      "principal": "analyst",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "identity"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-081:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-081:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-081:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-081:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-081:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-081:isolation"
+    }
+  ]
+}

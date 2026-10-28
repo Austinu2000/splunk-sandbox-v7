@@ -1,8 +1,8 @@
 # Milestone 8 working record
 
-M8 remains in progress. SP-069–080 passed 72 acceptance cases and are now available.
-Learn contains 123 new + 27 inherited = **150/177 lessons**. SP-081–088 and
-Milestones 9–11 remain; **27 new lessons** and the final audit are outstanding.
+M8 remains in progress. SP-069–082 passed 84 acceptance cases and are now available.
+Learn contains 125 new + 27 inherited = **152/177 lessons**. SP-083–088 and
+Milestones 9–11 remain; **25 new lessons** and the final audit are outstanding.
 The user authorized continuing without approval gates.
 
 ## Foundation currently implemented
@@ -95,3 +95,10 @@ checks passed alongside existing report/context tests. Browser verified SP-080
 workflow outcomes with one ticket across response retries. Save schema 11 retains
 security state and loads versions 1–10. The full regression passed **1,122 tests / 65 files**, plus TypeScript,
 ESLint and the production web build after the 12-lesson promotion; no M8 completion claim is made.
+
+## Identity checkpoint
+
+SP-081/082 and a passive stale-proof check pass. Native source and fictional
+identity probes share the role engine and actual bucket visibility. Combined
+focused gate: 97 tests; TypeScript and ESLint pass. Browser SP-081 verified both
+methods and inspected analyst count=3. [Details](V7-IDENTITY-PRACTICE.md).

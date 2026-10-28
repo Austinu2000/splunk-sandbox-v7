@@ -1,3 +1,9 @@
+import {
+  identityConfigurationRevision,
+  SAML_AUTH_SOURCE,
+  idpTeachingCertificate,
+  probeIdentity,
+} from './identity';
 import type { World } from '../world';
 import { setClock, tickWorld } from '../world';
 import { resolveHost, splunkdRunning } from '../hosts/profile';
@@ -24,8 +30,20 @@ export type MonitoringFixtureMode =
   | 'cim'
   | 'acceleration'
   | 'detection'
-  | 'response';
+  | 'response'
+  | 'identity';
 export type MonitoringFoundationCheck =
+  | {
+      kind: 'identity-probe';
+      label: string;
+      host: string;
+      sample: 'saml-reader' | 'ldap-reader';
+      current: boolean;
+      roles: string[];
+      index: string;
+      events: number;
+      priorFailure?: boolean;
+    }
   | {
       kind: 'platform-observation';
       label: string;
@@ -88,7 +106,7 @@ export function configureCimFixture(w: World) {
   restartSplunk(w, resolveHost(w, 'sh01')!);
 }
 export function setupMonitoringFixture(w: World, mode: MonitoringFixtureMode) {
-  const auth = ['cim', 'acceleration', 'detection', 'response'].includes(mode),
+  const auth = ['cim', 'acceleration', 'detection', 'response', 'identity'].includes(mode),
     inputHost = mode === 'queue' || mode === 'missing' ? 'hf01' : 'idx01',
     source = '/var/log/practice/operations.log';
   const cm = resolveHost(w, 'cm01')!,
@@ -195,11 +213,35 @@ export function setupMonitoringFixture(w: World, mode: MonitoringFixtureMode) {
     stageResponseAdapter(w, 'sh01', RESPONSE_ADAPTER_SOURCE.replace('training_valid', 'training_expired'));
     respondToNotable(w, 'sh01', w.security!.notables[0]!.id);
   }
+  if (mode === 'identity') {
+    write(w, 'sh01', '/opt/splunk/etc/auth/idpCerts/practice-idp.json', idpTeachingCertificate(w));
+    write(
+      w,
+      'sh01',
+      '/opt/splunk/etc/system/local/authentication.conf',
+      SAML_AUTH_SOURCE.replace('SocReaders', 'WrongReaders'),
+    );
+    restartSplunk(w, resolveHost(w, 'sh01')!);
+    probeIdentity(w, 'sh01', 'saml-reader');
+  }
   setClock(w, { paused: true });
 }
 /** Pure grading: no summary builds, searches, response creation or new observations. */
 export function monitoringFoundationCheck(w: World, c: MonitoringFoundationCheck) {
   switch (c.kind) {
+    case 'identity-probe': {
+      const probes = w.identity?.probes.filter((p) => p.host === c.host && p.sample === c.sample) ?? [],
+        last = probes.at(-1);
+      return (
+        !!last?.authenticated &&
+        (!c.current || last.configRevision === identityConfigurationRevision(w, c.host)) &&
+        JSON.stringify(last.roles) === JSON.stringify([...c.roles].sort()) &&
+        last.indexes.some((i) => i.index === c.index && i.allowed && i.recordedEvents === c.events) &&
+        Object.values(last.capabilities).every((v) => !v) &&
+        (!c.priorFailure || probes.slice(0, -1).some((p) => !p.authenticated))
+      );
+    }
+
     case 'platform-observation': {
       const observations = (w.platform?.observations ?? []).filter((o) => !c.host || o.host === c.host),
         last = observations.at(-1);

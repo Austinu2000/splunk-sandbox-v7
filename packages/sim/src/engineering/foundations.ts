@@ -154,6 +154,8 @@ export type FoundationCheck =
     }
   | {
       kind: 'search-job';
+      host?: string;
+      principal?: PracticePrincipal;
       label: string;
       search: string;
       inspected?: boolean;
@@ -397,6 +399,7 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'identity-probe':
     case 'platform-observation':
     case 'input-buffer':
     case 'data-model':
@@ -649,6 +652,8 @@ export function foundationCheck(world: World, check: FoundationCheck): boolean {
       return jobs.some(
         (job) =>
           job.status === 'done' &&
+          (!check.host || job.host === check.host) &&
+          (!check.principal || job.principal === check.principal) &&
           new RegExp(check.search, 'i').test(job.search) &&
           (!check.inspected || job.inspected) &&
           job.resultCount >= (check.minimumRows ?? 1) &&

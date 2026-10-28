@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-082",
+  "version": 1,
+  "title": "Validate Splunk Access Controls, TLS, and Security Settings",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Validate Splunk Access Controls, TLS, and Security Settings",
+    "Verify actual permissions and active source with independent evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-034"
+  ],
+  "requiredCapabilities": [
+    "security.integrate",
+    "access.enforce",
+    "forwarder.deploy",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-082-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "The fixture has two explicit v7_secure canary records on lab-lnx-0001. Its TLS output verifies idx01.corp.example:9998, but the active teaching CA trusts the wrong issuer. Inspect outputs.conf, the receiver input and the metadata certificate. Replace the active CA artifact using /opt/staging/v7-correct-ca.pem, set its owner to splunk and mode 0600, and restart the virtual forwarder. Keep useSSL=true and sslVerifyServerCert=true. Native PEM parsing and real TLS cryptography are outside this bounded metadata exercise."
+    },
+    {
+      "id": "task-2",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ],
+      "instruction": "On sh01 inspect the user role in native authorize.conf. Remove the reader\u2019s index-editing privilege using indexes_edit=disabled while retaining os access and denying internal indexes. Activate the change. Advance a tick, then in Search choose sh01 / analyst and run index=os sourcetype=v7_secure | stats count. Open Job Inspector and expect exactly two canary records. Verify the reader cannot search internal indexes or edit index settings; disabling certificate verification must not meet the lesson checks."
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/administer/admin-manual/9.4/configuration-file-reference/9.4.0-configuration-file-reference/authentication.conf",
+      "vendorVersion": "Splunk Enterprise 9.4 native authentication configuration",
+      "purpose": "SAML/LDAP strategy, attribute mapping and role-to-group mapping"
+    },
+    {
+      "url": "https://help.splunk.com/en/data-management/forward-data/universal-forwarder-manual/9.4/upgrade-or-uninstall-the-universal-forwarder/upgrade-the-universal-forwarder",
+      "vendorVersion": "Splunk Universal Forwarder 9.4 reference",
+      "purpose": "Supported controlled package upgrade workflow"
+    },
+    {
+      "url": "https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html",
+      "vendorVersion": "Ansible bounded core 2.17 compatibility subset",
+      "purpose": "Predict changes, apply and verify idempotency"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "connection",
+      "label": "Verified TLS forwarding connection",
+      "host": "lab-lnx-0001",
+      "server": "idx01.corp.example:9998",
+      "reachable": true
+    },
+    {
+      "kind": "configuration",
+      "label": "Certificate verification remains active",
+      "host": "lab-lnx-0001",
+      "conf": "outputs",
+      "stanza": "tcpout:v7_receiver",
+      "key": "sslVerifyServerCert",
+      "equals": "true",
+      "effective": true
+    },
+    {
+      "kind": "permissions",
+      "label": "Teaching CA is owned by the service and not world-readable",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/auth/v7/ca.pem",
+      "mode": 384,
+      "owner": "splunk"
+    },
+    {
+      "kind": "access",
+      "label": "Reader cannot edit indexes",
+      "host": "sh01",
+      "principal": "analyst",
+      "capability": "indexes_edit",
+      "allowed": false
+    },
+    {
+      "kind": "access",
+      "label": "Reader cannot search internal indexes",
+      "host": "sh01",
+      "principal": "analyst",
+      "index": "_internal",
+      "allowed": false
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual reader job independently inspected",
+      "search": "^index=os sourcetype=v7_secure.*stats count",
+      "host": "sh01",
+      "principal": "analyst",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Actual verified TLS delivery is searchable by the reader",
+      "search": "index=os sourcetype=v7_secure | stats count",
+      "principal": "analyst",
+      "rows": 1,
+      "cells": {
+        "count": 2
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "advance",
+      "ticks": 1,
+      "paused": true
+    },
+    {
+      "kind": "deployment-model"
+    },
+    {
+      "kind": "forwarder",
+      "host": "lab-lnx-0001"
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/var/log/practice/forwarder.log",
+      "text": "practice_id=v7-canary-001 status=200 service=ops\npractice_id=v7-canary-002 status=500 service=ops\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/inputs.conf",
+      "text": "[monitor:///var/log/practice/forwarder.log]\nindex = os\nsourcetype = v7_secure\ndisabled = false\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/auth/v7/ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"wrong-ca\"}\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/staging/v7-correct-ca.pem",
+      "text": "{\"format\":\"sandbox-ca-v1\",\"name\":\"training-ca\"}\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/auth/v7/server.pem",
+      "text": "{\"format\":\"sandbox-certificate-v1\",\"commonName\":\"idx01.corp.example\",\"issuer\":\"training-ca\",\"notAfter\":1824249600000}\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": false
+    },
+    {
+      "kind": "file",
+      "host": "idx01",
+      "path": "/opt/splunk/etc/system/local/inputs.conf",
+      "text": "[splunktcp-ssl://9998]\ndisabled=false\n[SSL]\nserverCert=/opt/splunk/etc/auth/v7/server.pem\nsslVersions=tls1.2\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "lab-lnx-0001",
+      "path": "/opt/splunkforwarder/etc/system/local/outputs.conf",
+      "text": "[tcpout]\ndefaultGroup = v7_receiver\n[tcpout:v7_receiver]\nserver = idx01.corp.example:9998\nuseSSL=true\nsslVerifyServerCert=true\nsslRootCAPath=/opt/splunkforwarder/etc/auth/v7/ca.pem\nsslCommonNameToCheck=idx01.corp.example\nsslVersions=tls1.2\n",
+      "owner": "splunk",
+      "mode": 420,
+      "apply": true
+    },
+    {
+      "kind": "file",
+      "host": "sh01",
+      "path": "/opt/splunk/etc/system/local/authorize.conf",
+      "text": "[role_user]\nsrchIndexesAllowed=os\nsrchIndexesDefault=os\nsrchIndexesDisallowed=_*\nindexes_edit=enabled\n",
+      "apply": true
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-082:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-082:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-082:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-082:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-082:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-082:isolation"
+    }
+  ]
+}

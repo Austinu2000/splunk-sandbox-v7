@@ -74,7 +74,10 @@ export function SecurityOperationsPage() {
             revision and indexed event.
           </p>
         </div>
-        <a href="#/alerts">Manage detections in Alerts →</a>
+        <div className="v5-actions">
+          <a href="#/settings/identity-operations">Identity and role mapping →</a>
+          <a href="#/alerts">Manage detections in Alerts →</a>
+        </div>
       </header>
       <p className="v5-banner">
         Bounded ES and SOAR practice. Tickets and credential aliases are fictional and stay in this

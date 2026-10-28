@@ -74,6 +74,8 @@ export interface ReportRuntime {
   archives: Record<string, string>;
 }
 export interface SearchEvidence {
+  host?: string;
+  principal?: PracticePrincipal;
   id: string;
   search: string;
   earliest: number;
