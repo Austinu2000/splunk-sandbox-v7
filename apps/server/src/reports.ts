@@ -47,7 +47,26 @@ const alertSchema = {
     fields: { type: 'array', maxItems: 8, items: { type: 'string', maxLength: 64 } },
     track: { type: 'boolean' },
     severity: { type: 'integer', minimum: 1, maximum: 6 },
-    actions: { type: 'array', maxItems: 2, items: { type: 'string', enum: ['notification', 'audit'] } },
+    actions: {
+      type: 'array',
+      maxItems: 3,
+      uniqueItems: true,
+      items: { type: 'string', enum: ['notification', 'audit', 'notable'] },
+    },
+    notable: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['title', 'description', 'securityDomain', 'severity'],
+      properties: {
+        title: { type: 'string', maxLength: 300 },
+        description: { type: 'string', maxLength: 2000 },
+        securityDomain: {
+          type: 'string',
+          enum: ['access', 'endpoint', 'network', 'identity', 'threat', 'audit'],
+        },
+        severity: { type: 'string', enum: ['unknown', 'info', 'low', 'medium', 'high', 'critical'] },
+      },
+    },
   },
 };
 const properties = {

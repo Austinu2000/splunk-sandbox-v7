@@ -786,10 +786,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-070",
@@ -797,10 +797,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-071",
@@ -808,10 +808,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-072",
@@ -819,10 +819,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-073",
@@ -830,10 +830,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-074",
@@ -841,10 +841,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-075",
@@ -852,10 +852,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-076",
@@ -863,10 +863,10 @@
       "track": "Monitoring, Performance, and Troubleshooting",
       "trackNumber": 9,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-077",
@@ -874,10 +874,10 @@
       "track": "Security, CIM, ES, and SOAR",
       "trackNumber": 10,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-078",
@@ -885,10 +885,10 @@
       "track": "Security, CIM, ES, and SOAR",
       "trackNumber": 10,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-079",
@@ -896,10 +896,10 @@
       "track": "Security, CIM, ES, and SOAR",
       "trackNumber": 10,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-080",
@@ -907,10 +907,10 @@
       "track": "Security, CIM, ES, and SOAR",
       "trackNumber": 10,
       "milestone": 8,
-      "status": "planned",
-      "executable": false,
-      "fixtureVersion": null,
-      "functionalCoverageVerified": false
+      "status": "verified",
+      "executable": true,
+      "fixtureVersion": 1,
+      "functionalCoverageVerified": true
     },
     {
       "id": "SP-081",

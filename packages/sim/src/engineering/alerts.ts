@@ -1,3 +1,4 @@
+import { createSecurityNotable } from './security';
 import type { AlertConfiguration, ReportRun, SavedReport, ResultValue } from '@sandbox/shared';
 import type { World } from '../world';
 import { confBool } from '../conf/parse';
@@ -29,7 +30,21 @@ export function alertConfiguration(
       .filter(Boolean),
     track: confBool(get('alert.track', '1')),
     severity: Number(get('alert.severity', '3')),
-    actions: get('actions', '')
+    notable:
+      confBool(get('action.notable', '0')) || get('actions', '').split(',').includes('notable')
+        ? {
+            title: get('action.notable.param.rule_title', ''),
+            description: get('action.notable.param.rule_description', ''),
+            securityDomain: get('action.notable.param.security_domain', 'access'),
+            severity: get('action.notable.param.severity', 'medium'),
+          }
+        : undefined,
+    actions: (
+      get('actions', '') +
+      (confBool(get('action.notable', '0')) && !get('actions', '').split(',').includes('notable')
+        ? ',notable'
+        : '')
+    )
       .split(',')
       .map((s) => s.trim())
       .filter(Boolean),
@@ -53,10 +68,26 @@ export function validateAlert(a: AlertConfiguration) {
     throw new OperationsError('Invalid alert type, threshold, comparator or severity');
   if (
     !Array.isArray(a.actions) ||
-    a.actions.some((s) => !['notification', 'audit'].includes(s)) ||
-    a.actions.length > 2
+    a.actions.some((s) => !['notification', 'audit', 'notable'].includes(s)) ||
+    a.actions.length > 3
   )
-    throw new OperationsError('Supported alert actions are local notification and audit only');
+    throw new OperationsError('Supported alert actions are local notification, audit and recorded notable');
+  if (new Set(a.actions).size !== a.actions.length) throw new OperationsError('Alert actions must be unique');
+  if (
+    a.notable &&
+    (Object.keys(a.notable).some(
+      (k) => !['title', 'description', 'securityDomain', 'severity'].includes(k),
+    ) ||
+      typeof a.notable.title !== 'string' ||
+      a.notable.title.length > 300 ||
+      /[\r\n]/.test(a.notable.title) ||
+      typeof a.notable.description !== 'string' ||
+      a.notable.description.length > 2000 ||
+      /[\r\n]/.test(a.notable.description) ||
+      !['access', 'endpoint', 'network', 'identity', 'threat', 'audit'].includes(a.notable.securityDomain) ||
+      !['unknown', 'info', 'low', 'medium', 'high', 'critical'].includes(a.notable.severity))
+  )
+    throw new OperationsError('Invalid notable title, description, security domain or severity');
   if (
     typeof a.condition !== 'string' ||
     a.condition.length > 2000 ||
@@ -136,11 +167,10 @@ export function evaluateAlert(world: World, report: SavedReport, run: ReportRun)
       run.alert.suppressed++;
       continue;
     }
-    run.alert.triggered++;
-    if (a.suppress) state.alerts.suppression[key] = now;
+    const triggerNumber = run.alert.triggered + 1;
     if (a.track || a.actions.length) {
       const notification = {
-        id: 'alert-' + run.id + '-' + run.alert.triggered,
+        id: 'alert-' + run.id + '-' + triggerNumber,
         reportId: report.id,
         runId: run.id,
         title: report.title,
@@ -150,9 +180,12 @@ export function evaluateAlert(world: World, report: SavedReport, run: ReportRun)
         resultCount: rows.length,
         tracked: a.track,
       };
+      if (a.actions.includes('notable')) createSecurityNotable(world, report, run, notification, rows);
       state.alerts.notifications.push(notification);
       run.alert.notificationIds.push(notification.id);
     }
+    run.alert.triggered++;
+    if (a.suppress) state.alerts.suppression[key] = now;
   }
   state.alerts.notifications = state.alerts.notifications.slice(-500);
   const cutoff = now - 7 * 86400000;

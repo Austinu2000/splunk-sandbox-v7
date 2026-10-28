@@ -197,7 +197,7 @@ export function configureMonitor(
   for (const [key, value] of Object.entries(values)) {
     if (!['index', 'sourcetype', 'disabled', 'host', 'whitelist', 'blacklist'].includes(key))
       throw new OperationsError('Unsupported monitor setting: ' + key);
-    if (value.length > 300 || /[\r\n]/.test(value)) throw new OperationsError('Invalid monitor value');
+    if (typeof value !== 'string' || value.length > 300 || /[\r\n]/.test(value)) throw new OperationsError('Invalid monitor value');
   }
   const fs = hostFs(world, host),
     file = host.splunk.home + '/etc/system/local/inputs.conf';

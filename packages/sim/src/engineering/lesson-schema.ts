@@ -80,6 +80,49 @@ const validationCase = z.enum([
 const foundationOutcome = z.discriminatedUnion('kind', [
   z
     .object({
+      kind: z.literal('platform-observation'),
+      label: text,
+      host: text.optional(),
+      recovered: z.boolean().optional(),
+      priorDown: text.optional(),
+      priorSkipped: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('input-buffer'),
+      label: text,
+      host: text,
+      source: text,
+      delivered: z.number().int().min(0),
+      pending: z.number().int().min(0),
+      minimumHighWater: z.number().min(0),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('data-model'),
+      label: text,
+      host: text,
+      model: text,
+      rows: z.number().int().positive(),
+      sourceScan: z.number().int().positive(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal('security-state'),
+      label: text,
+      host: text,
+      notables: z.number().int().positive().optional(),
+      investigated: z.boolean().optional(),
+      ticket: z.boolean().optional(),
+      priorFailure: z.boolean().optional(),
+      idempotent: z.boolean().optional(),
+    })
+    .strict(),
+  z
+    .object({
       kind: z.literal('cluster-state'),
       label: text,
       healthy: z.boolean().optional(),
@@ -431,6 +474,25 @@ export const engineeringLessonSchema = z
     setup: z
       .array(
         z.discriminatedUnion('kind', [
+          z
+            .object({
+              kind: z.literal('monitoring-fixture'),
+              mode: z.enum([
+                'health',
+                'queue',
+                'missing',
+                'license',
+                'storage',
+                'scheduler',
+                'logs',
+                'performance',
+                'cim',
+                'acceleration',
+                'detection',
+                'response',
+              ]),
+            })
+            .strict(),
           z.object({ kind: z.literal('cluster-starters') }).strict(),
           z
             .object({

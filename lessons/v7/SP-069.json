@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-069",
+  "version": 1,
+  "title": "Use the Monitoring Console to Investigate Health",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Use the Monitoring Console to Investigate Health",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-069-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture has three recorded ops_logs events and a stopped idx02. In Monitoring Console home, expand V7 operational evidence and inspect the actual services. Compare this with the virtual idx02 service and cluster views.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Start the idx02 Splunk service from its virtual terminal. Capture fresh platform evidence in Monitoring Console and verify the service is running. Search index=ops_logs | stats count and distinguish actual recorded-data evidence from generated baseline graphs.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "platform-observation",
+      "label": "Observed indexer outage, service recovery and fresh health capture",
+      "host": "idx02",
+      "priorDown": "idx02",
+      "recovered": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=ops_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "health"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-069:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-069:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-069:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-069:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-069:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-069:isolation"
+    }
+  ]
+}

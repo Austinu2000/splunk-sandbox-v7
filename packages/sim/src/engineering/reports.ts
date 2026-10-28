@@ -333,6 +333,11 @@ export function saveReport(
       'alert.track': a?.track ? '1' : '0',
       'alert.severity': String(a?.severity ?? 3),
       actions: a?.actions.join(',') ?? '',
+      'action.notable': a?.actions.includes('notable') ? '1' : '0',
+      'action.notable.param.rule_title': a?.notable?.title ?? '',
+      'action.notable.param.rule_description': a?.notable?.description ?? '',
+      'action.notable.param.security_domain': a?.notable?.securityDomain ?? 'access',
+      'action.notable.param.severity': a?.notable?.severity ?? 'medium',
     });
   }
   fs.writeFile(

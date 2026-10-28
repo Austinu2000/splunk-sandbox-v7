@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-080",
+  "version": 1,
+  "title": "Investigate a SOAR-to-ServiceNow Automation Failure",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Investigate a SOAR-to-ServiceNow Automation Failure",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-035"
+  ],
+  "requiredCapabilities": [
+    "security.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-080-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Open Interview workbench \u2192 Recorded security operations. The fixture has a real authentication notable and a failed offline response using training_expired. Inspect the retained authentication error and confirm no ticket was created.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Review and save the fictional response adapter with version: 1, endpoint: https://servicenow.practice.invalid, credentialAlias: training_valid, allowed: true. Run the same notable\u2019s response twice; one ticket must be created and the retry must return existing. Assign/investigate the notable with an evidence note. Preserve the original failure. These aliases and receipts model the handoff; no real SOAR asset, ServiceNow API, credential or network is involved.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "security-state",
+      "label": "Failed response repaired; idempotent ticket retried and investigated",
+      "host": "sh01",
+      "notables": 1,
+      "investigated": true,
+      "ticket": true,
+      "priorFailure": true,
+      "idempotent": true
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "response"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-080:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-080:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-080:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-080:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-080:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-080:isolation"
+    }
+  ]
+}

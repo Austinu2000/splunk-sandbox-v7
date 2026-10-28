@@ -27,6 +27,17 @@ interface Snapshot {
     }[];
   };
   scheduler: { succeeded: number; failed: number; skipped: number };
+  buffers: {
+    id: string;
+    host: string;
+    source: string;
+    accepted: number;
+    delivered: number;
+    pending: number;
+    pendingBytes: number;
+    highWaterBytes: number;
+    lastError?: string;
+  }[];
   observations: PlatformObservation[];
 }
 export function PlatformPanel() {
@@ -123,6 +134,43 @@ export function PlatformPanel() {
                         {s.read} bytes / {s.written} events
                       </td>
                       <td>{s.error ?? 'Accepted'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <details>
+            <summary>Actual recorded-input buffers</summary>
+            <p>
+              Opt-in lesson buffers use active limits.conf [thruput] maxKBps. Unregistered inputs retain their
+              existing behavior.
+            </p>
+            <div className="v5-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Host / source</th>
+                    <th>Accepted / delivered</th>
+                    <th>Pending events / bytes</th>
+                    <th>High-water bytes</th>
+                    <th>Outcome</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {v.buffers.map((b) => (
+                    <tr key={b.id}>
+                      <td>
+                        {b.host} / {b.source}
+                      </td>
+                      <td>
+                        {b.accepted} / {b.delivered}
+                      </td>
+                      <td>
+                        {b.pending} / {b.pendingBytes}
+                      </td>
+                      <td>{b.highWaterBytes}</td>
+                      <td>{b.lastError ?? 'Ready'}</td>
                     </tr>
                   ))}
                 </tbody>

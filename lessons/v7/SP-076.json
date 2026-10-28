@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-076",
+  "version": 1,
+  "title": "Optimize an Expensive Search or Dashboard",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Optimize an Expensive Search or Dashboard",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-076-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Run index=ops_logs | sort service | stats count by status and inspect its work in Job Inspector. The sort is unnecessary for this aggregation; record its result values and time window.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Run index=ops_logs | stats count by status over the same range and inspect it. Verify equivalent status counts with less measured work. Explain why removing an unnecessary sort is useful and why deterministic work units are not a production latency benchmark.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "^index=ops_logs\\s*\\|\\s*sort service",
+      "inspected": true,
+      "moreWorkThan": "^index=ops_logs\\s*\\|\\s*stats count by status"
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "^index=ops_logs\\s*\\|\\s*stats count by status",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=ops_logs | stats count by status",
+      "rows": 2,
+      "cells": {
+        "count": 2
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "performance"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-076:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-076:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-076:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-076:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-076:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-076:isolation"
+    }
+  ]
+}

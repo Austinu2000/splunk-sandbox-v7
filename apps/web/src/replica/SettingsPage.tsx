@@ -1,3 +1,4 @@
+import { SecurityOperationsPage } from '../pages/SecurityOperationsPage';
 import { DataModelsPage } from '../pages/DataModelsPage';
 import { ShcOperationsPage } from '../pages/ShcOperationsPage';
 import { ClusterOperationsPage } from '../pages/ClusterOperationsPage';
@@ -1554,6 +1555,7 @@ export function SettingsPage({ id }: { id: string }) {
         )}
       />
     );
+  else if (base === 'security-operations') content = <SecurityOperationsPage />;
   else if (base === 'data-models') content = <DataModelsPage />;
   else if (base === 'indexes') content = <Indexes />;
   else if (base === 'licensing') content = <Licensing />;

@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-074",
+  "version": 1,
+  "title": "Investigate Skipped Searches and Scheduler Capacity",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Investigate Skipped Searches and Scheduler Capacity",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-074-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Five actual managed reports share a minute boundary; the fixture retains a real skipped dispatch under the bounded four-dispatch-per-head-per-minute capacity. Inspect the report execution receipts and Monitoring Console evidence.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Stagger Capacity report 1 through 5 to UTC crons 5 * * * *, 6 * * * *, 7 * * * *, 8 * * * * and 9 * * * * respectively. Preserve their recorded-data query. Activate the changes and advance through those five minute slots (up to the next hour if needed). Verify each revised report produces count=3, and compare the new receipts with the earlier skip. Do not equate this teaching capacity with production CPU sizing.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "platform-observation",
+      "label": "Initial real scheduler skips retained as evidence",
+      "priorSkipped": true
+    },
+    {
+      "kind": "report-state",
+      "label": "Capacity report 1 staggered",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 1",
+      "scheduled": true,
+      "cron": "5 * * * *"
+    },
+    {
+      "kind": "report-state",
+      "label": "Capacity report 2 staggered",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 2",
+      "scheduled": true,
+      "cron": "6 * * * *"
+    },
+    {
+      "kind": "report-state",
+      "label": "Capacity report 3 staggered",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 3",
+      "scheduled": true,
+      "cron": "7 * * * *"
+    },
+    {
+      "kind": "report-state",
+      "label": "Capacity report 4 staggered",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 4",
+      "scheduled": true,
+      "cron": "8 * * * *"
+    },
+    {
+      "kind": "report-state",
+      "label": "Capacity report 5 staggered",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 5",
+      "scheduled": true,
+      "cron": "9 * * * *"
+    },
+    {
+      "kind": "report-run",
+      "label": "Capacity report 1 dispatched after schedule correction",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 1",
+      "scheduled": true,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "report-run",
+      "label": "Capacity report 2 dispatched after schedule correction",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 2",
+      "scheduled": true,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "report-run",
+      "label": "Capacity report 3 dispatched after schedule correction",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 3",
+      "scheduled": true,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "report-run",
+      "label": "Capacity report 4 dispatched after schedule correction",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 4",
+      "scheduled": true,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "report-run",
+      "label": "Capacity report 5 dispatched after schedule correction",
+      "host": "sh01",
+      "app": "search",
+      "title": "Capacity report 5",
+      "scheduled": true,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "scheduler"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-074:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-074:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-074:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-074:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-074:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-074:isolation"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-073",
+  "version": 1,
+  "title": "Troubleshoot Disk Usage and Data Retention",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Troubleshoot Disk Usage and Data Retention",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-073-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Inspect actual ops_logs buckets and bytes in Settings \u2192 Indexes. This is a clustered index; change its native definition in cm01 /opt/splunk/etc/manager-apps/_cluster/local/indexes.conf and distribute the manager bundle. Preserve the other indexes.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "For ops_logs set coldToFrozenDir=/var/archive/ops_logs, frozenTimePeriodInSecs=1 and maxHotIdleSecs=1, then apply the bundle. Advance two ticks and verify the recorded bucket froze with an archive. Restore it using the recorded bucket control in Settings \u2192 Indexes, then search index=ops_logs | stats count and open Job Inspector. Thawed records must return count=3; this exercise does not model an arbitrary OS filesystem.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "bucket-state",
+      "label": "Archived recorded bucket restored into thawed storage",
+      "host": "idx01",
+      "index": "ops_logs",
+      "state": "thawed",
+      "minimum": 1,
+      "archived": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "^index=ops_logs.*stats count",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=ops_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "storage"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-073:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-073:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-073:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-073:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-073:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-073:isolation"
+    }
+  ]
+}

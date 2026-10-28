@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-072",
+  "version": 1,
+  "title": "Investigate Unexpected Ingestion and License Usage",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Investigate Unexpected Ingestion and License Usage",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-072-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Compare the actual recorded-input byte counts for v7_noise with v7_operations in Monitoring Console and index=_internal source=*license_usage.log type=Usage st=v7_noise. Advance to the following minute if needed. These actual bytes are added to the generated license baseline.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Disable only the monitor for /var/log/practice/noise.log on idx01 using native inputs.conf disabled=1, activate it, and inspect the running configuration. Keep the operations input working and independently verify its three records. Run the license-usage query and open Job Inspector to retain your evidence.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration",
+      "label": "Active native configuration",
+      "host": "idx01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/noise.log",
+      "key": "disabled",
+      "equals": "1",
+      "effective": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "index=_internal.*license_usage.*v7_noise",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=ops_logs sourcetype=v7_operations | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "license"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-072:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-072:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-072:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-072:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-072:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-072:isolation"
+    }
+  ]
+}

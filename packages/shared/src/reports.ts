@@ -1,5 +1,6 @@
 import type { PracticePrincipal, ResultValue } from './index';
 export interface AlertConfiguration {
+  notable?: { title: string; description: string; securityDomain: string; severity: string };
   type: 'number of events' | 'number of hosts' | 'number of sources' | 'custom' | 'always';
   relation: 'greater than' | 'less than' | 'equal to' | 'not equal to';
   threshold: number;

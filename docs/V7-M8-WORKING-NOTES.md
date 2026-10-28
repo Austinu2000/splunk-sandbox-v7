@@ -1,8 +1,9 @@
 # Milestone 8 working record
 
-M8 remains in progress. No SP-069–088 definitions are executable yet. Learn remains
-at 111 new + 27 inherited = 138 lessons. Milestones 9–11 and all 39 remaining new
-lessons remain outstanding. The user authorized continuing without approval gates.
+M8 remains in progress. SP-069–080 passed 72 acceptance cases and are now available.
+Learn contains 123 new + 27 inherited = **150/177 lessons**. SP-081–088 and
+Milestones 9–11 remain; **27 new lessons** and the final audit are outstanding.
+The user authorized continuing without approval gates.
 
 ## Foundation currently implemented
 
@@ -47,7 +48,7 @@ This is a foundation checkpoint, not an M8 completion claim.
 ## Remaining M8 implementation
 
 1. Continue source/context edge cases as additional M8 features are integrated.
-2. Implement actual record-driven detection/notable and response/ticket receipts.
+2. Completed at this checkpoint: actual record-driven detection/notable and response/ticket receipts.
    Do not count the inherited security toggle resource or canned baseline notable
    log as a new ES detection. Drive outcomes from completed canonical searches.
    Preserve suppression/action-failure semantics and scoped access.
@@ -64,7 +65,7 @@ Likely lesson reuse: SP-069 services/MC, SP-070 actual buffer/throttle, SP-071 i
 path/checkpoint, SP-072 actual license bytes, SP-073 lifecycle/storage, SP-074 real
 scheduler skips/cron staggering, SP-075 actual logs/audit receipts, SP-076 measured
 query/dashboard work. SP-077/078 use recorded CIM fields and acceleration above.
-SP-079–088 still need new record-driven security/integration/KPI work.
+SP-079/080 now use actual detection and response receipts; SP-081–088 still need identity/security and integration/KPI work.
 
 ## Research already checked
 
@@ -86,3 +87,11 @@ and ordered query; since 3.10.0 DB Connect stores checkpoints in KV collection
 `dbx_db_input`. These add-on/product versions are separate from Enterprise 9.4.1.
 No add-on installation, native JDBC execution, cloud connection or real secret is
 implied. Any new adapter-only settings must be clearly labeled teaching controls.
+
+## Recorded security and first M8 lesson gate
+
+See [recorded operations](V7-RECORDED-SECURITY-OPERATIONS.md). Five focused engine/API
+checks passed alongside existing report/context tests. Browser verified SP-080
+workflow outcomes with one ticket across response retries. Save schema 11 retains
+security state and loads versions 1–10. The full regression passed **1,122 tests / 65 files**, plus TypeScript,
+ESLint and the production web build after the 12-lesson promotion; no M8 completion claim is made.

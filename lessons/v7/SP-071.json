@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-071",
+  "version": 1,
+  "title": "Diagnose Missing Logs from Source to Search",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Diagnose Missing Logs from Source to Search",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-071-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The three explicit source records exist on hf01 at /var/log/practice/operations.log, but the active monitor points at wrong.log. Trace source file, monitor path, permissions, forwarding destination, target index and actual input checkpoints.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Add the correct native monitor for /var/log/practice/operations.log on hf01 with index=ops_logs and sourcetype=v7_operations, then activate it. Advance one tick and inspect its accepted-byte checkpoint. Search index=ops_logs | stats count and open Job Inspector; expect three records without replaying the file.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration",
+      "label": "Active native configuration",
+      "host": "hf01",
+      "conf": "inputs",
+      "stanza": "monitor:///var/log/practice/operations.log",
+      "key": "index",
+      "equals": "ops_logs",
+      "effective": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "^index=ops_logs.*stats count",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=ops_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "missing"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-071:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-071:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-071:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-071:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-071:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-071:isolation"
+    }
+  ]
+}

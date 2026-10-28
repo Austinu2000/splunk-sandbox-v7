@@ -106,14 +106,14 @@ export const api = {
     request<PageDto<DsClientDto>>(
       `/api/ds/clients${query({ ...q, unmatched: q.unmatched ? 'true' : undefined })}`,
     ),
-  search: (req: SearchRequestDto) =>
+  search: (req: SearchRequestDto, principal = 'admin') =>
     request<{
       job: SearchJobDto;
       events: PageDto<SearchEventDto>;
       results: PageDto<Record<string, ResultValue>>;
     }>('/api/search/jobs', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', 'x-sandbox-principal': principal },
       body: JSON.stringify(req),
     }),
   searchEvents: (sid: string, offset: number, count: number) =>

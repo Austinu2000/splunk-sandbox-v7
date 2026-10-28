@@ -750,7 +750,7 @@ function AlertFields({
         />{' '}
         List in Triggered Alerts
       </label>
-      {['notification', 'audit'].map((action) => (
+      {['notification', 'audit', 'notable'].map((action) => (
         <label key={action}>
           <input
             type="checkbox"

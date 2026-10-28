@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-075",
+  "version": 1,
+  "title": "Use Internal Logs, Metrics, and Audit Evidence",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Use Internal Logs, Metrics, and Audit Evidence",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-075-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Create a canonical report titled Evidence report on sh01, app search, owner admin, sharing App. Use index=ops_logs | stats count, a -15m to now window, and UTC cron * * * * *.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Advance to one scheduled dispatch and inspect its actual receipt. Search index=_internal source=*scheduler.log savedsearch_name=\"Evidence report\" status=success | stats count, open Job Inspector, and confirm one native log row corresponds to the real run. Compare recorded service observations and configuration provenance; generated metrics alone do not prove this report ran.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "report-run",
+      "label": "Actual scheduled report receipt",
+      "host": "sh01",
+      "app": "search",
+      "title": "Evidence report",
+      "scheduled": true,
+      "cells": {
+        "count": 3
+      }
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "index=_internal.*scheduler.log.*Evidence report",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=_internal source=*scheduler.log savedsearch_name=\"Evidence report\" status=success | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 1
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "logs"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-075:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-075:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-075:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-075:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-075:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-075:isolation"
+    }
+  ]
+}

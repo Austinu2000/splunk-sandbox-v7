@@ -1,3 +1,9 @@
+import {
+  setupMonitoringFixture,
+  monitoringFoundationCheck,
+  type MonitoringFixtureMode,
+  type MonitoringFoundationCheck,
+} from './monitoring-foundations';
 import { V7_CLUSTER_STARTER_FILES } from '../ansible/cluster-starters';
 import {
   setupClusterFixture,
@@ -32,6 +38,7 @@ import { journal } from '../journal';
 import type { PracticePrincipal } from '@sandbox/shared';
 
 export type FoundationCheck =
+  | MonitoringFoundationCheck
   | ClusterFoundationCheck
   | {
       kind: 'dashboard-state';
@@ -229,6 +236,7 @@ export type FoundationCheck =
     };
 
 export type FoundationSetup =
+  | { kind: 'monitoring-fixture'; mode: MonitoringFixtureMode }
   | { kind: 'cluster-starters' }
   | { kind: 'cluster-fixture'; mode: ClusterFixtureMode }
   | {
@@ -259,6 +267,10 @@ export type FoundationSetup =
 
 export function setupFoundation(world: World, steps: FoundationSetup[]) {
   for (const step of steps) {
+    if (step.kind === 'monitoring-fixture') {
+      setupMonitoringFixture(world, step.mode);
+      continue;
+    }
     if (step.kind === 'cluster-starters') {
       seedRepositoryFiles(
         world,
@@ -385,6 +397,11 @@ export function foundationAnswer(
 }
 export function foundationCheck(world: World, check: FoundationCheck): boolean {
   switch (check.kind) {
+    case 'platform-observation':
+    case 'input-buffer':
+    case 'data-model':
+    case 'security-state':
+      return monitoringFoundationCheck(world, check);
     case 'cluster-state':
     case 'cluster-validation':
     case 'cluster-job':

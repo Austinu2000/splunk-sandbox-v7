@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-079",
+  "version": 1,
+  "title": "Create and Troubleshoot an Enterprise Security Detection",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Create and Troubleshoot an Enterprise Security Detection",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-035"
+  ],
+  "requiredCapabilities": [
+    "security.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-079-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture has three normalized events. Add the notable events index through cm01\u2019s native manager bundle, preserving existing definitions. On sh01 create an App-shared canonical alert named Authentication failure detection, owner admin. Search index=ops_logs tag=authentication action=failure | stats count by user.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Use custom condition search count > 1, per-result mode (digest off), suppression 5m by user, tracking enabled, and the notable action. Execute it twice over the same range: one real notable should be followed by one suppressed repeat. Open Interview workbench \u2192 Recorded security operations, inspect actual result rows/source revision, assign it and save an investigation note. Independently search index=notable source=\"Authentication failure detection\" | stats count. This bounded detection path does not install Enterprise Security.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "security-state",
+      "label": "One actual detection investigated with source evidence",
+      "host": "sh01",
+      "notables": 1,
+      "investigated": true
+    },
+    {
+      "kind": "alert-run",
+      "label": "Real trigger and successful repeat suppression",
+      "host": "sh01",
+      "title": "Authentication failure detection",
+      "minimumTriggers": 1,
+      "minimumSuppressed": 1
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=notable source=\"Authentication failure detection\" | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 1
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "detection"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-079:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-079:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-079:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-079:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-079:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-079:isolation"
+    }
+  ]
+}

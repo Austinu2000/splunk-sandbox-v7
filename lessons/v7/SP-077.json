@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-077",
+  "version": 1,
+  "title": "Normalize Security Events to CIM",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Normalize Security Events to CIM",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-035"
+  ],
+  "requiredCapabilities": [
+    "security.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-077-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "Inspect the three v7_auth events in ops_logs. They use account, src_ip and outcome rather than CIM fields. On sh01, use app v7_cim native props.conf aliases account AS user and src_ip AS src, and EVAL-action=if(outcome=\"denied\",\"failure\",\"success\").",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Create eventtypes.conf [v7_authentication] search=sourcetype=v7_auth and tags.conf [eventtype=v7_authentication] authentication=enabled. Restart the virtual sh01 service. Search index=ops_logs tag=authentication action=failure | stats count by user src action, open Job Inspector, and verify alice / 10.0.0.1 / failure / count=2. This is a bounded Authentication normalization exercise, not full CIM certification.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "configuration",
+      "label": "Active native configuration",
+      "host": "sh01",
+      "conf": "props",
+      "stanza": "v7_auth",
+      "key": "FIELDALIAS-user",
+      "equals": "account AS user",
+      "effective": true
+    },
+    {
+      "kind": "configuration",
+      "label": "Active native configuration",
+      "host": "sh01",
+      "conf": "props",
+      "stanza": "v7_auth",
+      "key": "EVAL-action",
+      "equals": "if(outcome=\"denied\",\"failure\",\"success\")",
+      "effective": true
+    },
+    {
+      "kind": "configuration",
+      "label": "Active native configuration",
+      "host": "sh01",
+      "conf": "tags",
+      "stanza": "eventtype=v7_authentication",
+      "key": "authentication",
+      "equals": "enabled",
+      "effective": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "index=ops_logs.*tag=authentication.*action=failure",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=ops_logs tag=authentication action=failure | stats count by user src action",
+      "rows": 1,
+      "cells": {
+        "user": "alice",
+        "src": "10.0.0.1",
+        "action": "failure",
+        "count": 2
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "cim"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-077:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-077:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-077:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-077:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-077:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-077:isolation"
+    }
+  ]
+}

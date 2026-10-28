@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-078",
+  "version": 1,
+  "title": "Understand Data Model Acceleration and tstats",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Understand Data Model Acceleration and tstats",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-035"
+  ],
+  "requiredCapabilities": [
+    "security.integrate",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-078-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "The fixture has normalized authentication events and a native root Authentication.Authentication model with acceleration disabled. In Settings \u2192 Data models on sh01, review its JSON source and enable acceleration with earliest_time=-15m. Stage it and restart virtual sh01.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Rebuild the active model and inspect the coverage, input revision and three scanned source events. Search | tstats summariesonly=true count from datamodel=Authentication.Authentication and open Job Inspector. Expect count=3 from the stored snapshot. Compare source fallback versus summaries-only behavior and stale snapshots; no native .tsidx file or full model hierarchy is claimed.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "data-model",
+      "label": "Current enabled model snapshot contains actual source rows",
+      "host": "sh01",
+      "model": "Authentication",
+      "rows": 3,
+      "sourceScan": 3
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "tstats summariesonly=true.*datamodel=Authentication.Authentication",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "| tstats summariesonly=true count from datamodel=Authentication.Authentication",
+      "rows": 1,
+      "cells": {
+        "count": 3
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "acceleration"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-078:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-078:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-078:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-078:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-078:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-078:isolation"
+    }
+  ]
+}

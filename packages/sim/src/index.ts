@@ -162,3 +162,7 @@ export {
   stageDataModel,
   parseDataModel,
 } from './engineering/data-models';
+
+export * from './engineering/security';
+
+export * from './engineering/monitoring-foundations';

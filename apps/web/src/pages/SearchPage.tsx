@@ -510,6 +510,7 @@ function JobInspector({ job, onClose }: { job: SearchJobDto; onClose: () => void
 export function SearchPage({ visible }: { visible: boolean }) {
   const initial = searchFromHash();
   const [query, setQuery] = useState(initial?.q ?? '');
+  const [searchPrincipal, setSearchPrincipal] = useState('admin');
   const [dispatchHost, setDispatchHost] = useState(initial?.host ?? '');
   type Scope = { context: string; host: string; hosts: string[] };
   const [searchScope, setSearchScope] = useState<Scope | null>(null),
@@ -555,7 +556,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
     setReportScope(null);
     if (saveType)
       void request<{ context: string; host: string }>(
-        'reports?host=' + encodeURIComponent(dispatchHost || ''),
+        'reports?host=' + encodeURIComponent(dispatchHost || '') + '&principal=' + searchPrincipal,
       )
         .then((scope) => {
           if (active) setReportScope(scope);
@@ -566,7 +567,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
     return () => {
       active = false;
     };
-  }, [saveType, dispatchHost]);
+  }, [saveType, dispatchHost, searchPrincipal]);
   useEffect(() => {
     void getSearchScope().catch((e) => setError(String(e)));
   }, [getSearchScope]);
@@ -593,13 +594,16 @@ export function SearchPage({ visible }: { visible: boolean }) {
       if (window.location.hash !== hash) window.history.replaceState(null, '', hash);
       try {
         const scope = await getSearchScope();
-        const res = await api.search({
-          host: hostOverride ?? (dispatchHost || scope.host),
-          context: scope.context,
-          search: q,
-          earliest: r.earliest,
-          latest: r.latest,
-        });
+        const res = await api.search(
+          {
+            host: hostOverride ?? (dispatchHost || scope.host),
+            context: scope.context,
+            search: q,
+            earliest: r.earliest,
+            latest: r.latest,
+          },
+          searchPrincipal,
+        );
         if (thisRun !== generation.current) return;
         setJob(res.job);
         setEvents({ ...res.events, items: res.events.items.slice(0, EVENTS_PAGE) });
@@ -629,7 +633,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
         }
       }
     },
-    [range, dispatchHost, getSearchScope],
+    [range, dispatchHost, searchPrincipal, getSearchScope],
   );
 
   useEffect(() => {
@@ -738,7 +742,8 @@ export function SearchPage({ visible }: { visible: boolean }) {
         await request('dashboards', {
           ...reportScope,
           app: 'search',
-          owner: 'admin',
+          owner: searchPrincipal,
+          principal: searchPrincipal,
           sharing: saveSharing,
           name: 'dashboard_' + Date.now().toString(36),
           format: 'classic',
@@ -763,7 +768,8 @@ export function SearchPage({ visible }: { visible: boolean }) {
         await request('reports', {
           ...reportScope,
           app: 'search',
-          owner: 'admin',
+          owner: searchPrincipal,
+          principal: searchPrincipal,
           sharing: saveSharing,
           title: saveTitle.trim(),
           description: saveDescription,
@@ -908,6 +914,18 @@ export function SearchPage({ visible }: { visible: boolean }) {
           >
             {searchScope?.hosts.map((host) => (
               <option key={host}>{host}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Practice principal{' '}
+          <select
+            aria-label="Search practice principal"
+            value={searchPrincipal}
+            onChange={(e) => setSearchPrincipal(e.target.value)}
+          >
+            {['admin', 'analyst', 'operator'].map((p) => (
+              <option key={p}>{p}</option>
             ))}
           </select>
         </label>
@@ -1392,7 +1410,7 @@ export function SearchPage({ visible }: { visible: boolean }) {
               </select>
             </label>
             <p className="search-muted">
-              {`Saved in this environment on ${reportScope?.host ?? 'the selected search head'}, app search, owner admin. Scheduling starts off.`}{' '}
+              {`Saved in this environment on ${reportScope?.host ?? 'the selected search head'}, app search, owner ${searchPrincipal}. Scheduling starts off.`}{' '}
               {saveType === 'alert'
                 ? 'Configure its schedule and condition in Alerts. Actions create local simulation notifications.'
                 : ''}

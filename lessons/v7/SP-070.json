@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "id": "SP-070",
+  "version": 1,
+  "title": "Understand Splunk Queues and Processing Bottlenecks",
+  "track": "Monitoring and security operations",
+  "objectives": [
+    "Understand Splunk Queues and Processing Bottlenecks",
+    "Demonstrate actual outcomes and independently inspect evidence."
+  ],
+  "environments": [
+    "lab"
+  ],
+  "level": 3,
+  "prerequisites": [
+    "SP-055"
+  ],
+  "requiredCapabilities": [
+    "monitor.inspect",
+    "search.execute"
+  ],
+  "fixture": {
+    "id": "sp-070-v1",
+    "version": 1,
+    "seed": "lab-v1"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "instruction": "In Monitoring Console home inspect the recorded-input buffer for hf01 /var/log/practice/operations.log: four explicit records are accepted, with a backlog under active limits.conf [thruput] maxKBps=1. This is an opt-in teaching queue, not a full native queue implementation.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    },
+    {
+      "id": "task-2",
+      "instruction": "Stage maxKBps=0 on hf01, compare disk with running btool evidence, then restart the virtual service to activate it. Advance one tick, verify accepted=delivered=4 and pending=0, then search index=ops_logs | stats count and open Job Inspector. Zero removes the configured throttle; do not discard pending records or reset the checkpoint.",
+      "paths": [
+        "web",
+        "cli",
+        "config",
+        "rest"
+      ]
+    }
+  ],
+  "hints": [
+    "Inspect running source and actual receipts before changing configuration.",
+    "Use the paused fixture clock deliberately; verify results through a separate view or query."
+  ],
+  "references": [
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/9.4/overview/about-the-search-reference",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Native search and operational evidence"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise/manage-knowledge-objects/knowledge-management-manual/9.4/use-data-summaries-to-accelerate-searches/accelerate-data-models",
+      "vendorVersion": "Splunk Enterprise 9.4",
+      "purpose": "Data model acceleration and coverage"
+    },
+    {
+      "url": "https://help.splunk.com/en/splunk-enterprise-security-7/splunk-app-for-pci-compliance/installation-and-configuration-manual/6.3/configure-correlation-searches/configure-correlation-searches",
+      "vendorVersion": "Splunk security saved-search notable configuration family",
+      "purpose": "Native action.notable parameters; bounded execution documented"
+    }
+  ],
+  "checks": [
+    {
+      "kind": "input-buffer",
+      "label": "Actual backlog accepted and drained without duplicate records",
+      "host": "hf01",
+      "source": "/var/log/practice/operations.log",
+      "delivered": 4,
+      "pending": 0,
+      "minimumHighWater": 24000
+    },
+    {
+      "kind": "configuration",
+      "label": "Active native configuration",
+      "host": "hf01",
+      "conf": "limits",
+      "stanza": "thruput",
+      "key": "maxKBps",
+      "equals": "0",
+      "effective": true
+    },
+    {
+      "kind": "search-job",
+      "label": "Actual search job and inspector evidence",
+      "search": "^index=ops_logs.*stats count",
+      "inspected": true
+    },
+    {
+      "kind": "query",
+      "label": "Independent recorded-data result",
+      "search": "index=ops_logs | stats count",
+      "rows": 1,
+      "cells": {
+        "count": 4
+      }
+    }
+  ],
+  "minutes": 30,
+  "setup": [
+    {
+      "kind": "monitoring-fixture",
+      "mode": "queue"
+    }
+  ],
+  "feedback": {
+    "success": "Verified operational state and retained evidence meet the lesson outcomes.",
+    "incomplete": "Inspect actual source, activation, receipts and independent evidence."
+  },
+  "reset": "restore-attempt-baseline",
+  "persistence": "learner-profile-attempt",
+  "status": "verified",
+  "validation": [
+    {
+      "case": "solution",
+      "test": "SP-070:solution"
+    },
+    {
+      "case": "incorrect-action",
+      "test": "SP-070:incorrect-action"
+    },
+    {
+      "case": "no-false-completion",
+      "test": "SP-070:no-false-completion"
+    },
+    {
+      "case": "reset",
+      "test": "SP-070:reset"
+    },
+    {
+      "case": "resume",
+      "test": "SP-070:resume"
+    },
+    {
+      "case": "isolation",
+      "test": "SP-070:isolation"
+    }
+  ]
+}

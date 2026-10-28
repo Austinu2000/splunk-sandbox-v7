@@ -237,3 +237,23 @@ The earlier foundation note about SP-006 being pending is superseded by this gat
 - Learn remains **138/177**; no M8 lesson has been promoted yet. Security response,
   integration delivery, KPI work and M8 lesson acceptance checks remain. See
   [M8 working record](V7-M8-WORKING-NOTES.md) for scope and primary references.
+
+## M8 monitoring and recorded security checkpoint (12/20 lessons)
+
+- SP-069–080 passed **72 acceptance checks** and are available: **123 new / 150
+  total lessons**. All inherited lessons remain. Eight M8 lessons, 19 later new
+  lessons and the final audit remain; the expansion is still incomplete.
+- Notable actions consume actual canonical alert results and persist indexed
+  evidence. Failed destination delivery remains retryable; suppression follows
+  successful creation. Investigation notes and offline response attempts retain
+  their sources, failures and one stable fictional ticket per notable.
+- Search exposes a practice principal for permission testing. Monitoring Console
+  now shows actual opt-in queue occupancy and accepted/delivered records.
+- Full regression: **1,122 tests across 65 files passed**, with TypeScript, ESLint
+  and the production web build passing. Existing bundle-size advisory remains.
+- Browser verified SP-080's workflow outcomes from the original failed response
+  through repair, ticket creation, idempotent retry and investigation assignment.
+  The saved Lab free-practice world was restored.
+- [Supported behavior and limits](V7-RECORDED-SECURITY-OPERATIONS.md);
+  [UI proof](v7-security-response.png). Continuing to identity/security and the
+  remaining cloud, telemetry, routing, database and service-health exercises.

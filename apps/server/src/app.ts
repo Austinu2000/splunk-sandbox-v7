@@ -1,3 +1,4 @@
+import { registerSecurity } from './security';
 import { registerDataModels } from './dataModels';
 import { registerPlatform } from './platform';
 import { registerForwarders } from './forwarders';
@@ -79,6 +80,7 @@ export function buildApp(world: World, opts: AppOptions = {}): SandboxApp {
   registerScenarios(app, live);
   registerConsoles(app, live);
   registerPlatform(app, live, store);
+  registerSecurity(app, live, store);
   registerDataModels(app, live, store);
   registerInterview(
     app,

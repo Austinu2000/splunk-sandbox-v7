@@ -37,6 +37,7 @@ export interface WorldClock {
 }
 
 export interface World {
+  security?: import('@sandbox/shared').SecurityRuntime;
   forwarders?: import('@sandbox/shared').ForwarderRuntime;
   searchEvidence?: import('@sandbox/shared').SearchEvidence[];
   clusterManagement?: import('@sandbox/shared').ClusterManagementState;
