@@ -84,4 +84,4 @@ Personal attribution remains: inherited documentation contains local home paths,
 - Implement SP-093–100 when the user resumes lesson development.
 - Full vendor features and products marked partial/unsupported above remain outside this frozen release.
 - The production build retains its existing large-bundle advisory (approximately 2.13 MB minified JavaScript). Build succeeds; no performance budget or warning limit was weakened to hide it.
-- V7 remains an independent local checkout with no GitHub push destination configured. V6 and its remote are unchanged.
+- At the audit checkpoint, V7 had no GitHub push destination configured. Subsequent GitHub publication is recorded in the README and implementation status. V6 and its remote remain separate.

@@ -395,3 +395,14 @@ See the [full coverage and limitation report](V7-FROZEN-RELEASE-AUDIT.md),
 [passed fixture evidence](V7-RELEASE-TEST-EVIDENCE.json). The complete original
 150-new-lesson expansion remains unfinished under the current scope freeze;
 SP-093–100 are not executable. V7 remains separate from V6 and no push occurred.
+
+## GitHub publication — October 28, 2026
+
+At the user's request, the audited V7 build is published to the private
+[Austinu2000/splunk-sandbox-v7 repository](https://github.com/Austinu2000/splunk-sandbox-v7),
+using branch `v7`. The local `origin` points to this repository and the branch tracks
+`origin/v7`. The audited implementation checkpoint is `6988fee`; this publication
+adds documentation of the destination without changing application code. The
+169-lesson freeze and eight deferred capstones remain in effect. Saved sessions,
+the local SQLite database and environment files remain ignored and are not uploaded.
+V6's repository and branch are unchanged.

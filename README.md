@@ -38,7 +38,7 @@ personal learner labels and notes; the database remains ignored by Git.
 - [APL and Erie capstones](docs/V7-APL-ERIE-CAPSTONES.md)
 - [Interview coverage audit](docs/V7-INTERVIEW-QUESTION-COVERAGE.md)
 
-No V7 GitHub destination is configured. V6's GitHub repository is not a V7 push target.
+V7 is stored in the private [splunk-sandbox-v7 repository](https://github.com/Austinu2000/splunk-sandbox-v7). Its default branch is `v7`; the local `v7` branch tracks it. V6 remains in its separate repository. Saved sessions, learner notes in the local database and environment files are ignored by Git.
 
 ## Inherited V6 documentation
 
